@@ -38,7 +38,7 @@
       <turnGravityOff>false</turnGravityOff>
       <sensor type="ray" name="${prefix}_laser">
         <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <update_rate>50</update_rate>
         <ray>
           <scan>
