@@ -1,10 +1,21 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>arena_simulation_setup</name>
-  <version>0.0.0</version>
-  <description>The arena_simulation_setup package</description>
-  <maintainer email="reyk@todo.todo">reyk</maintainer>
-  <license>TODO</license>
+  <name>simulation-setup</name>
+  <version>4.0.0</version>
+  <description>The simulation-setup package</description>
+  <maintainer email="trannamtruong98@gmail.com">NamTruongTran</maintainer>
+  <license>BSD</license>
+
+  <!-- ament_cmake as CMake build tool used in ROS2 -->
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <export><build_type>ament_cmake</build_type>
-  </export></package>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- Metadata about how the package should be exported to other packages -->
+  <export>
+    <build_type>ament_python</build_type>
+    <!-- <build_type>ament_cmake</build_type> -->
+  </export>
+</package>
