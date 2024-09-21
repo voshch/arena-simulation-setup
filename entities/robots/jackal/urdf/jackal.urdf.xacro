@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <robot name="jackal" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="is_sim" default="false" />
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="gazebo_controllers" default="$(find jackal_control)/config/control.yaml" />
   <xacro:property name="PI" value="3.1415926535897931" />
 
   <xacro:property name="wheelbase" value="0.262" />
@@ -29,7 +32,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
         <geometry>
-          <mesh filename="package://arena_simulation_setup/entities/robots/jackal/urdf/meshes/jackal-wheel.stl"/>
+          <mesh filename="package://jackal_description/meshes/jackal-wheel.stl"/>
         </geometry>
         <material name="black" />
       </visual>
@@ -59,7 +62,7 @@
       <fdir1 value="1 0 0"/>
     </gazebo>
 
-    <joint name="${prefix}_wheel" type="continuous">
+    <joint name="${prefix}_wheel_joint" type="continuous">
       <parent link="chassis_link"/>
       <child link="${prefix}_wheel_link" />
       <xacro:insert_block name="joint_pose" />
@@ -104,7 +107,7 @@
     <visual>
       <origin xyz="0 0 ${footprint_vertical_offset}" rpy="${PI/2} 0 ${PI/2}"/>
       <geometry>
-        <mesh filename="package://arena_simulation_setup/entities/robots/jackal/urdf/meshes/jackal-base.stl"/>
+        <mesh filename="package://jackal_description/meshes/jackal-base.stl"/>
       </geometry>
       <material name="dark_grey" />
     </visual>
@@ -130,7 +133,7 @@
     <link name="front_fender_link">
       <visual>
         <geometry>
-          <mesh filename="package://arena_simulation_setup/entities/robots/jackal/urdf/meshes/jackal-fender.stl"/>
+          <mesh filename="package://jackal_description/meshes/jackal-fender.stl"/>
         </geometry>
         <material name="yellow" />
       </visual>
@@ -141,7 +144,7 @@
     <link name="front_fender_link">
       <visual>
         <geometry>
-          <mesh filename="package://arena_simulation_setup/entities/robots/jackal/urdf/meshes/accessory_fender.stl"/>
+          <mesh filename="package://jackal_description/meshes/accessory_fender.stl"/>
         </geometry>
         <material name="yellow" />
       </visual>
@@ -165,7 +168,7 @@
     <link name="rear_fender_link">
       <visual>
         <geometry>
-          <mesh filename="package://arena_simulation_setup/entities/robots/jackal/urdf/meshes/jackal-fender.stl"/>
+          <mesh filename="package://jackal_description/meshes/jackal-fender.stl"/>
         </geometry>
         <material name="yellow" />
       </visual>
@@ -176,7 +179,7 @@
     <link name="rear_fender_link">
       <visual>
         <geometry>
-          <mesh filename="package://arena_simulation_setup/entities/robots/jackal/urdf/meshes/accessory_fender.stl"/>
+          <mesh filename="package://jackal_description/meshes/accessory_fender.stl"/>
         </geometry>
         <material name="yellow" />
       </visual>
@@ -239,23 +242,58 @@
   <joint name="rear_mount_joint" type="fixed">
     <parent link="mid_mount" />
     <child link="rear_mount" />
-    <origin xyz="${mount_spacing} 0 0" />
+    <origin xyz="${-mount_spacing} 0 0" />
   </joint>
 
   <link name="front_mount"></link>
   <joint name="front_mount_joint" type="fixed">
     <parent link="mid_mount" />
     <child link="front_mount" />
-    <origin xyz="${-mount_spacing} 0 0" rpy="0 0 0" />
+    <origin xyz="${mount_spacing} 0 0" />
   </joint>
 
+  <!-- ROS2 controls -->
+  <ros2_control name="jackal_hardware" type="system">
+    <hardware>
+      <xacro:if value="$(arg is_sim)">
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      </xacro:if>
+      <xacro:unless value="$(arg is_sim)">
+        <plugin>jackal_hardware/JackalHardware</plugin>
+        <plugin>fake_components/GenericSystem</plugin>
+      </xacro:unless>
+    </hardware>
+    <joint name="front_left_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_left_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="front_right_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_right_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
   <!-- Bring in simulation data for Gazebo. -->
-  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/jackal/urdf/jackal.gazebo" />
+  <xacro:if value="$(arg is_sim)">
+    <xacro:include filename="$(find jackal_description)/urdf/jackal.gazebo" />
+  </xacro:if>
 
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
-  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/jackal/urdf/accessories.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories.urdf.xacro" />
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />

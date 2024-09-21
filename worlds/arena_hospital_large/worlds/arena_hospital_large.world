@@ -6114,7 +6114,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>6.11137 6.9026 0 0 0 -3.132756.11137 6.9026 0 0 0 -3.13275</pose>
+      <pose>6.11137 6.9026 0 -3.132756.11137 6.9026 -3.13275</pose>
     </model>
     <model name='Scrubs_clone_1'>
       <static>1</static>
