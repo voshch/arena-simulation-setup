@@ -15,7 +15,7 @@ def generate_launch_description():
         launch.actions.DeclareLaunchArgument(
             name='pkg_hardware_config',
             default_value=get_package_share_directory(
-                'arena_simulation_setup') + '/entities/robots/cob4'
+                'simulation_setup') + '/entities/robots/cob4'
         ),
         launch.actions.DeclareLaunchArgument(
             name='name',
@@ -40,7 +40,7 @@ def generate_launch_description():
             name='scan_unifier_filter',
             parameters=[
                 get_package_share_directory(
-                    'arena_simulation_setup') + '/entities/robots/cob4/robots/cob4/config/scan_unifier_filter.yaml'
+                    'simulation_setup') + '/entities/robots/cob4/robots/cob4/config/scan_unifier_filter.yaml'
             ]
         )
     ])
