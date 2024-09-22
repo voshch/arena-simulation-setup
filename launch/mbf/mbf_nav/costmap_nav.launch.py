@@ -42,14 +42,14 @@ def generate_launch_description():
             name='move_base_legacy_relay',
             parameters=[
                 get_package_share_directory(
-                    'simulation_setup') + '/configs/mbf/move_base_params.yaml',
+                    'simulation-setup') + '/configs/mbf/move_base_params.yaml',
                 launch.substitutions.LaunchConfiguration('model')
             ]
         ),
         launch.actions.IncludeLaunchDescription(
             launch.launch_description_sources.PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory(
-                    'simulation_setup'), 'launch/mbf/planners/local/mbf_$(arg local_planner).launch.py')
+                    'simulation-setup'), 'launch/mbf/planners/local/mbf_$(arg local_planner).launch.py')
             ),
             launch_arguments={
                 'model': launch.substitutions.LaunchConfiguration('model'),
@@ -63,7 +63,7 @@ def generate_launch_description():
         launch.actions.IncludeLaunchDescription(
             launch.launch_description_sources.PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory(
-                    'simulation_setup'), 'launch/mbf/planners/inter/mbf_$(arg inter_planner).launch.py')
+                    'simulation-setup'), 'launch/mbf/planners/inter/mbf_$(arg inter_planner).launch.py')
             ),
             launch_arguments={
                 'model': launch.substitutions.LaunchConfiguration('model'),

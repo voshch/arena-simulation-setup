@@ -19,7 +19,7 @@ def generate_launch_description():
         launch.actions.DeclareLaunchArgument(
             name='rvizconfig',
             default_value=get_package_share_directory(
-                'simulation_setup') + '/entities/robots/cob4/robots/common/display_robot.rviz'
+                'simulation-setup') + '/entities/robots/cob4/robots/common/display_robot.rviz'
         ),
         launch_ros.actions.Node(
             package='joint_state_publisher',
@@ -48,7 +48,7 @@ def generate_launch_description():
         launch.actions.IncludeLaunchDescription(
             launch.launch_description_sources.PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory(
-                    'simulation_setup'), 'entities/robots/cob4/upload_robot.launch.py')
+                    'simulation-setup'), 'entities/robots/cob4/upload_robot.launch.py')
             ),
             launch_arguments={
                 'robot': launch.substitutions.LaunchConfiguration('robot')
