@@ -18,7 +18,7 @@
                     <pose frame="">-12.5 -12.5 -1 0 0 0</pose>
                     <geometry>
                         <mesh>
-                            <uri>//ignc.dae</uri>
+                            <uri>ignc.dae</uri>
                         </mesh>
                     </geometry>
                 </visual>
@@ -26,7 +26,7 @@
                     <pose frame="">-12.5 -12.5 -1 0 0 0</pose>
                     <geometry>
                         <mesh>
-                            <uri>//ignc.dae</uri>
+                            <uri>ignc.dae</uri>
                         </mesh>
                     </geometry>
                 </collision>
