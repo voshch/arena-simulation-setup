@@ -56,4 +56,68 @@ groups:
           model: chair
         - position: [-0.707, -0.707, 315]
           model: chair
-          
+
+  - name: "cafeteria"
+    margin: 1.5
+    rotations: [0,180]
+    size: [1.5,1.5]
+    entities:
+      static:
+        - position: [0,0,0]
+          model: table
+        - position: [0.5,0,90]
+          model: chair
+        - position: [0,0.5,180]
+          model: chair
+        - position: [0,-0.5,0]
+          model: chair
+        - position: [-0.5,0,-90]
+          model: chair
+
+  - name: "residential"
+    margin: 5
+    rotations: [180]
+    size: [2,2]
+    entities:
+      static:
+      - position: [0,0,90]
+        model: residential_bed
+      - position: [2,0,0]
+        model: residential_carpet
+      # - position: [3,1,90]
+      #   model: residential_chairA
+      # - position: [3,-1,90]
+      #   model: residential_chairD    
+      - position: [2,0,0]
+        model: residential_coffee_table
+      - position: [2,2,0]
+        model: residential_fridge
+      - position: [2.5,-0.5,180]
+        model: residential_sofa_1
+      - position: [-1,0,0]
+        model: residential_curtain
+
+  - name: "hospital"
+    margin: 3
+    rotations: [0,180]
+    size: [2,2]
+    entities:
+      static:
+      - position: [0,0,0]
+        model: patient_bed
+      - position: [-0.75,1,0]
+        model: bedside_tables
+      - position: [0,-0.5,90]
+        model: curtain_closed
+
+  - name: "outdoor"
+    margin: 10
+    rotations: [180]
+    size: [2,2]
+    entities:
+      static:
+      - position: [0,0,90]
+        model: tree
+      - position: [3,8,0]
+        model: house_1
+
