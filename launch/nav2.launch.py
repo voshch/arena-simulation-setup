@@ -83,10 +83,17 @@ def generate_launch_description():
     bringup_cmd_group = GroupAction([
         *[SetRemap(src=r[0], dst=r[1]) for r in remappings],
         PushRosNamespace(namespace=namespace.substitution),
+        
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='map_broadcaster',
+            arguments=['0', '0', '0', '0', '0', '0', 'world', 'map'],
+            parameters=[{'use_sim_time': use_sim_time.substitution}]
+        )
 
         # TF publishers
         GroupAction([
-            SetRemap(src='/tf_static', dst='/tf'),
             Node(
                 package="tf2_ros",
                 executable="static_transform_publisher",
@@ -119,7 +126,9 @@ def generate_launch_description():
                 ('scan', 'scan'),
                 ('map', '/map'),
                 ('map_metadata', '/map_metadata'),
-                ('initialpose', 'initialpose')
+                ('initialpose', 'initialpose'),
+                ('base_link', [frame.substitution, robot_base_frame]),
+                ('odom', [frame.substitution, robot_odom_frame]),
             ]
         ),
 
@@ -140,6 +149,11 @@ def generate_launch_description():
                     'GridBased.use_astar': True,
                     'GridBased.allow_unknown': True
                 }
+            ]
+            remappings=[
+                ('base_link', [frame.substitution, robot_base_frame]),
+                ('odom', [frame.substitution, robot_odom_frame]),
+                ('map', '/map')
             ]
         ),
 
