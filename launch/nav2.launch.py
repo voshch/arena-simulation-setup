@@ -125,7 +125,7 @@ def generate_launch_description():
             remappings=[
                 ('scan', 'scan'),
                 ('map', '/map'),
-                ('map_metadata', '/map_metadata'),
+                ('map_metadata', 'map_metadata'),
                 ('initialpose', 'initialpose'),
                 ('base_link', [frame.substitution, robot_base_frame]),
                 ('odom', [frame.substitution, robot_odom_frame]),
@@ -149,7 +149,7 @@ def generate_launch_description():
                     'GridBased.use_astar': True,
                     'GridBased.allow_unknown': True
                 }
-            ]
+            ],
             remappings=[
                 ('base_link', [frame.substitution, robot_base_frame]),
                 ('odom', [frame.substitution, robot_odom_frame]),
