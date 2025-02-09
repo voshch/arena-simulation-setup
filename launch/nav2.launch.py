@@ -81,17 +81,15 @@ def generate_launch_description():
     ]
 
     bringup_cmd_group = GroupAction([
-        *[SetRemap(src=r[0], dst=r[1]) for r in remappings],
+        *(SetRemap(src=r[0], dst=r[1]) for r in remappings),
         PushRosNamespace(namespace=namespace.substitution),
-        
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
             name='map_broadcaster',
             arguments=['0', '0', '0', '0', '0', '0', 'world', 'map'],
             parameters=[{'use_sim_time': use_sim_time.substitution}]
-        )
-
+        ),
         # TF publishers
         GroupAction([
             Node(
