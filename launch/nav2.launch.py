@@ -83,13 +83,13 @@ def generate_launch_description():
     bringup_cmd_group = GroupAction([
         *(SetRemap(src=r[0], dst=r[1]) for r in remappings),
         PushRosNamespace(namespace=namespace.substitution),
-        Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='map_broadcaster',
-            arguments=['0', '0', '0', '0', '0', '0', 'world', 'map'],
-            parameters=[{'use_sim_time': use_sim_time.substitution}]
-        ),
+        # Node(
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name='map_broadcaster',
+        #     arguments=['0', '0', '0', '0', '0', '0', 'world', 'map'],
+        #     parameters=[{'use_sim_time': use_sim_time.substitution}]
+        # ),
         # TF publishers
         GroupAction([
             Node(
@@ -117,14 +117,14 @@ def generate_launch_description():
             name='amcl',
             namespace=namespace.substitution,
             parameters=[
-                substituted_parameters,
-                {'use_sim_time': use_sim_time.substitution}
+                {'use_sim_time': True},
+                {'global_frame_id': 'map'},
+                {'odom_frame_id': [frame.substitution, robot_odom_frame]},
+                {'base_frame_id': [frame.substitution, robot_base_frame]},
             ],
             remappings=[
                 ('scan', 'scan'),
                 ('map', '/map'),
-                ('map_metadata', 'map_metadata'),
-                ('initialpose', 'initialpose'),
                 ('base_link', [frame.substitution, robot_base_frame]),
                 ('odom', [frame.substitution, robot_odom_frame]),
             ]
