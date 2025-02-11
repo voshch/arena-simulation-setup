@@ -6,6 +6,7 @@ from launch.substitutions import PathJoinSubstitution
 
 from launch_ros.actions import PushRosNamespace, SetRemap, Node
 from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import PythonExpression 
 
 from arena_bringup.substitutions import LaunchArgument, YAMLFileSubstitution, YAMLReplaceSubstitution, YAMLMergeSubstitution, YAMLRetrieveSubstitution
 
@@ -28,16 +29,17 @@ def generate_launch_description():
                'model_params.yaml'
            ])
        ),
-       # Load controller-specific configuration based on local_planner argument
-       YAMLFileSubstitution(
-           PathJoinSubstitution([
-               ss_root,
-               'configs',
-               'nav2',
-               'controllers',
-               f'{local_planner.substitution}.yaml'
-           ])
-       ),
+        # Load controller-specific configuration based on local_planner argument
+        YAMLFileSubstitution(
+            PathJoinSubstitution([
+                ss_root,
+                'configs',
+                'nav2',
+                'controllers',
+                local_planner.substitution,
+                'controller_config.yaml'  
+            ])
+        ),
        YAMLFileSubstitution(
            PathJoinSubstitution([
                ss_root,
@@ -169,8 +171,10 @@ def generate_launch_description():
            ),
            launch_arguments={
                'use_sim_time': use_sim_time.substitution,
+               'local_planner': local_planner.substitution,
                'autostart': 'True',
                'params_file': substituted_parameters,
+
                'use_composition': 'False',
            }.items()
        ),
