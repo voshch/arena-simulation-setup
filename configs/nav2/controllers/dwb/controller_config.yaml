@@ -2,7 +2,7 @@ controller_plugins:
   - FollowPath
 controller_plugins_dict:
   FollowPath:
-    plugin: "nav2_dwb_controller::DwbLocalPlanner"
+    plugin: "dwb_core::DWBLocalPlanner"
     debug_trajectory_details: True
     min_vel_x: 0.0
     min_vel_y: 0.0
