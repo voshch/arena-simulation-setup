@@ -3,10 +3,10 @@ import launch.actions
 import launch.substitutions
 import launch.launch_description_sources
 
-import launch_ros
 from ament_index_python.packages import get_package_share_directory
 
 from arena_bringup.substitutions import LaunchArgument
+from launch_ros.actions import PushRosNamespace
 
 
 def generate_launch_description():
@@ -43,22 +43,20 @@ def generate_launch_description():
     )
 
     # launch robot control
-    control_launch = launch.actions.IncludeLaunchDescription(
+    state_pub_launch = launch.actions.IncludeLaunchDescription(
         launch.launch_description_sources.PythonLaunchDescriptionSource(
             launch.substitutions.PathJoinSubstitution(
                 [
                     ss_path,
-                    "entities",
-                    "robots",
-                    robot.substitution,
                     "launch",
-                    "control.launch.py",
+                    "state_publisher.launch.py",
                 ]
             )),
         launch_arguments={
             "use_sim_time": use_sim_time.substitution,
             "frame": frame.substitution,
             "namespace": namespace.substitution,
+            **robot.dict,
         }.items(),
     )
 
@@ -150,9 +148,10 @@ def generate_launch_description():
             name='record_data_dir',
             default_value='auto:'
         ),
+        PushRosNamespace(namespace=namespace.substitution),
         # robot_localization_node,
         nav2_launch,
-        control_launch,
+        # state_pub_launch,
     ])
     return ld
 
