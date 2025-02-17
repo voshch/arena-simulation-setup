@@ -43,6 +43,16 @@ def generate_launch_description():
         YAMLFileSubstitution(
             PathJoinSubstitution([
                 ss_root,
+                'configs',
+                'nav2',
+                'planners',
+                global_planner.substitution,
+                'planner_config.yaml'  
+            ])
+        ),
+        YAMLFileSubstitution(
+            PathJoinSubstitution([
+                ss_root,
                 'entities',
                 'robots',
                 robot.substitution,
