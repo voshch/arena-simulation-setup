@@ -29,6 +29,15 @@ def generate_launch_description():
                 'model_params.yaml'
             ])
         ),
+        YAMLFileSubstitution(
+            PathJoinSubstitution([
+                ss_root,
+                'entities',
+                'robots',
+                robot.substitution,
+                'model_params.yaml'
+            ])
+        ),
         # Load controller-specific configuration based on local_planner argument
         YAMLFileSubstitution(
             PathJoinSubstitution([
@@ -40,6 +49,7 @@ def generate_launch_description():
                 'controller_config.yaml'
             ])
         ),
+        # Load controller-specific configuration based on global_planner argument
         YAMLFileSubstitution(
             PathJoinSubstitution([
                 ss_root,
@@ -47,16 +57,7 @@ def generate_launch_description():
                 'nav2',
                 'planners',
                 global_planner.substitution,
-                'planner_config.yaml'  
-            ])
-        ),
-        YAMLFileSubstitution(
-            PathJoinSubstitution([
-                ss_root,
-                'entities',
-                'robots',
-                robot.substitution,
-                'model_params.yaml'
+                'planner_config.yaml'
             ])
         ),
         YAMLFileSubstitution.from_dict(
