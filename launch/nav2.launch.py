@@ -113,35 +113,44 @@ def generate_launch_description():
                 name="map_to_odomframe_publisher",
                 namespace=namespace.substitution,
                 arguments=["0", "0", "0", "0", "0", "0", "map", [frame.substitution, robot_odom_frame]],
-                parameters=[use_sim_time.dict],
+                parameters=[{'use_sim_time': True}],
             ),
-            Node(
-                package="tf2_ros",
-                executable="static_transform_publisher",
-                name="odomframe_to_baseframe_publisher",
-                namespace=namespace.substitution,
-                arguments=["0", "0", "0", "0", "0", "0", [frame.substitution, robot_odom_frame], [frame.substitution, robot_base_frame]],
-                parameters=[use_sim_time.dict],
-            ),
+            # Node(
+            #     package="tf2_ros",
+            #     executable="static_transform_publisher",
+            #     name="odomframe_to_baseframe_publisher",
+            #     namespace=namespace.substitution,
+            #     arguments=["0", "0", "0", "0", "0", "0", [frame.substitution, robot_odom_frame], [frame.substitution, robot_base_frame]],
+            #     parameters=[use_sim_time.dict],
+            # ),
         ]),
 
-        # # AMCL Node
+        # AMCL Node
         # Node(
         #     package='nav2_amcl',
         #     executable='amcl',
         #     name='amcl',
         #     namespace=namespace.substitution,
-        #     parameters=[
-        #         {'use_sim_time': True},
-        #         {'global_frame_id': 'map'},
-        #         {'odom_frame_id': [frame.substitution, robot_odom_frame]},
-        #         {'base_frame_id': [frame.substitution, robot_base_frame]},
-        #     ],
+        #     output='screen',
+        #     parameters=[{
+        #         'use_sim_time': True,
+        #         'global_frame_id': 'map',
+        #         'odom_frame_id': 'jackal/odom',
+        #         'base_frame_id': 'jackal/base_link',
+        #         'scan_topic': '/task_generator_node/jackal/lidar',
+        #         'initial_pose': {'x': 5.0, 'y': 5.0, 'z': 0.0, 'yaw': 0.0},  # Adjust to free space
+        #         'set_initial_pose': True,  # Use this initial pose
+        #         'max_particles': 2000,  # Default tuning
+        #         'min_particles': 500,
+        #         'alpha1': 0.2,  # Noise parameters
+        #         'alpha2': 0.2,
+        #         'alpha3': 0.2,
+        #         'alpha4': 0.2,
+        #         'alpha5': 0.2,
+        #     }],
         #     remappings=[
-        #         ('scan', 'scan'),
+        #         ('scan', '/task_generator_node/jackal/lidar'),
         #         ('map', '/map'),
-        #         ('base_link', [frame.substitution, robot_base_frame]),
-        #         ('odom', [frame.substitution, robot_odom_frame]),
         #     ]
         # ),
 
@@ -169,42 +178,60 @@ def generate_launch_description():
         #         ('map', '/map')
         #     ]
         # ),
-
-        # Navigation Stack
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                PathJoinSubstitution(
-                    [
-                        pkg_nav2_bringup,
-                        'launch',
-                        'navigation_launch.py'
-                    ]
-                )
-            ),
-            launch_arguments={
-                'use_sim_time': use_sim_time.substitution,
-                'local_planner': local_planner.substitution,
-                'autostart': 'True',
-                'params_file': substituted_parameters,
-
-                'use_composition': 'False',
-            }.items()
+        Node(
+            package='robot_localization',
+            executable='ekf_node',
+            name='ekf_node',
+            output='screen',
+            parameters=[{
+                'use_sim_time': True,
+                'odom0': PathJoinSubstitution(['/task_generator_node', frame.substitution, robot_odom_frame]),
+                'odom0_config': [False, False, False, False, False, False, True, True, False, False, False, True, False, False, False],
+                'imu0': PathJoinSubstitution(['/task_generator_node', frame.substitution, 'imu/data']),
+                'imu0_config': [False, False, False, False, False, False, True, True, True, False, False, True, False, False, False],
+                'odom_frame': PathJoinSubstitution([frame.substitution, robot_odom_frame]),
+                'base_link_frame': PathJoinSubstitution([frame.substitution, robot_base_frame]),
+                'world_frame': PathJoinSubstitution([frame.substitution, robot_odom_frame]),
+                'map_frame': 'map',
+                'publish_tf': True,
+            }],
         ),
 
-        # Lifecycle Manager for AMCL and Planner
-        # Node(
-        #     package='nav2_lifecycle_manager',
-        #     executable='lifecycle_manager',
-        #     name='lifecycle_manager_navigation',
-        #     output='screen',
-        #     parameters=[
-        #         {'use_sim_time': use_sim_time.substitution},
-        #         {'autostart': True},
-        #         {'node_names': ['amcl', 'planner_server']},
-        #         {'bond_timeout': 4.0},
-        #         {'attempt_respawn_reconnection': True}
-        #     ]
+        # # Navigation Stack
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         PathJoinSubstitution(
+        #             [
+        #                 pkg_nav2_bringup,
+        #                 'launch',
+        #                 'navigation_launch.py'
+        #             ]
+        #         )
+        #     ),
+        #     launch_arguments={
+        #         'use_sim_time': use_sim_time.substitution,
+        #         'local_planner': local_planner.substitution,
+        #         'autostart': 'True',
+        #         'params_file': substituted_parameters,
+
+        #         'use_composition': 'False',
+        #     }.items()
         # ),
+
+    #     # Lifecycle Manager for AMCL and Planner
+    #     Node(
+    #         package='nav2_lifecycle_manager',
+    #         executable='lifecycle_manager',
+    #         name='lifecycle_manager_navigation',
+    #         output='screen',
+    #         parameters=[
+    #             {'use_sim_time': use_sim_time.substitution},
+    #             {'autostart': True},
+    #             {'node_names': ['amcl']},
+    #             {'bond_timeout': 4.0},
+    #             {'attempt_respawn_reconnection': True}
+    #         ]
+    #     ),
     ])
 
     # Create the launch description and populate
