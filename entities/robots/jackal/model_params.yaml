@@ -1,9 +1,9 @@
-observation_sources_string: ${frame:-}lidar # massive bullshit, costmaps still need string param
+observation_sources_string: lidar # massive bullshit, costmaps still need string param
 observation_sources:
-  - ${frame:-}lidar
+  - lidar
 observation_sources_dict:
-  scan:
-    topic: ${frame:-}lidar
+  lidar:
+    topic: lidar
     max_obstacle_height: 2.0
     clearing: True
     marking: True
