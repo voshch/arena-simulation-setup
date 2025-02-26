@@ -21,6 +21,17 @@ def generate_launch_description():
     local_planner = LaunchArgument('local_planner')
     inter_planner = LaunchArgument('inter_planner')
 
+    xml_path = PathJoinSubstitution([
+        ss_root,
+        'configs',
+        'nav2',
+        'interplanners',
+        inter_planner.substitution,
+        'interplanner_behaviour.xml'
+    ])
+
+
+
     substitutions = YAMLMergeSubstitution(
         YAMLFileSubstitution(
             PathJoinSubstitution([
@@ -73,11 +84,27 @@ def generate_launch_description():
         ),
         YAMLFileSubstitution.from_dict(
             {
-                'frame': frame.substitution,
-            },
-            substitute=True
+            'frame': frame.substitution,
+            'bt_xml_filename': xml_path,
+            'bt_plugins': YAMLRetrieveSubstitution(  
+                YAMLFileSubstitution(
+                    PathJoinSubstitution([
+                        ss_root,
+                        'configs',
+                        'nav2',
+                        'interplanners',
+                        inter_planner.substitution,
+                        'interplanner_config.yaml'
+                    ])
+                ),
+                'bt_navigator/ros__parameters/bt_plugins'
+            ),
+        },
+        substitute=True
         ),
     )
+
+
 
     substituted_parameters = YAMLReplaceSubstitution(
         obj=YAMLFileSubstitution(

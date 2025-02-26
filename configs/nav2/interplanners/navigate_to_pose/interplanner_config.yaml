@@ -1,7 +1,7 @@
 bt_navigator:
   ros__parameters:
-    default_bt_xml_filename: "$(find arena_simulation_setup)/configs/nav2/interplanners/navigate_to_pose/navigate_to_pose.xml"
-    plugin_lib_names:  # Verwende plugin_lib_names statt bt_plugin_params
+    bt_xml_filename: "interplanner_behaviour.xml"
+    bt_plugins:
       - nav2_compute_path_to_pose_action_bt_node
       - nav2_follow_path_action_bt_node
       - nav2_back_up_action_bt_node
