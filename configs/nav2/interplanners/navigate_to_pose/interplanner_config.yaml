@@ -15,6 +15,8 @@ bt_navigator:
       - nav2_recovery_node_bt_node
       - nav2_pipeline_sequence_bt_node
       - nav2_round_robin_node_bt_node
+      - nav2_remove_passed_goals_action_bt_node
+      - nav2_compute_path_through_poses_action_bt_node
       #- nav2_would_a_controller_recovery_help_condition_bt_node
       #- nav2_would_a_planner_recovery_help_condition_bt_node
 
