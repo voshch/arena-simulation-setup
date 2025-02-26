@@ -1,0 +1,21 @@
+bt_navigator:
+  ros__parameters:
+    default_bt_xml_filename: "$(find arena_simulation_setup)/configs/nav2/interplanners/navigate_to_pose/navigate_to_pose.xml"
+    plugin_lib_names:  # Verwende plugin_lib_names statt bt_plugin_params
+      - nav2_compute_path_to_pose_action_bt_node
+      - nav2_follow_path_action_bt_node
+      - nav2_back_up_action_bt_node
+      - nav2_spin_action_bt_node
+      - nav2_wait_action_bt_node
+      - nav2_clear_costmap_service_bt_node
+      - nav2_is_stuck_condition_bt_node
+      - nav2_goal_reached_condition_bt_node
+      - nav2_goal_updated_condition_bt_node
+      - nav2_rate_controller_bt_node
+      - nav2_recovery_node_bt_node
+      - nav2_pipeline_sequence_bt_node
+      - nav2_round_robin_node_bt_node
+      - nav2_would_a_controller_recovery_help_condition_bt_node
+      - nav2_would_a_planner_recovery_help_condition_bt_node
+
+      

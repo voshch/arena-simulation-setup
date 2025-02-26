@@ -19,6 +19,7 @@ def generate_launch_description():
     use_sim_time = LaunchArgument('use_sim_time')
     global_planner = LaunchArgument('global_planner')
     local_planner = LaunchArgument('local_planner')
+    inter_planner = LaunchArgument('inter_planner')
 
     substitutions = YAMLMergeSubstitution(
         YAMLFileSubstitution(
@@ -58,6 +59,16 @@ def generate_launch_description():
                 'planners',
                 global_planner.substitution,
                 'planner_config.yaml'
+            ])
+        ),
+        YAMLFileSubstitution(
+            PathJoinSubstitution([
+                ss_root,
+                'configs',
+                'nav2',
+                'interplanners',
+                inter_planner.substitution,
+                'interplanner_config.yaml'
             ])
         ),
         YAMLFileSubstitution.from_dict(
@@ -205,6 +216,7 @@ def generate_launch_description():
             launch_arguments={
                 'use_sim_time': use_sim_time.substitution,
                 'local_planner': local_planner.substitution,
+                'inter_planner': inter_planner.substitution,
                 'autostart': 'True',
                 'params_file': substituted_parameters,
 
@@ -236,6 +248,7 @@ def generate_launch_description():
         use_sim_time,
         global_planner,
         local_planner,
+        inter_planner,
         bringup_cmd_group,
     ])
 

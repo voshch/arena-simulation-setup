@@ -21,6 +21,7 @@ def generate_launch_description():
 
     global_planner = LaunchArgument("global_planner")
     local_planner = LaunchArgument("local_planner")
+    inter_planner = LaunchArgument("inter_planner")
 
     # Include the Nav2 launch file
     nav2_launch = launch.actions.IncludeLaunchDescription(
@@ -38,6 +39,7 @@ def generate_launch_description():
             "namespace": namespace.substitution,
             "global_planner": global_planner.substitution,
             "local_planner": local_planner.substitution,
+            "inter_planner": inter_planner.substitution,
             "frame": frame.substitution,
         }.items(),
     )
@@ -123,6 +125,7 @@ def generate_launch_description():
         use_sim_time,
         global_planner,
         local_planner,
+        inter_planner,
         robot,
         namespace,
         frame,
