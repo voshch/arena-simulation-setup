@@ -1,6 +1,6 @@
 bt_navigator:
   ros__parameters:
-    bt_xml_filename: "interplanner_behaviour.xml"
+    default_bt_xml_filename: "interplanner_behaviour.xml"
     bt_plugins:
       - nav2_compute_path_to_pose_action_bt_node
       - nav2_follow_path_action_bt_node
@@ -15,7 +15,7 @@ bt_navigator:
       - nav2_recovery_node_bt_node
       - nav2_pipeline_sequence_bt_node
       - nav2_round_robin_node_bt_node
-      - nav2_would_a_controller_recovery_help_condition_bt_node
-      - nav2_would_a_planner_recovery_help_condition_bt_node
+      #- nav2_would_a_controller_recovery_help_condition_bt_node
+      #- nav2_would_a_planner_recovery_help_condition_bt_node
 
       
