@@ -84,23 +84,23 @@ def generate_launch_description():
         ),
         YAMLFileSubstitution.from_dict(
             {
-            'frame': frame.substitution,
-            'bt_xml_filename': xml_path,
-            'bt_plugins': YAMLRetrieveSubstitution(  
-                YAMLFileSubstitution(
-                    PathJoinSubstitution([
-                        ss_root,
-                        'configs',
-                        'nav2',
-                        'interplanners',
-                        inter_planner.substitution,
-                        'interplanner_config.yaml'
-                    ])
+                'frame': frame.substitution,
+                'bt_xml_filename': xml_path,  
+                'plugin_lib_names': YAMLRetrieveSubstitution(  
+                    YAMLFileSubstitution(
+                        PathJoinSubstitution([
+                            ss_root,
+                            'configs',
+                            'nav2',
+                            'interplanners',
+                            inter_planner.substitution,
+                            'interplanner_config.yaml'
+                        ])
+                    ),
+                    'bt_navigator/ros__parameters/plugin_lib_names'
                 ),
-                'bt_navigator/ros__parameters/bt_plugins'
-            ),
-        },
-        substitute=True
+            },
+            substitute=True
         ),
     )
 

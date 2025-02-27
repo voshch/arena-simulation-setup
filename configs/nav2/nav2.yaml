@@ -48,9 +48,11 @@ bt_navigator:
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
     
-    default_bt_xml_filename: ${bt_xml_filename}
+    # Beide Parameter auf die gleiche XML-Datei setzen
+    default_nav_to_pose_bt_xml: ${bt_xml_filename}
+    default_nav_through_poses_bt_xml: ${bt_xml_filename}
     
-    plugin_lib_names: ${bt_plugins}
+    plugin_lib_names: ${plugin_lib_names}
 
 bt_navigator_rclcpp_node:
   ros__parameters:
