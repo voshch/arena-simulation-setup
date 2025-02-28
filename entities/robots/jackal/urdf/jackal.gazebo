@@ -119,13 +119,13 @@
     <topic>joint_states</topic>
   </plugin>
 
-  <gazebo reference="base_link">
+  <gazebo reference="lidar_link">
     <sensor name="gpu_lidar" type="gpu_lidar">
       <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
         <render_engine>ogre2</render_engine>
-        <frame_id>base_link</frame_id>
+        <frame_id>lidar_link</frame_id>
       </plugin>
-      <pose relative_to="lidar_frame">0 0 0 0 0 0</pose>
+      <pose>0 0 0.142 0 0 0</pose>
       <update_rate>10</update_rate>
       <ray>
         <scan>
