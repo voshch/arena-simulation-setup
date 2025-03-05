@@ -21,10 +21,6 @@ def generate_launch_description():
     local_planner = LaunchArgument('local_planner')
     inter_planner = LaunchArgument('inter_planner')
 
-
-
-
-
     substitutions = YAMLMergeSubstitution(
         YAMLFileSubstitution(
             PathJoinSubstitution([
@@ -171,60 +167,6 @@ def generate_launch_description():
             #     arguments=["0", "0", "0", "0", "0", "0", [frame.substitution, robot_odom_frame], [frame.substitution, robot_base_frame]],
             #     parameters=[use_sim_time.dict],
             # ),
-
-        # AMCL Node
-        # Node(
-        #     package='nav2_amcl',
-        #     executable='amcl',
-        #     name='amcl',
-        #     namespace=namespace.substitution,
-        #     output='screen',
-        #     parameters=[{
-        #         'use_sim_time': True,
-        #         'global_frame_id': 'map',
-        #         'odom_frame_id': 'jackal/odom',
-        #         'base_frame_id': 'jackal/base_link',
-        #         'scan_topic': '/task_generator_node/jackal/lidar',
-        #         'initial_pose': {'x': 5.0, 'y': 5.0, 'z': 0.0, 'yaw': 0.0},  # Adjust to free space
-        #         'set_initial_pose': True,  # Use this initial pose
-        #         'max_particles': 2000,  # Default tuning
-        #         'min_particles': 500,
-        #         'alpha1': 0.2,  # Noise parameters
-        #         'alpha2': 0.2,
-        #         'alpha3': 0.2,
-        #         'alpha4': 0.2,
-        #         'alpha5': 0.2,
-        #     }],
-        #     remappings=[
-        #         ('scan', '/task_generator_node/jackal/lidar'),
-        #         ('map', '/map'),
-        #     ]
-        # ),
-
-        # Planner Server Node
-        # Node(
-        #     package='nav2_planner',
-        #     executable='planner_server',
-        #     name='planner_server',
-        #     namespace=namespace.substitution,
-        #     output='screen',
-        #     parameters=[
-        #         substituted_parameters,
-        #         {
-        #             'use_sim_time': use_sim_time.substitution,
-        #             'planner_plugins': ['GridBased'],
-        #             'GridBased.plugin': 'nav2_navfn_planner/NavfnPlanner',
-        #             'GridBased.tolerance': 2.0,
-        #             'GridBased.use_astar': True,
-        #             'GridBased.allow_unknown': True
-        #         }
-        #     ],
-        #     remappings=[
-        #         ('base_link', [frame.substitution, robot_base_frame]),
-        #         ('odom', [frame.substitution, robot_odom_frame]),
-        #         ('map', '/map')
-        #     ]
-        # ),
         Node(
             package='robot_localization',
             executable='ekf_node',
@@ -246,7 +188,58 @@ def generate_launch_description():
                 "frequency": 30.0,
             }],
         ),
-
+        # Planner Server Node
+        Node(
+            package='nav2_planner',
+            executable='planner_server',
+            name='planner_server',
+            namespace=namespace.substitution,
+            output='screen',
+            parameters=[
+                substituted_parameters,
+                {
+                    'use_sim_time': use_sim_time.substitution,
+                    'planner_plugins': ['GridBased'],
+                    'GridBased.plugin': 'nav2_navfn_planner/NavfnPlanner',
+                    'GridBased.tolerance': 2.0,
+                    'GridBased.use_astar': True,
+                    'GridBased.allow_unknown': True
+                }
+            ],
+            remappings=[
+                ('base_link', [frame.substitution, robot_base_frame]),
+                ('odom', [frame.substitution, robot_odom_frame]),
+                ('map', '/map')
+            ]
+        ),
+        # # AMCL Node
+        # Node(
+        #     package='nav2_amcl',
+        #     executable='amcl',
+        #     name='amcl',
+        #     namespace=namespace.substitution,
+        #     output='screen',
+        #     parameters=[{
+        #         'use_sim_time': True,
+        #         'global_frame_id': 'map',
+        #         'odom_frame_id': 'jackal/odom',
+        #         'base_frame_id': 'jackal/base_link',
+        #         'scan_topic': '/task_generator_node/jackal/lidar',
+        #         'initial_pose': {'x': 5.0, 'y': 5.0, 'z': 0.0, 'yaw': 0.0},
+        #         'set_initial_pose': True,
+        #         'max_particles': 2000,
+        #         'min_particles': 500,
+        #         'alpha1': 0.2,
+        #         'alpha2': 0.2,
+        #         'alpha3': 0.2,
+        #         'alpha4': 0.2,
+        #         'alpha5': 0.2,
+        #     }],
+        #     remappings=[
+        #         ('scan', '/task_generator_node/jackal/lidar'),
+        #         ('map', '/map'),
+        #     ]
+        # ),
         # # Navigation Stack
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
