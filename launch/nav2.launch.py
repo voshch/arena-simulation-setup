@@ -74,7 +74,7 @@ def generate_launch_description():
         YAMLFileSubstitution.from_dict(
             {
                 'frame': frame.substitution,
-                'default_nav_to_pose_bt_xml': YAMLRetrieveSubstitution(  
+                'default_nav_to_pose_bt_xml': YAMLRetrieveSubstitution(
                     YAMLFileSubstitution(
                         PathJoinSubstitution([
                             ss_root,
@@ -87,7 +87,7 @@ def generate_launch_description():
                     ),
                     'bt_navigator/ros__parameters/default_nav_to_pose_bt_xml'
                 ),
-                'default_nav_through_poses_bt_xml': YAMLRetrieveSubstitution(  
+                'default_nav_through_poses_bt_xml': YAMLRetrieveSubstitution(
                     YAMLFileSubstitution(
                         PathJoinSubstitution([
                             ss_root,
@@ -100,7 +100,7 @@ def generate_launch_description():
                     ),
                     'bt_navigator/ros__parameters/default_nav_through_poses_bt_xml'
                 ),
-                'plugin_lib_names': YAMLRetrieveSubstitution(  
+                'plugin_lib_names': YAMLRetrieveSubstitution(
                     YAMLFileSubstitution(
                         PathJoinSubstitution([
                             ss_root,
@@ -117,8 +117,6 @@ def generate_launch_description():
             substitute=True
         ),
     )
-
-
 
     substituted_parameters = YAMLReplaceSubstitution(
         obj=YAMLFileSubstitution(
@@ -151,6 +149,12 @@ def generate_launch_description():
 
     bringup_cmd_group = GroupAction([
         *(SetRemap(src=r[0], dst=r[1]) for r in remappings),
+        Node(
+            package='topic_tools',
+            executable='relay',
+            name='goal_pose_relay',
+            arguments=['/goal_pose', 'goal_pose'],
+        ),
         # Node(
         #     package='tf2_ros',
         #     executable='static_transform_publisher',
@@ -159,14 +163,14 @@ def generate_launch_description():
         #     parameters=[{'use_sim_time': use_sim_time.substitution}]
         # ),
         # TF publishers
-            # Node(
-            #     package="tf2_ros",
-            #     executable="static_transform_publisher",
-            #     name="odomframe_to_baseframe_publisher",
-            #     namespace=namespace.substitution,
-            #     arguments=["0", "0", "0", "0", "0", "0", [frame.substitution, robot_odom_frame], [frame.substitution, robot_base_frame]],
-            #     parameters=[use_sim_time.dict],
-            # ),
+        # Node(
+        #     package="tf2_ros",
+        #     executable="static_transform_publisher",
+        #     name="odomframe_to_baseframe_publisher",
+        #     namespace=namespace.substitution,
+        #     arguments=["0", "0", "0", "0", "0", "0", [frame.substitution, robot_odom_frame], [frame.substitution, robot_base_frame]],
+        #     parameters=[use_sim_time.dict],
+        # ),
         Node(
             package='robot_localization',
             executable='ekf_node',
@@ -262,20 +266,20 @@ def generate_launch_description():
             }.items()
         ),
 
-    #     # Lifecycle Manager for AMCL and Planner
-    #     Node(
-    #         package='nav2_lifecycle_manager',
-    #         executable='lifecycle_manager',
-    #         name='lifecycle_manager_navigation',
-    #         output='screen',
-    #         parameters=[
-    #             {'use_sim_time': use_sim_time.substitution},
-    #             {'autostart': True},
-    #             {'node_names': ['amcl']},
-    #             {'bond_timeout': 4.0},
-    #             {'attempt_respawn_reconnection': True}
-    #         ]
-    #     ),
+        #     # Lifecycle Manager for AMCL and Planner
+        #     Node(
+        #         package='nav2_lifecycle_manager',
+        #         executable='lifecycle_manager',
+        #         name='lifecycle_manager_navigation',
+        #         output='screen',
+        #         parameters=[
+        #             {'use_sim_time': use_sim_time.substitution},
+        #             {'autostart': True},
+        #             {'node_names': ['amcl']},
+        #             {'bond_timeout': 4.0},
+        #             {'attempt_respawn_reconnection': True}
+        #         ]
+        #     ),
     ])
 
     # Create the launch description and populate
