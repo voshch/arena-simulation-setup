@@ -189,29 +189,29 @@ def generate_launch_description():
             }],
         ),
         # Planner Server Node
-        Node(
-            package='nav2_planner',
-            executable='planner_server',
-            name='planner_server',
-            namespace=namespace.substitution,
-            output='screen',
-            parameters=[
-                substituted_parameters,
-                {
-                    'use_sim_time': use_sim_time.substitution,
-                    'planner_plugins': ['GridBased'],
-                    'GridBased.plugin': 'nav2_navfn_planner/NavfnPlanner',
-                    'GridBased.tolerance': 2.0,
-                    'GridBased.use_astar': True,
-                    'GridBased.allow_unknown': True
-                }
-            ],
-            remappings=[
-                ('base_link', [frame.substitution, robot_base_frame]),
-                ('odom', [frame.substitution, robot_odom_frame]),
-                ('map', '/map')
-            ]
-        ),
+        # Node(
+        #     package='nav2_planner',
+        #     executable='planner_server',
+        #     name='planner_server',
+        #     namespace=namespace.substitution,
+        #     output='screen',
+        #     parameters=[
+        #         substituted_parameters,
+        #         {
+        #             'use_sim_time': use_sim_time.substitution,
+        #             'planner_plugins': ['GridBased'],
+        #             'GridBased.plugin': 'nav2_navfn_planner/NavfnPlanner',
+        #             'GridBased.tolerance': 2.0,
+        #             'GridBased.use_astar': True,
+        #             'GridBased.allow_unknown': True
+        #         }
+        #     ],
+        #     remappings=[
+        #         ('base_link', [frame.substitution, robot_base_frame]),
+        #         ('odom', [frame.substitution, robot_odom_frame]),
+        #         ('map', '/map')
+        #     ]
+        # ),
         # # AMCL Node
         # Node(
         #     package='nav2_amcl',

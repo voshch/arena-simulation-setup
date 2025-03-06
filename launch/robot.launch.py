@@ -21,7 +21,7 @@ def generate_launch_description():
 
     global_planner = LaunchArgument("global_planner")
     local_planner = LaunchArgument("local_planner")
-    inter_planner = LaunchArgument("inter_planner")
+    inter_planner = LaunchArgument("inter_planner", default_value="navigate_to_pose")
 
     # Include the Nav2 launch file
     nav2_launch = launch.actions.IncludeLaunchDescription(
