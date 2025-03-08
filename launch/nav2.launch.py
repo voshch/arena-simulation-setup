@@ -190,6 +190,8 @@ def generate_launch_description():
                 'publish_tf': True,
                 "two_d_mode": True,
                 "frequency": 30.0,
+                "transform_time_offset": 0.0,
+                "transform_timeout": 0.1,
             }],
         ),
         # Planner Server Node
@@ -256,7 +258,7 @@ def generate_launch_description():
                 )
             ),
             launch_arguments={
-                'use_sim_time': use_sim_time.substitution,
+                'use_sim_time': 'True',
                 'local_planner': local_planner.substitution,
                 'inter_planner': inter_planner.substitution,
                 'autostart': 'True',
