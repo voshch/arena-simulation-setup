@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Existing Plugins -->
   <plugin
     filename="gz-sim-joint-state-publisher-system"
@@ -105,7 +105,7 @@
 
   <gazebo reference="lidar_link">
     <sensor name="gpu_lidar" type="gpu_lidar">
-      <gz_frame_id>jackal/lidar_link</gz_frame_id>
+      <gz_frame_id>jackal_default_name/lidar_link</gz_frame_id>
       <pose>0 0 0.142 0 0 0</pose>
       <update_rate>10</update_rate>
       <ray>
