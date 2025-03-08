@@ -2,22 +2,6 @@
 <robot>
   <!-- Existing Plugins -->
   <plugin
-    filename="gz-sim-physics-system"
-    name="gz::sim::systems::Physics">
-  </plugin>
-  <plugin
-    filename="gz-sim-user-commands-system"
-    name="gz::sim::systems::UserCommands">
-  </plugin>
-  <plugin
-    filename="gz-sim-scene-broadcaster-system"
-    name="gz::sim::systems::SceneBroadcaster">
-  </plugin>
-  <plugin
-    filename="gz-sim-contact-system"
-    name="gz::sim::systems::Contact">
-  </plugin>
-  <plugin
     filename="gz-sim-joint-state-publisher-system"
     name="gz::sim::systems::JointStatePublisher">
     <topic>joint_states</topic>
@@ -121,9 +105,6 @@
 
   <gazebo reference="lidar_link">
     <sensor name="gpu_lidar" type="gpu_lidar">
-      <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-        <render_engine>ogre2</render_engine>
-      </plugin>
       <gz_frame_id>jackal/lidar_link</gz_frame_id>
       <pose>0 0 0.142 0 0 0</pose>
       <update_rate>10</update_rate>
