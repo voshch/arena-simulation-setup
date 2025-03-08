@@ -1,0 +1,5 @@
+controller_plugins:
+  - DRLVO
+controller_plugins_dict:
+  DRLVO:
+    plugin: "nav2py_drl_vo_controller::TemplateController"
