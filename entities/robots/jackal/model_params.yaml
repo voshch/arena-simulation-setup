@@ -3,7 +3,7 @@ observation_sources:
   - lidar
 observation_sources_dict:
   lidar:
-    topic: lidar
+    topic: ${namespace}/lidar
     max_obstacle_height: 2.0
     clearing: True
     marking: True

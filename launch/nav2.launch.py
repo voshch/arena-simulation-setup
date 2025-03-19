@@ -74,6 +74,7 @@ def generate_launch_description():
         YAMLFileSubstitution.from_dict(
             {
                 'frame': frame.substitution,
+                'namespace': namespace.substitution,
                 'default_nav_to_pose_bt_xml': YAMLRetrieveSubstitution(
                     YAMLFileSubstitution(
                         PathJoinSubstitution([
