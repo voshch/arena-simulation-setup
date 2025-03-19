@@ -14,8 +14,6 @@ setup(
     ),
     package_dir={'': '.'},
     data_files=[
-        ('share/ament_index/resource_index/packages',
-         ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         # Will recursively track all .yaml files in the entities/robots
         # directory and its subdirectories.
@@ -27,7 +25,8 @@ setup(
             for dir in ['configs', 'entities', 'launch', 'resource', 'worlds', 'gazebo_models', 'common']
             for base, dirs, files in os.walk(dir)
             for file in files
-        ]
+        ],
+        ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
     ],
     install_requires=[
         'setuptools',
