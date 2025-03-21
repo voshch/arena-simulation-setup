@@ -1,5 +1,5 @@
 controller_plugins:
-  - DRLVO
+  - FollowPath
 controller_plugins_dict:
-  DRLVO:
+  FollowPath:
     plugin: "nav2py_drl_vo_controller::TemplateController"

@@ -1,5 +1,5 @@
 controller_plugins:
-  - CrowdNav_AttnGraph
+  - FollowPath
 controller_plugins_dict:
-  CrowdNav_AttnGraph:
+  FollowPath:
     plugin: "nav2py_crowdnav_attngraph_controller::TemplateController"
