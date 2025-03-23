@@ -42,9 +42,21 @@ def generate_launch_description():
         executable="robot_state_publisher",
         output="both",
         parameters=[
+            {'use_sim_time': True},
             {'robot_description': launch_ros.parameter_descriptions.ParameterValue(urdf_content, value_type=str)},
             {'frame_prefix': launch_ros.parameter_descriptions.ParameterValue(frame.substitution, value_type=str)},
         ],
+    )
+
+    joint_state_pub_node = launch_ros.actions.Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        output='screen',
+        parameters=[
+            {'use_sim_time': True},
+            {'robot_description': launch_ros.parameter_descriptions.ParameterValue(urdf_content, value_type=str)},
+        ],
+        remappings=[('/joint_states', '/joint_states')]
     )
 
     ld = launch.LaunchDescription([
@@ -52,6 +64,7 @@ def generate_launch_description():
         robot,
         namespace,
         robot_state_pub_node,
+        joint_state_pub_node,
     ])
     return ld
 

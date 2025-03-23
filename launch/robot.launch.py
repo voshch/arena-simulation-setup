@@ -154,7 +154,7 @@ def generate_launch_description():
         PushRosNamespace(namespace=namespace.substitution),
         # robot_localization_node,
         nav2_launch,
-        # state_pub_launch,
+        state_pub_launch,
     ])
     return ld
 
