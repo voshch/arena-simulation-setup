@@ -1,12 +1,13 @@
-import launch
-import launch.actions
-import launch.substitutions
-import launch.launch_description_sources
-
+import launch_ros
 from ament_index_python.packages import get_package_share_directory
-
+from arena_bringup.future import PythonExpression
 from arena_bringup.substitutions import LaunchArgument
 from launch_ros.actions import PushRosNamespace
+
+import launch
+import launch.actions
+import launch.launch_description_sources
+import launch.substitutions
 
 
 def generate_launch_description():
@@ -22,6 +23,8 @@ def generate_launch_description():
     global_planner = LaunchArgument("global_planner")
     local_planner = LaunchArgument("local_planner")
     inter_planner = LaunchArgument("inter_planner", default_value="navigate_to_pose")
+
+    record_data_dir = LaunchArgument('record_data_dir', default_value='')
 
     # Include the Nav2 launch file
     nav2_launch = launch.actions.IncludeLaunchDescription(
@@ -60,6 +63,16 @@ def generate_launch_description():
             "namespace": namespace.substitution,
             **robot.dict,
         }.items(),
+    )
+
+    data_recorder = launch_ros.actions.Node(
+        package='arena_evaluation',
+        executable='record',
+        name=PythonExpression(['"data_recorder" + "', namespace.substitution, '".replace("/","_")']),
+        arguments={
+            '--dir': record_data_dir.substitution,
+        }.items(),
+        condition=launch.conditions.IfCondition(PythonExpression(['bool("', record_data_dir.substitution, '")'])),
     )
 
     # Robot Localization launch.actions.Node
@@ -129,6 +142,7 @@ def generate_launch_description():
         robot,
         namespace,
         frame,
+        record_data_dir,
         launch.actions.DeclareLaunchArgument(
             name='train_mode',
             default_value='false',
@@ -143,18 +157,11 @@ def generate_launch_description():
             name='complexity',
             default_value='1'
         ),
-        launch.actions.DeclareLaunchArgument(
-            name='record_data',
-            default_value='false'
-        ),
-        launch.actions.DeclareLaunchArgument(
-            name='record_data_dir',
-            default_value='auto:'
-        ),
         PushRosNamespace(namespace=namespace.substitution),
         # robot_localization_node,
         nav2_launch,
         state_pub_launch,
+        data_recorder,
     ])
     return ld
 
