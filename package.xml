@@ -15,7 +15,7 @@
 
   <exec_depend>arena_bringup</exec_depend>
   
-  <depend>turtlebot4_description</depend>
+  <!-- <depend>turtlebot4_description</depend> -->
   <depend>topic_tools</depend>
 
   <!-- Metadata about how the package should be exported to other packages -->
