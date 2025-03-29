@@ -1,6 +1,6 @@
 import os
 from launch import LaunchDescription
-from launch.actions import (GroupAction, IncludeLaunchDescription)
+from launch.actions import (GroupAction, IncludeLaunchDescription, TimerAction)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution
 
@@ -188,7 +188,7 @@ def generate_launch_description():
                 'base_link_frame': PathJoinSubstitution([frame.substitution, robot_base_frame]),
                 'world_frame': PathJoinSubstitution([frame.substitution, robot_odom_frame]),
                 'map_frame': 'map',
-                'publish_tf': True,
+                'publish_tf': False,
                 "two_d_mode": True,
                 "frequency": 30.0,
                 "transform_time_offset": 0.0,
@@ -220,33 +220,46 @@ def generate_launch_description():
         #     ]
         # ),
         # # AMCL Node
-        # Node(
-        #     package='nav2_amcl',
-        #     executable='amcl',
-        #     name='amcl',
-        #     namespace=namespace.substitution,
-        #     output='screen',
-        #     parameters=[{
-        #         'use_sim_time': True,
-        #         'global_frame_id': 'map',
-        #         'odom_frame_id': 'jackal/odom',
-        #         'base_frame_id': 'jackal/base_link',
-        #         'scan_topic': '/task_generator_node/jackal/lidar',
-        #         'initial_pose': {'x': 5.0, 'y': 5.0, 'z': 0.0, 'yaw': 0.0},
-        #         'set_initial_pose': True,
-        #         'max_particles': 2000,
-        #         'min_particles': 500,
-        #         'alpha1': 0.2,
-        #         'alpha2': 0.2,
-        #         'alpha3': 0.2,
-        #         'alpha4': 0.2,
-        #         'alpha5': 0.2,
-        #     }],
-        #     remappings=[
-        #         ('scan', '/task_generator_node/jackal/lidar'),
-        #         ('map', '/map'),
-        #     ]
-        # ),
+        Node(
+            package='nav2_amcl',
+            executable='amcl',
+            name='amcl',
+            namespace=namespace.substitution,
+            output='screen',
+            parameters=[{
+                'use_sim_time': True,
+                'global_frame_id': 'map',
+                'odom_frame_id': 'jackal/odom',
+                'base_frame_id': 'jackal/base_link',
+                'scan_topic': '/task_generator_node/jackal/lidar',
+                'max_particles': 5000,
+                'min_particles': 500,
+                'alpha1': 0.1,
+                'alpha2': 0.1,
+                'alpha3': 0.1,
+                'alpha4': 0.1,
+                'alpha5': 0.1,
+            }],
+            remappings=[
+                ('scan', '/task_generator_node/jackal/lidar'),
+                ('map', '/map'),
+            ]
+        ),
+        
+        # Lifecycle Manager for AMCL
+        Node(
+            package='nav2_lifecycle_manager',
+            executable='lifecycle_manager',
+            name='lifecycle_manager_navigation_amcl',
+            output='screen',
+            parameters=[
+                {'use_sim_time': True},
+                {'autostart': True},
+                {'node_names': ['amcl']},
+                {'bond_timeout': 4.0},
+                {'attempt_respawn_reconnection': True}
+            ]
+        ),
         # # Navigation Stack
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -264,25 +277,9 @@ def generate_launch_description():
                 'inter_planner': inter_planner.substitution,
                 'autostart': 'True',
                 'params_file': substituted_parameters,
-
                 'use_composition': 'False',
             }.items()
         ),
-
-        #     # Lifecycle Manager for AMCL and Planner
-        #     Node(
-        #         package='nav2_lifecycle_manager',
-        #         executable='lifecycle_manager',
-        #         name='lifecycle_manager_navigation',
-        #         output='screen',
-        #         parameters=[
-        #             {'use_sim_time': use_sim_time.substitution},
-        #             {'autostart': True},
-        #             {'node_names': ['amcl']},
-        #             {'bond_timeout': 4.0},
-        #             {'attempt_respawn_reconnection': True}
-        #         ]
-        #     ),
     ])
 
     # Create the launch description and populate
