@@ -43,7 +43,7 @@ bt_navigator:
     use_sim_time: True
     global_frame: map
     robot_base_frame: ${frame:-}${robot_base_frame:-base_link}
-    odom_topic: odom
+    odom_topic: ${frame:-}${robot_odom_frame:-odom}
     enable_groot_monitoring: True
     groot_zmq_publisher_port: 1666
     bt_loop_duration: 10
@@ -169,8 +169,8 @@ local_costmap:
 global_costmap:
   global_costmap:
     ros__parameters:
-      update_frequency: 1.0
-      publish_frequency: 1.0
+      update_frequency: 5.0
+      publish_frequency: 2.0
       global_frame: map
       robot_base_frame: ${frame:-}${robot_base_frame:-base_link}
       use_sim_time: True
@@ -181,6 +181,7 @@ global_costmap:
       origin_x: -10.0
       origin_y: -10.0
       track_unknown_space: true
+      rolling_window: false
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"

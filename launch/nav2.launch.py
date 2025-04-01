@@ -265,7 +265,7 @@ def generate_launch_description():
             parameters=[
                 {'use_sim_time': True},
                 {'autostart': True},
-                {'node_names': ['amcl']},
+                {'node_names': ["amcl", "planner_server", "controller_server", "smoother_server", "behavior_server", "bt_navigator"]},
                 {'bond_timeout': 10.0},
                 {'attempt_respawn_reconnection': True}
             ]
