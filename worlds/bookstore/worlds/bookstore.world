@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <sdf version="1.6">
     <world name="default">
-        <plugin name="gazebo_occupancy_map" filename="libgazebo_2Dmap_plugin.so">
-            <map_resolution>0.1</map_resolution>            <!-- in meters, optional, default 0.1 -->
-            <map_height>0.3</map_height>            <!-- in meters, optional, default 0.3 -->
-            <map_size_x>30</map_size_x>            <!-- in meters, optional, default 10 -->
-            <map_size_y>30</map_size_y>            <!-- in meters, optional, default 10 -->
-            <init_robot_x>0</init_robot_x>            <!-- x coordinate in meters, optional, default 0 -->
-            <init_robot_y>0</init_robot_y>            <!-- y coordinate in meters, optional, default 0 -->
+        <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+        <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+        <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+        <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+        <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+        <render_engine>ogre</render_engine>
         </plugin>
         <!-- override the default position of the camera -->
         <gui>

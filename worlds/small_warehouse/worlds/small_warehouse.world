@@ -2,8 +2,15 @@
 <sdf version="1.6">
 
     <world name="default">
+        <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+        <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+        <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+        <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+        <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+        <render_engine>ogre</render_engine>
+        </plugin>
         <gravity>0 0 -9.8</gravity>
-        <physics default="0" name="default_physics" type="ode">
+        <physics name="default_physics" default="true" type="ode">
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1</real_time_factor>
             <real_time_update_rate>1000</real_time_update_rate>
