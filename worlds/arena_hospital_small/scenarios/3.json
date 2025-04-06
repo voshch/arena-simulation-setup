@@ -15,7 +15,7 @@
           "name": "Doctor_1",
           "pos": [-11.5, -5.50, 1],
           "type": "adult",
-          "model": "actor1",
+          "model": "ugly",
           "waypoints": [
               [-11.5, -5.50, 1],
               [-11.5, 5, 1]
@@ -27,7 +27,7 @@
           "name": "Visitor_1",
           "pos": [3.50, 5.35, 1],
           "type": "adult",
-          "model": "actor1",
+          "model": "ugly",
           "waypoints": [
               [3.50, 5.35, 1],
               [-15, 5.35, 1]                     
@@ -38,7 +38,7 @@
           "name": "Visitor_2",
           "pos": [-16.5, 5, 1],
           "type": "adult",
-          "model": "actor1",
+          "model": "ugly",
           "waypoints": [
               [-16.5, 5, 1],
               [-5, 5, 1]                             
