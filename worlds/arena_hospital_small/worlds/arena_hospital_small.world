@@ -8,6 +8,10 @@
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
       <render_engine>ogre</render_engine>
     </plugin>
+
+    <rendering>
+      <engine>ogre</engine>
+    </rendering>
   
     <!-- <plugin name='gazebo_occupancy_map' filename='libgazebo_2Dmap_plugin.so'>
       <map_resolution>0.1</map_resolution>
@@ -47,11 +51,9 @@
             </mesh>
           </geometry>
           <material>
-            <script>
-              <uri>model://hospital_floor_small/media/scripts</uri>
-              <uri>model://hospital_floor_small/media/Textures</uri>
-              <name>grey_floor</name>
-            </script>
+            <ambient>0.5 0.5 0.5 1</ambient> <!-- Grey color -->
+            <diffuse>0.5 0.5 0.5 1</diffuse> <!-- Grey color -->
+            <specular>0.1 0.1 0.1 1</specular> <!-- Slight specular for shine -->
           </material>
         </visual>
         <collision name='collision'>
@@ -79,6 +81,7 @@
         <kinematic>0</kinematic>
       </link>
     </model>
+
     <model name='terrain_1'>
       <pose>0 0 0 0 -0 0</pose>
       <static>1</static>
@@ -90,11 +93,9 @@
             </mesh>
           </geometry>
           <material>
-            <script>
-              <uri>model://hospital_walls_small/media/scripts</uri>
-              <uri>model://hospital_walls_small/media/Textures</uri>
-              <name>grey_walls</name>
-            </script>
+            <ambient>0.5 0.5 0.5 1</ambient> <!-- Grey color -->
+            <diffuse>0.5 0.5 0.5 1</diffuse> <!-- Grey color -->
+            <specular>0.1 0.1 0.1 1</specular> <!-- Slight specular for shine -->
           </material>
         </visual>
         <collision name='collision'>
@@ -122,6 +123,7 @@
         <kinematic>0</kinematic>
       </link>
     </model>
+
     
     <gui fullscreen='0'>
       <camera name='user_camera'>
