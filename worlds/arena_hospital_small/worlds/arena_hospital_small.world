@@ -187,7 +187,7 @@
         <kinematic>0</kinematic>
       </link>
       <static>1</static>
-      <pose>-12.1593 -1.17666 0 0 -0 -1.5708</pose>
+      <pose>-16.1593 0.17666 0 0 -0 -1.5708</pose>
     </model>
     <model name='PotatoChipChair'>
       <static>1</static>
