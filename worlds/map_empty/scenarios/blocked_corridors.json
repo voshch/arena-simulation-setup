@@ -69,62 +69,62 @@
     "static": [
       {
         "name": "3",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [16.01, 10.02, 0.0]
       },
       {
         "name": "4",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [20.48, 10.17, 0.0]
       },
       {
         "name": "5",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [16.09, 12.15, 0.0]
       },
       {
         "name": "6",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [20.56, 12.31, 0.0]
       },
       {
         "name": "11",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [8.81, 0.61, 0.0]
       },
       {
         "name": "12",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [13.13, 0.36, 0.0]
       },
       {
         "name": "13",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [8.84, 2.56, 0.0]
       },
       {
         "name": "14",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [13.21, 2.22, 0.0]
       },
       {
         "name": "15",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [3.0, 6.93, 3.142]
       },
       {
         "name": "16",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [-1.42, 6.73, 3.142]
       },
       {
         "name": "17",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [3.03, 8.92, 3.142]
       },
       {
         "name": "18",
-        "model": "shelf.yaml",
+        "model": "shelf",
         "pos": [-1.44, 8.76, 3.142]
       }
     ]

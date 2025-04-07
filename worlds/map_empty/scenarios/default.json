@@ -1,8 +1,8 @@
 {
   "robots": [
     {
-      "start": [24.0, 20.0, 0.7],
-      "goal": [2.0, 2.0, 0.0]
+      "start": [25.3, 1.25, 0.7],
+      "goal": [6.0, 21.8, 0.0]
     }
   ],
   "obstacles": {
@@ -10,51 +10,61 @@
       {
         "name": "shelf1",
         "model": "shelf",
-        "pos": [13.0, 11.0, -0.5]
+        "pos": [15.3, 19.6, -0.5]
       },
       {
         "name": "shelf2",
         "model": "shelf",
-        "pos": [12.0, 12.0, -0.5]
+        "pos": [13.8, 16.7, -0.5]
       },
       {
         "name": "shelf3",
         "model": "shelf",
-        "pos": [14.0, 10.0, -0.5]
+        "pos": [14.9, 17.2, -0.5]
+      },
+      {
+        "name": "shelf4",
+        "model": "shelf",
+        "pos": [7.0, 8.13, -0.5]
+      },
+      {
+        "name": "shelf5",
+        "model": "shelf",
+        "pos": [13.7, 15.3, -0.5]
       }
     ],
 
     "dynamic": [
       {
         "name": "1",
-        "pos": [14.0, 2.0, 0.0],
+        "pos": [25.5, 19, 0.0],
         "type": "adult",
         "model": "gazebo_actor",
         "waypoints": [
-            [2.0, 14.0, 0.0],
-            [14.0, 2.0, 0.0]
+          [25.5, 19, 0.0],
+          [4.0, 19, 0.0]
         ],
         "waypoint_mode": 1
       },
       {
         "name": "2",
-        "pos": [2.0, 8.0, 0.0],
+        "pos": [1.5, 14.3, 0],
         "type": "adult",
         "model": "gazebo_actor",
         "waypoints": [
-            [8.0, 2.0, 0.0],
-            [8.0, 2.0, 0.0]
+          [1.5, 14.3, 0],
+          [10.5, 21.7, 0.0]
         ],
         "waypoint_mode": 1
       },
       {
         "name": "3",
-        "pos": [8.0, 2.0, 0.0],
+        "pos": [30.1, 12.2, 0.0],
         "type": "adult",
         "model": "gazebo_actor",
         "waypoints": [
-          [2.0, 8.0, 0.0],
-          [8.0, 2.0, 0.0]
+          [30.1, 12.2, 0.0],
+          [8.0, 22.3, 0.0]
         ],
         "waypoint_mode": 1
       }
