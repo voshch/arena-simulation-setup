@@ -39,7 +39,7 @@
         "name": "1",
         "pos": [27.3, 1.31, 0.0],
         "type": "adult",
-        "model": "actor1",
+        "model": "gazebo_actor",
         "waypoints": [
           [27.3, 1.31, 0.0],
           [23.9, 10.9, 0.0]
@@ -50,7 +50,7 @@
         "name": "2",
         "pos": [30.0, 14.3, 0],
         "type": "adult",
-        "model": "actor1",
+        "model": "gazebo_actor",
         "waypoints": [
           [30.0, 14.3, 0],
           [17.0, 15.2, 0.0]
@@ -61,7 +61,7 @@
         "name": "3",
         "pos": [30.6, 8.85, 0.0],
         "type": "adult",
-        "model": "actor1",
+        "model": "gazebo_actor",
         "waypoints": [
           [30.6, 8.85, 0.0],
           [22.0, 0.7, 0.0]
