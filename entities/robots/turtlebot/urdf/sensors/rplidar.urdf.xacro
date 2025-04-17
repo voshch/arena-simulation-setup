@@ -46,6 +46,12 @@
             <min_angle>-3.14159</min_angle>
             <max_angle>3.14159</max_angle>
           </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.261799</min_angle>
+            <max_angle>0.261799</max_angle>
+          </vertical>
         </scan>
         <range>
           <min>0.164</min>
@@ -53,10 +59,9 @@
           <resolution>0.01</resolution>
         </range>
       </lidar>
-      <always_on>true</always_on>
+      <always_on>1</always_on>
       <visualize>true</visualize>
     </sensor>
-    <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <gazebo reference="${name}_joint">

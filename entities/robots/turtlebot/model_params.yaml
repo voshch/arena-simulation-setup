@@ -4,7 +4,7 @@ observation_sources:
 observation_sources_dict:
   lidar:
     topic: ${namespace}/lidar
-    max_obstacle_height: 0.4
+    max_obstacle_height: 2.0
     clearing: True
     marking: True
     data_type: "LaserScan"
@@ -77,4 +77,4 @@ laser:
 robot_base_frame: 'base_link'
 robot_model: turtlebot
 robot_radius: 0.10
-robot_sensor_frame: rplidar_link
+robot_sensor_frame: lidar
