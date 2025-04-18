@@ -209,7 +209,7 @@ def generate_launch_description():
                 'scan_topic': PathJoinSubstitution(['/task_generator_node', frame.substitution, 'lidar']),
                 'max_particles': 10000,
                 'min_particles': 500,
-                'initial_pose_received_timeout': 2.0,
+                'initial_pose_received_timeout': 0.0,
                 'recovery_alpha_slow': 0.001,
                 'recovery_alpha_fast': 0.1,
                 'set_initial_pose': True,
@@ -255,7 +255,7 @@ def generate_launch_description():
                 ('initialpose', PathJoinSubstitution(['/task_generator_node', frame.substitution, 'initialpose'])),
             ]
         ),
-        
+
         # Lifecycle Manager for AMCL
         Node(
             package='nav2_lifecycle_manager',
@@ -266,7 +266,7 @@ def generate_launch_description():
                 {'use_sim_time': True},
                 {'autostart': True},
                 {'node_names': ["amcl"]},
-                {'bond_timeout': 10.0},
+                {'bond_timeout': 0.0},
                 {'attempt_respawn_reconnection': True}
             ]
         ),

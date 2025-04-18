@@ -48,9 +48,9 @@ bt_navigator:
     groot_zmq_publisher_port: 1666
     bt_loop_duration: 10
     groot_zmq_server_port: 1667
-    action_server_timeout: 10.0
+    action_server_timeout: 0.0
     retry_max: 5
-    retry_timeout: 3.0
+    retry_timeout: 0.0
     
     default_nav_to_pose_bt_xml: ${default_nav_to_pose_bt_xml}
     default_nav_through_poses_bt_xml: ${default_nav_through_poses_bt_xml}
@@ -238,7 +238,7 @@ recoveries_server:
       plugin: "nav2_recoveries/Wait"
     global_frame: ${frame:-}${robot_odom_frame:-odom}
     robot_base_frame: ${frame:-}${robot_base_frame:-base_link}
-    transform_timeout: 0.1
+    transform_timeout: 0.0
     use_sim_time: true
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
