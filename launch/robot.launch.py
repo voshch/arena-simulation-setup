@@ -14,8 +14,12 @@ def generate_launch_description():
 
     ss_path = get_package_share_directory('arena_simulation_setup')
 
+    ld_items = []
+    LaunchArgument.auto_append(ld_items)
+
     use_sim_time = LaunchArgument("use_sim_time")
 
+    task_generator_node = LaunchArgument('task_generator_node')
     namespace = LaunchArgument("namespace")
     robot = LaunchArgument("robot")
     frame = LaunchArgument("frame")
@@ -39,6 +43,7 @@ def generate_launch_description():
         launch_arguments={
             "use_sim_time": use_sim_time.substitution,
             "robot": robot.substitution,
+            **task_generator_node.dict,
             "namespace": namespace.substitution,
             "global_planner": global_planner.substitution,
             "local_planner": local_planner.substitution,
@@ -135,14 +140,7 @@ def generate_launch_description():
     # )
 
     ld = launch.LaunchDescription([
-        use_sim_time,
-        global_planner,
-        local_planner,
-        inter_planner,
-        robot,
-        namespace,
-        frame,
-        record_data_dir,
+        *ld_items,
         launch.actions.DeclareLaunchArgument(
             name='train_mode',
             default_value='false',

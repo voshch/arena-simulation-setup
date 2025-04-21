@@ -157,7 +157,7 @@ local_costmap:
         "${**observation_sources_dict}": ''
       static_layer:
         map_subscribe_transient_local: True
-        map_topic: /map
+        map_topic: ${task_generator_node}/map
       always_send_full_costmap: True
   local_costmap_client:
     ros__parameters:
@@ -191,7 +191,7 @@ global_costmap:
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
-        map_topic: /map
+        map_topic: ${task_generator_node}/map
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0

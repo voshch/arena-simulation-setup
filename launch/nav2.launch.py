@@ -13,7 +13,12 @@ from arena_bringup.substitutions import LaunchArgument, YAMLFileSubstitution, YA
 def generate_launch_description():
     ss_root = FindPackageShare('arena_simulation_setup')
     pkg_nav2_bringup = FindPackageShare('nav2_bringup')
+
+    ld_items = []
+    LaunchArgument.auto_append(ld_items)
+
     robot = LaunchArgument('robot')
+    task_generator_node = LaunchArgument('task_generator_node')
     namespace = LaunchArgument('namespace')
     frame = LaunchArgument('frame')
     use_sim_time = LaunchArgument('use_sim_time')
@@ -74,6 +79,7 @@ def generate_launch_description():
         YAMLFileSubstitution.from_dict(
             {
                 'frame': frame.substitution,
+                **task_generator_node.dict,
                 'namespace': namespace.substitution,
                 'default_nav_to_pose_bt_xml': YAMLRetrieveSubstitution(
                     YAMLFileSubstitution(
@@ -294,13 +300,7 @@ def generate_launch_description():
 
     # Create the launch description and populate
     ld = LaunchDescription([
-        robot,
-        namespace,
-        frame,
-        use_sim_time,
-        global_planner,
-        local_planner,
-        inter_planner,
+        *ld_items,
         bringup_cmd_group,
     ])
 
