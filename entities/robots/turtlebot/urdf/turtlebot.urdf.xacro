@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="turtlebot4" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="turtlebot" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Base create3 model -->
   <xacro:include filename="$(find irobot_create_description)/urdf/create3.urdf.xacro">
     <xacro:arg name="gazebo" value="ignition"/>
@@ -41,6 +41,7 @@
     <parent link="base_link"/>
     <child link="shell_link"/>
     <origin xyz="0 0 ${shell_z_offset}" rpy="0 0 0"/>
+    <turnGravityOff>false</turnGravityOff>
   </joint>
 
   <link name="shell_link">
@@ -60,10 +61,12 @@
       <inertia ixx="0.00281295367" ixy="-0.00000137675" ixz="-0.00005790057"
                iyy="0.00164666421" iyz="0.00000564466" izz="0.00424540124" />
     </inertial>
+    <turnGravityOff>false</turnGravityOff>
   </link>
 
   <gazebo reference="shell_link">
     <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
   <!-- Weight Blocks -->
@@ -119,8 +122,6 @@
       <wheel_separation>0.24</wheel_separation>
       <wheel_radius>0.098</wheel_radius>
       <odom_publish_frequency>50</odom_publish_frequency>
-      <base_frame_id>base_link</base_frame_id>
-      <odom_frame_id>odom</odom_frame_id>
       <publish_odom>true</publish_odom>
       <publish_odom_tf>true</publish_odom_tf>
       <publish_wheel_tf>true</publish_wheel_tf>

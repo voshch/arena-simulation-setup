@@ -25,7 +25,7 @@
   },
   # RPLIDAR Scan (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/rplidar_link/sensor/gpu_lidar/scan",
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/gpu_lidar/scan",
     "ros_topic": "lidar",
     "ros_type": "sensor_msgs/msg/LaserScan",
     "gz_type": "gz.msgs.LaserScan",
@@ -33,7 +33,7 @@
   },
   # RPLIDAR Point Cloud (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/rplidar_link/sensor/gpu_lidar/scan/points",
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/gpu_lidar/scan/points",
     "ros_topic": "lidar/points",
     "ros_type": "sensor_msgs/msg/PointCloud2",
     "gz_type": "gz.msgs.PointCloudPacked",
