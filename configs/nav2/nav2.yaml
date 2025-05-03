@@ -37,7 +37,7 @@ amcl:
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-    scan_topic: ${frame:-}lidar
+    scan_topic: scan
 bt_navigator:
   ros__parameters:
     use_sim_time: True
@@ -244,10 +244,6 @@ recoveries_server:
     max_rotational_vel: 1.0
     min_rotational_vel: 0.4
     rotational_acc_lim: 3.2
-
-robot_state_publisher:
-  ros__parameters:
-    use_sim_time: True
 
 collision_monitor:
   ros__parameters:
