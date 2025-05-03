@@ -77,4 +77,4 @@ laser:
 robot_base_frame: 'base_link'
 robot_model: turtlebot
 robot_radius: 0.10
-robot_sensor_frame: lidar
+robot_sensor_frame: rplidar_link
