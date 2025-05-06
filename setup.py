@@ -1,14 +1,14 @@
 from glob import glob
 import os
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 package_name = 'arena_simulation_setup'
 
 setup(
     name=package_name,
     version='1.0.0',
-    packages=find_packages(
+    packages=find_namespace_packages(
         where='.',
         include=[f'{package_name}*']
     ),
