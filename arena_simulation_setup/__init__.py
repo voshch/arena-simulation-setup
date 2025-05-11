@@ -1,5 +1,6 @@
 import os
 import typing
+
 import ament_index_python.packages
 
 ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulation_setup')
@@ -8,6 +9,10 @@ ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulat
 class _AssInterface:
     _base_dir: typing.ClassVar[str] = ass_dir
     _name: str
+
+    @classmethod
+    def _listdir(cls, path: str) -> list[str]:
+        return list(sorted(os.listdir(path)))
 
     def __init__(self, name: str) -> None:
         self._name = name
@@ -18,7 +23,7 @@ class _AssInterface:
 
     @classmethod
     def list(cls) -> list[str]:
-        return os.listdir(cls._base_dir)
+        return cls._listdir(cls._base_dir)
 
     @property
     def dir(self) -> str:
@@ -33,7 +38,7 @@ class World(_AssInterface):
 
     @property
     def scenarios(self) -> list[str]:
-        return os.listdir(
+        return self._listdir(
             os.path.join(
                 self.dir,
                 'scenarios'
