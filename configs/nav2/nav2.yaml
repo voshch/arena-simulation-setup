@@ -46,7 +46,7 @@ bt_navigator:
     odom_topic: ${frame:-}${robot_odom_frame:-odom}
     enable_groot_monitoring: True
     groot_zmq_publisher_port: 1666
-    bt_loop_duration: 10
+    bt_loop_duration: 100
     groot_zmq_server_port: 1667
     action_server_timeout: 0.0
     retry_max: 5
@@ -64,7 +64,7 @@ bt_navigator_rclcpp_node:
 controller_server:
   ros__parameters:
     use_sim_time: True
-    controller_frequency: 10.0
+    controller_frequency: 4.0
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
     min_theta_velocity_threshold: 0.001
