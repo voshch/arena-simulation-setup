@@ -1,18 +1,13 @@
 import os
 import typing
-
 import ament_index_python.packages
 
 ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulation_setup')
-
+ab_dir = ament_index_python.packages.get_package_share_directory('arena_bringup')
 
 class _AssInterface:
     _base_dir: typing.ClassVar[str] = ass_dir
     _name: str
-
-    @classmethod
-    def _listdir(cls, path: str) -> list[str]:
-        return list(sorted(os.listdir(path)))
 
     def __init__(self, name: str) -> None:
         self._name = name
@@ -23,7 +18,7 @@ class _AssInterface:
 
     @classmethod
     def list(cls) -> list[str]:
-        return cls._listdir(cls._base_dir)
+        return os.listdir(cls._base_dir)
 
     @property
     def dir(self) -> str:
@@ -32,13 +27,34 @@ class _AssInterface:
             self._name,
         )
 
+class _AbInterface:
+    _base_dir: typing.ClassVar[str] = ab_dir
+    _name: str
 
+    def __init__(self, name: str) -> None:
+        self._name = name
+
+    @classmethod
+    def base_dir(cls) -> str:
+        return cls._base_dir
+    
+    @classmethod
+    def list(cls) -> list[str]:
+        return os.listdir(cls._base_dir)
+    
+    @property
+    def dir(self) -> str:
+        return os.path.join(
+            self._base_dir,
+            self._name
+        )
+    
 class World(_AssInterface):
     _base_dir = os.path.join(_AssInterface._base_dir, 'worlds')
 
     @property
     def scenarios(self) -> list[str]:
-        return self._listdir(
+        return os.listdir(
             os.path.join(
                 self.dir,
                 'scenarios'
@@ -67,6 +83,24 @@ class World(_AssInterface):
             self.dir,
             'map',
             'zones.yaml'
+        )
+
+class Environment(_AssInterface):
+    _base_dir = os.path.join(_AssInterface._base_dir, 'configs', 'environment')
+
+    @property
+    def environments(self) -> list[str]:
+        return os.listdir(
+            self.dir
+        )
+    
+class Parametrized(_AbInterface):
+    _base_dir = os.path.join(_AbInterface._base_dir, 'configs', 'parametrized')
+
+    @property
+    def parametrizeds(self) -> list[str]:
+        return os.listdir(
+            self.dir
         )
 
 
