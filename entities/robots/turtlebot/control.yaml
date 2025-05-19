@@ -5,16 +5,16 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    jackal_velocity_controller:
+    turtlebot_velocity_controller:
       type: diff_drive_controller/DiffDriveController
 
-jackal_velocity_controller:
+turtlebot_velocity_controller:
   ros__parameters:
-    left_wheel_names: [ "front_left_wheel_joint", "rear_left_wheel_joint" ]
-    right_wheel_names: [ "front_right_wheel_joint", "rear_right_wheel_joint" ]
+    left_wheel_names: [ "left_wheel_joint" ]
+    right_wheel_names: [ "right_wheel_joint" ]
 
-    wheel_separation: 0.36 
-    wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
+    wheel_separation: 0.24
+    wheels_per_side: 1
     wheel_radius: 0.098
 
     wheel_separation_multiplier: 1.5
@@ -47,21 +47,13 @@ jackal_velocity_controller:
     # Velocity and acceleration limits
     # Whenever a min_* is unspecified, default to -max_*
     linear.x.has_velocity_limits: true
-    linear.x.has_acceleration_limits: true
+    linear.x.has_acceleration_limits: false
     linear.x.has_jerk_limits: false
-    linear.x.max_velocity: 2.0
-    linear.x.min_velocity: -2.0
-    linear.x.max_acceleration: 20.0
-    linear.x.min_acceleration: -20.0
-    linear.x.max_jerk: 0.0
-    linear.x.min_jerk: 0.0
+    linear.x.max_velocity: 0.4
+    linear.x.min_velocity: -0.4
 
     angular.z.has_velocity_limits: true
-    angular.z.has_acceleration_limits: true
+    angular.z.has_acceleration_limits: false
     angular.z.has_jerk_limits: false
-    angular.z.max_velocity: 4.0
-    angular.z.min_velocity: -4.0
-    angular.z.max_acceleration: 25.0
-    angular.z.min_acceleration: -25.0
-    angular.z.max_jerk: 0.0
-    angular.z.min_jerk: 0.0
+    angular.z.max_velocity: 1.9
+    angular.z.min_velocity: -1.9

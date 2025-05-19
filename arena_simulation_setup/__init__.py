@@ -7,6 +7,7 @@ import yaml
 ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulation_setup')
 ab_dir = ament_index_python.packages.get_package_share_directory('arena_bringup')
 
+
 class _AssInterface:
     _base_dir: typing.ClassVar[str] = ass_dir
     _name: str
@@ -29,6 +30,7 @@ class _AssInterface:
             self._name,
         )
 
+
 class _AbInterface:
     _base_dir: typing.ClassVar[str] = ab_dir
     _name: str
@@ -39,18 +41,19 @@ class _AbInterface:
     @classmethod
     def base_dir(cls) -> str:
         return cls._base_dir
-    
+
     @classmethod
     def list(cls) -> list[str]:
         return os.listdir(cls._base_dir)
-    
+
     @property
     def dir(self) -> str:
         return os.path.join(
             self._base_dir,
             self._name
         )
-    
+
+
 class World(_AssInterface):
     _base_dir = os.path.join(_AssInterface._base_dir, 'worlds')
 
@@ -87,6 +90,7 @@ class World(_AssInterface):
             'zones.yaml'
         )
 
+
 class Environment(_AssInterface):
     _base_dir = os.path.join(_AssInterface._base_dir, 'configs', 'environment')
 
@@ -95,7 +99,8 @@ class Environment(_AssInterface):
         return os.listdir(
             self.dir
         )
-    
+
+
 class Parametrized(_AbInterface):
     _base_dir = os.path.join(_AbInterface._base_dir, 'configs', 'parametrized')
 
@@ -134,6 +139,11 @@ class Robot(_AssInterface):
     @property
     def odom_frame(self) -> str:
         return self._model_params.get('robot_odom_frame', 'odom')
+
+    @property
+    def control(self) -> dict:
+        with open(os.path.join(self.dir, 'control.yaml')) as f:
+            return yaml.safe_load(f)
 
 
 class Obstacle(_AssInterface):
