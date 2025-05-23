@@ -21,7 +21,7 @@ class _AssInterface:
 
     @classmethod
     def list(cls) -> list[str]:
-        return os.listdir(cls._base_dir)
+        return [dir for dir in os.listdir(cls._base_dir) if not dir.startswith('.')]
 
     @property
     def dir(self) -> str:
