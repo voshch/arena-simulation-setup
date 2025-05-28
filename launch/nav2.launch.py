@@ -1,13 +1,17 @@
 import os
+
+from arena_bringup.future import PythonExpression
+from arena_bringup.substitutions import (LaunchArgument, YAMLFileSubstitution,
+                                         YAMLMergeSubstitution,
+                                         YAMLReplaceSubstitution,
+                                         YAMLRetrieveSubstitution)
 from launch import LaunchDescription
-from launch.actions import (GroupAction, IncludeLaunchDescription, TimerAction)
+from launch.actions import GroupAction, IncludeLaunchDescription
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution
-
-from launch_ros.actions import SetRemap, Node
+from launch_ros.actions import Node, SetRemap
 from launch_ros.substitutions import FindPackageShare
-
-from arena_bringup.substitutions import LaunchArgument, YAMLFileSubstitution, YAMLReplaceSubstitution, YAMLMergeSubstitution, YAMLRetrieveSubstitution
 
 
 def generate_launch_description():
@@ -25,6 +29,8 @@ def generate_launch_description():
     global_planner = LaunchArgument('global_planner')
     local_planner = LaunchArgument('local_planner')
     inter_planner = LaunchArgument('inter_planner')
+
+    amcl = LaunchArgument('amcl')
 
     substitutions = YAMLMergeSubstitution(
         YAMLFileSubstitution(
@@ -254,14 +260,14 @@ def generate_launch_description():
                 'laser_likelihood_max_dist': 2.0,
                 'recovery_alpha_slow': 0.001,
                 'recovery_alpha_fast': 0.1,
-                'transform_tolerance': 0.5,
                 'transform_tolerance': 0.2,
                 'tf_broadcast': True,
             }],
             remappings=[
                 ('/map', PathJoinSubstitution([task_generator_node.substitution, 'map'])),
                 ('initialpose', PathJoinSubstitution([task_generator_node.substitution, frame.substitution, 'initialpose'])),
-            ]
+            ],
+            condition=IfCondition(PythonExpression(["'", amcl.substitution, "' == 'true'"]))
         ),
 
         # Lifecycle Manager for AMCL

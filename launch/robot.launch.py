@@ -29,6 +29,7 @@ def generate_launch_description():
     inter_planner = LaunchArgument("inter_planner", default_value="navigate_to_pose")
 
     record_data_dir = LaunchArgument('record_data_dir', default_value='')
+    amcl = LaunchArgument('amcl', default_value='false')
 
     # Include the Nav2 launch file
     nav2_launch = launch.actions.IncludeLaunchDescription(
@@ -41,14 +42,15 @@ def generate_launch_description():
                 ]
             )),
         launch_arguments={
-            "use_sim_time": use_sim_time.substitution,
-            "robot": robot.substitution,
+            **use_sim_time.dict,
+            **robot.dict,
             **task_generator_node.dict,
-            "namespace": namespace.substitution,
-            "global_planner": global_planner.substitution,
-            "local_planner": local_planner.substitution,
-            "inter_planner": inter_planner.substitution,
-            "frame": frame.substitution,
+            **namespace.dict,
+            **global_planner.dict,
+            **local_planner.dict,
+            **inter_planner.dict,
+            **frame.dict,
+            **amcl.dict,
         }.items(),
     )
 
@@ -63,9 +65,9 @@ def generate_launch_description():
                 ]
             )),
         launch_arguments={
-            "use_sim_time": use_sim_time.substitution,
-            "frame": frame.substitution,
-            "namespace": namespace.substitution,
+            **use_sim_time.dict,
+            **frame.dict,
+            **namespace.dict,
             **robot.dict,
         }.items(),
     )
@@ -79,65 +81,6 @@ def generate_launch_description():
         }.items(),
         condition=launch.conditions.IfCondition(PythonExpression(['bool("', record_data_dir.substitution, '")'])),
     )
-
-    # Robot Localization launch.actions.Node
-    # robot_localization_node = launch_ros.actions.Node(
-    #     package="robot_localization",
-    #     executable="ekf_node",
-    #     name="ekf_filter_node",
-    #     output="screen",
-    #     parameters=[
-    #         {
-    #             "use_sim_time": use_sim_time.substitution,
-    #             "frequency": 30.0,
-    #             "two_d_mode": True,
-    #             "publish_tf": True,
-    #             "publish_acceleration": False,
-    #             "map_frame": "map",
-    #             "odom_frame": "odom",
-    #             "base_link_frame": "base_link",
-    #             "world_frame": "odom",
-    #             "odom0": "/odom",
-    #             "odom0_config": [
-    #                 True,
-    #                 True,
-    #                 False,
-    #                 False,
-    #                 False,
-    #                 True,
-    #                 False,
-    #                 False,
-    #                 False,
-    #                 False,
-    #                 False,
-    #                 True,
-    #                 False,
-    #                 False,
-    #                 False,
-    #             ],
-    #             "imu0": "/imu0",
-    #             "imu0_config": [
-    #                 False,
-    #                 False,
-    #                 False,
-    #                 True,
-    #                 True,
-    #                 True,
-    #                 False,
-    #                 False,
-    #                 False,
-    #                 True,
-    #                 True,
-    #                 True,
-    #                 False,
-    #                 False,
-    #                 False,
-    #             ],
-    #             "odom0_relative": False,  # Changed from false to False
-    #             "imu0_relative": False,  # Changed from false to False
-    #         }
-    #     ],
-    # )
 
     ld = launch.LaunchDescription([
         *ld_items,
