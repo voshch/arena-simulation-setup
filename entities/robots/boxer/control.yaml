@@ -1,0 +1,45 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50    # controller update frequency in Hz
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    boxer_velocity_controller:
+      type: diff_drive_controller/DiffDriveController
+
+joint_state_broadcaster:
+  ros__parameters: {}
+
+boxer_velocity_controller:
+  ros__parameters:
+    # Wheel joints and geometry
+    left_wheel_names: ["left_wheel_joint"]
+    right_wheel_names: ["right_wheel_joint"]
+    wheel_separation: 0.40          # (m) distance between left and right wheels (approximate)
+    wheel_radius: 0.10             # (m) radius of the wheels (approximate)
+    wheel_separation_multiplier: 1.0
+    left_wheel_radius_multiplier: 1.0
+    right_wheel_radius_multiplier: 1.0
+
+    # Odometry publishing
+    publish_rate: 50.0            # Hz for publishing odometry
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+
+    # Operational flags
+    open_loop: false              # use encoder feedback for odometry
+    enable_odom_tf: true          # publish odom->base_link transform
+    cmd_vel_timeout: 0.5          # stop if no cmd_vel received in 0.5 seconds
+    publish_cmd: true             # publish the executed velocity (after limiters)
+    publish_wheel_data: true      # publish wheel data (e.g., wheel velocities)
+
+    # Speed limits (linear x and angular z)
+    linear.x.has_velocity_limits: true
+    linear.x.max_velocity: 2.0              # m/s
+    linear.x.has_acceleration_limits: true
+    linear.x.max_acceleration: 20.0         # m/s^2
+    angular.z.has_velocity_limits: true
+    angular.z.max_velocity: 4.0             # rad/s
+    angular.z.has_acceleration_limits: true
+    angular.z.max_acceleration: 25.0        # rad/s^2
