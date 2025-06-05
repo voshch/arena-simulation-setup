@@ -12,10 +12,12 @@ from arena_simulation_setup.utils.models.model_loader import ModelLoader
 from .utils.geometry import Position, PositionOrientation, PositionRadius
 
 
-def override_or_parse(parser: ModelLoader) -> typing.Callable[[typing.Any], ModelWrapper]:
-    def validator(v: typing.Any) -> ModelWrapper:
+def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:
+    def validator(v: str | ModelWrapper) -> ModelWrapper:
         if isinstance(v, ModelWrapper):
-            return parser.bind(v.name)
+            if any(v.loader_matches(overridee) for overridee in overrides):
+                return parser.bind(v.name)
+            return v
         return parser.bind(v)
     return validator
 
@@ -57,7 +59,7 @@ class Entity:
 
 @attrs.frozen()
 class Obstacle(Entity):
-    model: ModelWrapper = attrs.field(converter=override_or_parse(ObstacleLoader))
+    model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
 
     @classmethod
     def parse(cls, obj: dict) -> "Obstacle":
@@ -75,7 +77,7 @@ class Obstacle(Entity):
 
 @attrs.frozen()
 class DynamicObstacle(Obstacle):
-    model: ModelWrapper = attrs.field(converter=override_or_parse(DynamicObstacleLoader))
+    model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
     waypoints: list[PositionRadius]
 
     @classmethod
@@ -96,4 +98,4 @@ class DynamicObstacle(Obstacle):
 
 @attrs.frozen()
 class Robot(Entity):
-    model: ModelWrapper = attrs.field(converter=override_or_parse(RobotLoader))
+    model: ModelWrapper = attrs.field(converter=model_parse(RobotLoader))
