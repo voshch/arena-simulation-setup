@@ -1,6 +1,12 @@
 import os
 
 from . import Model, ITF_ModelLoader, ModelType, _ModelLoader
+from ._arena_models import BoundArenaModelsLoaderBase
+
+
+@_ModelLoader.model(ModelType.SDF)
+class ArenaModelsLoader_SDF(BoundArenaModelsLoaderBase(ModelType.SDF)):
+    ...
 
 
 @_ModelLoader.model(ModelType.SDF)

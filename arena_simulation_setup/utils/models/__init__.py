@@ -18,13 +18,9 @@ import attrs
 
 
 def _EMPTY_LOADER(*_, **__) -> Model:
-
     return Model(
         type=ModelType.UNKNOWN, name="", description="", path=""
     )
-
-
-EMPTY_LOADER = _EMPTY_LOADER
 
 
 class ModelType(enum.Enum):
@@ -78,31 +74,32 @@ class ITF_ModelLoader(abc.ABC):
 
 
 class ModelWrapper:
-    _get: Callable[[Collection[ModelType], dict], Model]
+    ModelCallbackT = Callable[[Collection[ModelType], dict], Model]
+
+    _get: ModelCallbackT
     _name: str
     _override: dict[ModelType, tuple[bool, Callable[..., Model]]]
-    _loader: object
+    _loader: _ModelLoader | None
 
-    def loader_matches(self, loader: object) -> bool:
-        return self._loader is loader
+    def loader_matches(self, loader: _ModelLoader) -> bool:
+        return self._loader is not None and self._loader is loader
 
     def __init__(
         self,
         name: str,
-        callback: Callable[[Collection[ModelType], dict], Model] | None = None,
-        loader: ITF_ModelLoader | None = None,
+        callback: ModelCallbackT | None = None,
+        loader: _ModelLoader | None = None,
     ):
         """
         Create new ModelWrapper
         @name: Name of the ModelWrapper (should match the underlying Models)
         """
-        self._loader = loader
-        if self._loader is None:
-            self._loader = object()
         if callback is None:
-            callback = EMPTY_LOADER
-        self._name = name
+            callback = _EMPTY_LOADER
+
         self._get = callback
+        self._name = name
+        self._loader = loader
         self._override = {}
 
     def clone(self) -> ModelWrapper:
@@ -128,7 +125,7 @@ class ModelWrapper:
         @name: (optional) If set, overrides name of ModelWrapper
         """
         clone = self.clone()
-        clone._loader = object()
+        clone._loader = None
         clone._override = {**self._override, model_type: (noload, override)}
 
         if name is not None:
@@ -194,7 +191,7 @@ class ModelWrapper:
                 noload, mapper = self._override[model_type]
 
                 if noload == True:
-                    return mapper(EMPTY_LOADER())
+                    return mapper(self.EMPTY)
 
                 return mapper(self._get([model_type], loader_args), **kwargs)
 
@@ -207,8 +204,8 @@ class ModelWrapper:
         """
         return self._name
 
-    @staticmethod
-    def Constant(name: str, models: dict[ModelType, Model]) -> ModelWrapper:
+    @classmethod
+    def Constant(cls, name: str, models: dict[ModelType, Model]) -> ModelWrapper:
         """
         Create new ModelWrapper from a dict of already existing models
         @name: name of model
@@ -226,41 +223,44 @@ class ModelWrapper:
                 f"no matching model found for {name} (available: {list(models.keys())}, requested: {list(only)})"
             )
 
-        return ModelWrapper(name, get)
+        return cls(name, get)
 
-    @staticmethod
-    def from_model(model: Model) -> ModelWrapper:
+    @classmethod
+    def from_model(cls, model: Model) -> ModelWrapper:
         """
         Create new ModelWrapper containing a single existing Model
         @model: Model to wrap
         """
-        return ModelWrapper.Constant(
+        return cls.Constant(
             name=model.name,
             models={model.type: model}
         )
 
-    @staticmethod
-    def EMPTY() -> ModelWrapper:
-        wrapper = ModelWrapper("__EMPTY", EMPTY_LOADER)
+    @classmethod
+    def EMPTY(cls, *args, **kwargs) -> ModelWrapper:
+        wrapper = ModelWrapper(
+            "__EMPTY",
+            _EMPTY_LOADER
+        )
         return wrapper
 
 
 class _ModelLoader:
 
-    _registry: dict[ModelType, Type[ITF_ModelLoader]] = {}
+    _registry: dict[ModelType, list[Type[ITF_ModelLoader]]] = {}
     _models: Set[str]
 
     @classmethod
     def model(cls, model_type: ModelType):
         def inner(loader: Type[ITF_ModelLoader]):
-            cls._registry[model_type] = loader
+            cls._registry.setdefault(model_type, []).append(loader)
         return inner
 
     _model_dir: str
     _cache: dict[tuple[ModelType, str], Model]
 
-    def __init__(self, model_dir: str):
-        self._model_dir = model_dir
+    def __init__(self, _domain: str):
+        self._model_dir = _domain
         self._cache = dict()
         self._models = set()
 
@@ -299,23 +299,25 @@ class _ModelLoader:
                 return self._cache[(model_type, model)]
 
         for model_type in only:  # disk pass
-            hit = self._registry[model_type].load(self._model_dir, model, loader_args)
-            if hit is not None:
-                self._cache[(model_type, model)] = hit
-                return self._cache[(model_type, model)]
+            for loader in self._registry.get(model_type, []):
+                hit = loader.load(self._model_dir, model, loader_args)
+                if hit is not None:
+                    self._cache[(model_type, model)] = hit
+                    return self._cache[(model_type, model)]
 
         for model_type in only:  # try to convert
-            targets = self._registry[model_type].convertable()
-            if not targets:
-                continue
-            match = self._load(model, targets, loader_args)
-            if match is not None:
-                converted = self._registry[model_type].convert(self._model_dir, match, loader_args)
-                if converted is None:
+            for loader in self._registry.get(model_type, []):
+                targets = loader.convertable()
+                if not targets:
                     continue
+                match = self._load(model, targets, loader_args)
+                if match is not None:
+                    converted = loader.convert(self._model_dir, match, loader_args)
+                    if converted is None:
+                        continue
 
-                self._cache[(model_type, model)] = converted
-                return converted
+                    self._cache[(model_type, model)] = converted
+                    return converted
 
         return None
 

@@ -8,6 +8,12 @@ from typing import Collection
 import arena_bringup
 
 from . import ITF_ModelLoader, Model, ModelType, _ModelLoader
+from ._arena_models import BoundArenaModelsLoaderBase
+
+
+@_ModelLoader.model(ModelType.URDF)
+class ArenaModelsLoader_SDF(BoundArenaModelsLoaderBase(ModelType.URDF)):
+    ...
 
 
 def process_dae(dae_file, package_dir):

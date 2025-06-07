@@ -9,6 +9,12 @@ from typing import Any, Optional
 import attrs
 
 from . import Model, ITF_ModelLoader, ModelType, _ModelLoader
+from ._arena_models import BoundArenaModelsLoaderBase
+
+
+@_ModelLoader.model(ModelType.URDF)
+class ArenaModelsLoader_SDF(BoundArenaModelsLoaderBase(ModelType.URDF)):
+    ...
 
 
 @_ModelLoader.model(ModelType.URDF)
