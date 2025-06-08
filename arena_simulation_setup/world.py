@@ -8,19 +8,19 @@ import yaml
 from arena_simulation_setup import Interface, ass_dir
 from arena_simulation_setup.shared import DynamicObstacle, Obstacle
 
-from arena_simulation_setup.shared import PositionOrientation
+from arena_simulation_setup.shared import Pose
 
 
 @attrs.define
 class RobotGoal:
-    start: PositionOrientation
-    goal: PositionOrientation
+    start: Pose
+    goal: Pose
 
     @classmethod
     def parse(cls, obj: dict) -> RobotGoal:
         return cls(
-            start=PositionOrientation(*obj.get("start", [])),
-            goal=PositionOrientation(*obj.get("goal", [])),
+            start=Pose.parse(obj.get("start", [])),
+            goal=Pose.parse(obj.get("goal", [])),
         )
 
 

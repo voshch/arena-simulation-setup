@@ -9,18 +9,20 @@ from arena_simulation_setup.entities.robot import loader as RobotLoader
 from arena_simulation_setup.utils.models import ModelWrapper
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
-from .utils.geometry import Position, PositionOrientation, PositionRadius
+from .utils.geometry import Position, Pose
 
 
-def override_or_parse(parser: ModelLoader) -> typing.Callable[[typing.Any], ModelWrapper]:
-    def validator(v: typing.Any) -> ModelWrapper:
+def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:
+    def validator(v: str | ModelWrapper) -> ModelWrapper:
         if isinstance(v, ModelWrapper):
-            return parser.bind(v.name)
+            if any(v.loader_matches(overridee) for overridee in overrides):
+                return parser.bind(v.name)
+            return v
         return parser.bind(v)
     return validator
 
 
-@attrs.frozen()
+@attrs.define
 class Wall:
     Start: Position
     End: Position
@@ -39,9 +41,9 @@ class Wall:
         )
 
 
-@attrs.frozen()
+@attrs.define
 class Entity:
-    position: PositionOrientation
+    pose: Pose
     name: str
     model: ModelWrapper
     extra: dict = attrs.field(factory=dict, kw_only=True)
@@ -55,35 +57,35 @@ class Entity:
         return attrs.asdict(self)
 
 
-@attrs.frozen()
+@attrs.define
 class Obstacle(Entity):
-    model: ModelWrapper = attrs.field(converter=override_or_parse(ObstacleLoader))
+    model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
 
     @classmethod
     def parse(cls, obj: dict) -> "Obstacle":
         name = str(obj.get("name", ""))
-        position = PositionOrientation(*obj.get("pos", (0, 0, 0)))
+        pose = Pose.parse(obj.get("pos", (0, 0, 0)))
         model = str(obj.get("model", ""))
 
         return cls(
             name=name,
-            position=position,
+            pose=pose,
             model=model,
             extra=obj,
         )
 
 
-@attrs.frozen()
+@attrs.define
 class DynamicObstacle(Obstacle):
-    model: ModelWrapper = attrs.field(converter=override_or_parse(DynamicObstacleLoader))
-    waypoints: list[PositionRadius]
+    model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
+    waypoints: list[Position]
 
     @classmethod
     def parse(cls, obj: dict) -> "DynamicObstacle":
 
         base = Obstacle.parse(obj)
         waypoints = [
-            PositionRadius(*waypoint)
+            Position(*waypoint)
             for waypoint
             in obj.get("waypoints", [])
         ]
@@ -94,6 +96,6 @@ class DynamicObstacle(Obstacle):
         )
 
 
-@attrs.frozen()
+@attrs.define
 class Robot(Entity):
-    model: ModelWrapper = attrs.field(converter=override_or_parse(RobotLoader))
+    model: ModelWrapper = attrs.field(converter=model_parse(RobotLoader))

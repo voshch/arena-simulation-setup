@@ -81,16 +81,24 @@ class ModelWrapper:
     _get: Callable[[Collection[ModelType], dict], Model]
     _name: str
     _override: dict[ModelType, tuple[bool, Callable[..., Model]]]
+    _loader: object
+
+    def loader_matches(self, loader: object) -> bool:
+        return self._loader is loader
 
     def __init__(
         self,
         name: str,
-        callback: Callable[[Collection[ModelType], dict], Model] | None = None
+        callback: Callable[[Collection[ModelType], dict], Model] | None = None,
+        loader: ITF_ModelLoader | None = None,
     ):
         """
         Create new ModelWrapper
         @name: Name of the ModelWrapper (should match the underlying Models)
         """
+        self._loader = loader
+        if self._loader is None:
+            self._loader = object()
         if callback is None:
             callback = EMPTY_LOADER
         self._name = name
@@ -101,7 +109,7 @@ class ModelWrapper:
         """
         Clone (shallow copy) this ModelWrapper instance
         """
-        clone = ModelWrapper(self.name, self._get)
+        clone = ModelWrapper(self.name, self._get, loader=self._loader)
         clone._override = self._override
         return clone
 
@@ -120,6 +128,7 @@ class ModelWrapper:
         @name: (optional) If set, overrides name of ModelWrapper
         """
         clone = self.clone()
+        clone._loader = object()
         clone._override = {**self._override, model_type: (noload, override)}
 
         if name is not None:
@@ -275,7 +284,8 @@ class _ModelLoader:
     def bind(self, model: str) -> ModelWrapper:
         return ModelWrapper(
             name=model,
-            callback=functools.partial(self._load_safe, model)
+            callback=functools.partial(self._load_safe, model),
+            loader=self,
         )
 
     def _load(self, model: str, only: Collection[ModelType], loader_args: dict) -> Model | None:
