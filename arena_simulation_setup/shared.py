@@ -1,3 +1,4 @@
+import re
 import typing
 
 import attrs
@@ -44,7 +45,7 @@ class Wall:
 @attrs.define
 class Entity:
     pose: Pose
-    name: str
+    name: str = attrs.field(converter=lambda s: Entity.sanitize_name(str(s)))
     model: ModelWrapper
     extra: dict = attrs.field(factory=dict, kw_only=True)
 
@@ -55,6 +56,10 @@ class Entity:
                 **self.extra,
             }
         return attrs.asdict(self)
+
+    @classmethod
+    def sanitize_name(cls, name: str) -> str:
+        return re.sub('[^A-Za-z0-9_]', '_', name)
 
 
 @attrs.define

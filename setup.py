@@ -1,9 +1,8 @@
-from glob import glob
 import os
-
 from setuptools import setup, find_namespace_packages
 
 package_name = 'arena_simulation_setup'
+
 
 setup(
     name=package_name,
@@ -37,13 +36,14 @@ setup(
     maintainer_email='trannamtruong98@gmail.com',
     description='arena_simulation_setup.',
     license='BSD',
-    tests_require=['pytest'],
     scripts=[
-        'scripts/generate_world'
+        'scripts/generate_world',
+        'scripts/model_staging',
     ],
     entry_points={
         'console_scripts': [
             'generate_world = arena_simulation_setup.generate_world:main',
+            'model_staging = arena_simulation_setup.model_staging:main'
         ],
     },
 )
