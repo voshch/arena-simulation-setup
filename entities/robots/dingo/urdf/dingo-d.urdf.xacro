@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot name="dingo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="pacs_enabled" value="$(optenv DINGO_PACS_ENABLED 0)"/>
+
   <xacro:property name="PI" value="3.1415926535897931" />
 
   <xacro:property name="wheel_radius" value="0.049" />
@@ -22,7 +24,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find arena_simulation_setup)/entities/robots/dingo/meshes/wheel.stl"/>
+          <mesh filename="package://arena_simulation_setup/entities/robots/dingo/meshes/wheel.stl"/>
         </geometry>
         <material name="black" />
       </visual>
@@ -83,7 +85,7 @@
       <geometry>
         <sphere radius="0.01"/>
       </geometry>
-      <material name="Black"/>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -115,7 +117,7 @@
     <origin xyz="-0.244 0 -0.00674" rpy="0 0 0"/>
   </joint>
   <gazebo reference="rear_caster">
-    <turnGravityOff>true</turnGravityOff>
+    <turnGravityOff>false</turnGravityOff>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <mu1>0.2</mu1>
@@ -138,24 +140,27 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="file://$(find arena_simulation_setup)/entities/robots/dingo/meshes/diff_chassis.dae"/>
+        <mesh filename="package://arena_simulation_setup/entities/robots/dingo/meshes/diff_chassis.dae"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file://$(find arena_simulation_setup)/entities/robots/dingo/meshes/diff_chassis_collision.stl"/>
+        <mesh filename="package://arena_simulation_setup/entities/robots/dingo/meshes/diff_chassis_collision.stl"/>
       </geometry>
     </collision>
     <inertial>
       <!-- Center of mass -->
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="10.0"/>
-      <inertia  ixx="0.2216" ixy="0" ixz="0"  iyy="0.2458" iyz="0"  izz="0.4474"/>
+      <!-- Moments of inertia: ( chassis without wheels ) -->
+      <inertia
+        ixx="0.2216" ixy="0" ixz="0"
+        iyy="0.2458" iyz="0"
+        izz="0.4474"/>
       </inertial>
   </link>
-  
-  
+
   <link name="imu_link">
     <inertial>
       <mass value="0.001"/>
@@ -163,7 +168,6 @@
       <inertia ixx="${dummy_inertia}" ixy="0.0" ixz="0.0" iyy="${dummy_inertia}" iyz="0.0" izz="${dummy_inertia}"/>
     </inertial>
   </link>
-  
   <joint name="imu_joint" type="fixed">
     <parent link="chassis_link" />
     <child link="imu_link" />
@@ -182,43 +186,45 @@
       - rear b
       - rear
   -->
-  <link name="front_mount"/>
-  <link name="front_b_mount"/>
-  <link name="front_c_mount"/>
-  <link name="rear_mount"/>
-  <link name="rear_b_mount"/>
-  <link name="rear_c_mount"/>
+  <xacro:unless value="${pacs_enabled}">
+    <link name="front_mount"/>
+    <link name="front_b_mount"/>
+    <link name="front_c_mount"/>
+    <link name="rear_mount"/>
+    <link name="rear_b_mount"/>
+    <link name="rear_c_mount"/>
 
-  <joint name="front_c_mount_joint" type="fixed">
-    <origin xyz="0.040 0 0.064263" rpy="0 0 0" />
-    <parent link="chassis_link"/>
-    <child link="front_c_mount" />
-  </joint>
-  <joint name="front_b_mount_joint" type="fixed">
-    <origin xyz="0.080 0 0" rpy="0 0 0" />
-    <parent link="front_c_mount"/>
-    <child link="front_b_mount" />
-  </joint>
-  <joint name="front_mount_joint" type="fixed">
-    <origin xyz="0.080 0 0" rpy="0 0 0" />
-    <parent link="front_b_mount"/>
-    <child link="front_mount" />
-  </joint>
-  <joint name="rear_c_mount_joint" type="fixed">
-    <origin xyz="-0.040 0 0.064263" rpy="0 0 0" />
-    <parent link="chassis_link"/>
-    <child link="rear_c_mount" />
-  </joint>
-  <joint name="rear_b_mount_joint" type="fixed">
-    <origin xyz="-0.080 0 0" rpy="0 0 0" />
-    <parent link="rear_c_mount"/>
-    <child link="rear_b_mount" />
-  </joint>
-  <joint name="rear_moint_joint" type="fixed">
-    <origin xyz="-0.080 0 0" rpy="0 0 0" />
-    <parent link="rear_b_mount"/>
-    <child link="rear_mount" />
-  </joint>
+    <joint name="front_c_mount_joint" type="fixed">
+      <origin xyz="0.040 0 0.064263" rpy="0 0 0" />
+      <parent link="chassis_link"/>
+      <child link="front_c_mount" />
+    </joint>
+    <joint name="front_b_mount_joint" type="fixed">
+      <origin xyz="0.080 0 0" rpy="0 0 0" />
+      <parent link="front_c_mount"/>
+      <child link="front_b_mount" />
+    </joint>
+    <joint name="front_mount_joint" type="fixed">
+      <origin xyz="0.080 0 0" rpy="0 0 0" />
+      <parent link="front_b_mount"/>
+      <child link="front_mount" />
+    </joint>
+    <joint name="rear_c_mount_joint" type="fixed">
+      <origin xyz="-0.040 0 0.064263" rpy="0 0 0" />
+      <parent link="chassis_link"/>
+      <child link="rear_c_mount" />
+    </joint>
+    <joint name="rear_b_mount_joint" type="fixed">
+      <origin xyz="-0.080 0 0" rpy="0 0 0" />
+      <parent link="rear_c_mount"/>
+      <child link="rear_b_mount" />
+    </joint>
+    <joint name="rear_moint_joint" type="fixed">
+      <origin xyz="-0.080 0 0" rpy="0 0 0" />
+      <parent link="rear_b_mount"/>
+      <child link="rear_mount" />
+    </joint>
+  </xacro:unless>
 
   <!--
     Mounting point for accessories on the front bumper.
@@ -232,9 +238,11 @@
     <child link="front_bumper_mount" />
   </joint>
 
-  
+  <!-- PACS -->
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/dingo/urdf/pacs.urdf.xacro"/>
+  <xacro:pacs/>
+
   <!-- Bring in simulation data for Gazebo. -->
-  
   <xacro:include filename="$(find arena_simulation_setup)/entities/robots/dingo/urdf/dingo.gazebo" />
 
   <!-- Optional standard accessories, including their simulation data. The rendering
@@ -243,6 +251,5 @@
   <xacro:include filename="$(find arena_simulation_setup)/entities/robots/dingo/urdf/accessories.urdf.xacro" />
 
   <!-- Optional custom includes. -->
-  <!--<xacro:include filename="$(optenv DINGO_URDF_EXTRAS empty.urdf)" />-->
-  
+  <xacro:include filename="$(optenv DINGO_URDF_EXTRAS empty.urdf)" />
 </robot>

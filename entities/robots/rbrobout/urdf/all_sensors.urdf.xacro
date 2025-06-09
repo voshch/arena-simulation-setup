@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="all_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- Only keep the necessary includes for your sensors -->
+
+  <!-- 工具宏依赖，部分 sensor 宏可能 include inertia 计算 -->
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/utils/inertia.urdf.xacro" />
+
+  <!-- 2D Lidar Sick Microscan3 -->
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/2d_lidar/sick_microscan3.urdf.xacro" />
+
+  <!-- IMU Vectornav -->
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/imu/vectornav.urdf.xacro" />
+
+</robot>
