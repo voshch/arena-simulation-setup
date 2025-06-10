@@ -31,19 +31,21 @@ setup(
     install_requires=[
         'setuptools',
         'requests',
+        'attrs',
+        'shapely',
+        'pillow',
     ],
     zip_safe=True,
-    maintainer='NamTruongTran',
-    maintainer_email='trannamtruong98@gmail.com',
+    maintainer='voshch',
+    maintainer_email='dev@voshch.dev',
     description='arena_simulation_setup.',
     license='BSD',
     tests_require=['pytest'],
-    scripts=[
-        'scripts/generate_world'
-    ],
+    scripts=[],
     entry_points={
         'console_scripts': [
-            'generate_world = arena_simulation_setup.generate_world:main',
+            'generate_world = arena_simulation_setup.utils.generative.world_generator:main',
+            'world_generator = arena_simulation_setup.utils.generative.world_generator_ros:main',
         ],
     },
 )

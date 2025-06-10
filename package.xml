@@ -4,7 +4,7 @@
   <name>arena_simulation_setup</name>
   <version>4.0.0</version>
   <description>The arena_simulation_setup package</description>
-  <maintainer email="trannamtruong98@gmail.com">NamTruongTran</maintainer>
+  <maintainer email="dev@voshch.dev">voshch</maintainer>
   <license>BSD</license>
 
   <!-- ament_cmake as CMake build tool used in ROS2 -->
@@ -14,6 +14,7 @@
   <test_depend>ament_lint_common</test_depend>
 
   <exec_depend>arena_bringup</exec_depend>
+  <exec_depend>arena_rclpy_mixins</exec_depend>
   
   <!-- <depend>turtlebot4_description</depend> -->
   <depend>topic_tools</depend>

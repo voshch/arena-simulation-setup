@@ -24,7 +24,7 @@ class RobotGoal:
         )
 
 
-@attrs.define()
+@attrs.define
 class Scenario:
     static: list[Obstacle]
     dynamic: list[DynamicObstacle]
@@ -40,6 +40,10 @@ class _Map:
         return self._path
 
     @property
+    def map_yaml(self) -> str:
+        return os.path.join(self.path, 'map.yaml')
+
+    @property
     def obstacles(self) -> str:
         return os.path.join(self.path, 'obstacles.yaml')
 
@@ -53,6 +57,10 @@ class _Map:
 
 
 class World(Interface(os.path.join(ass_dir, 'worlds'))):
+
+    @classmethod
+    def list(cls) -> list[str]:
+        return ['.generated'] + super().list()
 
     @property
     def scenario(self):
