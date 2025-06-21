@@ -2,41 +2,41 @@ import random
 
 from . import (GeneratedWorld, Polygon, WorldGeneratorType, _BaseConfiguration,
                _WorldGenerator, _WorldGeneratorImpl)
-
-
+import logging 
+logger = logging.getLogger(__name__)
 @_WorldGenerator.register(WorldGeneratorType.HALLWAY)
 class WorldGeneratorHallway(_WorldGeneratorImpl):
 
     class Configuration(_BaseConfiguration):
-        width: float = 60.0
-        height: float = 60.0
+        width: float = 80.0
+        height: float = 50.0
 
         # Hallway parameters (a horizontal band)
-        hallway_bottom: float = 28.0
-        hallway_top: float = 32.0
+        hallway_bottom: float = 10.0
+        hallway_top: float = 15.0
 
         # Room parameters (for each side)
-        rooms_per_side: int = 5
+        rooms_per_side: int = 7
 
         # For "big" rooms (first and last)
-        big_min_width: float = 15.0
-        big_max_width: float = 25.0
-        big_min_height: float = 15.0
-        big_max_height: float = 25.0
+        big_min_width: float = 18.0
+        big_max_width: float = 28.0
+        big_min_height: float = 12.0
+        big_max_height: float = 20.0
 
         # For "small" rooms (intermediate ones)
-        small_min_width: float = 5.0
-        small_max_width: float = 15.0
-        small_min_height: float = 8.0
-        small_max_height: float = 12.0
+        small_min_width: float = 6.0
+        small_max_width: float = 12.0
+        small_min_height: float = 7.0
+        small_max_height: float = 14.0
 
         # door width
-        door_width: float = 2.0
+        door_width: float = 2.5
 
     config: Configuration
-
     def configure(self, configuration: dict):
         self.config = self.Configuration.model_validate(configuration)
+        logger.info(self.config)
 
     def compute(self) -> GeneratedWorld:
         top_rooms, top_doors = self._impl("top", self.config.rooms_per_side)
