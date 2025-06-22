@@ -8,7 +8,7 @@ class ModelLoader_SDF(ITF_ModelLoader):
 
     @classmethod
     def load(cls, model_dir, model, loader_args):
-        model_path = os.path.join(model_dir, model, "sdf", f"{model}.sdf")
+        model_path = os.path.join(model_dir, model, "sdf", f"{os.path.basename(model)}.sdf")
         try:
             with open(model_path) as f:
                 return Model(

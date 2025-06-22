@@ -324,4 +324,5 @@ class _ModelLoader:
         if loaded is not None:
             return loaded
 
+        return None
         raise FileNotFoundError(f"no model {model} among {only} found in {self._model_dir} and could not be converted")
