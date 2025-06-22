@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/xacro" name="rbrobout_mecanum_wheel">
+
+    <xacro:property name="PI" value="3.1415926535897931" />
+    <xacro:property name="mecanum_wheel_radius" value="0.127" />
+    <xacro:property name="mecanum_wheel_height" value="0.087" />
+    <xacro:property name="mecanum_wheel_mass" value="6.5" />
+
+    <xacro:macro name="cylinder_inertia" params="m r h">
+        <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
+            iyy="${m*r*r/2}" iyz="0"
+            izz="${m*(3*r*r+h*h)/12}" />
+    </xacro:macro>
+
+    <xacro:macro name="rbrobout_mecanum_wheel" params="prefix parent xyz reflect hq gazebo_classic:=false gazebo_ignition:=false">
+
+        <joint name="${prefix}wheel_joint" type="continuous">
+            <parent link="${parent}" />
+            <child link="${prefix}wheel_link" />
+            <origin xyz="${xyz}" rpy="0.0 0.0 0.0"/>
+            <limit effort="100000" velocity="100" />
+            <axis xyz="0 1 0"/>
+        </joint>
+
+        <link name="${prefix}wheel_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <xacro:if value="${reflect}">
+                        <!-- 路径已被修改，以指向新的、扁平化的 meshes 目录 -->
+                        <mesh filename="package://arena_simulation_setup/entities/robots/rbrobout/meshes/wheels/mecanum_wheel/robout_wheel.stl"/>
+                    </xacro:if>
+                    <xacro:unless value="${reflect}">
+                        <!-- 路径已被修改，以指向新的、扁平化的 meshes 目录 -->
+                        <mesh filename="package://arena_simulation_setup/entities/robots/rbrobout/meshes/wheels/mecanum_wheel/robout_wheel.stl"/>
+                    </xacro:unless>
+                </geometry>
+                <material name="darkgrey">
+                    <color rgba="0.2 0.2 0.2 1" />
+                </material>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                <geometry>
+                    <cylinder length="0.1" radius="0.127"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="${mecanum_wheel_mass}" />
+                <origin xyz="0 0 0" />
+                <xacro:cylinder_inertia m="${mecanum_wheel_mass}" r="${mecanum_wheel_radius}"
+                    h="${mecanum_wheel_height}" />
+            </inertial>
+        </link>
+
+    </xacro:macro>
+</robot>

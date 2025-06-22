@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="rbrobout" xmlns:xacro="http://wiki.ros.org/xacro">
+
+
+	<!-- ***************** -->
+	<!-- Imported elements -->
+	<!-- ***************** -->
+
+	<!-- 路径已被修改，以指向扁平化的 urdf/ 目录 -->
+	<!-- 您需要确保 rbrobout_body.urdf.xacro 和 rbrobout_mecanum_wheel.urdf.xacro 文件也被复制到了 rbrobout/urdf/ 目录下 -->
+	<xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/rbrobout_body.urdf.xacro" />
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/rbrobout_mecanum_wheel.urdf.xacro" />
+
+	<!-- 注意: 为简化集成，已移除对外部 robotnik_sensors 包的依赖 -->
+
+	<xacro:property name="PI" value="3.1415926535897931"/>
+
+	<!-- Wheel parameters -->
+	<xacro:property name="wheel_offset_x" value="0.558" />
+	<xacro:property name="wheel_offset_y" value="0.2865" />
+	<xacro:property name="wheel_offset_z" value="0.0" />
+
+	<!-- Flag to select the high or low quality model -->
+	<xacro:property name="hq" value="true" />
+
+    <xacro:macro name="rbrobout" params="prefix:=robot_ gazebo_classic:=false gazebo_ignition:=false">
+
+		<!-- *************** -->
+		<!-- Robots Elements -->
+		<!-- *************** -->
+
+		<xacro:rbrobout_body prefix="${prefix}" />
+
+		<!-- Wheels -->
+		<xacro:rbrobout_mecanum_wheel prefix="${prefix}front_right_" parent="${prefix}base_link" reflect="false" hq="${hq}" gazebo_classic="${gazebo_classic}" gazebo_ignition="${gazebo_ignition}"
+			xyz="${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}">
+		</xacro:rbrobout_mecanum_wheel>
+
+		<xacro:rbrobout_mecanum_wheel prefix="${prefix}front_left_" parent="${prefix}base_link" reflect="true" hq="${hq}" gazebo_classic="${gazebo_classic}" gazebo_ignition="${gazebo_ignition}"
+			xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}">
+		</xacro:rbrobout_mecanum_wheel>
+
+		<xacro:rbrobout_mecanum_wheel prefix="${prefix}back_left_" parent="${prefix}base_link" reflect="false" hq="${hq}" gazebo_classic="${gazebo_classic}" gazebo_ignition="${gazebo_ignition}"
+			xyz="-${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}">
+		</xacro:rbrobout_mecanum_wheel>
+
+		<xacro:rbrobout_mecanum_wheel prefix="${prefix}back_right_" parent="${prefix}base_link" reflect="true" hq="${hq}" gazebo_classic="${gazebo_classic}" gazebo_ignition="${gazebo_ignition}"
+			xyz="-${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}">
+		</xacro:rbrobout_mecanum_wheel>
+
+   </xacro:macro>
+
+</robot>

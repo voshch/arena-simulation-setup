@@ -1,0 +1,28 @@
+# model_params.yaml for Husky
+odom_frame: odom
+robot_base_frame: base_link
+plugins:
+  # --- 核心修改 ---
+  # 使用 SkidSteerDrive 插件来正确模拟四轮滑动转向的机器人
+  - plugin_name: "ignition::gazebo::systems::SkidSteerDrive"
+    plugin_filename: "libignition-gazebo-skid-steer-drive-system.so"
+    left_front_joint: "front_left_wheel_joint"
+    left_rear_joint:  "rear_left_wheel_joint"
+    right_front_joint: "front_right_wheel_joint"
+    right_rear_joint: "rear_right_wheel_joint"
+    wheel_separation: 0.54
+    wheel_radius: 0.1651
+    odom_topic: "odom"
+    tf_topic: "tf"
+  # 传感器插件保持不变
+  - plugin_name: "ignition::gazebo::systems::Sensors"
+    plugin_filename: "libignition-gazebo-sensors-system.so"
+    sensors:
+      - name: "imu_sensor"
+        type: "imu"
+        topic: "imu/data_raw"
+        frame_id: "imu_link"
+      - name: "gpu_lidar"
+        type: "gpu_lidar"
+        topic: "scan"
+        frame_id: "base_link"
