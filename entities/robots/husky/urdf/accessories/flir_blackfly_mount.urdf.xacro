@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find fath_pivot_mount_description)/urdf/lockmount.urdf.xacro"/>
-  <xacro:include filename="$(find flir_camera_description)/urdf/flir_blackflys.urdf.xacro"/>
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/lockmount.urdf.xacro"/>
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/flir_blackfly_s.urdf.xacro"/>
 
   <xacro:macro name="flir_blackfly_mount" params="prefix:=blackfly 
                                               parent:=top_plate_link 
@@ -9,7 +9,7 @@
                                               mount_angle:=${pi/8}
                                               *origin">
     <!-- Add Blackfly S -->
-    <xacro:flir_blackflys frame="${prefix}"/>
+    <xacro:flir_blackfly_s frame="${prefix}"/>
     <!-- Add Fath Pivot Mouth-->
     <xacro:if value="${mount_enabled}">
       <xacro:fath_pivot_mount prefix="${prefix}_fath_pivot" parent_link="${parent}" angle="${mount_angle}">

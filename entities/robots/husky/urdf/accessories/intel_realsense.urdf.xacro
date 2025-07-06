@@ -13,16 +13,16 @@
         include this one:
   '''
   <xacro:if value="${rs_model == 'd435'}">
-    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+    <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d435.urdf.xacro" />
   </xacro:if>
   <xacro:if value="${rs_model == 'd435i'}">
-    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+    <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d435i.urdf.xacro" />
   </xacro:if>
   <xacro:if value="${rs_model == 'd415'}">
-    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+    <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d415.urdf.xacro" />
   </xacro:if>
   <xacro:if value="${rs_model == 'd455'}">
-    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+    <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d435.urdf.xacro" />
   </xacro:if>
   '''
   Multiple inclusions of any of these files (even when namespaced), will define
@@ -44,16 +44,16 @@
 
     <xacro:if value="${include}">
       <xacro:if value="${rs_model == 'd435'}">
-        <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+        <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d435.urdf.xacro" />
       </xacro:if>
       <xacro:if value="${rs_model == 'd435i'}">
-        <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+        <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d435i.urdf.xacro" />
       </xacro:if>
       <xacro:if value="${rs_model == 'd415'}">
-        <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+        <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d415.urdf.xacro" />
       </xacro:if>
       <xacro:if value="${rs_model == 'd455'}">
-        <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+        <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/_d435.urdf.xacro" />
       </xacro:if>
     </xacro:if>
 

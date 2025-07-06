@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
+  <xacro:include filename="$(find arena_simulation_setup)/entities/robots/husky/urdf/sick_lms1xx.urdf.xacro" />
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix parent topic robot_namespace *origin tower:=1">
     <!-- Add SICK LMS1xx -->
