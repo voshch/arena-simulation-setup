@@ -1,4 +1,4 @@
-arena_simulation_setup/entities/robots/boxer
+boxer_description
 ====================
 
 This package contains the URDF files and STLs that make up the Boxer 2.4's description.

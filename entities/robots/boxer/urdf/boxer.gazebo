@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:arg name="namespace" default="/" />
+  <xacro:arg name="robot_namespace" default="/" />
 
   <gazebo>
     <!-- Plugin for ros_control (actuate drive motors, lift). -->
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>$(arg namespace)</robotNamespace>
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
       <robotParam>robot_description</robotParam>
     </plugin>
   </gazebo>

@@ -1,47 +1,26 @@
-# Robot's root coordinate frame
-robot_base_frame: 'base_link' # VERIFY: Ensure 'base_link' is correct for Boxer's URDF.
-# Odometry coordinate frame
-robot_odom_frame: 'odom'      # VERIFY: Ensure 'odom' is correct for Boxer's odometry.
-
-# observation_sources_string: lidar # This seemed to be a legacy or commented-out preference.
-# observation_sources:
-#  - lidar
+observation_sources_string: lidar
+observation_sources:
+- lidar
 observation_sources_dict:
   lidar:
-    # IMPORTANT: Ensure this topic matches your mappings.yaml for Boxer's LiDAR
     topic: ${namespace}/lidar
-    max_obstacle_height: 2.0      # Adjust if Boxer's LiDAR height or environment requires it.
-    clearing: True
-    marking: True
-    data_type: "LaserScan"
-
+    max_obstacle_height: 2.0
+    clearing: true
+    marking: true
+    data_type: LaserScan
 polygons:
-  - StopPolygon
+- StopPolygon
 polygons_dict:
   StopPolygon:
-    type: "polygon"
-    # EXAMPLE: A safety polygon 20cm deep, 40cm wide, starting 20cm in front of base_link center.
-    # !! ADAPT these points for Boxer's actual dimensions and desired safety zone !!
-    points: "[ [0.4, 0.2], [0.4, -0.2], [0.2, -0.2], [0.2, 0.2] ]"
-    action_type: "stop"
+    type: polygon
+    points: "[ [0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1] ]"
+    action_type: stop
+    enabled: true
     min_points: 4
-    visualize: True
-    polygon_pub_topic: "polygon_stop"
-    enabled: True
-
-# !! CRITICAL: ADAPT to Boxer's actual 2D footprint (list of [x,y] vertices) !!
-# Example for a robot roughly 0.7m long, 0.5m wide, centered at base_link:
-footprint: "[ [0.35, 0.25], [0.35, -0.25], [-0.35, -0.25], [-0.35, 0.25] ]"
-
+    polygon_pub_topic: polygon_stop
+    visualize: true
 actions:
-  continuous:
-    angular_range:                  # !! ADAPT to Boxer's actual maximum angular velocity (rad/s) !!
-    - -2.0                          # Example: -2.0 rad/s
-    - 2.0                           # Example: +2.0 rad/s
-    linear_range:                   # !! ADAPT to Boxer's actual maximum linear velocity (m/s) !!
-    - -1.0                          # Example: -1.0 m/s
-    - 1.0                           # Example: +1.0 m/s
-  discrete:                         # These are likely fine as relative actions, but could be tuned for Boxer.
+  discrete:
   - angular: 0.0
     linear: 0.3
     name: move_forward
@@ -56,31 +35,29 @@ actions:
     name: turn_right
   - angular: 0.75
     linear: 0.0
-    name: turn_strong_left
+    name: rotate_left
   - angular: -0.75
     linear: 0.0
-    name: turn_strong_right
-  - angular: 0.0
-    linear: 0.0
-    name: stop
-is_holonomic: false                   # VERIFY: Should be false for diff-drive/skid-steer Boxer.
-
-# !! CRITICAL: All 'laser' parameters MUST match Boxer's specific LiDAR sensor specifications !!
+    name: rotate_right
+  continuous:
+    angular_range:
+    - -4.0
+    - 4.0
+    linear_range:
+    - -2.0
+    - 2.0
+is_holonomic: false
 laser:
   angle:
-    # Example: -120 to +120 degrees field of view
-    min: -2.0943951023931953        # !! ADAPT: Boxer LiDAR's min scan angle (radians) !!
-    max: 2.0943951023931953         # !! ADAPT: Boxer LiDAR's max scan angle (radians) !!
-    # Example: ~0.35 degrees increment
-    increment: 0.00613592315        # !! ADAPT: Boxer LiDAR's angle increment between beams (radians) !!
-  # Example: (max_angle - min_angle) / increment + 1 = ~683 beams
-  num_beams: 683                      # !! ADAPT: Boxer LiDAR's total number of beams per scan !!
-  range: 25.0                         # !! ADAPT: Boxer LiDAR's maximum sensing range (meters) !!
-  update_rate: 20                     # !! ADAPT: Boxer LiDAR's update frequency (Hz) !!
-
-# This was already present and seems correct if 'base_link' is used.
-# robot_base_frame: 'base_link' # (Already defined at the top)
-
-robot_model: boxer                    # CRITICAL: Changed from 'jackal'
-robot_radius: 0.35                    # !! ADAPT to Boxer's actual approximate radius (meters) - Example: half of 0.7m length !!
-robot_sensor_frame: 'boxer_lidar_frame' # !! ADAPT/VERIFY: Actual frame ID of Boxer's LiDAR from its URDF (e.g., 'laser_link', 'front_laser') !!
+    increment: 0.00654497222
+    max: 2.35619
+    min: -2.35619
+  num_beams: 720
+  range: 30.0
+  update_rate: 10
+robot_base_frame: base_link
+robot_model: boxer
+robot_odom_frame: odom
+robot_radius: 0.42
+robot_sensor_frame: lidar
+z_offset: 0.0635
