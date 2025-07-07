@@ -15,7 +15,7 @@
   	<xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/wheels/mecanum_wheel/rbrobout_mecanum_wheel.urdf.xacro" />
 
 	<!-- Import all available sensors -->
-	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
+	<xacro:include filename="$(find arena_simulation_setup)/entities/robots/rbrobout/urdf/all_sensors.urdf.xacro" />
 
 	<xacro:property name="PI" value="3.1415926535897931"/>
 

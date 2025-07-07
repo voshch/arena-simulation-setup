@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="waffle" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE /)" />
-  <xacro:property name="robot_namespace" value="$(arg robot_namespace)" />
+  <xacro:property name="robot_namespace" value="$(arg namespace)" />
 
   <xacro:include filename="$(find arena_simulation_setup)/entities/robots/waffle/urdf/common_properties.xacro"/>
   <xacro:include filename="$(find arena_simulation_setup)/entities/robots/waffle/urdf/waffle.gazebo.xacro"/>
