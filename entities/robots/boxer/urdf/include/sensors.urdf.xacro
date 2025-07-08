@@ -30,6 +30,7 @@
     <material>Gazebo/Black</material>
     <turnGravityOff>true</turnGravityOff>
     <sensor type="depth" name="realsense_front_camera">
+      <gz_frame_id>$(arg name)/realsense_front_camera_link</gz_frame_id>
       <update_rate>30</update_rate>
       <camera>
         <!-- 75x65 degree FOV for the depth sensor -->
@@ -92,7 +93,8 @@
   <gazebo reference="front_laser">
     <material>Gazebo/Black</material>
     <turnGravityOff>true</turnGravityOff>
-    <sensor type="ray" name="front_laser">
+    <sensor type="gpu_lidar" name="front_laser">
+      <gz_frame_id>$(arg name)/front_laser</gz_frame_id>
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
       <update_rate>33</update_rate>
@@ -145,7 +147,8 @@
   <gazebo reference="rear_sensor">
     <material>Gazebo/Black</material>
     <turnGravityOff>true</turnGravityOff>
-    <sensor type="ray" name="rear_laser">
+    <sensor type="gpu_lidar" name="rear_laser">
+      <gz_frame_id>$(arg name)/rear_sensor</gz_frame_id>
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
       <update_rate>33</update_rate>

@@ -4,9 +4,21 @@
 
   <gazebo>
     <!-- Plugin for ros_control (actuate drive motors, lift). -->
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>$(arg robot_namespace)</robotNamespace>
-      <robotParam>robot_description</robotParam>
+    <!-- <plugin
+      filename="libgz_ros2_control-system.so"
+      name="gz_ros2_control::GazeboSystem">
+      <parameters>$(find arena_simulation_setup)/entities/robots/boxer/control.yaml</parameters>
+    </plugin> -->
+
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>wheel_left_joint</left_joint>
+      <right_joint>wheel_right_joint</right_joint>
+      <wheel_separation>0.48</wheel_separation>
+      <wheel_radius>0.095</wheel_radius>
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
     </plugin>
   </gazebo>
 
