@@ -18,7 +18,7 @@ robot_radius: 0.61 # 根据上述足迹估算的机器人半径
 
 # --- 以下为机器人模型和框架名称 ---
 robot_model: rbrobout # 已修改
-robot_base_frame: 'base_link'
+robot_base_frame: robot_base_footprint
 robot_odom_frame: 'odom'
 # 传感器框架名称，假设前置激光雷达的 link 名称为 robot_front_laser_link
 robot_sensor_frame: 'robot_front_laser_link' # 已修改

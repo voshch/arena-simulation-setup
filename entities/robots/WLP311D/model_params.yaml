@@ -47,7 +47,7 @@ footprint: "[ [0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1] ]"
 # ------------------------------------------------------------
 #  Frames
 # ------------------------------------------------------------
-robot_base_frame: base_footprint
+robot_base_frame: base
 robot_odom_frame: odom
 
 # ------------------------------------------------------------
@@ -89,3 +89,4 @@ laser:
 robot_model: WLP311D
 robot_radius: 0.40         # FIXME: 实测包络半径 (m)
 robot_sensor_frame: lidar
+z_offset: 0.34

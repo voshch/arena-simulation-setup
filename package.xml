@@ -19,6 +19,7 @@
   
   <depend>jackal_description</depend>
   <depend>realsense2_description</depend>
+  <depend>lms1xx</depend>
   
   <export>
     <build_type>ament_python</build_type>

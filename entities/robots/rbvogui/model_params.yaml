@@ -52,7 +52,7 @@ footprint: "[ [0.38, 0.24], [0.38, -0.24], [-0.38, -0.24], [-0.38, 0.24] ]"
 # --- Coordinate Frames ---
 # MODIFIED: Updated to match the frames used by the robotnik_base_controller.
 robot_base_frame: 'robot_base_footprint'
-robot_odom_frame: 'robot_odom'
+robot_odom_frame: 'odom'
 
 # --- Action Space (Velocity Commands) ---
 # MODIFIED: Updated to reflect the holonomic movement and the limits

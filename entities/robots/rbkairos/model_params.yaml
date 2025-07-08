@@ -56,7 +56,7 @@ laser:
   range: 30.0
   update_rate: 10
 
-robot_base_frame: 'base_link'
+robot_base_frame: robot_base_footprint
 robot_model: rbkairos
 robot_radius: 0.4
 robot_sensor_frame: lidar

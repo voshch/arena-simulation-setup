@@ -28,7 +28,7 @@ planner_plugins_dict:
     use_astar: false
     allow_unknown: true
 footprint: '[ [0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1] ]'
-robot_base_frame: base_link
+robot_base_frame: base
 robot_odom_frame: odom
 actions:
   continuous:
