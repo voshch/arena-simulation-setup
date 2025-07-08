@@ -1,9 +1,8 @@
-from glob import glob
 import os
-
 from setuptools import setup, find_namespace_packages
 
 package_name = 'arena_simulation_setup'
+
 
 setup(
     name=package_name,

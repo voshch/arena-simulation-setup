@@ -6,11 +6,11 @@
       <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
       <scale>1.0</scale>
     </skin>
-    <animation name="walk">
+    <!-- <animation name="walk">
       <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
       <interpolate_x>true</interpolate_x>
-    </animation>
-      <script>
+    </animation> -->
+      <!-- <script>
         <loop>true</loop>
         <delay_start>0.000000</delay_start>
         <auto_start>true</auto_start>
@@ -52,6 +52,6 @@
             <pose>0 0 1.0 0 0 0</pose>
           </waypoint>
         </trajectory>
-      </script>
+      </script> -->
   </actor>
 </sdf>

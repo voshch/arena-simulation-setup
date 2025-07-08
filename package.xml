@@ -7,7 +7,6 @@
   <maintainer email="dev@voshch.dev">voshch</maintainer>
   <license>BSD</license>
 
-  <!-- ament_cmake as CMake build tool used in ROS2 -->
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>
@@ -16,12 +15,12 @@
   <exec_depend>arena_bringup</exec_depend>
   <exec_depend>arena_rclpy_mixins</exec_depend>
   
-  <!-- <depend>turtlebot4_description</depend> -->
   <depend>topic_tools</depend>
-
-  <!-- Metadata about how the package should be exported to other packages -->
+  
+  <depend>jackal_description</depend>
+  <depend>realsense2_description</depend>
+  
   <export>
     <build_type>ament_python</build_type>
-    <!-- <build_type>ament_cmake</build_type> -->
-  </export>
+    </export>
 </package>

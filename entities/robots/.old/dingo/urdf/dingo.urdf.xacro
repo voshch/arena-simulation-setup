@@ -242,6 +242,6 @@
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
   <xacro:include filename="$(find arena_simulation_setup)/entities/robots/dingo/urdf/accessories.urdf.xacro" >
-    <xacro:arg name="robot_namespace" value="$(arg robot_namespace)" />
+    <xacro:arg name="robot_namespace" value="$(arg namespace)" />
   </xacro:include>
 </robot>
