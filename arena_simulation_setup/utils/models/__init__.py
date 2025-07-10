@@ -86,6 +86,9 @@ class ModelWrapper:
     def loader_matches(self, loader: object) -> bool:
         return self._loader is loader
 
+    def __repr__(self) -> str:
+        return f"ModelWrapper(name={self.name}, loader={self._loader})"
+
     def __init__(
         self,
         name: str,
