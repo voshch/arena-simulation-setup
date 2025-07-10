@@ -1,0 +1,6 @@
+controller_plugins:
+  - FollowPath
+controller_plugins_dict:
+  FollowPath:
+    plugin: "rosnav_rl_planner::DRLController"
+    service_name: "get_command"
