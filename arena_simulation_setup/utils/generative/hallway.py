@@ -2,8 +2,10 @@ import random
 
 from . import (GeneratedWorld, Polygon, WorldGeneratorType, _BaseConfiguration,
                _WorldGenerator, _WorldGeneratorImpl)
-import logging 
+import logging
 logger = logging.getLogger(__name__)
+
+
 @_WorldGenerator.register(WorldGeneratorType.HALLWAY)
 class WorldGeneratorHallway(_WorldGeneratorImpl):
 
@@ -12,8 +14,7 @@ class WorldGeneratorHallway(_WorldGeneratorImpl):
         height: float = 50.0
 
         # Hallway parameters (a horizontal band)
-        hallway_bottom: float = 10.0
-        hallway_top: float = 15.0
+        hallway_height: float = 5.0
 
         # Room parameters (for each side)
         rooms_per_side: int = 7
@@ -33,7 +34,16 @@ class WorldGeneratorHallway(_WorldGeneratorImpl):
         # door width
         door_width: float = 2.5
 
+        @property
+        def hallway_top(self) -> float:
+            return self.height / 2 + self.hallway_height / 2
+
+        @property
+        def hallway_bottom(self) -> float:
+            return self.height / 2 - self.hallway_height / 2
+
     config: Configuration
+
     def configure(self, configuration: dict):
         self.config = self.Configuration.model_validate(configuration)
         logger.info(self.config)
