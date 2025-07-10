@@ -14,7 +14,7 @@ polygons:
 polygons_dict:
   StopPolygon:
     type: "polygon"
-    points: "[ [0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1] ]"
+    points: [0.3, 0.3, 0.3, -0.3, -0.3, -0.3, -0.3, 0.3]
     action_type: "stop"
     min_points: 4
     visualize: True
@@ -78,3 +78,5 @@ robot_base_frame: 'base_link'
 robot_model: jackal
 robot_radius: 0.267
 robot_sensor_frame: lidar
+
+z_offset: 0.0635
