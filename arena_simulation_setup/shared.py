@@ -2,6 +2,7 @@ import re
 import typing
 
 import attrs
+
 from arena_simulation_setup.entities.obstacles.dynamic import \
     loader as DynamicObstacleLoader
 from arena_simulation_setup.entities.obstacles.static import \
@@ -10,7 +11,7 @@ from arena_simulation_setup.entities.robot import loader as RobotLoader
 from arena_simulation_setup.utils.models import ModelWrapper
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
-from .utils.geometry import Position, Pose
+from .utils.geometry import Pose, Position
 
 
 def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:

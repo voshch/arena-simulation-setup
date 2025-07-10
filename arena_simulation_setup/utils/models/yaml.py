@@ -1,6 +1,6 @@
 import os
 
-from . import Model, _ModelLoader, ModelType
+from . import Model, ModelType, _ModelLoader
 
 # raise RuntimeError('YAML models are not supported anymore')
 

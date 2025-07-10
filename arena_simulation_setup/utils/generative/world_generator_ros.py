@@ -1,10 +1,11 @@
 import json
-from .world_generator import WorldGenerator, WorldGeneratorType
-import rclpy.node
-import rclpy.utilities
-import std_srvs.srv
 import sys
+
+import std_srvs.srv
 from arena_rclpy_mixins.ServiceNamespace import ServiceNamespace
+
+from .world_generator import WorldGenerator, WorldGeneratorType
+
 
 class WorldGeneratorROS(WorldGenerator, ServiceNamespace):
     def _get_parameters(self) -> tuple[WorldGeneratorType, dict]:
@@ -15,7 +16,7 @@ class WorldGeneratorROS(WorldGenerator, ServiceNamespace):
         self.get_logger().info(f'config: {config}')
 
         return name, config
-    
+
     def _cb_generate(self, request: std_srvs.srv.Trigger.Request, response: std_srvs.srv.Trigger.Response) -> std_srvs.srv.Trigger.Response:
         try:
             self.update_generator(*self._get_parameters())
@@ -25,7 +26,6 @@ class WorldGeneratorROS(WorldGenerator, ServiceNamespace):
             response.success = False
             response.message = repr(e)
             self.get_logger().error(f"Failed to generate world: {repr(e)}")
-
 
         return response
 
@@ -40,12 +40,13 @@ class WorldGeneratorROS(WorldGenerator, ServiceNamespace):
         self.set_up_services()
         self.get_logger().info(f'initialized')
 
-
     def set_up_services(self):
         self.create_service(std_srvs.srv.Trigger, self.service_namespace('generate_world'), self._cb_generate)
 
+
 def main(argv=sys.argv):
     import os
+
     import rclpy
 
     rclpy.init(args=argv)
@@ -63,6 +64,7 @@ def main(argv=sys.argv):
     finally:
         node.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

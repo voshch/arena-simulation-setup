@@ -5,10 +5,9 @@ import os
 
 import attrs
 import yaml
-from arena_simulation_setup import Interface, ass_dir
-from arena_simulation_setup.shared import DynamicObstacle, Obstacle
 
-from arena_simulation_setup.shared import Pose
+from arena_simulation_setup import Interface, ass_dir
+from arena_simulation_setup.shared import DynamicObstacle, Obstacle, Pose
 
 
 @attrs.define

@@ -1,8 +1,9 @@
+import logging
 import random
 
 from . import (GeneratedWorld, Polygon, WorldGeneratorType, _BaseConfiguration,
                _WorldGenerator, _WorldGeneratorImpl)
-import logging
+
 logger = logging.getLogger(__name__)
 
 

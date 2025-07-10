@@ -3,7 +3,7 @@ import re
 import subprocess
 import tempfile
 import xml.etree.ElementTree as ET
-from typing import Collection
+from collections.abc import Collection
 
 import arena_bringup
 

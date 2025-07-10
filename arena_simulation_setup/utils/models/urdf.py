@@ -8,7 +8,7 @@ from typing import Any, Optional
 
 import attrs
 
-from . import Model, ITF_ModelLoader, ModelType, _ModelLoader
+from . import ITF_ModelLoader, Model, ModelType, _ModelLoader
 
 
 @_ModelLoader.model(ModelType.URDF)

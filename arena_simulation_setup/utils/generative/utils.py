@@ -1,16 +1,15 @@
 import io
 import itertools
 import os
+
 import attrs
+import PIL.Image
+import PIL.ImageDraw
 import shapely
 import shapely.affinity
 import yaml
 
-import PIL.Image
-import PIL.ImageDraw
-
 import arena_simulation_setup.world
-
 
 Point = tuple[float, float]
 Line = tuple[Point, Point]
