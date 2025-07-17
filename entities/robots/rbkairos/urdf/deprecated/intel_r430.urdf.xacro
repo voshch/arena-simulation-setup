@@ -128,6 +128,7 @@
     <!-- gazebo reference="${prefix}_rgb_base_link" -->
     <gazebo reference="${prefix}_camera_link">
       <sensor type="depth" name="${prefix}_depth_sensor">
+        <gz_frame_id>$(arg name)/${prefix}_depth_sensor</gz_frame_id>
         <always_on>true</always_on>
         <update_rate>15.0</update_rate>
         <camera>

@@ -77,7 +77,8 @@
       <xacro:property name="ray_type" value="ray" />
     </xacro:unless>
       <gazebo reference="${frame_prefix}link">
-        <sensor type="${ray_type}" name="${frame_prefix}sensor">
+        <sensor type="gpu_lidar" name="${frame_prefix}sensor">
+          <gz_frame_id>$(arg name)/${frame_prefix}sensor</gz_frame_id>
           <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
           <visualize>false</visualize>
 		      <update_rate>12.5</update_rate>

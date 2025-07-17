@@ -18,7 +18,8 @@
 
     <xacro:if value="${gazebo_classic}">
     <gazebo reference="${frame_link}">
-        <sensor type="ray" name="${node_name}">
+        <sensor type="gpu_lidar" name="${node_name}">
+          <gz_frame_id>$(arg name)/${node_name}</gz_frame_id>
           <pose>0 0 0 0 0 0</pose>
           <visualize>false</visualize>
           <update_rate>${rate}</update_rate>
@@ -64,6 +65,7 @@
     <xacro:if value="${gazebo_ignition}">
       <gazebo reference="${frame_link}">
         <sensor type="gpu_lidar" name="${node_name}">
+          <gz_frame_id>$(arg name)/${node_name}</gz_frame_id>
           <pose>0 0 0 0 0 0</pose>
           <visualize>false</visualize>
           <update_rate>${rate}</update_rate>

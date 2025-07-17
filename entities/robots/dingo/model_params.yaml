@@ -1,9 +1,10 @@
-observation_sources_string: lidar # massive bullshit, costmaps still need string param
+
+observation_sources_string: front_laser
 observation_sources:
-  - lidar
+  - front_laser
 observation_sources_dict:
-  lidar:
-    topic: ${namespace}/lidar
+  front_laser:
+    topic: ${namespace}/front_laser
     max_obstacle_height: 2.0
     clearing: True
     marking: True
@@ -75,6 +76,8 @@ laser:
   range: 30.0
   update_rate: 10
 
+robot_base_frame: base_link
 robot_model: dingo
+robot_odom_frame: odom
 robot_radius: 0.38
 robot_sensor_frame: lidar

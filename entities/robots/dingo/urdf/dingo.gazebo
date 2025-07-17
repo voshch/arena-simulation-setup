@@ -1,8 +1,15 @@
 <?xml version="1.0"?>
 <robot>
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>left_wheel</left_joint>
+      <right_joint>right_wheel</right_joint>
+      <wheel_separation>0.47</wheel_separation>
+      <wheel_radius>0.1</wheel_radius>
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
     </plugin>
   </gazebo>
 

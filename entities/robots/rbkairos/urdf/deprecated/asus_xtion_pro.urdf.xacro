@@ -119,6 +119,7 @@
 
     <gazebo reference="${frame_prefix}depth_link">
       <sensor type="depth" name="${node_name}sensor">
+        <gz_frame_id>$(arg name)/${node_name}sensor</gz_frame_id>
         <always_on>true</always_on>
         <update_rate>20.0</update_rate>
         <camera>

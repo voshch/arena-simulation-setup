@@ -1,4 +1,5 @@
 [
+  ## COMMON
   # Odometry (Gazebo -> ROS2)
   {
     "gz_topic": "/model/{robot_name}/odometry",
@@ -9,7 +10,7 @@
   },
   # IMU (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/imu_sensor/imu",
+    "gz_topic": "{world}/model/{robot_name}/imu_sensor/imu",
     "ros_topic": "imu/data",
     "ros_type": "sensor_msgs/msg/Imu",
     "gz_type": "gz.msgs.IMU",
@@ -22,22 +23,6 @@
     "ros_type": "geometry_msgs/msg/Twist",
     "gz_type": "gz.msgs.Twist",
     "direction": "]",
-  },
-  # LiDAR Scan (Gazebo -> ROS2)
-  {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/gpu_lidar/scan",
-    "ros_topic": "lidar",
-    "ros_type": "sensor_msgs/msg/LaserScan",
-    "gz_type": "gz.msgs.LaserScan",
-    "direction": "[",
-  },
-  # LiDAR Point Cloud (Gazebo -> ROS2)
-  {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/gpu_lidar/scan/points",
-    "ros_topic": "lidar/points",
-    "ros_type": "sensor_msgs/msg/PointCloud2",
-    "gz_type": "gz.msgs.PointCloudPacked",
-    "direction": "[",
   },
   # TF Data (Gazebo -> ROS2)
   {
@@ -54,12 +39,74 @@
     "gz_type": "gz.msgs.Pose_V",
     "direction": "[",
   },
-    # joint states
+  # Joint states
   {
     "gz_topic": "/model/{robot_name}/joint_states",
     "ros_topic": "/joint_states",
     "ros_type": "sensor_msgs/msg/JointState",
     "gz_type": "gz.msgs.Model",
+    "direction": "[",
+  },
+
+  ## front_laser
+  # Lidar Scan (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/front_laser/scan",
+    "ros_topic": "front_laser",
+    "ros_type": "sensor_msgs/msg/LaserScan",
+    "gz_type": "gz.msgs.LaserScan",
+    "direction": "[",
+  },
+  # Lidar Point Cloud (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/front_laser/scan/points",
+    "ros_topic": "front_laser/points",
+    "ros_type": "sensor_msgs/msg/PointCloud2",
+    "gz_type": "gz.msgs.PointCloudPacked",
+    "direction": "[",
+  },
+
+  ## rear_laser
+  # Lidar Scan (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/rear_laser/scan",
+    "ros_topic": "rear_laser",
+    "ros_type": "sensor_msgs/msg/LaserScan",
+    "gz_type": "gz.msgs.LaserScan",
+    "direction": "[",
+  },
+  # Lidar Point Cloud (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/rear_laser/scan/points",
+    "ros_topic": "rear_laser/points",
+    "ros_type": "sensor_msgs/msg/PointCloud2",
+    "gz_type": "gz.msgs.PointCloudPacked",
+    "direction": "[",
+  },
+
+  ## robot_front_rgbd_camera
+  # Camera Info (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/robot_front_rgbd_camera/camera_info",
+    "ros_topic": "rgbd_camera/camera_info",
+    "ros_type": "sensor_msgs/msg/CameraInfo",
+    "gz_type": "gz.msgs.CameraInfo",
+    "direction": "[",
+  },
+  # Depth Image (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/robot_front_rgbd_camera/depth_image",
+    "ros_topic": "rgbd_camera/depth_image",
+    "ros_type": "sensor_msgs/msg/Image",
+    "gz_type": "gz.msgs.Image",
+    "direction": "[",
+  },
+  # Point Cloud (Gazebo -> ROS2)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/robot_front_rgbd_camera/depth_image/points",
+    "ros_topic": "rgbd_camera/points",
+    "ros_type": "sensor_msgs/msg/PointCloud2",
+    "gz_type": "gz.msgs.PointCloudPacked",
     "direction": "[",
   },
 ]

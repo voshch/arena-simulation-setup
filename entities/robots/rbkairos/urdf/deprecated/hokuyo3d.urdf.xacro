@@ -59,7 +59,8 @@
         <xacro:property name="plugin_lib" value="libgazebo_ros_velodyne_laser.so" />
       </xacro:unless>
 
-      <sensor type="${ray_type}" name="${prefix}_sensor">
+      <sensor type="gpu_lidar" name="${prefix}_sensor">
+        <gz_frame_id>$(arg name)/${prefix}_sensor</gz_frame_id>
           <pose>0 0 0 0 0 0</pose>
           <visualize>false</visualize>
           <update_rate>5</update_rate>

@@ -1,50 +1,19 @@
 [
-  # Odometry (Gazebo -> ROS2)
+# Mappings for a default Clearpath Dingo (Corrected)
+  # Odometry from DiffDrive plugin (Gazebo -> ROS)
   {
     "gz_topic": "/model/{robot_name}/odometry",
     "ros_topic": "odom",
-    "ros_type": "nav_msgs/msg/Odometry",
     "gz_type": "gz.msgs.Odometry",
-    "direction": "[",
+    "ros_type": "nav_msgs/msg/Odometry",
+    "direction": "["
   },
-  # IMU (Gazebo -> ROS2)
-  {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/imu_sensor/imu",
-    "ros_topic": "imu/data",
-    "ros_type": "sensor_msgs/msg/Imu",
-    "gz_type": "gz.msgs.IMU",
-    "direction": "[",
-  },
-  # Velocity command (ROS2 -> Gazebo)
-  {
-    "gz_topic": "/model/{robot_name}/cmd_vel",
-    "ros_topic": "cmd_vel",
-    "ros_type": "geometry_msgs/msg/Twist",
-    "gz_type": "gz.msgs.Twist",
-    "direction": "]",
-  },
-  # LiDAR Scan (Gazebo -> ROS2)
-  {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/gpu_lidar/scan",
-    "ros_topic": "lidar",
-    "ros_type": "sensor_msgs/msg/LaserScan",
-    "gz_type": "gz.msgs.LaserScan",
-    "direction": "[",
-  },
-  # LiDAR Point Cloud (Gazebo -> ROS2)
-  {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/gpu_lidar/scan/points",
-    "ros_topic": "lidar/points",
-    "ros_type": "sensor_msgs/msg/PointCloud2",
-    "gz_type": "gz.msgs.PointCloudPacked",
-    "direction": "[",
-  },
-  # TF Data (Gazebo -> ROS2)
+  # TF from DiffDrive plugin (Gazebo -> ROS)
   {
     "gz_topic": "/model/{robot_name}/tf",
     "ros_topic": "/tf",
-    "ros_type": "tf2_msgs/msg/TFMessage",
     "gz_type": "gz.msgs.Pose_V",
+    "ros_type": "tf2_msgs/msg/TFMessage",
     "direction": "[",
   },
   {
@@ -54,12 +23,29 @@
     "gz_type": "gz.msgs.Pose_V",
     "direction": "[",
   },
-    # joint states
+  # Velocity command (ROS -> Gazebo)
   {
-    "gz_topic": "/model/{robot_name}/joint_states",
-    "ros_topic": "/joint_states",
-    "ros_type": "sensor_msgs/msg/JointState",
-    "gz_type": "gz.msgs.Model",
+    "gz_topic": "/model/{robot_name}/cmd_vel",
+    "ros_topic": "cmd_vel",
+    "gz_type": "gz.msgs.Twist",
+    "ros_type": "geometry_msgs/msg/Twist",
+    "direction": "]",
+  },
+  # front_laser
+  # Lidar Scan (Gazebo -> ROS)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/front_laser/scan",
+    "ros_topic": "front/scan",
+    "gz_type": "gz.msgs.LaserScan",
+    "ros_type": "sensor_msgs/msg/LaserScan",
     "direction": "[",
   },
+  # Lidar Scan (Gazebo -> ROS)
+  {
+    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/front_laser/scan/points",
+    "ros_topic": "front/scan",
+    "gz_type": "gz.msgs.LaserScan",
+    "ros_type": "sensor_msgs/msg/LaserScan",
+    "direction": "[",
+  }
 ]

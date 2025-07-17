@@ -1,13 +1,20 @@
-observation_sources_string: lidar
+observation_sources_string: front_laser rear_laser
 observation_sources:
-  - lidar
+  - front_laser
+  - rear_laser
 observation_sources_dict:
-  lidar:
-    topic: ${namespace}/lidar
+  front_laser:
+    topic: ${namespace}/front_laser
     max_obstacle_height: 2.0
     clearing: True
     marking: True
     data_type: "LaserScan"
+  rear_laser:
+    topic: ${namespace}/rear_laser
+    max_obstacle_height: 2.0
+    clearing: true
+    marking: true
+    data_type: LaserScan
 
 polygons:
   - StopPolygon
@@ -28,7 +35,7 @@ right_wheel_radius_multiplier: 1.0
 
 publish_rate: 50.0
 odom_frame_id: odom
-base_frame_id: base_link
+# base_frame_id: base_link
 pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
 twist_covariance_diagonal: [1000000.0, 1000000.0, 0.03, 1000000.0, 1000000.0, 0.03]
 
@@ -56,7 +63,7 @@ laser:
   range: 30.0
   update_rate: 10
 
-robot_base_frame: robot_base_footprint
+robot_base_frame: brobot_base_footprint
 robot_model: rbkairos
 robot_radius: 0.4
 robot_sensor_frame: lidar

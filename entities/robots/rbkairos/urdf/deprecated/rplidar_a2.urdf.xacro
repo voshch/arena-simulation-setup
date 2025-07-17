@@ -57,7 +57,8 @@
         <xacro:property name="ray_type" value="ray" />
         <xacro:property name="plugin_lib" value="libgazebo_ros_laser.so" />
       </xacro:unless>
-			<sensor type="${ray_type}" name="${prefix}_rplidar_a2_sensor">
+			<sensor type="gpu_lidar" name="${prefix}_rplidar_a2_sensor">
+        <gz_frame_id>$(arg name)/${prefix}_rplidar_a2_sensor</gz_frame_id>
 				<pose>0 0 0 0 0 0</pose>
 				<visualize>false</visualize>
 				<update_rate>10</update_rate>

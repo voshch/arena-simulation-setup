@@ -14,6 +14,7 @@
         </material>  
       </visual>  
       <sensor type="multicamera" name="stereo_camera">
+        <gz_frame_id>$(arg name)/stereo_camera</gz_frame_id>
         <update_rate>${fps}</update_rate>
         <camera name="left">
           <pose>0 0 0 0 0 0 </pose>

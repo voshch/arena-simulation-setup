@@ -16,9 +16,10 @@
             samples
             ">
 
-    <xacro:if value="${gazebo_classic}">
+    <!-- <xacro:if value="${gazebo_classic}">
       <gazebo reference="${frame_link}">
-        <sensor type="ray" name="${frame_prefix}sensor">
+        <sensor type="gpu_lidar" name="${frame_prefix}sensor">
+          <gz_frame_id>$(arg name)/${frame_prefix}sensor</gz_frame_id>
           <pose>0 0 0 0 0 0</pose>
           <visualize>false</visualize>
           <update_rate>${rate}</update_rate>
@@ -54,11 +55,12 @@
           </xacro:if>
         </sensor>
       </gazebo>
-    </xacro:if>
+    </xacro:if> -->
 
-    <xacro:if value="${gazebo_ignition}">
+    <!-- <xacro:if value="${gazebo_ignition}"> -->
       <gazebo reference="${frame_link}">
         <sensor type="gpu_lidar" name="${node_name}">
+          <gz_frame_id>$(arg name)/${node_name}</gz_frame_id>
           <pose>0 0 0 0 0 0</pose>
           <visualize>false</visualize>
           <update_rate>${rate}</update_rate>
@@ -87,8 +89,67 @@
           <gz_frame_id> ${frame_link} </gz_frame_id>
         </sensor>
       </gazebo>
-    </xacro:if>
+    <!-- </xacro:if> -->
 
   </xacro:macro>
 
 </robot>
+
+
+<!-- <?xml version="1.0"?>
+<robot name="lidar_2d_plugin" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="lidar_2d_plugin" params="
+            node_namespace
+            node_name
+            gazebo_classic
+            gazebo_ignition
+            min_range
+            max_range
+            min_angle
+            max_angle
+            frame_link
+            rate
+            resolution
+            samples
+            ">
+
+    <gazebo reference="${frame_link}">
+        <sensor type="gpu_lidar" name="${node_name}_sensor">
+          <pose>0 0 0 0 0 0</pose>
+          <visualize>false</visualize>
+          <update_rate>${rate}</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>${samples}</samples>
+                <resolution>1</resolution>
+                <min_angle>${min_angle}</min_angle>
+                <max_angle>${max_angle}</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>${min_range}</min>
+              <max>${max_range}</max>
+              <resolution>0.01</resolution>
+            </range>
+             <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+            <topicName>${node_name}</topicName>
+            <frameName>${frame_link}</frameName>
+            <robotNamespace>${node_namespace}</robotNamespace>
+          </plugin>
+        </sensor>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot> -->
+
+
+
