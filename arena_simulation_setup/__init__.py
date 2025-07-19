@@ -6,38 +6,45 @@ import ament_index_python.packages
 ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulation_setup')
 ab_dir = ament_index_python.packages.get_package_share_directory('arena_bringup')
 
+T = typing.TypeVar('T', bound='ProviderBase')
 
-class _InterfaceBase:
+
+class ProviderBase:
+
+    # Class Methods: Provider
     _base_dir: typing.ClassVar[str]
-    _name: str
+
+    @classmethod
+    def bind(cls: typing.Type[T], path: str) -> typing.Type[T]:
+        return typing.cast(
+            typing.Type[T],
+            type('Bound' + cls.__name__, (cls,), dict(_base_dir=path))
+        )
 
     @classmethod
     def _listdir(cls, path: str) -> list[str]:
         return list(sorted(f for f in os.listdir(path) if not f.startswith('.')))
 
     @classmethod
+    def list(cls) -> list[str]:
+        return cls._listdir(cls._base_dir)
+
+    @classmethod
     def base_dir(cls) -> str:
         return cls._base_dir
 
-    @classmethod
-    def list(cls) -> list[str]:
-        return cls._listdir(cls._base_dir)
+    # Instance Methods: Providee
 
     def __init__(self, name: str) -> None:
         self._name = name
 
+        assert os.path.exists(os.path.join(self._base_dir, self._name)), \
+            f"Path {os.path.join(self._base_dir, self._name)} does not exist."
+
+    @property
+    def name(self) -> str:
+        return self._name
+
     @property
     def path(self) -> str:
-        return os.path.join(
-            self._base_dir,
-            self._name,
-        )
-
-
-def Interface(base_dir: str):
-    class _Interface(_InterfaceBase):
-        ...
-
-    _Interface._base_dir = base_dir
-
-    return _Interface
+        return os.path.join(self._base_dir, self._name)
