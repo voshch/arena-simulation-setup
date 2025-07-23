@@ -38,9 +38,6 @@ class ProviderBase:
     def __init__(self, name: str) -> None:
         self._name = name
 
-        assert os.path.exists(os.path.join(self._base_dir, self._name)), \
-            f"Path {os.path.join(self._base_dir, self._name)} does not exist."
-
     @property
     def name(self) -> str:
         return self._name

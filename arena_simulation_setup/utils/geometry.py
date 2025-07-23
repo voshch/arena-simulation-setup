@@ -9,6 +9,8 @@ import attrs
 import geometry_msgs.msg
 import numpy as np
 
+from arena_simulation_setup.utils.cattrs import Parseable, register_parse
+
 EulerOrder = typing.Literal['xyz', 'xzy', 'yxz', 'yzx', 'zxy', 'zyx']
 _EulerIndices: dict[str, tuple[int, int, int]] = {
     'xyz': (0, 1, 2),
@@ -20,8 +22,9 @@ _EulerIndices: dict[str, tuple[int, int, int]] = {
 }
 
 
+@register_parse
 @attrs.define
-class Position:
+class Position(Parseable):
     """
     3D position
     """
@@ -74,8 +77,9 @@ class Position:
         )
 
 
+@register_parse
 @attrs.define
-class Orientation:
+class Orientation(Parseable):
     """
     3D orientation
     """
@@ -188,8 +192,9 @@ class Orientation:
         return self.to_euler()[2]
 
 
+@register_parse
 @attrs.define
-class Pose:
+class Pose(Parseable):
     """
     3D pose
     """
@@ -261,9 +266,24 @@ class Pose:
         )
 
 
+@register_parse
 @attrs.define
 class PositionRadius(Position):
     radius: float = attrs.field(converter=float, default=1.0)
+
+    @classmethod
+    def parse(cls, value: collections.abc.Sequence[float]) -> PositionRadius:
+        """
+        parse value into PositionRadius
+        formats: [x,y,radius], [x,y,z,radius]
+        """
+        if len(value) == 3:
+            return cls(*value)
+
+        if len(value) == 2:
+            return cls(value[0], value[1], 1.0)
+
+        raise ValueError(f"PositionRadius must be [x,y] or [x,y,z,radius], got {value}")
 
 
 def angle_diff(a: float, b: float) -> float:
