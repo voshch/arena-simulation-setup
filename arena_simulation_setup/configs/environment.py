@@ -2,10 +2,13 @@ import os
 
 import yaml
 
-from arena_simulation_setup import Interface, ass_dir
+from arena_simulation_setup import ProviderBase, ass_dir
 
 
-class Environment(Interface(os.path.join(ass_dir, 'configs', 'environment'))):
+class EnvironmentProvider(ProviderBase):
     def load(self):
         with open(self.path, 'r') as f:
             return yaml.safe_load(f)
+
+
+Environment = EnvironmentProvider.bind(os.path.join(ass_dir, 'configs', 'environment'))

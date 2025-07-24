@@ -1,15 +1,17 @@
 import io
 import itertools
 import os
-import attrs
-import shapely
-import yaml
 
+import attrs
 import PIL.Image
 import PIL.ImageDraw
+import shapely
+import shapely.affinity
+import yaml
 
-import arena_simulation_setup.world
-
+import arena_simulation_setup.worlds.world
+from arena_simulation_setup.shared import Position, Wall
+from arena_simulation_setup.utils.cattrs import converter
 
 Point = tuple[float, float]
 Line = tuple[Point, Point]
@@ -18,68 +20,138 @@ Polygon = list[Point]
 
 @attrs.define
 class GeneratedWorld:
-    rooms: list[Polygon]
-    doors: list[Polygon]
-    width: float
-    height: float
-    resolution: float
+    rooms: list[Polygon]  # m
+    doors: list[Polygon]  # m
+    width: float  # m
+    height: float  # m
+    resolution: float  # m/px
 
-    def to_zones_yaml(self) -> str:
-        return yaml.safe_dump([
-            {'polygon': [list(point) for point in room]}
-            for room
-            in self.rooms
-        ])
+    padding: int = 50  # px
 
-    def to_walls(self, connect: tuple[float, float] | None = None) -> list[Line]:
+    @property
+    def world_padding(self) -> float:
+        return self.padding * self.resolution
+
+    def global_tf(self, geom):
+        padding_world = self.world_padding
+        geom = shapely.affinity.translate(geom, padding_world, padding_world)
+        geom = shapely.set_precision(geom, 0.01)
+        geom = shapely.make_valid(geom)
+        geom = shapely.remove_repeated_points(geom)
+        return geom
+
+    def to_world(self) -> arena_simulation_setup.worlds.world.WorldDescription:
+
+        all_walls: list[shapely.LineString] = []
+        doors = shapely.MultiPolygon([shapely.Polygon(door) for door in self.doors])
+
+        def poly_to_walls(poly: shapely.Polygon) -> list[Wall]:
+            nonlocal all_walls
+            reduced_walls = self.global_tf(self.remove_doors(poly.exterior, doors))
+            all_walls += reduced_walls.geoms
+            return [
+                Wall(
+                    start=Position(x=wall.coords[0][0], y=wall.coords[0][1]),
+                    end=Position(x=wall.coords[-1][0], y=wall.coords[-1][1])
+                )
+                for wall in reduced_walls.geoms
+                # if shapely.Point(wall.coords[0]).distance(shapely.Point(wall.coords[-1])) > 0.01  # safeguard against zero-length walls
+            ]
+
+        def create_zone(room: shapely.Polygon, i: int) -> arena_simulation_setup.worlds.world.WorldDescription.Zone:
+            return arena_simulation_setup.worlds.world.WorldDescription.Zone(
+                name=f'zone_{i}',
+                corners=[Position(x=pt[0], y=pt[1]) for pt in self.global_tf(room).exterior.coords[:-1]],
+                walls=poly_to_walls(room),
+                mat='',
+                entities=arena_simulation_setup.worlds.world.WorldDescription.Zone.WorldEntities(),
+            )
+        zones = [
+            create_zone(shapely.Polygon(room), i)
+            for i, room in enumerate(self.rooms)
+        ]
+
+        inner_width = self.width + 2 * self.world_padding
+        inner_height = self.height + 2 * self.world_padding
+
+        world_corners = [
+            (-self.world_padding, -self.world_padding),
+            (inner_width + self.world_padding, -self.world_padding),
+            (inner_width + self.world_padding, inner_height + self.world_padding),
+            (-self.world_padding, inner_height + self.world_padding),
+        ]
+
+        extra_walls = self.connective_walls(
+            shapely.MultiLineString(all_walls),
+        )
+
+        zones.append(
+            arena_simulation_setup.worlds.world.WorldDescription.Zone(
+                name='extra_walls',
+                corners=[
+                    Position(x=pt[0], y=pt[1]) for pt in world_corners
+                ],
+                walls=poly_to_walls(shapely.Polygon(world_corners)) + [
+                    Wall(start=Position(x=start[0], y=start[1]), end=Position(x=end[0], y=end[1]))
+                    for start, end in extra_walls.geoms
+                ],
+                mat='',
+                entities=arena_simulation_setup.worlds.world.WorldDescription.Zone.WorldEntities(),
+            )
+        )
+
+        return arena_simulation_setup.worlds.world.WorldDescription(zones=zones)
+
+    def remove_doors(self, walls: shapely.MultiLineString, doors: shapely.MultiPolygon) -> shapely.MultiLineString:
+        """
+        Removes doors from the walls.
+        """
         doors = shapely.make_valid(shapely.MultiPolygon([shapely.Polygon(door) for door in self.doors]))
 
-        all_walls: list[Line] = []
-        for room in self.rooms:
-            walls = shapely.LineString(shapely.Polygon(room).exterior.coords)
-            reduced = walls.difference(doors)
+        result_walls: list[shapely.LineString] = []
 
-            if isinstance(reduced, shapely.LineString):
-                reduced = shapely.MultiLineString([reduced])
+        reduced = walls.difference(doors)
 
-            if isinstance(reduced, shapely.MultiLineString):
-                for geom in reduced.geoms:
-                    pts = list(geom.coords)
-                    for i in range(1, len(pts)):
-                        start = pts[i - 1]
-                        end = pts[i]
-                        all_walls.append(
+        if isinstance(reduced, shapely.LineString):
+            reduced = shapely.MultiLineString([reduced])
+
+        if isinstance(reduced, shapely.MultiLineString):
+            for geom in reduced.geoms:
+                pts = list(geom.coords)
+                for i in range(1, len(pts)):
+                    start = pts[i - 1]
+                    end = pts[i]
+                    result_walls.append(
+                        shapely.LineString(
                             (
                                 (start[0], start[1]),
                                 (end[0], end[1])
                             )
                         )
+                    )
+
+        return shapely.MultiLineString(result_walls)
+
+    def connective_walls(self, walls: shapely.MultiLineString, connect: tuple[float, float] | None = None) -> shapely.MultiLineString:
+        result_walls: list[shapely.LineString] = []
 
         if connect is not None:
-            all_pts = [shapely.Point(pt) for wall in all_walls for pt in wall]
+            all_pts = [pt for wall in walls for pt in wall]
             for pt_a, pt_b in itertools.combinations(all_pts, 2):
                 dist = pt_a.distance(pt_b)
                 if dist > connect[0] and dist < connect[1]:
-                    # todo check if wall already exists
                     start = pt_a.coords[0]
                     end = pt_b.coords[0]
-                    all_walls.append(
-                        (
-                            (start[0], start[1]),
-                            (end[0], end[1])
+                    result_walls.append(
+                        shapely.LineString(
+                            (
+                                (start[0], start[1]),
+                                (end[0], end[1])
+                            )
                         )
                     )
 
-        return all_walls
-
-    def to_walls_yaml(self, walls: list[Line]) -> str:
-        return yaml.safe_dump({
-            'walls': [
-                [list(start), list(end)]
-                for start, end
-                in walls
-            ]
-        })
+        return shapely.MultiLineString(result_walls)
 
     def to_map_yaml(self) -> str:
         return yaml.safe_dump({
@@ -92,13 +164,20 @@ class GeneratedWorld:
         })
 
     def to_map_png(self) -> bytes:
-        img = PIL.Image.new('RGB', (int(self.width / self.resolution), int(self.height / self.resolution)), color='black')
+        img = PIL.Image.new(
+            'RGB',
+            (
+                int(self.width / self.resolution) + 2 * self.padding,
+                int(self.height / self.resolution) + 2 * self.padding),
+            color='black'
+        )
 
         scaling_factor = 1 / self.resolution
 
         def tf(shape):
             shape = shapely.affinity.scale(shape, scaling_factor, -scaling_factor, origin=(0, 0))
-            shape = shapely.affinity.translate(shape, 0, self.width * scaling_factor)
+            shape = shapely.affinity.translate(shape, 0, self.height * scaling_factor)
+            shape = shapely.affinity.translate(shape, self.padding, self.padding)
             return shape
 
         draw = PIL.ImageDraw.Draw(img)
@@ -115,16 +194,17 @@ class GeneratedWorld:
         return img_bytes.getvalue()
 
     def save_to(self, world_name: str):
-        world = arena_simulation_setup.world.World(world_name)
-        os.makedirs(world.map.path, exist_ok=True)
+        world = arena_simulation_setup.worlds.world.World(world_name)
 
-        with open(world.map.zones, 'w') as f:
-            f.write(self.to_zones_yaml())
-        with open(world.map.walls, 'w') as f:
-            f.write(self.to_walls_yaml(self.to_walls()))
+        os.makedirs(world.path, exist_ok=True)
+        with open(world.world_path, 'w') as f:
+            world_description = self.to_world()
+            yaml.safe_dump(converter.unstructure(world_description), f, sort_keys=False)
+
+        os.makedirs(world.map.path, exist_ok=True)
         with open(world.map.map_yaml, 'w') as f:
             f.write(self.to_map_yaml())
-        with open(os.path.join(world.map.path, 'map.png'), 'wb') as f:
+        with open(world.map.map_png, 'wb') as f:
             f.write(self.to_map_png())
 
         os.makedirs(world.scenario.base_dir(), exist_ok=True)

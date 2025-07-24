@@ -2,15 +2,18 @@ import re
 import typing
 
 import attrs
+
 from arena_simulation_setup.entities.obstacles.dynamic import \
     loader as DynamicObstacleLoader
 from arena_simulation_setup.entities.obstacles.static import \
     loader as ObstacleLoader
 from arena_simulation_setup.entities.robot import loader as RobotLoader
+from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
 from arena_simulation_setup.utils.models import ModelWrapper
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
-from .utils.geometry import Position, Pose
+from .utils.geometry import *
+import warnings
 
 
 def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:
@@ -23,27 +26,36 @@ def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] 
     return validator
 
 
+@register_parse
 @attrs.define
-class Wall:
-    Start: Position
-    End: Position
+class Wall(Parseable):
+    start: Position
+    end: Position
     height: float = attrs.field(converter=float, default=2.)
-    texture_material: str = ''  # not implemented
+    mat: str = ''  # wall material
 
     @classmethod
-    def parse(cls, obj: list) -> "Wall":
-        kwargs = {}
-        if len(obj) > 2 and isinstance(obj[2], dict):
-            kwargs = obj[2]
-        return cls(
-            **kwargs,
-            Start=Position(x=obj[0][0], y=obj[0][1]),
-            End=Position(x=obj[1][0], y=obj[1][1]),
-        )
+    def parse(cls, value: list | dict) -> "Wall":
+        if isinstance(value, list):
+            kwargs = {}
+            if len(value) == 3 and isinstance(value[2], dict):
+                kwargs = value[2]
+            return cls(
+                **kwargs,
+                start=Position(x=value[0][0], y=value[0][1]),
+                end=Position(x=value[1][0], y=value[1][1]),
+            )
+        elif isinstance(value, dict):
+            return cls(**value)
+        else:
+            raise ValueError(f"Could not parse as wall: {value}")
+
+
+EntityT = typing.TypeVar("EntityT", bound="Entity")
 
 
 @attrs.define
-class Entity:
+class Entity(Parseable):
     pose: Pose
     name: str = attrs.field(converter=lambda s: Entity.sanitize_name(str(s)))
     model: ModelWrapper
@@ -61,44 +73,29 @@ class Entity:
     def sanitize_name(cls, name: str) -> str:
         return re.sub('[^A-Za-z0-9_]', '_', name)
 
+    @classmethod
+    def parse(cls: typing.Type[EntityT], value: dict) -> EntityT:
+        warnings.warn(
+            "Entity.parse is deprecated and will be removed in a future release. "
+            "Call the constructor directly, e.g., Entity(**value).",
+            FutureWarning,
+            stacklevel=2
+        )
+        if 'pos' in value:
+            value['pose'] = value['pos']
+            del value['pos']
+        return converter.structure(value, cls)
+
 
 @attrs.define
 class Obstacle(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
-
-    @classmethod
-    def parse(cls, obj: dict) -> "Obstacle":
-        name = str(obj.get("name", ""))
-        pose = Pose.parse(obj.get("pos", (0, 0, 0)))
-        model = str(obj.get("model", ""))
-
-        return cls(
-            name=name,
-            pose=pose,
-            model=model,
-            extra=obj,
-        )
 
 
 @attrs.define
 class DynamicObstacle(Obstacle):
     model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
     waypoints: list[Position]
-
-    @classmethod
-    def parse(cls, obj: dict) -> "DynamicObstacle":
-
-        base = Obstacle.parse(obj)
-        waypoints = [
-            Position(*waypoint)
-            for waypoint
-            in obj.get("waypoints", [])
-        ]
-
-        return cls(
-            **attrs.asdict(base, recurse=False),
-            waypoints=waypoints,
-        )
 
 
 @attrs.define

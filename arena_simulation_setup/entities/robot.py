@@ -3,7 +3,7 @@ import typing
 
 import yaml
 
-from arena_simulation_setup import Interface, ass_dir
+from arena_simulation_setup import ProviderBase, ass_dir
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
 
@@ -26,7 +26,7 @@ class ModelParams(dict[str, typing.Any]):
         return self.get('z_offset', 0.0)
 
 
-class Robot(Interface(os.path.join(ass_dir, 'entities', 'robots'))):
+class RobotProvider(ProviderBase):
 
     def __init__(self, name: str) -> None:
         super().__init__(name)
@@ -50,5 +50,7 @@ class Robot(Interface(os.path.join(ass_dir, 'entities', 'robots'))):
         with open(os.path.join(self.path, 'control.yaml')) as f:
             return yaml.safe_load(f)
 
+
+Robot = RobotProvider.bind(os.path.join(ass_dir, 'entities', 'robots'))
 
 loader = ModelLoader(Robot.base_dir())

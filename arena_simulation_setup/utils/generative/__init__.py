@@ -3,7 +3,6 @@ import enum
 import typing
 
 import pydantic
-
 import rclpy.node
 import std_srvs.srv
 

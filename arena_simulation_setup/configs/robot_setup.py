@@ -3,10 +3,10 @@ import typing
 
 import yaml
 
-from arena_simulation_setup import Interface, ab_dir
+from arena_simulation_setup import ProviderBase, ab_dir
 
 
-class RobotSetup(Interface(os.path.join(ab_dir, 'configs', 'robot_setup'))):
+class RobotSetupProvider(ProviderBase):
 
     def load(self) -> typing.Iterable[dict]:
         with open(self.path, 'r') as f:
@@ -21,3 +21,6 @@ class RobotSetup(Interface(os.path.join(ab_dir, 'configs', 'robot_setup'))):
                 result.append(entry)
 
         return result
+
+
+RobotSetup = RobotSetupProvider.bind(os.path.join(ab_dir, 'configs', 'robot_setup'))

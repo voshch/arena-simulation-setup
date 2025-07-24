@@ -41,7 +41,6 @@ setup(
     license='BSD',
     tests_require=['pytest'],
     scripts=[
-        'scripts/generate_world',
         'scripts/model_staging',
     ],
     entry_points={

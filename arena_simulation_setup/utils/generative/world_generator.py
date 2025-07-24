@@ -1,8 +1,10 @@
 import sys
-from . import _WorldGenerator as WorldGenerator, WorldGeneratorROS, WorldGeneratorType
 
-from .empty import *
-from .hallway import *
+from . import WorldGeneratorROS, WorldGeneratorType
+from . import _WorldGenerator as WorldGenerator
+
+from .empty import *  # noqa
+from .hallway import *  # noqa
 
 
 __all__ = ['WorldGenerator', 'WorldGeneratorType', 'WorldGeneratorROS']

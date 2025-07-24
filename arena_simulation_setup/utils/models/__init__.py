@@ -3,14 +3,9 @@ from __future__ import annotations
 import abc
 import enum
 import functools
-import json
 import os
-import subprocess
-import sys
-import tempfile
-import typing
-import xml.etree.ElementTree as ET
-from typing import Callable, Collection, Optional, Set, Type, overload
+from collections.abc import Callable, Collection, Set
+from typing import Optional, Type, overload
 
 import attrs
 
@@ -85,6 +80,9 @@ class ModelWrapper:
 
     def loader_matches(self, loader: object) -> bool:
         return self._loader is loader
+
+    def __repr__(self) -> str:
+        return f"ModelWrapper(name={self.name}, loader={self._loader})"
 
     def __init__(
         self,

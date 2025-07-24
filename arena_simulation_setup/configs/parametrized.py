@@ -3,7 +3,8 @@ import xml.etree.ElementTree as ET
 from typing import Optional
 
 import attrs
-from arena_simulation_setup import Interface, ab_dir
+
+from arena_simulation_setup import ProviderBase, ab_dir
 
 
 def _get_attrib(
@@ -39,7 +40,7 @@ class ParametrizedConfig:
     DYNAMIC: list[ObstacleConfig]
 
 
-class Parametrized(Interface(os.path.join(ab_dir, 'configs', 'parametrized'))):
+class ParametrizedProvider(ProviderBase):
     def load(self) -> ParametrizedConfig:
         tree = ET.parse(self.path)
         root = tree.getroot()
@@ -60,3 +61,6 @@ class Parametrized(Interface(os.path.join(ab_dir, 'configs', 'parametrized'))):
             INTERACTIVE=list(map(xml_to_config, root.findall("./static/interactive") or [])),
             DYNAMIC=list(map(xml_to_config, root.findall("./static/dynamic") or [])),
         )
+
+
+Parametrized = ParametrizedProvider.bind(os.path.join(ab_dir, 'configs', 'parametrized'))

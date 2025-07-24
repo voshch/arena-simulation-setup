@@ -1,0 +1,19 @@
+zones:
+  - description: "Empty Zone"
+    name: "empty_zone"
+    walls:
+      - [[0.0, 0.0], [30.0, 0.0]]
+      - [[30.0, 0.0], [30.0, 23.0]]
+      - [[30.0, 23.0], [0.0, 23.0]]
+      - [[0.0, 23.0], [0.0, 0.0]]
+    corners:
+      - [0.0, 0.0]
+      - [30.0, 0.0]
+      - [30.0, 23.0]
+      - [0.0, 23.0]
+    mat: ""
+    entities:
+      static:
+      - name: shelf_0
+        model: shelf
+        pose: [5,5,0]
