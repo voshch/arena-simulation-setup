@@ -9,7 +9,7 @@ import attrs
 import geometry_msgs.msg
 import numpy as np
 
-from arena_simulation_setup.utils.cattrs import Parseable, register_parse
+from arena_simulation_setup.utils.cattrs import Parseable, attrs_sequence, register_parse
 
 EulerOrder = typing.Literal['xyz', 'xzy', 'yxz', 'yzx', 'zxy', 'zyx']
 _EulerIndices: dict[str, tuple[int, int, int]] = {
@@ -23,6 +23,7 @@ _EulerIndices: dict[str, tuple[int, int, int]] = {
 
 
 @register_parse
+@attrs_sequence(float)
 @attrs.define
 class Position(Parseable):
     """
@@ -78,6 +79,7 @@ class Position(Parseable):
 
 
 @register_parse
+@attrs_sequence(float)
 @attrs.define
 class Orientation(Parseable):
     """
@@ -267,6 +269,7 @@ class Pose(Parseable):
 
 
 @register_parse
+@attrs_sequence(float)
 @attrs.define
 class PositionRadius(Position):
     radius: float = attrs.field(converter=float, default=1.0)
