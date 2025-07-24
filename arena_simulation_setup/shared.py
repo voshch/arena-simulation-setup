@@ -8,11 +8,12 @@ from arena_simulation_setup.entities.obstacles.dynamic import \
 from arena_simulation_setup.entities.obstacles.static import \
     loader as ObstacleLoader
 from arena_simulation_setup.entities.robot import loader as RobotLoader
-from arena_simulation_setup.utils.cattrs import Parseable, register_parse
+from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
 from arena_simulation_setup.utils.models import ModelWrapper
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
 from .utils.geometry import *
+import warnings
 
 
 def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:
@@ -50,8 +51,11 @@ class Wall(Parseable):
             raise ValueError(f"Could not parse as wall: {value}")
 
 
+EntityT = typing.TypeVar("EntityT", bound="Entity")
+
+
 @attrs.define
-class Entity:
+class Entity(Parseable):
     pose: Pose
     name: str = attrs.field(converter=lambda s: Entity.sanitize_name(str(s)))
     model: ModelWrapper
@@ -68,6 +72,19 @@ class Entity:
     @classmethod
     def sanitize_name(cls, name: str) -> str:
         return re.sub('[^A-Za-z0-9_]', '_', name)
+
+    @classmethod
+    def parse(cls: typing.Type[EntityT], value: dict) -> EntityT:
+        warnings.warn(
+            "Entity.parse is deprecated and will be removed in a future release. "
+            "Call the constructor directly, e.g., Entity(**value).",
+            FutureWarning,
+            stacklevel=2
+        )
+        if 'pos' in value:
+            value['pose'] = value['pos']
+            del value['pos']
+        return converter.structure(value, cls)
 
 
 @attrs.define
