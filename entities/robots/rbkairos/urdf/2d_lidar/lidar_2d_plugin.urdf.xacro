@@ -86,7 +86,7 @@
           </lidar>
 
           <topic> ${node_namespace}/${node_name}/scan </topic>
-          <gz_frame_id> ${frame_link} </gz_frame_id>
+          <!-- <gz_frame_id> ${frame_link} </gz_frame_id> -->
         </sensor>
       </gazebo>
     <!-- </xacro:if> -->
@@ -150,6 +150,3 @@
   </xacro:macro>
 
 </robot> -->
-
-
-

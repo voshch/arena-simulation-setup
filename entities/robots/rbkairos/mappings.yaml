@@ -51,7 +51,7 @@
   ## front_laser
   # Lidar Scan (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/front_laser/scan",
+    "gz_topic": "/model/{robot_name}/robot_front_laser_link/scan",
     "ros_topic": "front_laser",
     "ros_type": "sensor_msgs/msg/LaserScan",
     "gz_type": "gz.msgs.LaserScan",
@@ -59,7 +59,7 @@
   },
   # Lidar Point Cloud (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/front_laser/scan/points",
+    "gz_topic": "/model/{robot_name}/robot_front_laser_link/scan/points",
     "ros_topic": "front_laser/points",
     "ros_type": "sensor_msgs/msg/PointCloud2",
     "gz_type": "gz.msgs.PointCloudPacked",
@@ -69,7 +69,7 @@
   ## rear_laser
   # Lidar Scan (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/rear_laser/scan",
+    "gz_topic": "/model/{robot_name}/robot_rear_laser_link/scan",
     "ros_topic": "rear_laser",
     "ros_type": "sensor_msgs/msg/LaserScan",
     "gz_type": "gz.msgs.LaserScan",
@@ -77,7 +77,7 @@
   },
   # Lidar Point Cloud (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/rear_laser/scan/points",
+    "gz_topic": "/model/{robot_name}/robot_rear_laser_link/scan/points",
     "ros_topic": "rear_laser/points",
     "ros_type": "sensor_msgs/msg/PointCloud2",
     "gz_type": "gz.msgs.PointCloudPacked",
@@ -87,26 +87,18 @@
   ## robot_front_rgbd_camera
   # Camera Info (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/robot_front_rgbd_camera/camera_info",
-    "ros_topic": "rgbd_camera/camera_info",
+    "gz_topic": "/model/{robot_name}/front_camera_color/color/camera_info",
+    "ros_topic": "front_camera_color/camera_info",
     "ros_type": "sensor_msgs/msg/CameraInfo",
     "gz_type": "gz.msgs.CameraInfo",
     "direction": "[",
   },
   # Depth Image (Gazebo -> ROS2)
   {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/robot_front_rgbd_camera/depth_image",
-    "ros_topic": "rgbd_camera/depth_image",
+    "gz_topic": "/model/{robot_name}/front_camera_color/color/image_raw",
+    "ros_topic": "front_camera_color/image_raw",
     "ros_type": "sensor_msgs/msg/Image",
     "gz_type": "gz.msgs.Image",
-    "direction": "[",
-  },
-  # Point Cloud (Gazebo -> ROS2)
-  {
-    "gz_topic": "{world}/model/{robot_name}/link/base_link/sensor/robot_front_rgbd_camera/depth_image/points",
-    "ros_topic": "rgbd_camera/points",
-    "ros_type": "sensor_msgs/msg/PointCloud2",
-    "gz_type": "gz.msgs.PointCloudPacked",
     "direction": "[",
   },
 ]
