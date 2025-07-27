@@ -47,7 +47,8 @@ setup(
         'console_scripts': [
             'generate_world = arena_simulation_setup.utils.generative.world_generator:main',
             'world_generator = arena_simulation_setup.utils.generative.world_generator_ros:main',
-            'model_staging = arena_simulation_setup.model_staging:main'
+            'model_staging = arena_simulation_setup.model_staging:main',
+            'pose_to_tf = arena_simulation_setup.scripts.pose_to_tf:main'
         ],
     },
 )

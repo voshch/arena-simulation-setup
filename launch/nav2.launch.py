@@ -185,6 +185,13 @@ def generate_launch_description():
             name='goal_pose_relay',
             arguments=['/goal_pose', 'goal_pose'],
         ),
+        Node(
+            package='arena_simulation_setup',
+            executable='pose_to_tf',
+            name='pose_to_tf',
+            parameters=[{'odom_frame': 'odom', 'pose_topic': 'pose'}],
+            output='screen'
+        ),
         # Node(
         #     package='tf2_ros',
         #     executable='static_transform_publisher',
@@ -224,68 +231,68 @@ def generate_launch_description():
         #     }],
         # ),
         # AMCL Node
-        GroupAction([
-            Node(
-                package='nav2_amcl',
-                executable='amcl',
-                name='amcl',
-                namespace=namespace.substitution,
-                output='screen',
-                parameters=[{
-                    'use_sim_time': True,
-                    'global_frame_id': 'map',
-                    'map_topic': 'map',
-                    'odom_frame_id': PathJoinSubstitution([frame.substitution, robot_odom_frame]),
-                    'base_frame_id': PathJoinSubstitution([frame.substitution, robot_base_frame]),
-                    'scan_topic': first_observation_source_topic,
-                    'set_initial_pose': True,
-                    'always_reset_on_initial_pose': True,
-                    'initial_pose_x': 0.0,
-                    'initial_pose_y': 0.0,
-                    'initial_pose_a': 0.0,
-                    'odom_model_type': 'diff',
-                    'alpha1': 0.2,
-                    'alpha2': 0.2,
-                    'alpha3': 0.2,
-                    'alpha4': 0.2,
-                    'min_particles': 200,
-                    'max_particles': 2000,
-                    'pf_err': 0.05,
-                    'pf_z': 0.99,
-                    'update_min_d': 0.1,
-                    'update_min_a': 0.2,
-                    'laser_max_beams': 640,
-                    'laser_z_hit': 0.95,
-                    'laser_z_rand': 0.05,
-                    'laser_sigma_hit': 0.2,
-                    'laser_likelihood_max_dist': 2.0,
-                    'recovery_alpha_slow': 0.001,
-                    'recovery_alpha_fast': 0.1,
-                    'transform_tolerance': 0.2,
-                    'tf_broadcast': True,
-                }],
-                remappings=[
-                    ('/map', PathJoinSubstitution([task_generator_node.substitution, 'map'])),
-                    ('initialpose', PathJoinSubstitution([task_generator_node.substitution, frame.substitution, 'initialpose'])),
-                ],
-            ),
+        # GroupAction([
+        #     Node(
+        #         package='nav2_amcl',
+        #         executable='amcl',
+        #         name='amcl',
+        #         namespace=namespace.substitution,
+        #         output='screen',
+        #         parameters=[{
+        #             'use_sim_time': True,
+        #             'global_frame_id': 'map',
+        #             'map_topic': 'map',
+        #             'odom_frame_id': PathJoinSubstitution([frame.substitution, robot_odom_frame]),
+        #             'base_frame_id': PathJoinSubstitution([frame.substitution, robot_base_frame]),
+        #             'scan_topic': first_observation_source_topic,
+        #             'set_initial_pose': True,
+        #             'always_reset_on_initial_pose': True,
+        #             'initial_pose_x': 0.0,
+        #             'initial_pose_y': 0.0,
+        #             'initial_pose_a': 0.0,
+        #             'odom_model_type': 'diff',
+        #             'alpha1': 0.2,
+        #             'alpha2': 0.2,
+        #             'alpha3': 0.2,
+        #             'alpha4': 0.2,
+        #             'min_particles': 200,
+        #             'max_particles': 2000,
+        #             'pf_err': 0.05,
+        #             'pf_z': 0.99,
+        #             'update_min_d': 0.1,
+        #             'update_min_a': 0.2,
+        #             'laser_max_beams': 640,
+        #             'laser_z_hit': 0.95,
+        #             'laser_z_rand': 0.05,
+        #             'laser_sigma_hit': 0.2,
+        #             'laser_likelihood_max_dist': 2.0,
+        #             'recovery_alpha_slow': 0.001,
+        #             'recovery_alpha_fast': 0.1,
+        #             'transform_tolerance': 0.2,
+        #             'tf_broadcast': True,
+        #         }],
+        #         remappings=[
+        #             ('/map', PathJoinSubstitution([task_generator_node.substitution, 'map'])),
+        #             ('initialpose', PathJoinSubstitution([task_generator_node.substitution, frame.substitution, 'initialpose'])),
+        #         ],
+        #     ),
 
-            # Lifecycle Manager for AMCL
-            Node(
-                package='nav2_lifecycle_manager',
-                executable='lifecycle_manager',
-                name='lifecycle_manager_navigation',
-                output='screen',
-                parameters=[
-                    {'use_sim_time': True},
-                    {'autostart': True},
-                    {'node_names': ["amcl"]},
-                    {'bond_timeout': 0.0},
-                    {'attempt_respawn_reconnection': True}
-                ]
-            )],
-            condition=IfCondition(PythonExpression(["'", amcl.substitution, "' == 'true'"]))
-        ),
+        #     # Lifecycle Manager for AMCL
+        #     Node(
+        #         package='nav2_lifecycle_manager',
+        #         executable='lifecycle_manager',
+        #         name='lifecycle_manager_navigation',
+        #         output='screen',
+        #         parameters=[
+        #             {'use_sim_time': True},
+        #             {'autostart': True},
+        #             {'node_names': ["amcl"]},
+        #             {'bond_timeout': 0.0},
+        #             {'attempt_respawn_reconnection': True}
+        #         ]
+        #     )],
+        #     condition=IfCondition(PythonExpression(["'", amcl.substitution, "' == 'true'"]))
+        # ),
         # # Navigation Stack
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(

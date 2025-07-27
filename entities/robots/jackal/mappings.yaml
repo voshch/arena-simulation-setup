@@ -62,4 +62,12 @@
     "gz_type": "gz.msgs.Model",
     "direction": "[",
   },
+      # pose
+  {
+    "gz_topic": "/model/{robot_name}/pose",
+    "ros_topic": "pose",
+    "ros_type": "geometry_msgs/msg/PoseStamped",
+    "gz_type": "gz.msgs.Pose",
+    "direction": "[",
+  },
 ]
