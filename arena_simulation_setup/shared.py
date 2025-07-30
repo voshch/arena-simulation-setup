@@ -97,6 +97,43 @@ class DynamicObstacle(Obstacle):
     model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
     waypoints: list[Position]
 
+@attrs.define
+class CustomDynamicObstacle(DynamicObstacle):
+    """
+    DynamicObstacles but with properties can be define in runtime
+    """
+
+    def __getattr__(self, name):
+        """
+        Allow access to dynamic attributes "attr_name" via self.attr_name
+        """
+        if name in self.extra:
+            return self.extra[name]
+        raise AttributeError(f"{name} not found")
+
+    @classmethod
+    def parse(cls, value) -> "CustomDynamicObstacle":
+        known_fields = set(f.name for f in attrs.fields(cls))
+
+        if 'pos' in value:
+            value['pose'] = value['pos']
+            del value['pos']
+        
+        known_values = {k:v for k,v in value.items() if k in known_fields}
+        custom_fields = {k:v for k,v in value.items() if k not in known_fields}
+
+        warnings.warn(
+            "CustomDynamicObstacle.parse is deprecated and will be removed in a future release. "
+            "Call the constructor directly, e.g., CustomDynamicObstacle(**value).",
+            FutureWarning,
+            stacklevel=2
+        )
+
+        obj = cls(**known_values)
+        obj.extra.update(custom_fields)
+        value = obj.asdict(True)
+
+        return converter.structure(value, cls)
 
 @attrs.define
 class Robot(Entity):
