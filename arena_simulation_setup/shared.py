@@ -51,6 +51,15 @@ class Wall(Parseable):
             raise ValueError(f"Could not parse as wall: {value}")
 
 
+@attrs.define
+class Door:
+    pose: Pose
+    length: float = attrs.field(converter=float, default=1.0)
+    height: float = attrs.field(converter=float, default=2.0)
+    mat: str = attrs.field(default="")  # door material
+    kind: typing.Literal['sliding'] = attrs.field(default='sliding', converter=str)
+
+
 EntityT = typing.TypeVar("EntityT", bound="Entity")
 
 
