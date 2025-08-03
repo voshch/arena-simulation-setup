@@ -5,7 +5,7 @@ import attrs
 import yaml
 
 from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.shared import Obstacle, Wall
+from arena_simulation_setup.shared import Obstacle, Wall, Floor
 from arena_simulation_setup.utils.geometry import Position
 from arena_simulation_setup.utils.cattrs import converter
 
@@ -36,6 +36,7 @@ class WorldDescription:
         name: str
         corners: list[Position] = attrs.field(factory=list)
         walls: list[Wall] = attrs.field(factory=list)
+        floor: Floor = attrs.field(factory=Floor)
         mat: str = attrs.field(default="")  # floor material
         entities: WorldEntities = attrs.field(factory=WorldEntities)
         description: str = attrs.field(default="")
@@ -45,6 +46,10 @@ class WorldDescription:
     @property
     def all_walls(self) -> typing.Iterable[Wall]:
         return (wall for zone in self.zones for wall in zone.walls)
+    
+    @property
+    def all_floors(self) -> typing.Iterable[Floor]:
+        return (zone.floor for zone in self.zones)
 
     @property
     def all_static_entities(self) -> typing.Iterable[Obstacle]:
