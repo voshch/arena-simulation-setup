@@ -3,8 +3,6 @@ import enum
 import typing
 
 import pydantic
-import rclpy.node
-import std_srvs.srv
 
 from .utils import GeneratedWorld, Polygon  # noqa
 
@@ -60,24 +58,3 @@ class _WorldGenerator:
 
     def __init__(self, generator: WorldGeneratorType, configuration: dict):
         self.update_generator(generator, configuration)
-
-
-class WorldGeneratorROS(_WorldGenerator, rclpy.node.Node):
-    def _cb_generate(self, request: std_srvs.srv.Trigger.Request, response: std_srvs.srv.Trigger.Response) -> std_srvs.srv.Trigger.Response:
-        try:
-            self.compute().save_to('.generated')
-            response.success = True
-        except BaseException as e:
-            response.success = False
-            response.message = repr(e)
-
-        return response
-
-    def __init__(self, name: str, generator: WorldGeneratorType, configuration: dict):
-        rclpy.node.Node.__init__(self, name)
-        _WorldGenerator.__init__(self, generator, configuration)
-
-        self.set_up_services()
-
-    def set_up_services(self):
-        self.create_service(std_srvs.srv.Trigger, 'generate_world', self._cb_generate)

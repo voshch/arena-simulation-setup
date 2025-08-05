@@ -7,6 +7,7 @@ import os
 from collections.abc import Callable, Collection, Set
 from typing import Optional, Type, overload
 
+from arena_simulation_setup.utils.cattrs import converter
 import attrs
 
 # TODO deprecate this in favor of Model.EMPTY
@@ -83,6 +84,9 @@ class ModelWrapper:
 
     def __repr__(self) -> str:
         return f"ModelWrapper(name={self.name}, loader={self._loader})"
+
+    def serialize(self) -> str:
+        return self.name
 
     def __init__(
         self,
@@ -241,6 +245,9 @@ class ModelWrapper:
     def EMPTY() -> ModelWrapper:
         wrapper = ModelWrapper("__EMPTY", EMPTY_LOADER)
         return wrapper
+
+
+converter.register_unstructure_hook(ModelWrapper, ModelWrapper.serialize)
 
 
 class _ModelLoader:

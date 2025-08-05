@@ -44,4 +44,5 @@ install(
   DESTINATION share/${PROJECT_NAME}/configs
 )
 
+ament_python_setup()
 ament_package()

@@ -2,16 +2,15 @@ import os
 from setuptools import setup, find_namespace_packages
 
 package_name = 'arena_simulation_setup'
-
+python_root = 'src'
 
 setup(
     name=package_name,
     version='1.0.0',
     packages=find_namespace_packages(
-        where='.',
-        include=[f'{package_name}*']
+        where=python_root,
     ),
-    package_dir={'': '.'},
+    package_dir={'': python_root},
     data_files=[
         ('share/' + package_name, ['package.xml']),
         # Will recursively track all .yaml files in the entities/robots
@@ -38,16 +37,15 @@ setup(
     maintainer='voshch',
     maintainer_email='dev@voshch.dev',
     description='arena_simulation_setup.',
-    license='BSD',
-    tests_require=['pytest'],
+    license='MIT',
     scripts=[
         'scripts/model_staging',
     ],
     entry_points={
         'console_scripts': [
-            'generate_world = arena_simulation_setup.utils.generative.world_generator:main',
-            'world_generator = arena_simulation_setup.utils.generative.world_generator_ros:main',
-            'model_staging = arena_simulation_setup.model_staging:main',
+            f'generate_world = {package_name}.utils.generative.world_generator:main',
+            f'world_generator = {package_name}.utils.generative.world_generator_ros:main',
+            f'model_staging = {package_name}.model_staging:main',
         ],
     },
 )
