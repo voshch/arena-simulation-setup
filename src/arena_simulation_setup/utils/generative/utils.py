@@ -110,13 +110,13 @@ class GeneratedWorld:
         """
         Removes doors from the walls.
         """
-        doors = shapely.make_valid(shapely.MultiPolygon([shapely.Polygon(door) for door in self.doors]))
+        doors = shapely.make_valid(shapely.MultiPolygon([shapely.Polygon(door) for door in self.doors]), method='structure')
 
         result_walls: list[shapely.LineString] = []
 
-        reduced = walls.difference(doors)
+        reduced = shapely.make_valid(walls.difference(doors), method='structure')
 
-        if isinstance(reduced, shapely.LineString):
+        if not reduced.is_empty and isinstance(reduced, shapely.LineString):
             reduced = shapely.MultiLineString([reduced])
 
         if isinstance(reduced, shapely.MultiLineString):
