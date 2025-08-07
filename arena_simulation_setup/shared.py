@@ -62,6 +62,8 @@ class Door:
     kind: typing.Literal['sliding'] = 'sliding'
     pose: Pose = attrs.field(factory=Pose)
     description: str = attrs.field(default="")
+    height: float = attrs.field(default=2.0)
+    material: str = attrs.field(default="Adobe_Bricks_01")
 
 
 
