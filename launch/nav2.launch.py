@@ -186,7 +186,7 @@ def generate_launch_description():
             arguments=['/goal_pose', 'goal_pose'],
         ),
         Node(
-            package='arena_simulation_setup',
+            package='pose_to_tf',
             executable='pose_to_tf',
             name='pose_to_tf',
             parameters=[{'odom_frame': 'odom', 'pose_topic': 'pose'}],
