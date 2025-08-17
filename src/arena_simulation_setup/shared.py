@@ -50,7 +50,7 @@ class Wall(Parseable):
         else:
             raise ValueError(f"Could not parse as wall: {value}")
 
-
+@register_parse
 @attrs.define
 class Door:
     """
@@ -65,6 +65,30 @@ class Door:
     height: float = attrs.field(default=2.0)
     material: str = attrs.field(default="Adobe_Bricks_01")
 
+@register_parse
+@attrs.define
+class Floor(Parseable):
+    pos: Position
+    x_length: float = attrs.field(converter=float, default=20.)
+    y_length: float = attrs.field(converter=float, default=20.)
+    mat: str = ''  # wall material
+
+    @classmethod
+    def parse(cls, value: list | dict) -> "Floor":
+        if isinstance(value, list):
+            kwargs = {}
+            if len(value) == 3 and isinstance(value[0], dict):
+                kwargs = value[0]
+            return cls(
+                **kwargs,
+                pos=Position(x=value[1][0], y=value[1][1]),
+                x_length=value[2],
+                y_length=value[3],
+            )
+        elif isinstance(value, dict):
+            return cls(**value)
+        else:
+            raise ValueError(f"Could not parse as floor: {value}")
 
 
 EntityT = typing.TypeVar("EntityT", bound="Entity")

@@ -28,6 +28,10 @@ class GeneratedWorld:
 
     padding: int = 50  # px
 
+    _world_description: arena_simulation_setup.worlds.world.WorldDescription | None = attrs.field(
+        default=None, init=False
+    )
+
     @property
     def world_padding(self) -> float:
         return self.padding * self.resolution
@@ -106,13 +110,13 @@ class GeneratedWorld:
         """
         Removes doors from the walls.
         """
-        doors = shapely.make_valid(shapely.MultiPolygon([shapely.Polygon(door) for door in self.doors]))
+        doors = shapely.make_valid(shapely.MultiPolygon([shapely.Polygon(door) for door in self.doors]), method='structure')
 
         result_walls: list[shapely.LineString] = []
 
-        reduced = walls.difference(doors)
+        reduced = shapely.make_valid(walls.difference(doors), method='structure')
 
-        if isinstance(reduced, shapely.LineString):
+        if not reduced.is_empty and isinstance(reduced, shapely.LineString):
             reduced = shapely.MultiLineString([reduced])
 
         if isinstance(reduced, shapely.MultiLineString):
@@ -154,7 +158,7 @@ class GeneratedWorld:
         return shapely.MultiLineString(result_walls)
 
     def to_map_yaml(self) -> str:
-        return yaml.safe_dump({
+        res = yaml.safe_dump({
             'free_thresh': 0.196,
             'image': 'map.png',
             'negate': 0,
@@ -162,6 +166,8 @@ class GeneratedWorld:
             'origin': [0, 0, 0],
             'resolution': self.resolution,
         })
+        assert isinstance(res, str), "YAML dump should return a string"
+        return res
 
     def to_map_png(self) -> bytes:
         img = PIL.Image.new(
@@ -193,12 +199,22 @@ class GeneratedWorld:
         img_bytes.seek(0)
         return img_bytes.getvalue()
 
+    @property
+    def world_description(self) -> arena_simulation_setup.worlds.world.WorldDescription:
+        if self._world_description is None:
+            self._world_description = self.to_world()
+        return self._world_description
+
+    @world_description.setter
+    def world_description(self, value: arena_simulation_setup.worlds.world.WorldDescription):
+        self._world_description = value
+
     def save_to(self, world_name: str):
         world = arena_simulation_setup.worlds.world.World(world_name)
 
         os.makedirs(world.path, exist_ok=True)
         with open(world.world_path, 'w') as f:
-            world_description = self.to_world()
+            world_description = self.world_description
             yaml.safe_dump(converter.unstructure(world_description), f, sort_keys=False)
 
         os.makedirs(world.map.path, exist_ok=True)

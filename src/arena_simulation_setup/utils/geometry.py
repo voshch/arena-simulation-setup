@@ -6,8 +6,39 @@ import math
 import typing
 
 import attrs
-import geometry_msgs.msg
 import numpy as np
+
+try:
+    import geometry_msgs.msg  # type: ignore # noqa: F401
+except ImportError:
+    class _uninstanceable(object):
+        """
+        class that cannot be instantiated
+        """
+
+        def __new__(cls, *args, **kwargs):
+            raise TypeError(f"installation of geometry_msgs is required to use {cls.__name__}")
+
+        def __init__(self, *args, **kwargs):
+            raise TypeError(f"installation of geometry_msgs is required to use {self.__class__.__name__}")
+
+        def __getattribute__(self, name: str):
+            raise TypeError(f"installation of geometry_msgs is required to use {self.__class__.__name__}.{name}")
+
+    class geometry_msgs:
+        """
+        polyfill geometry_msgs.msg
+        """
+
+        class msg:
+            class Point(_uninstanceable):
+                ...
+
+            class Quaternion(_uninstanceable):
+                ...
+
+            class Pose(_uninstanceable):
+                ...
 
 from arena_simulation_setup.utils.cattrs import Parseable, attrs_sequence, register_parse
 

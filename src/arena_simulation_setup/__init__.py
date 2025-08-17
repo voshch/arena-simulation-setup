@@ -1,10 +1,16 @@
 import os
 import typing
 
-import ament_index_python.packages
+ass_dir: str
+ab_dir: str
 
-ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulation_setup')
-ab_dir = ament_index_python.packages.get_package_share_directory('arena_bringup')
+try:
+    import ament_index_python.packages
+    ass_dir = ament_index_python.packages.get_package_share_directory('arena_simulation_setup')
+    ab_dir = ament_index_python.packages.get_package_share_directory('arena_bringup')
+except ImportError:
+    ass_dir = os.environ.get('ass_dir', '')
+    ab_dir = os.environ.get('ab_dir', '')
 
 T = typing.TypeVar('T', bound='ProviderBase')
 

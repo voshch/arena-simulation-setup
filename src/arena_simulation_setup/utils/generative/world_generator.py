@@ -1,13 +1,13 @@
 import sys
 
-from . import WorldGeneratorROS, WorldGeneratorType
+from . import WorldGeneratorType
 from . import _WorldGenerator as WorldGenerator
 
 from .empty import *  # noqa
 from .hallway import *  # noqa
 
 
-__all__ = ['WorldGenerator', 'WorldGeneratorType', 'WorldGeneratorROS']
+__all__ = ['WorldGenerator', 'WorldGeneratorType']
 
 
 def test_generate(out: str, name: str, config: dict):

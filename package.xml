@@ -5,9 +5,9 @@
   <version>4.0.0</version>
   <description>The arena_simulation_setup package</description>
   <maintainer email="dev@voshch.dev">voshch</maintainer>
-  <license>BSD</license>
+  <license>MIT</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
@@ -20,8 +20,13 @@
   <depend>jackal_description</depend>
   <depend>realsense2_description</depend>
   <depend>lms1xx</depend>
+
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
   
   <export>
     <build_type>ament_python</build_type>
-    </export>
+  </export>
 </package>

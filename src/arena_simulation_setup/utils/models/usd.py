@@ -5,7 +5,6 @@ import tempfile
 import xml.etree.ElementTree as ET
 from collections.abc import Collection
 
-import arena_bringup
 
 from . import ITF_ModelLoader, Model, ModelType, _ModelLoader
 
@@ -152,6 +151,7 @@ class ModelLoader_USD(ITF_ModelLoader):
                 if os.path.islink(model_path) and not os.path.exists(model_path):  # broken symlink
                     os.unlink(model_path)
 
+                import arena_bringup
                 ARENA_WS_DIR = arena_bringup.get_arena_ws_dir()
 
                 env = os.environ.copy()
