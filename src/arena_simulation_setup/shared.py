@@ -50,6 +50,20 @@ class Wall(Parseable):
         else:
             raise ValueError(f"Could not parse as wall: {value}")
 
+@register_parse
+@attrs.define
+class Door:
+    """
+    Description of a door
+    """
+    name: str
+    start: Position
+    end: Position
+    kind: typing.Literal['sliding'] = 'sliding'
+    pose: Pose = attrs.field(factory=Pose)
+    description: str = attrs.field(default="")
+    height: float = attrs.field(default=2.0)
+    material: str = attrs.field(default="Adobe_Bricks_01")
 
 @register_parse
 @attrs.define
