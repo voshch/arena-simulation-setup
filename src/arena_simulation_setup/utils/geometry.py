@@ -298,6 +298,12 @@ class Pose(Parseable):
             orientation=self.orientation.to_msg()
         )
 
+    def to_2d(self) -> tuple[float, float, float]:
+        """
+        return self as (x, y, yaw)
+        """
+        return (self.position.x, self.position.y, self.orientation.to_yaw())
+
 
 @register_parse
 @attrs_sequence(float)
