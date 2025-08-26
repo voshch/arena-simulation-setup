@@ -50,6 +50,7 @@ class Wall(Parseable):
         else:
             raise ValueError(f"Could not parse as wall: {value}")
 
+
 @register_parse
 @attrs.define
 class Door:
@@ -64,6 +65,7 @@ class Door:
     description: str = attrs.field(default="")
     height: float = attrs.field(default=2.0)
     material: str = attrs.field(default="Adobe_Bricks_01")
+
 
 @register_parse
 @attrs.define
@@ -136,6 +138,8 @@ class Obstacle(Entity):
 class DynamicObstacle(Obstacle):
     model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
     waypoints: list[Position]
+    velocity: float = attrs.field(converter=float, default=1.0)  # m/s
+
 
 @attrs.define
 class CustomDynamicObstacle(DynamicObstacle):
@@ -158,9 +162,9 @@ class CustomDynamicObstacle(DynamicObstacle):
         if 'pos' in value:
             value['pose'] = value['pos']
             del value['pos']
-        
-        known_values = {k:v for k,v in value.items() if k in known_fields}
-        custom_fields = {k:v for k,v in value.items() if k not in known_fields}
+
+        known_values = {k: v for k, v in value.items() if k in known_fields}
+        custom_fields = {k: v for k, v in value.items() if k not in known_fields}
 
         warnings.warn(
             "CustomDynamicObstacle.parse is deprecated and will be removed in a future release. "
@@ -174,6 +178,7 @@ class CustomDynamicObstacle(DynamicObstacle):
         value = obj.asdict(True)
 
         return converter.structure(value, cls)
+
 
 @attrs.define
 class Robot(Entity):
