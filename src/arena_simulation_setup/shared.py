@@ -1,19 +1,23 @@
 import re
 import typing
+import warnings
 
 import attrs
 
-from arena_simulation_setup.entities.obstacles.dynamic import \
-    loader as DynamicObstacleLoader
-from arena_simulation_setup.entities.obstacles.static import \
-    loader as ObstacleLoader
+from arena_simulation_setup.entities.obstacles.dynamic import (
+    loader as DynamicObstacleLoader,
+)
+from arena_simulation_setup.entities.obstacles.static import loader as ObstacleLoader
 from arena_simulation_setup.entities.robot import loader as RobotLoader
-from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
+from arena_simulation_setup.utils.cattrs import (
+    Parseable,
+    converter,
+    register_parse,
+)
 from arena_simulation_setup.utils.models import ModelWrapper
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
-from .utils.geometry import *
-import warnings
+from .utils.geometry import Pose, Position
 
 
 def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:
@@ -29,8 +33,8 @@ def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] 
 @register_parse
 @attrs.define
 class Wall(Parseable):
-    start: Position
-    end: Position
+    start: Position = attrs.field(converter=Position.converter)
+    end: Position = attrs.field(converter=Position.converter)
     height: float = attrs.field(converter=float, default=2.)
     mat: str = ''  # wall material
 
@@ -58,10 +62,10 @@ class Door:
     Description of a door
     """
     name: str
-    start: Position
-    end: Position
+    start: Position = attrs.field(converter=Position.converter)
+    end: Position = attrs.field(converter=Position.converter)
     kind: typing.Literal['sliding'] = 'sliding'
-    pose: Pose = attrs.field(factory=Pose)
+    pose: Pose = attrs.field(factory=Pose, converter=Pose.converter)
     description: str = attrs.field(default="")
     height: float = attrs.field(default=2.0)
     material: str = attrs.field(default="Adobe_Bricks_01")
@@ -70,7 +74,7 @@ class Door:
 @register_parse
 @attrs.define
 class Floor(Parseable):
-    pos: Position
+    pos: Position = attrs.field(converter=Position.converter)
     x_length: float = attrs.field(converter=float, default=20.)
     y_length: float = attrs.field(converter=float, default=20.)
     mat: str = ''  # wall material
@@ -96,12 +100,15 @@ class Floor(Parseable):
 EntityT = typing.TypeVar("EntityT", bound="Entity")
 
 
+@register_parse
 @attrs.define
 class Entity(Parseable):
-    pose: Pose
+    pose: Pose = attrs.field(converter=Pose.converter)
     name: str = attrs.field(converter=lambda s: Entity.sanitize_name(str(s)))
     model: ModelWrapper
+
     extra: dict = attrs.field(factory=dict, kw_only=True)
+    path: str = attrs.field(repr=False, default='', kw_only=True)
 
     def asdict(self, expand_extra: bool = True) -> dict:
         if expand_extra:
@@ -117,23 +124,25 @@ class Entity(Parseable):
 
     @classmethod
     def parse(cls: typing.Type[EntityT], value: dict) -> EntityT:
-        warnings.warn(
-            "Entity.parse is deprecated and will be removed in a future release. "
-            "Call the constructor directly, e.g., Entity(**value).",
-            FutureWarning,
-            stacklevel=2
-        )
         if 'pos' in value:
             value['pose'] = value['pos']
             del value['pos']
-        return converter.structure(value, cls)
+        value['extra'] = {**value}
+        return converter.structure_attrs_fromdict(value, cls)
 
 
+converter.register_structure_hook(
+    Entity, lambda data, _: Entity.parse(data)
+)
+
+
+@register_parse
 @attrs.define
 class Obstacle(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
 
 
+@register_parse
 @attrs.define
 class DynamicObstacle(Obstacle):
     model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
@@ -141,6 +150,7 @@ class DynamicObstacle(Obstacle):
     velocity: float = attrs.field(converter=float, default=1.0)  # m/s
 
 
+@register_parse
 @attrs.define
 class CustomDynamicObstacle(DynamicObstacle):
     """

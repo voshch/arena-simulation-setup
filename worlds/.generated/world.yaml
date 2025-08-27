@@ -13,177 +13,169 @@ zones:
   - x: 2.5
     y: 25.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 42.5
-      y: 27.5
-      z: 0.0
-    x_length: 80.0
-    y_length: 5.0
   walls:
   - start:
       x: 2.5
       y: 25.0
       z: 0.0
     end:
-      x: 5.4
+      x: 16.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 7.9
+      x: 19.0
       y: 25.0
       z: 0.0
     end:
-      x: 27.9
+      x: 30.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 30.4
+      x: 33.0
       y: 25.0
       z: 0.0
     end:
-      x: 34.9
+      x: 39.0
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 37.4
+      x: 41.5
       y: 25.0
       z: 0.0
     end:
-      x: 40.7
+      x: 46.3
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 43.2
+      x: 48.8
       y: 25.0
       z: 0.0
     end:
-      x: 50.6
+      x: 52.9
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 53.1
+      x: 55.4
       y: 25.0
       z: 0.0
     end:
-      x: 57.1
+      x: 59.7
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 59.6
+      x: 62.2
       y: 25.0
       z: 0.0
     end:
-      x: 65.7
+      x: 75.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 68.2
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.5
+      x: 78.0
       y: 25.0
       z: 0.0
     end:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     end:
-      x: 81.6
+      x: 82.5
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 79.1
+      x: 82.5
       y: 30.0
       z: 0.0
     end:
-      x: 63.9
+      x: 80.1
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 61.4
+      x: 77.6
       y: 30.0
       z: 0.0
     end:
-      x: 55.2
+      x: 62.8
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 52.7
+      x: 60.3
       y: 30.0
       z: 0.0
     end:
-      x: 47.1
+      x: 54.5
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 44.6
+      x: 52.0
       y: 30.0
       z: 0.0
     end:
-      x: 36.2
+      x: 48.8
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 33.7
+      x: 46.3
       y: 30.0
       z: 0.0
     end:
-      x: 30.1
+      x: 37.1
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 27.6
+      x: 34.6
       y: 30.0
       z: 0.0
     end:
-      x: 14.5
+      x: 28.6
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 12.0
+      x: 26.1
+      y: 30.0
+      z: 0.0
+    end:
+      x: 21.5
+      y: 30.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  - start:
+      x: 19.0
       y: 30.0
       z: 0.0
     end:
@@ -202,6 +194,7 @@ zones:
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -210,76 +203,69 @@ zones:
 - name: zone_1
   corners:
   - x: 2.5
-    y: 49.5
+    y: 47.0
     z: 0.0
-  - x: 20.6
-    y: 49.5
+  - x: 23.1
+    y: 47.0
     z: 0.0
-  - x: 20.6
+  - x: 23.1
     y: 30.0
     z: 0.0
   - x: 2.5
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 11.55
-      y: 39.75
-      z: 0.0
-    x_length: 18.1
-    y_length: 19.5
   walls:
   - start:
       x: 2.5
       y: 30.0
       z: 0.0
     end:
-      x: 12.0
+      x: 19.0
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 14.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 20.6
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 20.6
+      x: 21.5
       y: 30.0
       z: 0.0
     end:
-      x: 20.6
-      y: 49.5
+      x: 23.1
+      y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 20.6
-      y: 49.5
+      x: 23.1
+      y: 30.0
       z: 0.0
     end:
-      x: 2.5
-      y: 49.5
+      x: 23.1
+      y: 47.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 2.5
-      y: 49.5
+      x: 23.1
+      y: 47.0
       z: 0.0
     end:
       x: 2.5
+      y: 47.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  - start:
+      x: 2.5
+      y: 47.0
+      z: 0.0
+    end:
+      x: 2.5
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -287,77 +273,70 @@ zones:
   description: ''
 - name: zone_2
   corners:
-  - x: 20.6
-    y: 42.6
+  - x: 23.1
+    y: 43.1
     z: 0.0
-  - x: 31.1
-    y: 42.6
+  - x: 30.3
+    y: 43.1
     z: 0.0
-  - x: 31.1
+  - x: 30.3
     y: 30.0
     z: 0.0
-  - x: 20.6
+  - x: 23.1
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 25.85
-      y: 36.3
-      z: 0.0
-    x_length: 10.5
-    y_length: 12.600000000000001
   walls:
   - start:
-      x: 20.6
+      x: 23.1
       y: 30.0
       z: 0.0
     end:
-      x: 27.6
+      x: 26.1
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 30.1
+      x: 28.6
       y: 30.0
       z: 0.0
     end:
-      x: 31.1
+      x: 30.3
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 31.1
+      x: 30.3
       y: 30.0
       z: 0.0
     end:
-      x: 31.1
-      y: 42.6
+      x: 30.3
+      y: 43.1
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 31.1
-      y: 42.6
+      x: 30.3
+      y: 43.1
       z: 0.0
     end:
-      x: 20.6
-      y: 42.6
+      x: 23.1
+      y: 43.1
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 20.6
-      y: 42.6
+      x: 23.1
+      y: 43.1
       z: 0.0
     end:
-      x: 20.6
+      x: 23.1
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -365,77 +344,70 @@ zones:
   description: ''
 - name: zone_3
   corners:
-  - x: 31.1
-    y: 39.7
+  - x: 30.3
+    y: 39.4
     z: 0.0
-  - x: 40.1
-    y: 39.7
+  - x: 39.9
+    y: 39.4
     z: 0.0
-  - x: 40.1
+  - x: 39.9
     y: 30.0
     z: 0.0
-  - x: 31.1
+  - x: 30.3
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 35.6
-      y: 34.85
-      z: 0.0
-    x_length: 9.0
-    y_length: 9.700000000000003
   walls:
   - start:
-      x: 31.1
+      x: 30.3
       y: 30.0
       z: 0.0
     end:
-      x: 33.7
+      x: 34.6
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 36.2
+      x: 37.1
       y: 30.0
       z: 0.0
     end:
-      x: 40.1
+      x: 39.9
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 40.1
+      x: 39.9
       y: 30.0
       z: 0.0
     end:
-      x: 40.1
-      y: 39.7
+      x: 39.9
+      y: 39.4
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 40.1
-      y: 39.7
+      x: 39.9
+      y: 39.4
       z: 0.0
     end:
-      x: 31.1
-      y: 39.7
+      x: 30.3
+      y: 39.4
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 31.1
-      y: 39.7
+      x: 30.3
+      y: 39.4
       z: 0.0
     end:
-      x: 31.1
+      x: 30.3
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -443,77 +415,70 @@ zones:
   description: ''
 - name: zone_4
   corners:
-  - x: 40.1
-    y: 38.0
+  - x: 39.9
+    y: 41.5
     z: 0.0
-  - x: 49.1
-    y: 38.0
+  - x: 49.4
+    y: 41.5
     z: 0.0
-  - x: 49.1
+  - x: 49.4
     y: 30.0
     z: 0.0
-  - x: 40.1
+  - x: 39.9
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 44.6
-      y: 34.0
-      z: 0.0
-    x_length: 9.0
-    y_length: 8.0
   walls:
   - start:
-      x: 40.1
+      x: 39.9
       y: 30.0
       z: 0.0
     end:
-      x: 44.6
+      x: 46.3
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 47.1
+      x: 48.8
       y: 30.0
       z: 0.0
     end:
-      x: 49.1
+      x: 49.4
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 49.1
+      x: 49.4
       y: 30.0
       z: 0.0
     end:
-      x: 49.1
-      y: 38.0
+      x: 49.4
+      y: 41.5
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 49.1
-      y: 38.0
+      x: 49.4
+      y: 41.5
       z: 0.0
     end:
-      x: 40.1
-      y: 38.0
+      x: 39.9
+      y: 41.5
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 40.1
-      y: 38.0
+      x: 39.9
+      y: 41.5
       z: 0.0
     end:
-      x: 40.1
+      x: 39.9
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -521,77 +486,70 @@ zones:
   description: ''
 - name: zone_5
   corners:
-  - x: 49.1
-    y: 38.1
+  - x: 49.4
+    y: 42.5
     z: 0.0
-  - x: 55.8
-    y: 38.1
+  - x: 54.9
+    y: 42.5
     z: 0.0
-  - x: 55.8
+  - x: 54.9
     y: 30.0
     z: 0.0
-  - x: 49.1
+  - x: 49.4
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 52.449999999999996
-      y: 34.05
-      z: 0.0
-    x_length: 6.699999999999996
-    y_length: 8.100000000000001
   walls:
   - start:
-      x: 49.1
+      x: 49.4
       y: 30.0
       z: 0.0
     end:
-      x: 52.7
+      x: 52.0
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 55.2
+      x: 54.5
       y: 30.0
       z: 0.0
     end:
-      x: 55.8
+      x: 54.9
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 55.8
+      x: 54.9
       y: 30.0
       z: 0.0
     end:
-      x: 55.8
-      y: 38.1
+      x: 54.9
+      y: 42.5
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 55.8
-      y: 38.1
+      x: 54.9
+      y: 42.5
       z: 0.0
     end:
-      x: 49.1
-      y: 38.1
+      x: 49.4
+      y: 42.5
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 49.1
-      y: 38.1
+      x: 49.4
+      y: 42.5
       z: 0.0
     end:
-      x: 49.1
+      x: 49.4
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -599,77 +557,70 @@ zones:
   description: ''
 - name: zone_6
   corners:
-  - x: 55.8
-    y: 41.7
+  - x: 54.9
+    y: 40.5
     z: 0.0
-  - x: 64.2
-    y: 41.7
+  - x: 64.0
+    y: 40.5
     z: 0.0
-  - x: 64.2
+  - x: 64.0
     y: 30.0
     z: 0.0
-  - x: 55.8
+  - x: 54.9
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 60.0
-      y: 35.85
-      z: 0.0
-    x_length: 8.400000000000006
-    y_length: 11.700000000000003
   walls:
   - start:
-      x: 55.8
+      x: 54.9
       y: 30.0
       z: 0.0
     end:
-      x: 61.4
+      x: 60.3
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 63.9
+      x: 62.8
       y: 30.0
       z: 0.0
     end:
-      x: 64.2
+      x: 64.0
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 64.2
+      x: 64.0
       y: 30.0
       z: 0.0
     end:
-      x: 64.2
-      y: 41.7
+      x: 64.0
+      y: 40.5
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 64.2
-      y: 41.7
+      x: 64.0
+      y: 40.5
       z: 0.0
     end:
-      x: 55.8
-      y: 41.7
+      x: 54.9
+      y: 40.5
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 55.8
-      y: 41.7
+      x: 54.9
+      y: 40.5
       z: 0.0
     end:
-      x: 55.8
+      x: 54.9
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -677,39 +628,31 @@ zones:
   description: ''
 - name: zone_7
   corners:
-  - x: 64.2
-    y: 45.5
+  - x: 64.0
+    y: 48.8
     z: 0.0
   - x: 82.4
-    y: 45.5
+    y: 48.8
     z: 0.0
   - x: 82.4
     y: 30.0
     z: 0.0
-  - x: 64.2
+  - x: 64.0
     y: 30.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 73.30000000000001
-      y: 37.75
-      z: 0.0
-    x_length: 18.200000000000003
-    y_length: 15.5
   walls:
   - start:
-      x: 64.2
+      x: 64.0
       y: 30.0
       z: 0.0
     end:
-      x: 79.1
+      x: 77.6
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 81.6
+      x: 80.1
       y: 30.0
       z: 0.0
     end:
@@ -724,30 +667,31 @@ zones:
       z: 0.0
     end:
       x: 82.4
-      y: 45.5
+      y: 48.8
       z: 0.0
     height: 2.0
     mat: ''
   - start:
       x: 82.4
-      y: 45.5
+      y: 48.8
       z: 0.0
     end:
-      x: 64.2
-      y: 45.5
+      x: 64.0
+      y: 48.8
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 64.2
-      y: 45.5
+      x: 64.0
+      y: 48.8
       z: 0.0
     end:
-      x: 64.2
+      x: 64.0
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -767,177 +711,169 @@ zones:
   - x: 2.5
     y: 25.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 42.5
-      y: 27.5
-      z: 0.0
-    x_length: 80.0
-    y_length: 5.0
   walls:
   - start:
       x: 2.5
       y: 25.0
       z: 0.0
     end:
-      x: 5.4
+      x: 16.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 7.9
+      x: 19.0
       y: 25.0
       z: 0.0
     end:
-      x: 27.9
+      x: 30.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 30.4
+      x: 33.0
       y: 25.0
       z: 0.0
     end:
-      x: 34.9
+      x: 39.0
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 37.4
+      x: 41.5
       y: 25.0
       z: 0.0
     end:
-      x: 40.7
+      x: 46.3
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 43.2
+      x: 48.8
       y: 25.0
       z: 0.0
     end:
-      x: 50.6
+      x: 52.9
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 53.1
+      x: 55.4
       y: 25.0
       z: 0.0
     end:
-      x: 57.1
+      x: 59.7
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 59.6
+      x: 62.2
       y: 25.0
       z: 0.0
     end:
-      x: 65.7
+      x: 75.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 68.2
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.5
+      x: 78.0
       y: 25.0
       z: 0.0
     end:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     end:
-      x: 81.6
+      x: 82.5
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 79.1
+      x: 82.5
       y: 30.0
       z: 0.0
     end:
-      x: 63.9
+      x: 80.1
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 61.4
+      x: 77.6
       y: 30.0
       z: 0.0
     end:
-      x: 55.2
+      x: 62.8
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 52.7
+      x: 60.3
       y: 30.0
       z: 0.0
     end:
-      x: 47.1
+      x: 54.5
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 44.6
+      x: 52.0
       y: 30.0
       z: 0.0
     end:
-      x: 36.2
+      x: 48.8
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 33.7
+      x: 46.3
       y: 30.0
       z: 0.0
     end:
-      x: 30.1
+      x: 37.1
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 27.6
+      x: 34.6
       y: 30.0
       z: 0.0
     end:
-      x: 14.5
+      x: 28.6
       y: 30.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 12.0
+      x: 26.1
+      y: 30.0
+      z: 0.0
+    end:
+      x: 21.5
+      y: 30.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  - start:
+      x: 19.0
       y: 30.0
       z: 0.0
     end:
@@ -956,6 +892,7 @@ zones:
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -966,56 +903,48 @@ zones:
   - x: 2.5
     y: 25.0
     z: 0.0
-  - x: 24.2
+  - x: 25.6
     y: 25.0
     z: 0.0
-  - x: 24.2
-    y: 9.6
+  - x: 25.6
+    y: 6.0
     z: 0.0
   - x: 2.5
-    y: 9.6
+    y: 6.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 13.35
-      y: 17.3
-      z: 0.0
-    x_length: 21.7
-    y_length: 15.4
   walls:
   - start:
       x: 2.5
-      y: 9.6
+      y: 6.0
       z: 0.0
     end:
-      x: 24.2
-      y: 9.6
+      x: 25.6
+      y: 6.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 24.2
-      y: 9.6
+      x: 25.6
+      y: 6.0
       z: 0.0
     end:
-      x: 24.2
+      x: 25.6
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 24.2
+      x: 25.6
       y: 25.0
       z: 0.0
     end:
-      x: 7.9
+      x: 19.0
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 5.4
+      x: 16.5
       y: 25.0
       z: 0.0
     end:
@@ -1030,10 +959,11 @@ zones:
       z: 0.0
     end:
       x: 2.5
-      y: 9.6
+      y: 6.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -1041,77 +971,70 @@ zones:
   description: ''
 - name: zone_10
   corners:
-  - x: 24.2
+  - x: 25.6
     y: 25.0
     z: 0.0
-  - x: 30.8
+  - x: 33.5
     y: 25.0
     z: 0.0
-  - x: 30.8
-    y: 11.0
+  - x: 33.5
+    y: 17.3
     z: 0.0
-  - x: 24.2
-    y: 11.0
+  - x: 25.6
+    y: 17.3
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 27.5
-      y: 18.0
-      z: 0.0
-    x_length: 6.600000000000001
-    y_length: 14.0
   walls:
   - start:
-      x: 24.2
-      y: 11.0
+      x: 25.6
+      y: 17.3
       z: 0.0
     end:
-      x: 30.8
-      y: 11.0
+      x: 33.5
+      y: 17.3
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 30.8
-      y: 11.0
+      x: 33.5
+      y: 17.3
       z: 0.0
     end:
-      x: 30.8
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 30.8
-      y: 25.0
-      z: 0.0
-    end:
-      x: 30.4
+      x: 33.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 27.9
+      x: 33.5
       y: 25.0
       z: 0.0
     end:
-      x: 24.2
+      x: 33.0
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 24.2
+      x: 30.5
       y: 25.0
       z: 0.0
     end:
-      x: 24.2
-      y: 11.0
+      x: 25.6
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
+  - start:
+      x: 25.6
+      y: 25.0
+      z: 0.0
+    end:
+      x: 25.6
+      y: 17.3
+      z: 0.0
+    height: 2.0
+    mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -1119,77 +1042,70 @@ zones:
   description: ''
 - name: zone_11
   corners:
-  - x: 30.8
+  - x: 33.5
     y: 25.0
     z: 0.0
-  - x: 37.6
+  - x: 42.9
     y: 25.0
     z: 0.0
-  - x: 37.6
-    y: 16.4
+  - x: 42.9
+    y: 12.3
     z: 0.0
-  - x: 30.8
-    y: 16.4
+  - x: 33.5
+    y: 12.3
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 34.2
-      y: 20.700000000000003
-      z: 0.0
-    x_length: 6.800000000000001
-    y_length: 8.600000000000001
   walls:
   - start:
-      x: 30.8
-      y: 16.4
+      x: 33.5
+      y: 12.3
       z: 0.0
     end:
-      x: 37.6
-      y: 16.4
+      x: 42.9
+      y: 12.3
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 37.6
-      y: 16.4
+      x: 42.9
+      y: 12.3
       z: 0.0
     end:
-      x: 37.6
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 37.6
-      y: 25.0
-      z: 0.0
-    end:
-      x: 37.4
+      x: 42.9
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 34.9
+      x: 42.9
       y: 25.0
       z: 0.0
     end:
-      x: 30.8
+      x: 41.5
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 30.8
+      x: 39.0
       y: 25.0
       z: 0.0
     end:
-      x: 30.8
-      y: 16.4
+      x: 33.5
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
+  - start:
+      x: 33.5
+      y: 25.0
+      z: 0.0
+    end:
+      x: 33.5
+      y: 12.3
+      z: 0.0
+    height: 2.0
+    mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -1197,77 +1113,70 @@ zones:
   description: ''
 - name: zone_12
   corners:
-  - x: 37.6
+  - x: 42.9
     y: 25.0
     z: 0.0
-  - x: 47.8
+  - x: 49.9
     y: 25.0
     z: 0.0
-  - x: 47.8
-    y: 14.1
+  - x: 49.9
+    y: 13.3
     z: 0.0
-  - x: 37.6
-    y: 14.1
+  - x: 42.9
+    y: 13.3
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 42.699999999999996
-      y: 19.549999999999997
-      z: 0.0
-    x_length: 10.199999999999996
-    y_length: 10.9
   walls:
   - start:
-      x: 37.6
-      y: 14.1
+      x: 42.9
+      y: 13.3
       z: 0.0
     end:
-      x: 47.8
-      y: 14.1
+      x: 49.9
+      y: 13.3
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 47.8
-      y: 14.1
+      x: 49.9
+      y: 13.3
       z: 0.0
     end:
-      x: 47.8
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 47.8
-      y: 25.0
-      z: 0.0
-    end:
-      x: 43.2
+      x: 49.9
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 40.7
+      x: 49.9
       y: 25.0
       z: 0.0
     end:
-      x: 37.6
+      x: 48.8
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 37.6
+      x: 46.3
       y: 25.0
       z: 0.0
     end:
-      x: 37.6
-      y: 14.1
+      x: 42.9
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
+  - start:
+      x: 42.9
+      y: 25.0
+      z: 0.0
+    end:
+      x: 42.9
+      y: 13.3
+      z: 0.0
+    height: 2.0
+    mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -1275,77 +1184,70 @@ zones:
   description: ''
 - name: zone_13
   corners:
-  - x: 47.8
+  - x: 49.9
     y: 25.0
     z: 0.0
-  - x: 53.2
+  - x: 56.6
     y: 25.0
     z: 0.0
-  - x: 53.2
-    y: 12.7
+  - x: 56.6
+    y: 17.2
     z: 0.0
-  - x: 47.8
-    y: 12.7
+  - x: 49.9
+    y: 17.2
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 50.5
-      y: 18.85
-      z: 0.0
-    x_length: 5.400000000000006
-    y_length: 12.3
   walls:
   - start:
-      x: 47.8
-      y: 12.7
+      x: 49.9
+      y: 17.2
       z: 0.0
     end:
-      x: 53.2
-      y: 12.7
+      x: 56.6
+      y: 17.2
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 53.2
-      y: 12.7
+      x: 56.6
+      y: 17.2
       z: 0.0
     end:
-      x: 53.2
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 53.2
-      y: 25.0
-      z: 0.0
-    end:
-      x: 53.1
+      x: 56.6
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 50.6
+      x: 56.6
       y: 25.0
       z: 0.0
     end:
-      x: 47.8
+      x: 55.4
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 47.8
+      x: 52.9
       y: 25.0
       z: 0.0
     end:
-      x: 47.8
-      y: 12.7
+      x: 49.9
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
+  - start:
+      x: 49.9
+      y: 25.0
+      z: 0.0
+    end:
+      x: 49.9
+      y: 17.2
+      z: 0.0
+    height: 2.0
+    mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -1353,77 +1255,70 @@ zones:
   description: ''
 - name: zone_14
   corners:
-  - x: 53.2
+  - x: 56.6
     y: 25.0
     z: 0.0
-  - x: 60.4
+  - x: 62.7
     y: 25.0
     z: 0.0
-  - x: 60.4
-    y: 16.4
+  - x: 62.7
+    y: 17.6
     z: 0.0
-  - x: 53.2
-    y: 16.4
+  - x: 56.6
+    y: 17.6
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 56.8
-      y: 20.700000000000003
-      z: 0.0
-    x_length: 7.199999999999996
-    y_length: 8.600000000000001
   walls:
   - start:
-      x: 53.2
-      y: 16.4
+      x: 56.6
+      y: 17.6
       z: 0.0
     end:
-      x: 60.4
-      y: 16.4
+      x: 62.7
+      y: 17.6
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 60.4
-      y: 16.4
+      x: 62.7
+      y: 17.6
       z: 0.0
     end:
-      x: 60.4
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 60.4
-      y: 25.0
-      z: 0.0
-    end:
-      x: 59.6
+      x: 62.7
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 57.1
+      x: 62.7
       y: 25.0
       z: 0.0
     end:
-      x: 53.2
+      x: 62.2
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 53.2
+      x: 59.7
       y: 25.0
       z: 0.0
     end:
-      x: 53.2
-      y: 16.4
+      x: 56.6
+      y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
+  - start:
+      x: 56.6
+      y: 25.0
+      z: 0.0
+    end:
+      x: 56.6
+      y: 17.6
+      z: 0.0
+    height: 2.0
+    mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
@@ -1431,40 +1326,32 @@ zones:
   description: ''
 - name: zone_15
   corners:
-  - x: 60.4
+  - x: 62.7
     y: 25.0
     z: 0.0
   - x: 82.4
     y: 25.0
     z: 0.0
   - x: 82.4
-    y: 9.7
+    y: 9.0
     z: 0.0
-  - x: 60.4
-    y: 9.7
+  - x: 62.7
+    y: 9.0
     z: 0.0
-  floor:
-    mat: ''
-    pos:
-      x: 71.4
-      y: 17.35
-      z: 0.0
-    x_length: 22.000000000000007
-    y_length: 15.3
   walls:
   - start:
-      x: 60.4
-      y: 9.7
+      x: 62.7
+      y: 9.0
       z: 0.0
     end:
       x: 82.4
-      y: 9.7
+      y: 9.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
       x: 82.4
-      y: 9.7
+      y: 9.0
       z: 0.0
     end:
       x: 82.4
@@ -1477,93 +1364,95 @@ zones:
       y: 25.0
       z: 0.0
     end:
-      x: 68.2
+      x: 78.0
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 65.7
+      x: 75.5
       y: 25.0
       z: 0.0
     end:
-      x: 60.4
+      x: 62.7
       y: 25.0
       z: 0.0
     height: 2.0
     mat: ''
   - start:
-      x: 60.4
+      x: 62.7
       y: 25.0
       z: 0.0
     end:
-      x: 60.4
-      y: 9.7
+      x: 62.7
+      y: 9.0
       z: 0.0
     height: 2.0
     mat: ''
+  doors: []
   mat: ''
   entities:
     static: []
     dynamic: []
   description: ''
-# - name: extra_walls
-#   corners:
-#   - x: -2.5
-#     y: -2.5
-#     z: 0.0
-#   - x: 87.5
-#     y: -2.5
-#     z: 0.0
-#   - x: 87.5
-#     y: 57.5
-#     z: 0.0
-#   - x: -2.5
-#     y: 57.5
-#     z: 0.0
-#   walls:
-#   - start:
-#       x: 0.0
-#       y: 0.0
-#       z: 0.0
-#     end:
-#       x: 90.0
-#       y: 0.0
-#       z: 0.0
-#     height: 2.0
-#     mat: ''
-#   - start:
-#       x: 90.0
-#       y: 0.0
-#       z: 0.0
-#     end:
-#       x: 90.0
-#       y: 60.0
-#       z: 0.0
-#     height: 2.0
-#     mat: ''
-#   - start:
-#       x: 90.0
-#       y: 60.0
-#       z: 0.0
-#     end:
-#       x: 0.0
-#       y: 60.0
-#       z: 0.0
-#     height: 2.0
-#     mat: ''
-#   - start:
-#       x: 0.0
-#       y: 60.0
-#       z: 0.0
-#     end:
-#       x: 0.0
-#       y: 0.0
-#       z: 0.0
-#     height: 2.0
-#     mat: ''
-#   mat: ''
-#   entities:
-#     static: []
-#     dynamic: []
-#   description: ''
+- name: extra_walls
+  corners:
+  - x: -2.5
+    y: -2.5
+    z: 0.0
+  - x: 87.5
+    y: -2.5
+    z: 0.0
+  - x: 87.5
+    y: 57.5
+    z: 0.0
+  - x: -2.5
+    y: 57.5
+    z: 0.0
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    end:
+      x: 90.0
+      y: 0.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  - start:
+      x: 90.0
+      y: 0.0
+      z: 0.0
+    end:
+      x: 90.0
+      y: 60.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  - start:
+      x: 90.0
+      y: 60.0
+      z: 0.0
+    end:
+      x: 0.0
+      y: 60.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  - start:
+      x: 0.0
+      y: 60.0
+      z: 0.0
+    end:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    height: 2.0
+    mat: ''
+  doors: []
+  mat: ''
+  entities:
+    static: []
+    dynamic: []
+  description: ''

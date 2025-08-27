@@ -5,7 +5,7 @@ import attrs
 import yaml
 
 from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.shared import Obstacle, Wall, Floor, Door
+from arena_simulation_setup.shared import Obstacle, DynamicObstacle, Wall, Floor, Door
 from arena_simulation_setup.utils.geometry import Position
 from arena_simulation_setup.utils.cattrs import converter
 
@@ -31,7 +31,7 @@ class WorldDescription:
             Description of the entities within the 3D world
             """
             static: list[Obstacle] = attrs.field(factory=list)
-            dynamic: list[Obstacle] = attrs.field(factory=list)
+            dynamic: list[DynamicObstacle] = attrs.field(factory=list)
 
         name: str
         corners: list[Position] = attrs.field(factory=list)
