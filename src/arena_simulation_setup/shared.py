@@ -64,6 +64,7 @@ class Elevator:
     height_min: float = 0.0
     height_max: float = 3.0
     material: str = "Metal"
+    destination: str = attrs.field(default="")
 
 @register_parse
 @attrs.define
