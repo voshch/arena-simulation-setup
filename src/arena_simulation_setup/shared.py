@@ -52,10 +52,17 @@ class Wall(Parseable):
 
 @register_parse
 @attrs.define
+class Elevator:
+    name: str
+    position: list[float]
+    size: list[float] = attrs.field(factory=lambda: [2.0, 2.0, 0.2])
+    height_min: float = 0.0
+    height_max: float = 3.0
+    material: str = "Metal"
+
+@register_parse
+@attrs.define
 class Door:
-    """
-    Description of a door
-    """
     name: str
     start: Position
     end: Position
@@ -141,3 +148,4 @@ class DynamicObstacle(Obstacle):
 @attrs.define
 class Robot(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(RobotLoader))
+
