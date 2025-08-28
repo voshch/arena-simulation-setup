@@ -1,10 +1,40 @@
 import abc
 import typing
 
+from copy import deepcopy
+import functools
+
 import attr
 import cattrs
 
 converter = cattrs.Converter()
+
+
+class Idempotent:
+    """
+    A class that ensures its instances are idempotent.
+    """
+
+    @classmethod
+    def converter(cls, *args, **kwargs):
+        """
+        If the value is already an instance of the class, return it.
+        Otherwise, create a new instance of the class with the value.
+        """
+        if args and isinstance(args[0], cls):
+            return args[0]
+        return cls(*args, **kwargs)
+
+    @classmethod
+    def converter_clone(cls, *args, **kwargs):
+        """
+        If the value is already an instance of the class, return a deepcopy of it.
+        If not, create a new instance of the class with the value.
+        """
+        if args and isinstance(args[0], cls):
+            return deepcopy(args[0])
+        return cls(*args, **kwargs)
+
 
 ParseableT = typing.TypeVar('ParseableT', bound='Parseable')
 
@@ -19,8 +49,10 @@ class Parseable(abc.ABC):
 def register_parse(cls: typing.Type[ParseableT]) -> typing.Type[ParseableT]:
 
     def try_parse(data):
+        if isinstance(data, cls):
+            return data
         try:
-            return converter.structure_attrs_fromdict(data, cls)
+            return converter.structure_attrs_fromdict(deepcopy(data), cls)
         except Exception:
             return cls.parse(data)
 

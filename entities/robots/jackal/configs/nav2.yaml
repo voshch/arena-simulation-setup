@@ -298,4 +298,20 @@ collision_monitor:
     ${**observation_sources_dict}: ''
     polygons:
       - StopPolygon
+      - SlowPolygon
     ${**polygons_dict}: ''
+
+    # 1) TF frames
+    base_frame_id: ${frame:-}${robot_base_frame:-base_link}
+    odom_frame_id: ${frame:-}${robot_odom_frame:-odom}
+
+    # 2) Velocity topics
+    cmd_vel_in_topic:  "cmd_vel_nav"
+    cmd_vel_out_topic: "cmd_vel"
+
+    # 3) Timers & lifecycles
+    use_sim_time:         true
+    source_timeout:       2.0    # stale scan → stop
+    stop_pub_timeout:     1.0
+    transform_tolerance:  0.1
+    base_shift_correction: true

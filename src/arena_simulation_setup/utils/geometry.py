@@ -8,6 +8,8 @@ import typing
 import attrs
 import numpy as np
 
+from arena_simulation_setup.utils.cattrs import Idempotent
+
 try:
     import geometry_msgs.msg  # type: ignore # noqa: F401
 except ImportError:
@@ -56,7 +58,7 @@ _EulerIndices: dict[str, tuple[int, int, int]] = {
 @register_parse
 @attrs_sequence(float)
 @attrs.define
-class Position(Parseable):
+class Position(Parseable, Idempotent):
     """
     3D position
     """
@@ -112,7 +114,7 @@ class Position(Parseable):
 @register_parse
 @attrs_sequence(float)
 @attrs.define
-class Orientation(Parseable):
+class Orientation(Parseable, Idempotent):
     """
     3D orientation
     """
@@ -227,7 +229,7 @@ class Orientation(Parseable):
 
 @register_parse
 @attrs.define
-class Pose(Parseable):
+class Pose(Parseable, Idempotent):
     """
     3D pose
     """
@@ -257,7 +259,7 @@ class Pose(Parseable):
             if len(value) == 3:
                 return cls(
                     Position(x=value[0], y=value[1], z=0.0),
-                    Orientation.from_euler((value[2], 0, 0), order='zyx')
+                    Orientation.from_yaw(value[2])
                 )
 
             if len(value) in (6, 7):
@@ -267,7 +269,7 @@ class Pose(Parseable):
                 )
 
         # split sequence
-        if len(value) == 2 and all(isinstance(v, collections.abc.Sequence) for v in value):
+        if len(value) == 2 and all(isinstance(v, collections.abc.Sequence) for v in value) and all(isinstance(n, (int, float)) for v in value for n in v):
             value = typing.cast(typing.Sequence[typing.Sequence[float]], value)
             return cls(
                 position=Position.parse(value[0]),
@@ -298,11 +300,17 @@ class Pose(Parseable):
             orientation=self.orientation.to_msg()
         )
 
+    def to_2d(self) -> tuple[float, float, float]:
+        """
+        return self as (x, y, yaw)
+        """
+        return (self.position.x, self.position.y, self.orientation.to_yaw())
+
 
 @register_parse
 @attrs_sequence(float)
 @attrs.define
-class PositionRadius(Position):
+class PositionRadius(Position, Idempotent):
     radius: float = attrs.field(converter=float, default=1.0)
 
     @classmethod
