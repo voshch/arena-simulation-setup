@@ -17,8 +17,6 @@ class ModelLoader_URDF(ITF_ModelLoader):
     @classmethod
     def load(cls, model_dir, model, loader_args):
 
-        print(loader_args)
-
         namespace: Optional[str] = loader_args.get("namespace", None)
 
         base_path = os.path.join(model_dir, model, "urdf")

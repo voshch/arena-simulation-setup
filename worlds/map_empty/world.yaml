@@ -11,6 +11,46 @@ zones:
       - [30.0, 0.0]
       - [30.0, 23.0]
       - [0.0, 23.0]
+    doors:
+      - name: "south_door"
+        start: [12.0, 0.0]
+        end: [18.0, 0.0]
+        height: 2.0
+        material: "Adobe_Bricks_01"
+        kind: "sliding"
+      - name: "east_door"
+        start: [30.0, 10.0]
+        end: [30.0, 13.0]
+        height: 2.0
+        material: "Adobe_Bricks_01"
+        kind: "sliding"
+      - name: "north_door"
+        start: [12.0, 23.0]
+        end: [18.0, 23.0]
+        height: 2.0
+        material: "Adobe_Bricks_01"
+        kind: "sliding"
+      - name: "west_door"
+        start: [0.0, 10.0]
+        end: [0.0, 13.0]
+        height: 2.0
+        material: "Adobe_Bricks_01"
+        kind: "sliding"
+    elevators:
+      - name: "elevator_ground"
+        position: [15.0, 5.0, 0.0]
+        size: [2.0, 2.0, 0.2]
+        height_min: 0.0
+        height_max: 3.0
+        material: "Metal"
+        destination: "elevator_top"
+      - name: "elevator_top"
+        position: [15.0, 18.0, 0.0]
+        size: [2.0, 2.0, 0.2]
+        height_min: 0.0
+        height_max: 3.0
+        material: "Metal"
+        destination: "elevator_ground"
     mat: ""
     entities:
       static:
