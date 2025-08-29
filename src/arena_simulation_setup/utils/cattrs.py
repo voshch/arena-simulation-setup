@@ -21,6 +21,7 @@ def register_parse(cls: typing.Type[ParseableT]) -> typing.Type[ParseableT]:
     def try_parse(data):
         try:
             return converter.structure_attrs_fromdict(data, cls)
+            
         except Exception:
             return cls.parse(data)
 

@@ -1,7 +1,13 @@
 import re
 import typing
+import os 
+import yaml
+import sys
+sys.setrecursionlimit(10000)
 
 import attrs
+import numpy as np
+import math 
 
 from arena_simulation_setup.entities.obstacles.dynamic import \
     loader as DynamicObstacleLoader
@@ -11,7 +17,8 @@ from arena_simulation_setup.entities.robot import loader as RobotLoader
 from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
 from arena_simulation_setup.utils.models import ModelWrapper
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
-
+from arena_simulation_setup.utils.cattrs import converter
+from arena_simulation_setup import ass_dir
 from .utils.geometry import *
 import warnings
 
@@ -28,11 +35,53 @@ def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] 
 
 @register_parse
 @attrs.define
+class WallAsset:
+    kind: str              # "fill" or "tile"
+    name: str              # value of the key
+    file: str = ""
+    every: float = 1.0
+    height: float = 0.0
+    width: float = 0.0
+    x_offset: float = 0.0
+    y_offset: float = 0.0
+    z_offset: float = 0.0
+    material: str = ""
+    material_name: str = ""
+
+    @classmethod
+    def _structure(cls, obj: dict, _: type) -> "WallAsset":
+        if not isinstance(obj, dict):
+            raise TypeError(f"WallAsset expects a mapping, got {type(obj)}")
+
+        if "fill" in obj:
+            return cls(kind="fill", name=obj["fill"],
+                       **{k: v for k, v in obj.items() if k != "fill"})
+        if "tile" in obj:
+            return cls(kind="tile", name=obj["tile"],
+                       **{k: v for k, v in obj.items() if k != "tile"})
+
+        raise ValueError(f"Cannot parse WallAsset from keys: {list(obj.keys())}")
+
+
+# register the classmethod as hook
+converter.register_structure_hook(WallAsset, WallAsset._structure)
+
+
+# @register_parse
+@attrs.define
 class Wall(Parseable):
     start: Position
     end: Position
-    height: float = attrs.field(converter=float, default=2.)
-    mat: str = ''  # wall material
+    height: float = attrs.field(converter=float, default=2.0)
+    width: float = attrs.field(converter=float,default =0.05)
+    z_offset: float = attrs.field(converter=float, default=0.0)
+    material: str = ''
+    type_: str = "simple"
+    assets: list[list["Wall"], list["Obstacle"],str] = attrs.field(init=False)
+
+    def __attrs_post_init__(self):
+        if self.type_ != "simple":
+            self.assets = WallDescription.load(self.type_, self.start, self.end)
 
     @classmethod
     def parse(cls, value: list | dict) -> "Wall":
@@ -45,11 +94,84 @@ class Wall(Parseable):
                 start=Position(x=value[0][0], y=value[0][1]),
                 end=Position(x=value[1][0], y=value[1][1]),
             )
-        elif isinstance(value, dict):
-            return cls(**value)
-        else:
-            raise ValueError(f"Could not parse as wall: {value}")
+        if isinstance(value, dict):
+            return converter.structure(value,cls)
+        raise ValueError(f"Could not parse as wall: {value}")
 
+@register_parse
+@attrs.define
+class WallDescription:
+    @classmethod
+    def load(
+        cls,
+        type_: str = "simple",
+        start: Position | None = None,
+        end: Position | None = None,
+    ) -> list[list["Wall"], list["Obstacle"],str]:
+        vec = np.array([end.x,end.y]) - np.array([start.x,start.y])
+        angle = math.atan2(vec[1],vec[0]) + 3.14/2 
+        # print("assets angle", angle)
+        wall_assets_path = os.path.join(ass_dir,'entities','walls',str(type_) + '.yaml')
+        with open(wall_assets_path) as f:
+            data = yaml.safe_load(f)
+            # print(data)
+        fill, tile = [],[]
+        fill_assets = [converter.structure(item, WallAsset) for item in data.get("main", []) if 'fill' in item]
+        for fill_asset in fill_assets:
+            fill.append(
+                Wall(
+                    start = Position(x = start.x + fill_asset.x_offset, y = start.y + fill_asset.y_offset),
+                    end = Position(x = end.x - fill_asset.x_offset, y = end.y - fill_asset.y_offset),
+                    height = fill_asset.height,
+                    width = 0.075,
+                    z_offset = fill_asset.z_offset,
+                    material = fill_asset.material,
+                )
+            )
+        tile_assets = [converter.structure(item, WallAsset) for item in data.get("main", []) if 'tile' in item]
+        for tile_asset in tile_assets:
+            if start.x == end.x: 
+                num_assets = int((abs(start.y - end.y) - tile_asset.width - tile_asset.y_offset * 2) // tile_asset.every)
+                if num_assets <=0:
+                    pos_x = []
+                    pos_y = []
+                else:
+                    pos_x = [start.x] * num_assets
+                    if num_assets == 1:
+                        pos_y = [(start.y + end.y)/2] 
+                    else: 
+                        if start.y > end.y:
+                            pos_y = np.linspace(start.y - tile_asset.width/2 - tile_asset.y_offset , end.y + tile_asset.width/2 + tile_asset.y_offset, num = num_assets) 
+                        else:
+                            pos_y = np.linspace(start.y + tile_asset.width/2 + tile_asset.y_offset , end.y - tile_asset.width/2 - tile_asset.y_offset, num = num_assets) 
+            elif start.y == end.y: 
+                num_assets = int((abs(start.x - end.x) - tile_asset.width - tile_asset.x_offset * 2) // tile_asset.every)
+                if num_assets <=0:
+                    pos_x = []
+                    pos_y = []
+                else:
+                    pos_y = [start.y] * num_assets
+                    if num_assets == 1:
+                        pos_x = [(start.x + end.x)/2]
+                    else:
+                        if start.x > end.x:
+                            pos_x = np.linspace(start.x - tile_asset.width/2 - tile_asset.x_offset , end.x + tile_asset.width/2 + tile_asset.x_offset, num = num_assets) 
+                        else:
+                            pos_x = np.linspace(start.x + tile_asset.width/2 + tile_asset.x_offset , end.x - tile_asset.width/2 - tile_asset.x_offset, num = num_assets) 
+            for i in range(len(pos_x)):
+                tile.append(
+                    Obstacle(
+                        name = tile_asset.name+f"_{i}",
+                        pose = Pose(
+                            Position(x = pos_x[i], y = pos_y[i] + 0.02, z = tile_asset.z_offset ),
+                            Orientation.from_yaw(angle)
+                        ),
+                        model = ObstacleLoader.bind(tile_asset.name),
+                        type_ = "Wall",
+                        extra = {},
+                    )
+                )
+        return fill,tile,data.get('material',{}).get('material','')
 
 @register_parse
 @attrs.define
@@ -72,7 +194,7 @@ class Floor(Parseable):
                 y_length=value[3],
             )
         elif isinstance(value, dict):
-            return cls(**value)
+            return converter.structure(value,cls)
         else:
             raise ValueError(f"Could not parse as floor: {value}")
 
@@ -116,6 +238,7 @@ class Entity(Parseable):
 @attrs.define
 class Obstacle(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
+    type_: str = attrs.field(converter=str)
 
 
 @attrs.define

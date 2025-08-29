@@ -1,0 +1,25 @@
+main:
+  - fill: blue_wall_stripe
+    file: ''
+    height: 0.25
+    x_offset: 0 
+    y_offset: 0 
+    z_offset: 1.5
+    material: Metal_Cast 
+  - fill: wooden_stripe
+    file: ''
+    height: 0.75
+    x_offset: 0 
+    y_offset: 0 
+    z_offset: 0.25
+    material: Bamboo_Planks 
+  - tile: residential_painting_1
+    every: 5
+    width: 5
+    x_offset: 0
+    y_offset: 0
+    z_offset: 1
+    material: ''
+    material_name: ''
+material:
+  material: ''
