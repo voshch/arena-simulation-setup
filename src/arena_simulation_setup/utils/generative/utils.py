@@ -223,6 +223,7 @@ class GeneratedWorld:
         with open(world.map.map_png, 'wb') as f:
             f.write(self.to_map_png())
 
-        os.makedirs(world.scenario.base_dir(), exist_ok=True)
-        with open(world.scenario('default.json').path, 'w') as f:
+        scenario = world.scenario('default')
+        os.makedirs(scenario.path, exist_ok=True)
+        with open(scenario.scenario_path, 'w') as f:
             f.write('{}')

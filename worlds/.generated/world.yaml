@@ -19,163 +19,163 @@ zones:
       y: 25.0
       z: 0.0
     end:
-      x: 19.3
+      x: 5.4
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 21.8
+      x: 7.9
       y: 25.0
       z: 0.0
     end:
-      x: 25.5
+      x: 27.9
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 28.0
+      x: 30.4
       y: 25.0
       z: 0.0
     end:
-      x: 37.5
+      x: 34.9
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 40.0
+      x: 37.4
       y: 25.0
       z: 0.0
     end:
-      x: 44.2
+      x: 40.7
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 46.7
+      x: 43.2
       y: 25.0
       z: 0.0
     end:
-      x: 51.4
+      x: 50.6
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 53.9
+      x: 53.1
       y: 25.0
       z: 0.0
     end:
-      x: 56.6
+      x: 57.1
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 59.1
+      x: 59.6
       y: 25.0
       z: 0.0
     end:
-      x: 69.3
+      x: 65.7
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 71.8
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 82.5
+      x: 68.2
       y: 25.0
       z: 0.0
     end:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     end:
-      x: 72.0
+      x: 82.5
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 69.5
+      x: 82.5
       y: 30.0
       z: 0.0
     end:
-      x: 63.6
+      x: 81.6
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 61.1
+      x: 79.1
       y: 30.0
       z: 0.0
     end:
-      x: 56.6
+      x: 63.9
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 54.1
+      x: 61.4
       y: 30.0
       z: 0.0
     end:
-      x: 44.2
+      x: 55.2
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 41.7
+      x: 52.7
       y: 30.0
       z: 0.0
     end:
-      x: 37.2
+      x: 47.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 34.7
+      x: 44.6
       y: 30.0
       z: 0.0
     end:
-      x: 29.0
+      x: 36.2
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 26.5
+      x: 33.7
       y: 30.0
       z: 0.0
     end:
-      x: 8.0
+      x: 30.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 5.5
+      x: 27.6
+      y: 30.0
+      z: 0.0
+    end:
+      x: 14.5
+      y: 30.0
+      z: 0.0
+    height: 2.0
+    type_ : hospital 
+  - start:
+      x: 12.0
       y: 30.0
       z: 0.0
     end:
@@ -193,7 +193,7 @@ zones:
       y: 25.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -202,12 +202,12 @@ zones:
 - name: zone_1
   corners:
   - x: 2.5
-    y: 43.5
+    y: 49.5
     z: 0.0
-  - x: 23.6
-    y: 43.5
+  - x: 20.6
+    y: 49.5
     z: 0.0
-  - x: 23.6
+  - x: 20.6
     y: 30.0
     z: 0.0
   - x: 2.5
@@ -219,51 +219,51 @@ zones:
       y: 30.0
       z: 0.0
     end:
-      x: 5.5
+      x: 12.0
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 8.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 23.6
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 23.6
+      x: 14.5
       y: 30.0
       z: 0.0
     end:
-      x: 23.6
-      y: 43.5
+      x: 20.6
+      y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 23.6
-      y: 43.5
+      x: 20.6
+      y: 30.0
       z: 0.0
     end:
-      x: 2.5
-      y: 43.5
+      x: 20.6
+      y: 49.5
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 2.5
-      y: 43.5
+      x: 20.6
+      y: 49.5
       z: 0.0
     end:
       x: 2.5
-      y: 30.0
+      y: 49.5
       z: 0.0
     height: 2.0
     type_ : hospital 
+  - start:
+      x: 2.5
+      y: 49.5
+      z: 0.0
+    end:
+      x: 2.5
+      y: 30.0
+      z: 0.0
+    height: 2.0
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -271,69 +271,69 @@ zones:
   description: ''
 - name: zone_2
   corners:
-  - x: 23.6
-    y: 42.0
+  - x: 20.6
+    y: 42.6
     z: 0.0
-  - x: 30.8
-    y: 42.0
+  - x: 31.1
+    y: 42.6
     z: 0.0
-  - x: 30.8
+  - x: 31.1
     y: 30.0
     z: 0.0
-  - x: 23.6
+  - x: 20.6
     y: 30.0
     z: 0.0
   walls:
   - start:
-      x: 23.6
+      x: 20.6
       y: 30.0
       z: 0.0
     end:
-      x: 26.5
+      x: 27.6
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 29.0
+      x: 30.1
       y: 30.0
       z: 0.0
     end:
-      x: 30.8
+      x: 31.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 30.8
+      x: 31.1
       y: 30.0
       z: 0.0
     end:
-      x: 30.8
-      y: 42.0
+      x: 31.1
+      y: 42.6
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 30.8
-      y: 42.0
+      x: 31.1
+      y: 42.6
       z: 0.0
     end:
-      x: 23.6
-      y: 42.0
+      x: 20.6
+      y: 42.6
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 23.6
-      y: 42.0
+      x: 20.6
+      y: 42.6
       z: 0.0
     end:
-      x: 23.6
+      x: 20.6
       y: 30.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -341,69 +341,69 @@ zones:
   description: ''
 - name: zone_3
   corners:
-  - x: 30.8
-    y: 43.0
+  - x: 31.1
+    y: 39.7
     z: 0.0
-  - x: 37.8
-    y: 43.0
+  - x: 40.1
+    y: 39.7
     z: 0.0
-  - x: 37.8
+  - x: 40.1
     y: 30.0
     z: 0.0
-  - x: 30.8
+  - x: 31.1
     y: 30.0
     z: 0.0
   walls:
   - start:
-      x: 30.8
+      x: 31.1
       y: 30.0
       z: 0.0
     end:
-      x: 34.7
+      x: 33.7
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 37.2
+      x: 36.2
       y: 30.0
       z: 0.0
     end:
-      x: 37.8
+      x: 40.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 37.8
+      x: 40.1
       y: 30.0
       z: 0.0
     end:
-      x: 37.8
-      y: 43.0
+      x: 40.1
+      y: 39.7
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 37.8
-      y: 43.0
+      x: 40.1
+      y: 39.7
       z: 0.0
     end:
-      x: 30.8
-      y: 43.0
+      x: 31.1
+      y: 39.7
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 30.8
-      y: 43.0
+      x: 31.1
+      y: 39.7
       z: 0.0
     end:
-      x: 30.8
+      x: 31.1
       y: 30.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -411,69 +411,69 @@ zones:
   description: ''
 - name: zone_4
   corners:
-  - x: 37.8
-    y: 37.2
+  - x: 40.1
+    y: 38.0
     z: 0.0
-  - x: 47.3
-    y: 37.2
+  - x: 49.1
+    y: 38.0
     z: 0.0
-  - x: 47.3
+  - x: 49.1
     y: 30.0
     z: 0.0
-  - x: 37.8
+  - x: 40.1
     y: 30.0
     z: 0.0
   walls:
   - start:
-      x: 37.8
+      x: 40.1
       y: 30.0
       z: 0.0
     end:
-      x: 41.7
+      x: 44.6
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 44.2
+      x: 47.1
       y: 30.0
       z: 0.0
     end:
-      x: 47.3
+      x: 49.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 47.3
+      x: 49.1
       y: 30.0
       z: 0.0
     end:
-      x: 47.3
-      y: 37.2
+      x: 49.1
+      y: 38.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 47.3
-      y: 37.2
+      x: 49.1
+      y: 38.0
       z: 0.0
     end:
-      x: 37.8
-      y: 37.2
+      x: 40.1
+      y: 38.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 37.8
-      y: 37.2
+      x: 40.1
+      y: 38.0
       z: 0.0
     end:
-      x: 37.8
+      x: 40.1
       y: 30.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -481,69 +481,69 @@ zones:
   description: ''
 - name: zone_5
   corners:
-  - x: 47.3
-    y: 37.7
+  - x: 49.1
+    y: 38.1
     z: 0.0
-  - x: 57.5
-    y: 37.7
+  - x: 55.8
+    y: 38.1
     z: 0.0
-  - x: 57.5
+  - x: 55.8
     y: 30.0
     z: 0.0
-  - x: 47.3
+  - x: 49.1
     y: 30.0
     z: 0.0
   walls:
   - start:
-      x: 47.3
+      x: 49.1
       y: 30.0
       z: 0.0
     end:
-      x: 54.1
+      x: 52.7
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 56.6
+      x: 55.2
       y: 30.0
       z: 0.0
     end:
-      x: 57.5
+      x: 55.8
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 57.5
+      x: 55.8
       y: 30.0
       z: 0.0
     end:
-      x: 57.5
-      y: 37.7
+      x: 55.8
+      y: 38.1
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 57.5
-      y: 37.7
+      x: 55.8
+      y: 38.1
       z: 0.0
     end:
-      x: 47.3
-      y: 37.7
+      x: 49.1
+      y: 38.1
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 47.3
-      y: 37.7
+      x: 49.1
+      y: 38.1
       z: 0.0
     end:
-      x: 47.3
+      x: 49.1
       y: 30.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -551,69 +551,69 @@ zones:
   description: ''
 - name: zone_6
   corners:
-  - x: 57.5
-    y: 40.3
+  - x: 55.8
+    y: 41.7
     z: 0.0
-  - x: 64.3
-    y: 40.3
+  - x: 64.2
+    y: 41.7
     z: 0.0
-  - x: 64.3
+  - x: 64.2
     y: 30.0
     z: 0.0
-  - x: 57.5
+  - x: 55.8
     y: 30.0
     z: 0.0
   walls:
   - start:
-      x: 57.5
+      x: 55.8
       y: 30.0
       z: 0.0
     end:
-      x: 61.1
+      x: 61.4
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 63.6
+      x: 63.9
       y: 30.0
       z: 0.0
     end:
-      x: 64.3
+      x: 64.2
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 64.3
+      x: 64.2
       y: 30.0
       z: 0.0
     end:
-      x: 64.3
-      y: 40.3
+      x: 64.2
+      y: 41.7
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 64.3
-      y: 40.3
+      x: 64.2
+      y: 41.7
       z: 0.0
     end:
-      x: 57.5
-      y: 40.3
+      x: 55.8
+      y: 41.7
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 57.5
-      y: 40.3
+      x: 55.8
+      y: 41.7
       z: 0.0
     end:
-      x: 57.5
+      x: 55.8
       y: 30.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -621,31 +621,31 @@ zones:
   description: ''
 - name: zone_7
   corners:
-  - x: 64.3
-    y: 45.9
+  - x: 64.2
+    y: 45.5
     z: 0.0
-  - x: 82.5
-    y: 45.9
+  - x: 82.4
+    y: 45.5
     z: 0.0
   - x: 82.5
     y: 30.0
     z: 0.0
-  - x: 64.3
+  - x: 64.2
     y: 30.0
     z: 0.0
   walls:
   - start:
-      x: 64.3
+      x: 64.2
       y: 30.0
       z: 0.0
     end:
-      x: 69.5
+      x: 79.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 72.0
+      x: 81.6
       y: 30.0
       z: 0.0
     end:
@@ -659,31 +659,31 @@ zones:
       y: 30.0
       z: 0.0
     end:
-      x: 82.5
-      y: 45.9
+      x: 82.4
+      y: 45.5
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 82.5
-      y: 45.9
+      x: 82.4
+      y: 45.5
       z: 0.0
     end:
-      x: 64.3
-      y: 45.9
+      x: 64.2
+      y: 45.5
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 64.3
-      y: 45.9
+      x: 64.2
+      y: 45.5
       z: 0.0
     end:
-      x: 64.3
+      x: 64.2
       y: 30.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -709,163 +709,163 @@ zones:
       y: 25.0
       z: 0.0
     end:
-      x: 19.3
+      x: 5.4
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 21.8
+      x: 7.9
       y: 25.0
       z: 0.0
     end:
-      x: 25.5
+      x: 27.9
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 28.0
+      x: 30.4
       y: 25.0
       z: 0.0
     end:
-      x: 37.5
+      x: 34.9
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 40.0
+      x: 37.4
       y: 25.0
       z: 0.0
     end:
-      x: 44.2
+      x: 40.7
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 46.7
+      x: 43.2
       y: 25.0
       z: 0.0
     end:
-      x: 51.4
+      x: 50.6
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 53.9
+      x: 53.1
       y: 25.0
       z: 0.0
     end:
-      x: 56.6
+      x: 57.1
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 59.1
+      x: 59.6
       y: 25.0
       z: 0.0
     end:
-      x: 69.3
+      x: 65.7
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 71.8
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 82.5
+      x: 68.2
       y: 25.0
       z: 0.0
     end:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
       x: 82.5
-      y: 30.0
+      y: 25.0
       z: 0.0
     end:
-      x: 72.0
+      x: 82.5
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 69.5
+      x: 82.5
       y: 30.0
       z: 0.0
     end:
-      x: 63.6
+      x: 81.6
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 61.1
+      x: 79.1
       y: 30.0
       z: 0.0
     end:
-      x: 56.6
+      x: 63.9
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 54.1
+      x: 61.4
       y: 30.0
       z: 0.0
     end:
-      x: 44.2
+      x: 55.2
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 41.7
+      x: 52.7
       y: 30.0
       z: 0.0
     end:
-      x: 37.2
+      x: 47.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 34.7
+      x: 44.6
       y: 30.0
       z: 0.0
     end:
-      x: 29.0
+      x: 36.2
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 26.5
+      x: 33.7
       y: 30.0
       z: 0.0
     end:
-      x: 8.0
+      x: 30.1
       y: 30.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 5.5
+      x: 27.6
+      y: 30.0
+      z: 0.0
+    end:
+      x: 14.5
+      y: 30.0
+      z: 0.0
+    height: 2.0
+    type_ : hospital 
+  - start:
+      x: 12.0
       y: 30.0
       z: 0.0
     end:
@@ -883,7 +883,7 @@ zones:
       y: 25.0
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -894,48 +894,48 @@ zones:
   - x: 2.5
     y: 25.0
     z: 0.0
-  - x: 23.0
+  - x: 24.2
     y: 25.0
     z: 0.0
-  - x: 23.0
-    y: 7.6
+  - x: 24.2
+    y: 9.6
     z: 0.0
   - x: 2.5
-    y: 7.6
+    y: 9.6
     z: 0.0
   walls:
   - start:
       x: 2.5
-      y: 7.6
+      y: 9.6
       z: 0.0
     end:
-      x: 23.0
-      y: 7.6
+      x: 24.2
+      y: 9.6
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 23.0
-      y: 7.6
+      x: 24.2
+      y: 9.6
       z: 0.0
     end:
-      x: 23.0
+      x: 24.2
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 23.0
+      x: 24.2
       y: 25.0
       z: 0.0
     end:
-      x: 21.8
+      x: 7.9
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 19.3
+      x: 5.4
       y: 25.0
       z: 0.0
     end:
@@ -950,10 +950,10 @@ zones:
       z: 0.0
     end:
       x: 2.5
-      y: 7.6
+      y: 9.6
       z: 0.0
     height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -961,69 +961,69 @@ zones:
   description: ''
 - name: zone_10
   corners:
-  - x: 23.0
+  - x: 24.2
     y: 25.0
     z: 0.0
-  - x: 31.9
+  - x: 30.8
     y: 25.0
     z: 0.0
-  - x: 31.9
-    y: 14.5
+  - x: 30.8
+    y: 11.0
     z: 0.0
-  - x: 23.0
-    y: 14.5
+  - x: 24.2
+    y: 11.0
     z: 0.0
   walls:
   - start:
-      x: 23.0
-      y: 14.5
+      x: 24.2
+      y: 11.0
       z: 0.0
     end:
-      x: 31.9
-      y: 14.5
+      x: 30.8
+      y: 11.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 31.9
-      y: 14.5
+      x: 30.8
+      y: 11.0
       z: 0.0
     end:
-      x: 31.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 31.9
-      y: 25.0
-      z: 0.0
-    end:
-      x: 28.0
+      x: 30.8
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 25.5
+      x: 30.8
       y: 25.0
       z: 0.0
     end:
-      x: 23.0
+      x: 30.4
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 23.0
+      x: 27.9
       y: 25.0
       z: 0.0
     end:
-      x: 23.0
-      y: 14.5
+      x: 24.2
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
+  - start:
+      x: 24.2
+      y: 25.0
+      z: 0.0
+    end:
+      x: 24.2
+      y: 11.0
+      z: 0.0
+    height: 2.0
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -1031,69 +1031,69 @@ zones:
   description: ''
 - name: zone_11
   corners:
-  - x: 31.9
+  - x: 30.8
     y: 25.0
     z: 0.0
-  - x: 41.6
+  - x: 37.6
     y: 25.0
     z: 0.0
-  - x: 41.6
-    y: 11.1
+  - x: 37.6
+    y: 16.4
     z: 0.0
-  - x: 31.9
-    y: 11.1
+  - x: 30.8
+    y: 16.4
     z: 0.0
   walls:
   - start:
-      x: 31.9
-      y: 11.1
+      x: 30.8
+      y: 16.4
       z: 0.0
     end:
-      x: 41.6
-      y: 11.1
+      x: 37.6
+      y: 16.4
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 41.6
-      y: 11.1
+      x: 37.6
+      y: 16.4
       z: 0.0
     end:
-      x: 41.6
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 41.6
-      y: 25.0
-      z: 0.0
-    end:
-      x: 40.0
+      x: 37.6
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 37.5
+      x: 37.6
       y: 25.0
       z: 0.0
     end:
-      x: 31.9
+      x: 37.4
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 31.9
+      x: 34.9
       y: 25.0
       z: 0.0
     end:
-      x: 31.9
-      y: 11.1
+      x: 30.8
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
+  - start:
+      x: 30.8
+      y: 25.0
+      z: 0.0
+    end:
+      x: 30.8
+      y: 16.4
+      z: 0.0
+    height: 2.0
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -1101,69 +1101,69 @@ zones:
   description: ''
 - name: zone_12
   corners:
-  - x: 41.6
+  - x: 37.6
     y: 25.0
     z: 0.0
-  - x: 48.2
+  - x: 47.8
     y: 25.0
     z: 0.0
-  - x: 48.2
-    y: 16.6
+  - x: 47.8
+    y: 14.1
     z: 0.0
-  - x: 41.6
-    y: 16.6
+  - x: 37.6
+    y: 14.1
     z: 0.0
   walls:
   - start:
-      x: 41.6
-      y: 16.6
+      x: 37.6
+      y: 14.1
       z: 0.0
     end:
-      x: 48.2
-      y: 16.6
+      x: 47.8
+      y: 14.1
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 48.2
-      y: 16.6
+      x: 47.8
+      y: 14.1
       z: 0.0
     end:
-      x: 48.2
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 48.2
-      y: 25.0
-      z: 0.0
-    end:
-      x: 46.7
+      x: 47.8
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 44.2
+      x: 47.8
       y: 25.0
       z: 0.0
     end:
-      x: 41.6
+      x: 43.2
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 41.6
+      x: 40.7
       y: 25.0
       z: 0.0
     end:
-      x: 41.6
-      y: 16.6
+      x: 37.6
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
+  - start:
+      x: 37.6
+      y: 25.0
+      z: 0.0
+    end:
+      x: 37.6
+      y: 14.1
+      z: 0.0
+    height: 2.0
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -1171,69 +1171,69 @@ zones:
   description: ''
 - name: zone_13
   corners:
-  - x: 48.2
+  - x: 47.8
     y: 25.0
     z: 0.0
-  - x: 54.0
+  - x: 53.2
     y: 25.0
     z: 0.0
-  - x: 54.0
-    y: 13.0
+  - x: 53.2
+    y: 12.7
     z: 0.0
-  - x: 48.2
-    y: 13.0
+  - x: 47.8
+    y: 12.7
     z: 0.0
   walls:
   - start:
-      x: 48.2
-      y: 13.0
+      x: 47.8
+      y: 12.7
       z: 0.0
     end:
-      x: 54.0
-      y: 13.0
+      x: 53.2
+      y: 12.7
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 54.0
-      y: 13.0
+      x: 53.2
+      y: 12.7
       z: 0.0
     end:
-      x: 54.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 54.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 53.9
+      x: 53.2
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 51.4
+      x: 53.2
       y: 25.0
       z: 0.0
     end:
-      x: 48.2
+      x: 53.1
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 48.2
+      x: 50.6
       y: 25.0
       z: 0.0
     end:
-      x: 48.2
-      y: 13.0
+      x: 47.8
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
+  - start:
+      x: 47.8
+      y: 25.0
+      z: 0.0
+    end:
+      x: 47.8
+      y: 12.7
+      z: 0.0
+    height: 2.0
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -1241,69 +1241,69 @@ zones:
   description: ''
 - name: zone_14
   corners:
-  - x: 54.0
+  - x: 53.2
     y: 25.0
     z: 0.0
-  - x: 60.0
+  - x: 60.4
     y: 25.0
     z: 0.0
-  - x: 60.0
-    y: 13.1
+  - x: 60.4
+    y: 16.4
     z: 0.0
-  - x: 54.0
-    y: 13.1
+  - x: 53.2
+    y: 16.4
     z: 0.0
   walls:
   - start:
-      x: 54.0
-      y: 13.1
+      x: 53.2
+      y: 16.4
       z: 0.0
     end:
-      x: 60.0
-      y: 13.1
+      x: 60.4
+      y: 16.4
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 60.0
-      y: 13.1
+      x: 60.4
+      y: 16.4
       z: 0.0
     end:
-      x: 60.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
-  - start:
-      x: 60.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 59.1
+      x: 60.4
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 56.6
+      x: 60.4
       y: 25.0
       z: 0.0
     end:
-      x: 54.0
+      x: 59.6
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 54.0
+      x: 57.1
       y: 25.0
       z: 0.0
     end:
-      x: 54.0
-      y: 13.1
+      x: 53.2
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
+  - start:
+      x: 53.2
+      y: 25.0
+      z: 0.0
+    end:
+      x: 53.2
+      y: 16.4
+      z: 0.0
+    height: 2.0
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -1311,69 +1311,69 @@ zones:
   description: ''
 - name: zone_15
   corners:
-  - x: 60.0
+  - x: 60.4
     y: 25.0
     z: 0.0
   - x: 82.5
     y: 25.0
     z: 0.0
-  - x: 82.5
-    y: 11.2
+  - x: 82.4
+    y: 9.7
     z: 0.0
-  - x: 60.0
-    y: 11.2
+  - x: 60.4
+    y: 9.7
     z: 0.0
   walls:
   - start:
-      x: 60.0
-      y: 11.2
+      x: 60.4
+      y: 9.7
+      z: 0.0
+    end:
+      x: 82.4
+      y: 9.7
+      z: 0.0
+    height: 2.0
+    type_ : hospital 
+  - start:
+      x: 82.4
+      y: 9.7
       z: 0.0
     end:
       x: 82.5
-      y: 11.2
+      y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
       x: 82.5
-      y: 11.2
+      y: 25.0
       z: 0.0
     end:
-      x: 82.5
+      x: 68.2
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 82.5
+      x: 65.7
       y: 25.0
       z: 0.0
     end:
-      x: 71.8
+      x: 60.4
       y: 25.0
       z: 0.0
     height: 2.0
     type_ : hospital 
   - start:
-      x: 69.3
+      x: 60.4
       y: 25.0
       z: 0.0
     end:
-      x: 60.0
-      y: 25.0
+      x: 60.4
+      y: 9.7
       z: 0.0
     height: 2.0
-    type_ : hospital 
-  - start:
-      x: 60.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 60.0
-      y: 11.2
-      z: 0.0
-    height: 2.0
-    type_ : hospital 
+    mat: ''
   mat: ''
   entities:
     static: []
@@ -1403,7 +1403,7 @@ zones:
 #       y: 0.0
 #       z: 0.0
 #     height: 2.0
-#     type_ : hospital 
+#     mat: ''
 #   - start:
 #       x: 90.0
 #       y: 0.0
@@ -1413,7 +1413,7 @@ zones:
 #       y: 60.0
 #       z: 0.0
 #     height: 2.0
-#     type_ : hospital 
+#     mat: ''
 #   - start:
 #       x: 90.0
 #       y: 60.0
@@ -1423,7 +1423,7 @@ zones:
 #       y: 60.0
 #       z: 0.0
 #     height: 2.0
-#     type_ : hospital 
+#     mat: ''
 #   - start:
 #       x: 0.0
 #       y: 60.0
@@ -1433,7 +1433,7 @@ zones:
 #       y: 0.0
 #       z: 0.0
 #     height: 2.0
-#     type_ : hospital 
+#     mat: ''
 #   mat: ''
 #   entities:
 #     static: []
