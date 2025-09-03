@@ -1,0 +1,19 @@
+default:
+  material_name: Mahogany
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Mahogany.mdl'
+
+Metal_Cast:
+  material_name: Metal_Cast_Painted
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Metal/Metal_Cast.mdl'
+Mahogany:
+  material_name: Mahogany
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Mahogany.mdl'
+Walnut_Planks:
+  material_name: Walnut_Planks
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Walnut_Planks.mdl'
+Ceramic_Tiles_Glazed:
+  material_name: Ceramic_Tiles_Glazed_Diamond
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Ceramic/Ceramic_Tiles_Glazed_Diamond.mdl'
+Bamboo_Planks:
+  material_name: Bamboo_Planks
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Bamboo_Planks.mdl'

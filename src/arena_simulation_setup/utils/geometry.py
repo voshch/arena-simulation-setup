@@ -55,17 +55,68 @@ _EulerIndices: dict[str, tuple[int, int, int]] = {
 }
 
 
-@register_parse
-@attrs_sequence(float)
 @attrs.define
-class Position(Parseable, Idempotent):
-    """
-    3D position
-    """
-
+class Vector:
     x: float = attrs.field(converter=float)
     y: float = attrs.field(converter=float)
     z: float = attrs.field(converter=float, default=0.0)
+
+    def __add__(self, other: Position) -> Position:
+        return Position(
+            x=self.x + other.x,
+            y=self.y + other.y,
+            z=self.z + other.z
+        )
+
+    def __sub__(self, other: Position) -> Position:
+        return Position(
+            x=self.x - other.x,
+            y=self.y - other.y,
+            z=self.z - other.z
+        )
+
+    def __mul__(self, other: float) -> Position:
+        return Position(
+            x=self.x * other,
+            y=self.y * other,
+            z=self.z * other
+        )
+
+    def __rmul__(self, other: float) -> Position:
+        return self * other
+
+    def __truediv__(self, other: float) -> Position:
+        return Position(
+            x=self.x / other,
+            y=self.y / other,
+            z=self.z / other
+        )
+
+    def norm(self, n: float = 2) -> float:
+        """
+        return norm of position vector
+        """
+        return (self.x ** n + self.y ** n + self.z ** n) ** (1 / n)
+
+    def normalized(self) -> Position:
+        return self / (self.norm() or 1)
+
+    def to_orientation(self) -> Orientation:
+        """
+        return orientation of vector
+        """
+        yaw = math.atan2(self.y, self.x)
+        pitch = math.atan2(-self.z, math.sqrt(self.x * self.x + self.y * self.y))
+        return Orientation.from_euler((0, pitch, yaw), order='zyx')
+
+
+@register_parse
+@attrs_sequence(float)
+@attrs.define
+class Position(Parseable, Idempotent, Vector):
+    """
+    3D position
+    """
 
     @classmethod
     def parse(cls, value: geometry_msgs.msg.Point | collections.abc.Sequence[float]) -> Position:
@@ -144,6 +195,10 @@ class Orientation(Parseable, Idempotent):
             return cls.from_euler((0, 0, value), order='xyz')
 
         raise ValueError(f"could not parse Orientation from {value}")
+
+    @classmethod
+    def identity(cls) -> Orientation:
+        return cls(1.0, 0.0, 0.0, 0.0)
 
     @classmethod
     def from_msg(
@@ -225,6 +280,14 @@ class Orientation(Parseable, Idempotent):
         return yaw angle
         """
         return self.to_euler()[2]
+
+    def __mul__(self, other: Orientation) -> Orientation:
+        return Orientation(
+            w=self.w * other.w - self.x * other.x - self.y * other.y - self.z * other.z,
+            x=self.w * other.x + self.x * other.w + self.y * other.z - self.z * other.y,
+            y=self.w * other.y - self.x * other.z + self.y * other.w + self.z * other.x,
+            z=self.w * other.z + self.x * other.y - self.y * other.x + self.z * other.w,
+        )
 
 
 @register_parse

@@ -40,7 +40,6 @@ class ProviderBase:
         return cls._base_dir
 
     # Instance Methods: Providee
-
     def __init__(self, name: str) -> None:
         self._name = name
 

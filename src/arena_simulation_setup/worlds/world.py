@@ -37,7 +37,7 @@ class WorldDescription:
         corners: list[Position] = attrs.field(factory=list)
         walls: list[Wall] = attrs.field(factory=list)
         doors: list[Door] = attrs.field(factory=list)
-        mat: str = attrs.field(default="")  # floor material
+        mat: str = ''   # floor material
         entities: WorldEntities = attrs.field(factory=WorldEntities)
         description: str = attrs.field(default="")
 
