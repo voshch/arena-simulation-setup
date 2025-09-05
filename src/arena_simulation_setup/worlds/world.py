@@ -5,7 +5,7 @@ import attrs
 import yaml
 
 from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.entities.materials import Material
+from arena_simulation_setup.entities.materials import FloorMaterialLoader, MaterialProvider
 from arena_simulation_setup.shared import Door, DynamicObstacle, Floor, Obstacle, Wall
 from arena_simulation_setup.utils.cattrs import converter
 from arena_simulation_setup.utils.geometry import Position
@@ -38,9 +38,9 @@ class WorldDescription:
         corners: list[Position] = attrs.field(factory=list)
         walls: list[Wall] = attrs.field(factory=list)
         doors: list[Door] = attrs.field(factory=list)
-        mat: str = ''   # floor material
+        material: MaterialProvider = attrs.field(converter=FloorMaterialLoader, factory=FloorMaterialLoader.DEFAULT)
         entities: WorldEntities = attrs.field(factory=WorldEntities)
-        description: str = attrs.field(default="")
+        description: str = ''
 
         @property
         def floor(self) -> Floor:
@@ -51,7 +51,7 @@ class WorldDescription:
             pos = Position(x=(x_min + x_max) / 2, y=(y_min + y_max) / 2)
             x_length = x_max - x_min
             y_length = y_max - y_min
-            return Floor(pos=pos, x_length=x_length, y_length=y_length, mat=self.mat or Material.DEFAULT)
+            return Floor(pos=pos, x_length=x_length, y_length=y_length, material=self.material)
 
     zones: list[Zone] = attrs.field(factory=list)
 

@@ -56,7 +56,7 @@ _EulerIndices: dict[str, tuple[int, int, int]] = {
 
 
 @attrs.define
-class Vector:
+class Vector3:
     x: float = attrs.field(converter=float)
     y: float = attrs.field(converter=float)
     z: float = attrs.field(converter=float, default=0.0)
@@ -107,13 +107,13 @@ class Vector:
         """
         yaw = math.atan2(self.y, self.x)
         pitch = math.atan2(-self.z, math.sqrt(self.x * self.x + self.y * self.y))
-        return Orientation.from_euler((0, pitch, yaw), order='zyx')
+        return Orientation.from_euler((0, pitch, yaw), order='xyz')
 
 
 @register_parse
 @attrs_sequence(float)
 @attrs.define
-class Position(Parseable, Idempotent, Vector):
+class Position(Parseable, Idempotent, Vector3):
     """
     3D position
     """
@@ -181,6 +181,7 @@ class Orientation(Parseable, Idempotent):
         parse value into Orientation
         formats: yaw, [roll, pitch, yaw], [w,x,y,z]
         """
+
         if isinstance(value, geometry_msgs.msg.Quaternion):
             return cls.from_msg(typing.cast(geometry_msgs.msg.Quaternion, value))
 
@@ -281,13 +282,29 @@ class Orientation(Parseable, Idempotent):
         """
         return self.to_euler()[2]
 
+    @typing.overload
     def __mul__(self, other: Orientation) -> Orientation:
-        return Orientation(
-            w=self.w * other.w - self.x * other.x - self.y * other.y - self.z * other.z,
-            x=self.w * other.x + self.x * other.w + self.y * other.z - self.z * other.y,
-            y=self.w * other.y - self.x * other.z + self.y * other.w + self.z * other.x,
-            z=self.w * other.z + self.x * other.y - self.y * other.x + self.z * other.w,
-        )
+        ...
+
+    @typing.overload
+    def __mul__(self, other: Vector3) -> Vector3:
+        ...
+
+    def __mul__(self, other: Orientation | Vector3) -> Orientation | Vector3:
+        if isinstance(other, Vector3):
+            return Vector3(
+                x=(1 - 2 * (self.y * self.y + self.z * self.z)) * other.x + (2 * (self.x * self.y - self.w * self.z)) * other.y + (2 * (self.x * self.z + self.w * self.y)) * other.z,
+                y=(2 * (self.x * self.y + self.w * self.z)) * other.x + (1 - 2 * (self.x * self.x + self.z * self.z)) * other.y + (2 * (self.y * self.z - self.w * self.x)) * other.z,
+                z=(2 * (self.x * self.z - self.w * self.y)) * other.x + (2 * (self.y * self.z + self.w * self.x)) * other.y + (1 - 2 * (self.x * self.x + self.y * self.y)) * other.z,
+            )
+        if isinstance(other, Orientation):
+            return Orientation(
+                w=self.w * other.w - self.x * other.x - self.y * other.y - self.z * other.z,
+                x=self.w * other.x + self.x * other.w + self.y * other.z - self.z * other.y,
+                y=self.w * other.y - self.x * other.z + self.y * other.w + self.z * other.x,
+                z=self.w * other.z + self.x * other.y - self.y * other.x + self.z * other.w,
+            )
+        raise ValueError(f"cannot multiply Orientation with {other}")
 
 
 @register_parse

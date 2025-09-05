@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import abc
 import typing
 
 from copy import deepcopy
-import functools
 
 import attr
 import cattrs
@@ -34,6 +35,18 @@ class Idempotent:
         if args and isinstance(args[0], cls):
             return deepcopy(args[0])
         return cls(*args, **kwargs)
+
+
+T = typing.TypeVar('T')
+
+
+def idempotent(cls: typing.Type[T]) -> typing.Type[Idempotent, T]:
+    """
+    Make class idempotent.
+    """
+    if not issubclass(cls, Idempotent):
+        return type(cls.__name__, (Idempotent, cls), {})
+    return cls
 
 
 ParseableT = typing.TypeVar('ParseableT', bound='Parseable')

@@ -13,13 +13,20 @@ from arena_simulation_setup.utils.cattrs import converter
 @attrs.define
 class Material:
     url: str
-    material_name: str
+    name: str
 
     DEFAULT: typing.ClassVar[str] = "default"
+
+    def asdict(self) -> dict:
+        return attrs.asdict(self)
 
 
 class MaterialProvider(ProviderBase):
     _materials_dict: typing.ClassVar[dict[str, dict]]
+
+    @classmethod
+    def DEFAULT(cls) -> MaterialProvider:
+        return cls(Material.DEFAULT)
 
     @classmethod
     def bind(cls, path: str) -> MaterialProvider:
@@ -33,7 +40,10 @@ class MaterialProvider(ProviderBase):
         return list(cls._materials_dict.keys())
 
     def load(self) -> Material:
-        return converter.structure(self._materials_dict[self._name], Material)
+        material = self._materials_dict.get(self._name)
+        if material is None:
+            raise FileNotFoundError(f'Material not found in {self._path}: {self._name}')
+        return converter.structure(material, Material)
 
 
 WallMaterialLoader = MaterialProvider.bind(os.path.join(ass_dir, 'entities', 'materials', 'wall.yaml'))

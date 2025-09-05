@@ -4,15 +4,10 @@ import typing
 
 import attrs
 
-from arena_simulation_setup.utils.cattrs import (
-    register_parse,
-)
-
 from arena_simulation_setup.utils.geometry import Pose, Position
-from arena_simulation_setup.entities.materials import Material, FloorMaterialLoader
+from arena_simulation_setup.entities.materials import MaterialProvider, FloorMaterialLoader, WallMaterialLoader
 
 
-@register_parse
 @attrs.define
 class Elevator:
     name: str
@@ -20,11 +15,10 @@ class Elevator:
     size: list[float] = attrs.field(factory=lambda: [2.0, 2.0, 0.2])
     height_min: float = 0.0
     height_max: float = 3.0
-    material: str = "Metal"  # TODO
+    material: MaterialProvider = attrs.field(converter=FloorMaterialLoader, factory=FloorMaterialLoader.DEFAULT)
     destination: str = attrs.field(default="")
 
 
-@register_parse
 @attrs.define
 class Door:
     name: str
@@ -34,7 +28,7 @@ class Door:
     pose: Pose = attrs.field(factory=Pose, converter=Pose.converter)
     description: str = attrs.field(default="")
     height: float = attrs.field(default=2.0)
-    material: str = attrs.field(default="Adobe_Bricks_01")  # TODO
+    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
 
 
 @attrs.define
@@ -42,4 +36,4 @@ class Floor:
     pos: Position = attrs.field(converter=Position.converter)
     x_length: float = attrs.field(converter=float, default=20.)
     y_length: float = attrs.field(converter=float, default=20.)
-    mat: Material = attrs.field(converter=FloorMaterialLoader, default=Material.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=FloorMaterialLoader, factory=FloorMaterialLoader.DEFAULT)

@@ -11,14 +11,18 @@ import attrs
 import yaml
 
 from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.entities.materials import Material, WallMaterialLoader
+from arena_simulation_setup.entities.materials import (
+    MaterialProvider,
+    WallMaterialLoader,
+)
 from arena_simulation_setup.entities.obstacles.static import (
     loader as ObstacleModelLoader,
 )
 from arena_simulation_setup.shared.entities import Obstacle
+from arena_simulation_setup.shared.utils import model_parse
 from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
 from arena_simulation_setup.utils.geometry import Orientation, Pose, Position
-from arena_simulation_setup.utils.models import Model
+from arena_simulation_setup.utils.models import ModelWrapper
 
 ###
 # Parsing wall description
@@ -46,8 +50,7 @@ class PositionalNumber(Parseable):
             return low + (high - low) * self._relative
 
     def realize(self, start: Position, end: Position) -> Position:
-        line_length = math.dist((start.x, start.y), (end.x, end.y))
-        return start + self.absolute(0.0, line_length) * (end - start)
+        return start + self.absolute(0.0, (end - start).norm()) * (end - start).normalized()
 
     @classmethod
     def parse(cls, value: typing.Any) -> PositionalNumber:
@@ -62,12 +65,10 @@ class SubWall(abc.ABC):
     y: float = attrs.field(converter=float, default=0.0)  # y axis shift [m]
     z: float = attrs.field(converter=float, default=0.0)  # z axis shift [m]
 
-    def _shift(self, pos: Position) -> Position:
-        return Position(
-            x=pos.x + self.x,
-            y=pos.y + self.y,
-            z=pos.z + self.z,
-        )
+    def _shift(self, start: Position, end: Position) -> tuple[Position, Position]:
+        external_orientation = (end - start).to_orientation()
+        offset = external_orientation * Position(self.x, self.y, self.z)
+        return start + offset, end + offset
 
     @abc.abstractmethod
     def realize(self, start: Position, end: Position) -> WallRealization:
@@ -79,23 +80,24 @@ class TilingAsset(SubWall):
     """
     Place repeating asset along the wall.
     """
-    tile: list[SubWallT]  # sub-assets to place
+    tile: list[SubWallT]
     every: float  # place every N meters
+    width: float = attrs.field(converter=float, default=0.0)  # width of the tile [m]
 
     def realize(self, start: Position, end: Position) -> WallRealization:
-        start = self._shift(start)
-        end = self._shift(end)
+        start, end = self._shift(start, end)
 
         r_walls, r_obstacles = itertools.chain(()), itertools.chain(())
-        within = (end - start).norm()
+        every = self.every / (end - start).norm()
+        width = self.width / (end - start).norm() / 2.0
 
-        i = 0
-        while (p := i * self.every) < within:
+        offset = every + width
+        while (offset + width) < 1:
             for asset in self.tile:
-                walls, obstacles = asset.realize(start + p * (end - start), start + (p + self.every) * (end - start))
+                walls, obstacles = asset.realize(start + (offset - width) * (end - start), start + (offset + width) * (end - start))
                 r_walls = itertools.chain(r_walls, walls)
                 r_obstacles = itertools.chain(r_obstacles, obstacles)
-            i += 1
+            offset += every
         return (r_walls, r_obstacles)
 
 
@@ -109,8 +111,7 @@ class FillAsset(SubWall):
     end: PositionalNumber = PositionalNumber.parse(-0.0)  # end at N meters along the wall
 
     def realize(self, start: Position, end: Position) -> WallRealization:
-        start = self._shift(start)
-        end = self._shift(end)
+        start, end = self._shift(start, end)
 
         r_start = self.start.realize(start, end)
         r_end = self.end.realize(start, end)
@@ -123,37 +124,25 @@ class PlaceObstacleAsset(SubWall):
     """
     Place a single obstacle.
     """
-    x: PositionalNumber = PositionalNumber.parse(0.0)  # x axis shift [m]
-    y: PositionalNumber = PositionalNumber.parse(0.0)  # y axis shift [m]
-    z: PositionalNumber = PositionalNumber.parse(0.0)  # z axis shift [m]
+    model: ModelWrapper = attrs.field(converter=model_parse(ObstacleModelLoader))  # model
 
-    model: str
-    name: str = ""
-    orientation: Orientation = attrs.field(factory=Orientation.identity)
+    at: PositionalNumber = PositionalNumber.parse('50%')  # place at position along the wall
+    orientation: Orientation = attrs.field(factory=Orientation.identity)  # interior orientation
+
+    name: str = ""  # asset name, defaults to model name
 
     def realize(self, start: Position, end: Position) -> WallRealization:
-        start = Position(
-            x=self.x.realize(start, end).x,
-            y=self.y.realize(start, end).y,
-            z=self.z.realize(start, end).z,
-        )
-        end = Position(
-            x=self.x.realize(start, end).x,
-            y=self.y.realize(start, end).y,
-            z=self.z.realize(start, end).z,
-        )
+
+        exterior_orientation = (end - start).to_orientation()
+        start, end = self._shift(start, end)
 
         return (), (
             Obstacle(
-                name=self.name or self.model,
+                name=self.name or self.model.name,
                 model=self.model,
                 pose=Pose(
-                    position=Position(
-                        x=self.x.realize(start, end).x,
-                        y=self.y.realize(start, end).y,
-                        z=self.z.realize(start, end).z,
-                    ),
-                    orientation=self.orientation * (end - start).to_orientation(),
+                    position=self.at.realize(start, end),
+                    orientation=self.orientation * exterior_orientation,
                 ),
             ),
         )
@@ -164,14 +153,13 @@ class PlaceWallSegmentAsset(SubWall):
     """
     Place a single wall segment.
     """
-    material: str
+    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
     height: float = attrs.field(converter=float, default=2.0)
     width: float = attrs.field(converter=float, default=0.05)
     name: str = ""
 
     def realize(self, start: Position, end: Position) -> WallRealization:
-        start = self._shift(start)
-        end = self._shift(end)
+        start, end = self._shift(start, end)
 
         return (
             WallSegment(
@@ -179,11 +167,12 @@ class PlaceWallSegmentAsset(SubWall):
                 end=end,
                 height=self.height,
                 width=self.width,
-                material=WallMaterialLoader(self.material),
+                material=self.material,
             ),
         ), ()
 
 
+# Now that all SubWall classes are defined, create the proper type alias
 SubWallT = TilingAsset | FillAsset | PlaceObstacleAsset | PlaceWallSegmentAsset
 
 
@@ -198,7 +187,7 @@ class WallSegment:
     end: Position
     height: float
     width: float
-    material: Material
+    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
 
 
 WallRealization = tuple[Iterable[WallSegment], Iterable[Obstacle]]
@@ -218,9 +207,9 @@ class WallDescription:
         return (r_walls, r_obstacles)
 
     @classmethod
-    def simple(cls, material: typing.Optional[Material] = None) -> WallDescription:
+    def simple(cls, material: typing.Optional[MaterialProvider] = None) -> WallDescription:
         if material is None:
-            material = Material.DEFAULT
+            return cls(main=[PlaceWallSegmentAsset()])
         return cls(
             main=[
                 PlaceWallSegmentAsset(

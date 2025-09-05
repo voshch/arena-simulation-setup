@@ -11,14 +11,14 @@ from arena_simulation_setup.utils.geometry import Position
 class Wall:
     start: Position = attrs.field(converter=Position.converter)
     end: Position = attrs.field(converter=Position.converter)
-    description: str = ''
+    kind: str = ''
     material: str = ''
 
     _description: WallDescription = attrs.field(init=False)
 
     def __attrs_post_init__(self):
-        if self.description:
-            self._description = WallLoader(self.description).load()
+        if self.kind:
+            self._description = WallLoader(self.kind).load()
         else:
             self._description = WallDescription.simple(material=self.material or None)
         _ = self.assets  # trigger the cached property
