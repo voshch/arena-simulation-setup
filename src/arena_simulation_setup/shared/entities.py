@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 import typing
 import warnings
@@ -15,95 +17,10 @@ from arena_simulation_setup.utils.cattrs import (
     register_parse,
 )
 from arena_simulation_setup.utils.models import ModelWrapper
-from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
-from .utils.geometry import Pose, Position
+from arena_simulation_setup.utils.geometry import Pose, Position
 
-
-def model_parse(parser: ModelLoader, *, overrides: typing.Iterable[ModelLoader] = ()) -> typing.Callable[[typing.Any], ModelWrapper]:
-    def validator(v: str | ModelWrapper) -> ModelWrapper:
-        if isinstance(v, ModelWrapper):
-            if any(v.loader_matches(overridee) for overridee in overrides):
-                return parser.bind(v.name)
-            return v
-        return parser.bind(v)
-    return validator
-
-
-@register_parse
-@attrs.define
-class Wall(Parseable):
-    start: Position = attrs.field(converter=Position.converter)
-    end: Position = attrs.field(converter=Position.converter)
-    height: float = attrs.field(converter=float, default=2.)
-    mat: str = ''  # wall material
-
-    @classmethod
-    def parse(cls, value: list | dict) -> "Wall":
-        if isinstance(value, list):
-            kwargs = {}
-            if len(value) == 3 and isinstance(value[2], dict):
-                kwargs = value[2]
-            return cls(
-                **kwargs,
-                start=Position(x=value[0][0], y=value[0][1]),
-                end=Position(x=value[1][0], y=value[1][1]),
-            )
-        elif isinstance(value, dict):
-            return cls(**value)
-        else:
-            raise ValueError(f"Could not parse as wall: {value}")
-
-
-@register_parse
-@attrs.define
-class Elevator:
-    name: str
-    position: list[float]
-    size: list[float] = attrs.field(factory=lambda: [2.0, 2.0, 0.2])
-    height_min: float = 0.0
-    height_max: float = 3.0
-    material: str = "Metal"
-    destination: str = attrs.field(default="")
-
-@register_parse
-@attrs.define
-class Door:
-    name: str
-    start: Position = attrs.field(converter=Position.converter)
-    end: Position = attrs.field(converter=Position.converter)
-    kind: typing.Literal['sliding'] = 'sliding'
-    pose: Pose = attrs.field(factory=Pose, converter=Pose.converter)
-    description: str = attrs.field(default="")
-    height: float = attrs.field(default=2.0)
-    material: str = attrs.field(default="Adobe_Bricks_01")
-
-
-@register_parse
-@attrs.define
-class Floor(Parseable):
-    pos: Position = attrs.field(converter=Position.converter)
-    x_length: float = attrs.field(converter=float, default=20.)
-    y_length: float = attrs.field(converter=float, default=20.)
-    mat: str = ''  # wall material
-
-    @classmethod
-    def parse(cls, value: list | dict) -> "Floor":
-        if isinstance(value, list):
-            kwargs = {}
-            if len(value) == 3 and isinstance(value[0], dict):
-                kwargs = value[0]
-            return cls(
-                **kwargs,
-                pos=Position(x=value[1][0], y=value[1][1]),
-                x_length=value[2],
-                y_length=value[3],
-            )
-        elif isinstance(value, dict):
-            return cls(**value)
-        else:
-            raise ValueError(f"Could not parse as floor: {value}")
-
+from .utils import model_parse
 
 EntityT = typing.TypeVar("EntityT", bound="Entity")
 
@@ -148,6 +65,7 @@ converter.register_structure_hook(
 @attrs.define
 class Obstacle(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
+    # type_: str = attrs.field(converter=str)
 
 
 @register_parse
@@ -174,7 +92,7 @@ class CustomDynamicObstacle(DynamicObstacle):
         raise AttributeError(f"{name} not found")
 
     @classmethod
-    def parse(cls, value) -> "CustomDynamicObstacle":
+    def parse(cls, value) -> CustomDynamicObstacle:
         known_fields = set(f.name for f in attrs.fields(cls))
 
         if 'pos' in value:
@@ -201,4 +119,3 @@ class CustomDynamicObstacle(DynamicObstacle):
 @attrs.define
 class Robot(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(RobotLoader))
-

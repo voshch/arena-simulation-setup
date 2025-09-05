@@ -1,1458 +1,1441 @@
 zones:
-- name: zone_0
-  corners:
-  - x: 2.5
-    y: 30.0
-    z: 0.0
-  - x: 82.5
-    y: 30.0
-    z: 0.0
-  - x: 82.5
-    y: 25.0
-    z: 0.0
-  - x: 2.5
-    y: 25.0
-    z: 0.0
-  walls:
-  - start:
-      x: 2.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 16.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 19.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 30.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 33.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 39.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 41.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 46.3
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 48.8
-      y: 25.0
-      z: 0.0
-    end:
-      x: 52.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 55.4
-      y: 25.0
-      z: 0.0
-    end:
-      x: 59.7
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 62.2
-      y: 25.0
-      z: 0.0
-    end:
-      x: 75.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 78.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 80.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 77.6
-      y: 30.0
-      z: 0.0
-    end:
-      x: 62.8
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 60.3
-      y: 30.0
-      z: 0.0
-    end:
-      x: 54.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 52.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 48.8
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 46.3
-      y: 30.0
-      z: 0.0
-    end:
-      x: 37.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 34.6
-      y: 30.0
-      z: 0.0
-    end:
-      x: 28.6
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 26.1
-      y: 30.0
-      z: 0.0
-    end:
-      x: 21.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 19.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 2.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_1
-  corners:
-  - x: 2.5
-    y: 47.0
-    z: 0.0
-  - x: 23.1
-    y: 47.0
-    z: 0.0
-  - x: 23.1
-    y: 30.0
-    z: 0.0
-  - x: 2.5
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 2.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 19.0
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 21.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 23.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 23.1
-      y: 30.0
-      z: 0.0
-    end:
-      x: 23.1
-      y: 47.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 23.1
-      y: 47.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 47.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 2.5
-      y: 47.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_2
-  corners:
-  - x: 23.1
-    y: 43.1
-    z: 0.0
-  - x: 30.3
-    y: 43.1
-    z: 0.0
-  - x: 30.3
-    y: 30.0
-    z: 0.0
-  - x: 23.1
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 23.1
-      y: 30.0
-      z: 0.0
-    end:
-      x: 26.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 28.6
-      y: 30.0
-      z: 0.0
-    end:
-      x: 30.3
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 30.3
-      y: 30.0
-      z: 0.0
-    end:
-      x: 30.3
-      y: 43.1
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 30.3
-      y: 43.1
-      z: 0.0
-    end:
-      x: 23.1
-      y: 43.1
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 23.1
-      y: 43.1
-      z: 0.0
-    end:
-      x: 23.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_3
-  corners:
-  - x: 30.3
-    y: 39.4
-    z: 0.0
-  - x: 39.9
-    y: 39.4
-    z: 0.0
-  - x: 39.9
-    y: 30.0
-    z: 0.0
-  - x: 30.3
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 30.3
-      y: 30.0
-      z: 0.0
-    end:
-      x: 34.6
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 37.1
-      y: 30.0
-      z: 0.0
-    end:
-      x: 39.9
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 39.9
-      y: 30.0
-      z: 0.0
-    end:
-      x: 39.9
-      y: 39.4
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 39.9
-      y: 39.4
-      z: 0.0
-    end:
-      x: 30.3
-      y: 39.4
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 30.3
-      y: 39.4
-      z: 0.0
-    end:
-      x: 30.3
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_4
-  corners:
-  - x: 39.9
-    y: 41.5
-    z: 0.0
-  - x: 49.4
-    y: 41.5
-    z: 0.0
-  - x: 49.4
-    y: 30.0
-    z: 0.0
-  - x: 39.9
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 39.9
-      y: 30.0
-      z: 0.0
-    end:
-      x: 46.3
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 48.8
-      y: 30.0
-      z: 0.0
-    end:
-      x: 49.4
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 49.4
-      y: 30.0
-      z: 0.0
-    end:
-      x: 49.4
-      y: 41.5
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 49.4
-      y: 41.5
-      z: 0.0
-    end:
-      x: 39.9
-      y: 41.5
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 39.9
-      y: 41.5
-      z: 0.0
-    end:
-      x: 39.9
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_5
-  corners:
-  - x: 49.4
-    y: 42.5
-    z: 0.0
-  - x: 54.9
-    y: 42.5
-    z: 0.0
-  - x: 54.9
-    y: 30.0
-    z: 0.0
-  - x: 49.4
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 49.4
-      y: 30.0
-      z: 0.0
-    end:
-      x: 52.0
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 54.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 54.9
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 54.9
-      y: 30.0
-      z: 0.0
-    end:
-      x: 54.9
-      y: 42.5
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 54.9
-      y: 42.5
-      z: 0.0
-    end:
-      x: 49.4
-      y: 42.5
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 49.4
-      y: 42.5
-      z: 0.0
-    end:
-      x: 49.4
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_6
-  corners:
-  - x: 54.9
-    y: 40.5
-    z: 0.0
-  - x: 64.0
-    y: 40.5
-    z: 0.0
-  - x: 64.0
-    y: 30.0
-    z: 0.0
-  - x: 54.9
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 54.9
-      y: 30.0
-      z: 0.0
-    end:
-      x: 60.3
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 62.8
-      y: 30.0
-      z: 0.0
-    end:
-      x: 64.0
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 64.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 64.0
-      y: 40.5
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 64.0
-      y: 40.5
-      z: 0.0
-    end:
-      x: 54.9
-      y: 40.5
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 54.9
-      y: 40.5
-      z: 0.0
-    end:
-      x: 54.9
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_7
-  corners:
-  - x: 64.0
-    y: 48.8
-    z: 0.0
-  - x: 82.4
-    y: 48.8
-    z: 0.0
-  - x: 82.4
-    y: 30.0
-    z: 0.0
-  - x: 64.0
-    y: 30.0
-    z: 0.0
-  walls:
-  - start:
-      x: 64.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 77.6
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 80.1
-      y: 30.0
-      z: 0.0
-    end:
-      x: 82.4
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.4
-      y: 30.0
-      z: 0.0
-    end:
-      x: 82.4
-      y: 48.8
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.4
-      y: 48.8
-      z: 0.0
-    end:
-      x: 64.0
-      y: 48.8
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 64.0
-      y: 48.8
-      z: 0.0
-    end:
-      x: 64.0
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_8
-  corners:
-  - x: 2.5
-    y: 30.0
-    z: 0.0
-  - x: 82.5
-    y: 30.0
-    z: 0.0
-  - x: 82.5
-    y: 25.0
-    z: 0.0
-  - x: 2.5
-    y: 25.0
-    z: 0.0
-  walls:
-  - start:
-      x: 2.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 16.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 19.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 30.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 33.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 39.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 41.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 46.3
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 48.8
-      y: 25.0
-      z: 0.0
-    end:
-      x: 52.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 55.4
-      y: 25.0
-      z: 0.0
-    end:
-      x: 59.7
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 62.2
-      y: 25.0
-      z: 0.0
-    end:
-      x: 75.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 78.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 82.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 80.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 77.6
-      y: 30.0
-      z: 0.0
-    end:
-      x: 62.8
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 60.3
-      y: 30.0
-      z: 0.0
-    end:
-      x: 54.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 52.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 48.8
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 46.3
-      y: 30.0
-      z: 0.0
-    end:
-      x: 37.1
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 34.6
-      y: 30.0
-      z: 0.0
-    end:
-      x: 28.6
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 26.1
-      y: 30.0
-      z: 0.0
-    end:
-      x: 21.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 19.0
-      y: 30.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 30.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 2.5
-      y: 30.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_9
-  corners:
-  - x: 2.5
-    y: 25.0
-    z: 0.0
-  - x: 25.6
-    y: 25.0
-    z: 0.0
-  - x: 25.6
-    y: 6.0
-    z: 0.0
-  - x: 2.5
-    y: 6.0
-    z: 0.0
-  walls:
-  - start:
-      x: 2.5
-      y: 6.0
-      z: 0.0
-    end:
-      x: 25.6
-      y: 6.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 25.6
-      y: 6.0
-      z: 0.0
-    end:
-      x: 25.6
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 25.6
-      y: 25.0
-      z: 0.0
-    end:
-      x: 19.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 16.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 2.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 2.5
-      y: 6.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_10
-  corners:
-  - x: 25.6
-    y: 25.0
-    z: 0.0
-  - x: 33.5
-    y: 25.0
-    z: 0.0
-  - x: 33.5
-    y: 17.3
-    z: 0.0
-  - x: 25.6
-    y: 17.3
-    z: 0.0
-  walls:
-  - start:
-      x: 25.6
-      y: 17.3
-      z: 0.0
-    end:
-      x: 33.5
-      y: 17.3
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 33.5
-      y: 17.3
-      z: 0.0
-    end:
-      x: 33.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 33.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 33.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 30.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 25.6
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 25.6
-      y: 25.0
-      z: 0.0
-    end:
-      x: 25.6
-      y: 17.3
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_11
-  corners:
-  - x: 33.5
-    y: 25.0
-    z: 0.0
-  - x: 42.9
-    y: 25.0
-    z: 0.0
-  - x: 42.9
-    y: 12.3
-    z: 0.0
-  - x: 33.5
-    y: 12.3
-    z: 0.0
-  walls:
-  - start:
-      x: 33.5
-      y: 12.3
-      z: 0.0
-    end:
-      x: 42.9
-      y: 12.3
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 42.9
-      y: 12.3
-      z: 0.0
-    end:
-      x: 42.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 42.9
-      y: 25.0
-      z: 0.0
-    end:
-      x: 41.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 39.0
-      y: 25.0
-      z: 0.0
-    end:
-      x: 33.5
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 33.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 33.5
-      y: 12.3
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_12
-  corners:
-  - x: 42.9
-    y: 25.0
-    z: 0.0
-  - x: 49.9
-    y: 25.0
-    z: 0.0
-  - x: 49.9
-    y: 13.3
-    z: 0.0
-  - x: 42.9
-    y: 13.3
-    z: 0.0
-  walls:
-  - start:
-      x: 42.9
-      y: 13.3
-      z: 0.0
-    end:
-      x: 49.9
-      y: 13.3
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 49.9
-      y: 13.3
-      z: 0.0
-    end:
-      x: 49.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 49.9
-      y: 25.0
-      z: 0.0
-    end:
-      x: 48.8
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 46.3
-      y: 25.0
-      z: 0.0
-    end:
-      x: 42.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 42.9
-      y: 25.0
-      z: 0.0
-    end:
-      x: 42.9
-      y: 13.3
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_13
-  corners:
-  - x: 49.9
-    y: 25.0
-    z: 0.0
-  - x: 56.6
-    y: 25.0
-    z: 0.0
-  - x: 56.6
-    y: 17.2
-    z: 0.0
-  - x: 49.9
-    y: 17.2
-    z: 0.0
-  walls:
-  - start:
-      x: 49.9
-      y: 17.2
-      z: 0.0
-    end:
-      x: 56.6
-      y: 17.2
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 56.6
-      y: 17.2
-      z: 0.0
-    end:
-      x: 56.6
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 56.6
-      y: 25.0
-      z: 0.0
-    end:
-      x: 55.4
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 52.9
-      y: 25.0
-      z: 0.0
-    end:
-      x: 49.9
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 49.9
-      y: 25.0
-      z: 0.0
-    end:
-      x: 49.9
-      y: 17.2
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_14
-  corners:
-  - x: 56.6
-    y: 25.0
-    z: 0.0
-  - x: 62.7
-    y: 25.0
-    z: 0.0
-  - x: 62.7
-    y: 17.6
-    z: 0.0
-  - x: 56.6
-    y: 17.6
-    z: 0.0
-  walls:
-  - start:
-      x: 56.6
-      y: 17.6
-      z: 0.0
-    end:
-      x: 62.7
-      y: 17.6
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 62.7
-      y: 17.6
-      z: 0.0
-    end:
-      x: 62.7
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 62.7
-      y: 25.0
-      z: 0.0
-    end:
-      x: 62.2
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 59.7
-      y: 25.0
-      z: 0.0
-    end:
-      x: 56.6
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 56.6
-      y: 25.0
-      z: 0.0
-    end:
-      x: 56.6
-      y: 17.6
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: zone_15
-  corners:
-  - x: 62.7
-    y: 25.0
-    z: 0.0
-  - x: 82.4
-    y: 25.0
-    z: 0.0
-  - x: 82.4
-    y: 9.0
-    z: 0.0
-  - x: 62.7
-    y: 9.0
-    z: 0.0
-  walls:
-  - start:
-      x: 62.7
-      y: 9.0
-      z: 0.0
-    end:
-      x: 82.4
-      y: 9.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.4
-      y: 9.0
-      z: 0.0
-    end:
-      x: 82.4
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 82.4
-      y: 25.0
-      z: 0.0
-    end:
-      x: 78.0
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 75.5
-      y: 25.0
-      z: 0.0
-    end:
-      x: 62.7
-      y: 25.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 62.7
-      y: 25.0
-      z: 0.0
-    end:
-      x: 62.7
-      y: 9.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
-- name: extra_walls
-  corners:
-  - x: -2.5
-    y: -2.5
-    z: 0.0
-  - x: 87.5
-    y: -2.5
-    z: 0.0
-  - x: 87.5
-    y: 57.5
-    z: 0.0
-  - x: -2.5
-    y: 57.5
-    z: 0.0
-  walls:
-  - start:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-    end:
-      x: 90.0
-      y: 0.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 90.0
-      y: 0.0
-      z: 0.0
-    end:
-      x: 90.0
-      y: 60.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 90.0
-      y: 60.0
-      z: 0.0
-    end:
-      x: 0.0
-      y: 60.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  - start:
-      x: 0.0
-      y: 60.0
-      z: 0.0
-    end:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-    height: 2.0
-    mat: ''
-  doors: []
-  mat: ''
-  entities:
-    static: []
-    dynamic: []
-  description: ''
+  - name: zone_0
+    corners:
+      - x: 2.5
+        y: 30.0
+        z: 0.0
+      - x: 82.5
+        y: 30.0
+        z: 0.0
+      - x: 82.5
+        y: 25.0
+        z: 0.0
+      - x: 2.5
+        y: 25.0
+        z: 0.0
+    walls:
+      - start:
+          x: 2.5
+          y: 25.0
+          z: 0.0
+        end:
+          x: 5.4
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 7.9
+          y: 25.0
+          z: 0.0
+        end:
+          x: 27.9
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 30.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 34.9
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 37.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 40.7
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 43.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 50.6
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 53.1
+          y: 25.0
+          z: 0.0
+        end:
+          x: 57.1
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 59.6
+          y: 25.0
+          z: 0.0
+        end:
+          x: 65.7
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 68.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 82.5
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 82.5
+          y: 25.0
+          z: 0.0
+        end:
+          x: 82.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 82.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 81.6
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 79.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 63.9
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 61.4
+          y: 30.0
+          z: 0.0
+        end:
+          x: 55.2
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 52.7
+          y: 30.0
+          z: 0.0
+        end:
+          x: 47.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 44.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 36.2
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 33.7
+          y: 30.0
+          z: 0.0
+        end:
+          x: 30.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 27.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 14.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 12.0
+          y: 30.0
+          z: 0.0
+        end:
+          x: 2.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+      - start:
+          x: 2.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 2.5
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_1
+    corners:
+      - x: 2.5
+        y: 49.5
+        z: 0.0
+      - x: 20.6
+        y: 49.5
+        z: 0.0
+      - x: 20.6
+        y: 30.0
+        z: 0.0
+      - x: 2.5
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 2.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 12.0
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 14.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 20.6
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 20.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 20.6
+          y: 49.5
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 20.6
+          y: 49.5
+          z: 0.0
+        end:
+          x: 2.5
+          y: 49.5
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 2.5
+          y: 49.5
+          z: 0.0
+        end:
+          x: 2.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_2
+    corners:
+      - x: 20.6
+        y: 42.6
+        z: 0.0
+      - x: 31.1
+        y: 42.6
+        z: 0.0
+      - x: 31.1
+        y: 30.0
+        z: 0.0
+      - x: 20.6
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 20.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 27.6
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 30.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 31.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 31.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 31.1
+          y: 42.6
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 31.1
+          y: 42.6
+          z: 0.0
+        end:
+          x: 20.6
+          y: 42.6
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 20.6
+          y: 42.6
+          z: 0.0
+        end:
+          x: 20.6
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_3
+    corners:
+      - x: 31.1
+        y: 39.7
+        z: 0.0
+      - x: 40.1
+        y: 39.7
+        z: 0.0
+      - x: 40.1
+        y: 30.0
+        z: 0.0
+      - x: 31.1
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 31.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 33.7
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 36.2
+          y: 30.0
+          z: 0.0
+        end:
+          x: 40.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 40.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 40.1
+          y: 39.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 40.1
+          y: 39.7
+          z: 0.0
+        end:
+          x: 31.1
+          y: 39.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 31.1
+          y: 39.7
+          z: 0.0
+        end:
+          x: 31.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_4
+    corners:
+      - x: 40.1
+        y: 38.0
+        z: 0.0
+      - x: 49.1
+        y: 38.0
+        z: 0.0
+      - x: 49.1
+        y: 30.0
+        z: 0.0
+      - x: 40.1
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 40.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 44.6
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 47.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 49.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 49.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 49.1
+          y: 38.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 49.1
+          y: 38.0
+          z: 0.0
+        end:
+          x: 40.1
+          y: 38.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 40.1
+          y: 38.0
+          z: 0.0
+        end:
+          x: 40.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_5
+    corners:
+      - x: 49.1
+        y: 38.1
+        z: 0.0
+      - x: 55.8
+        y: 38.1
+        z: 0.0
+      - x: 55.8
+        y: 30.0
+        z: 0.0
+      - x: 49.1
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 49.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 52.7
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 55.2
+          y: 30.0
+          z: 0.0
+        end:
+          x: 55.8
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 55.8
+          y: 30.0
+          z: 0.0
+        end:
+          x: 55.8
+          y: 38.1
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 55.8
+          y: 38.1
+          z: 0.0
+        end:
+          x: 49.1
+          y: 38.1
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 49.1
+          y: 38.1
+          z: 0.0
+        end:
+          x: 49.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_6
+    corners:
+      - x: 55.8
+        y: 41.7
+        z: 0.0
+      - x: 64.2
+        y: 41.7
+        z: 0.0
+      - x: 64.2
+        y: 30.0
+        z: 0.0
+      - x: 55.8
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 55.8
+          y: 30.0
+          z: 0.0
+        end:
+          x: 61.4
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 63.9
+          y: 30.0
+          z: 0.0
+        end:
+          x: 64.2
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 64.2
+          y: 30.0
+          z: 0.0
+        end:
+          x: 64.2
+          y: 41.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 64.2
+          y: 41.7
+          z: 0.0
+        end:
+          x: 55.8
+          y: 41.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 55.8
+          y: 41.7
+          z: 0.0
+        end:
+          x: 55.8
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_7
+    corners:
+      - x: 64.2
+        y: 45.5
+        z: 0.0
+      - x: 82.4
+        y: 45.5
+        z: 0.0
+      - x: 82.5
+        y: 30.0
+        z: 0.0
+      - x: 64.2
+        y: 30.0
+        z: 0.0
+    walls:
+      - start:
+          x: 64.2
+          y: 30.0
+          z: 0.0
+        end:
+          x: 79.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 81.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 82.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 82.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 82.4
+          y: 45.5
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 82.4
+          y: 45.5
+          z: 0.0
+        end:
+          x: 64.2
+          y: 45.5
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 64.2
+          y: 45.5
+          z: 0.0
+        end:
+          x: 64.2
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_8
+    corners:
+      - x: 2.5
+        y: 30.0
+        z: 0.0
+      - x: 82.5
+        y: 30.0
+        z: 0.0
+      - x: 82.5
+        y: 25.0
+        z: 0.0
+      - x: 2.5
+        y: 25.0
+        z: 0.0
+    walls:
+      - start:
+          x: 2.5
+          y: 25.0
+          z: 0.0
+        end:
+          x: 5.4
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 7.9
+          y: 25.0
+          z: 0.0
+        end:
+          x: 27.9
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 30.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 34.9
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 37.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 40.7
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 43.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 50.6
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 53.1
+          y: 25.0
+          z: 0.0
+        end:
+          x: 57.1
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 59.6
+          y: 25.0
+          z: 0.0
+        end:
+          x: 65.7
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 68.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 82.5
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 82.5
+          y: 25.0
+          z: 0.0
+        end:
+          x: 82.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 82.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 81.6
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 79.1
+          y: 30.0
+          z: 0.0
+        end:
+          x: 63.9
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 61.4
+          y: 30.0
+          z: 0.0
+        end:
+          x: 55.2
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 52.7
+          y: 30.0
+          z: 0.0
+        end:
+          x: 47.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 44.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 36.2
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 33.7
+          y: 30.0
+          z: 0.0
+        end:
+          x: 30.1
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 27.6
+          y: 30.0
+          z: 0.0
+        end:
+          x: 14.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 12.0
+          y: 30.0
+          z: 0.0
+        end:
+          x: 2.5
+          y: 30.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 2.5
+          y: 30.0
+          z: 0.0
+        end:
+          x: 2.5
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_9
+    corners:
+      - x: 2.5
+        y: 25.0
+        z: 0.0
+      - x: 24.2
+        y: 25.0
+        z: 0.0
+      - x: 24.2
+        y: 9.6
+        z: 0.0
+      - x: 2.5
+        y: 9.6
+        z: 0.0
+    walls:
+      - start:
+          x: 2.5
+          y: 9.6
+          z: 0.0
+        end:
+          x: 24.2
+          y: 9.6
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 24.2
+          y: 9.6
+          z: 0.0
+        end:
+          x: 24.2
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 24.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 7.9
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 5.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 2.5
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 2.5
+          y: 25.0
+          z: 0.0
+        end:
+          x: 2.5
+          y: 9.6
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_10
+    corners:
+      - x: 24.2
+        y: 25.0
+        z: 0.0
+      - x: 30.8
+        y: 25.0
+        z: 0.0
+      - x: 30.8
+        y: 11.0
+        z: 0.0
+      - x: 24.2
+        y: 11.0
+        z: 0.0
+    walls:
+      - start:
+          x: 24.2
+          y: 11.0
+          z: 0.0
+        end:
+          x: 30.8
+          y: 11.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 30.8
+          y: 11.0
+          z: 0.0
+        end:
+          x: 30.8
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 30.8
+          y: 25.0
+          z: 0.0
+        end:
+          x: 30.4
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 27.9
+          y: 25.0
+          z: 0.0
+        end:
+          x: 24.2
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 24.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 24.2
+          y: 11.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_11
+    corners:
+      - x: 30.8
+        y: 25.0
+        z: 0.0
+      - x: 37.6
+        y: 25.0
+        z: 0.0
+      - x: 37.6
+        y: 16.4
+        z: 0.0
+      - x: 30.8
+        y: 16.4
+        z: 0.0
+    walls:
+      - start:
+          x: 30.8
+          y: 16.4
+          z: 0.0
+        end:
+          x: 37.6
+          y: 16.4
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 37.6
+          y: 16.4
+          z: 0.0
+        end:
+          x: 37.6
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 37.6
+          y: 25.0
+          z: 0.0
+        end:
+          x: 37.4
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 34.9
+          y: 25.0
+          z: 0.0
+        end:
+          x: 30.8
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 30.8
+          y: 25.0
+          z: 0.0
+        end:
+          x: 30.8
+          y: 16.4
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_12
+    corners:
+      - x: 37.6
+        y: 25.0
+        z: 0.0
+      - x: 47.8
+        y: 25.0
+        z: 0.0
+      - x: 47.8
+        y: 14.1
+        z: 0.0
+      - x: 37.6
+        y: 14.1
+        z: 0.0
+    walls:
+      - start:
+          x: 37.6
+          y: 14.1
+          z: 0.0
+        end:
+          x: 47.8
+          y: 14.1
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 47.8
+          y: 14.1
+          z: 0.0
+        end:
+          x: 47.8
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 47.8
+          y: 25.0
+          z: 0.0
+        end:
+          x: 43.2
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 40.7
+          y: 25.0
+          z: 0.0
+        end:
+          x: 37.6
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 37.6
+          y: 25.0
+          z: 0.0
+        end:
+          x: 37.6
+          y: 14.1
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_13
+    corners:
+      - x: 47.8
+        y: 25.0
+        z: 0.0
+      - x: 53.2
+        y: 25.0
+        z: 0.0
+      - x: 53.2
+        y: 12.7
+        z: 0.0
+      - x: 47.8
+        y: 12.7
+        z: 0.0
+    walls:
+      - start:
+          x: 47.8
+          y: 12.7
+          z: 0.0
+        end:
+          x: 53.2
+          y: 12.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 53.2
+          y: 12.7
+          z: 0.0
+        end:
+          x: 53.2
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 53.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 53.1
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 50.6
+          y: 25.0
+          z: 0.0
+        end:
+          x: 47.8
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 47.8
+          y: 25.0
+          z: 0.0
+        end:
+          x: 47.8
+          y: 12.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_14
+    corners:
+      - x: 53.2
+        y: 25.0
+        z: 0.0
+      - x: 60.4
+        y: 25.0
+        z: 0.0
+      - x: 60.4
+        y: 16.4
+        z: 0.0
+      - x: 53.2
+        y: 16.4
+        z: 0.0
+    walls:
+      - start:
+          x: 53.2
+          y: 16.4
+          z: 0.0
+        end:
+          x: 60.4
+          y: 16.4
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 60.4
+          y: 16.4
+          z: 0.0
+        end:
+          x: 60.4
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 60.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 59.6
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 57.1
+          y: 25.0
+          z: 0.0
+        end:
+          x: 53.2
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 53.2
+          y: 25.0
+          z: 0.0
+        end:
+          x: 53.2
+          y: 16.4
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+  - name: zone_15
+    corners:
+      - x: 60.4
+        y: 25.0
+        z: 0.0
+      - x: 82.5
+        y: 25.0
+        z: 0.0
+      - x: 82.4
+        y: 9.7
+        z: 0.0
+      - x: 60.4
+        y: 9.7
+        z: 0.0
+    walls:
+      - start:
+          x: 60.4
+          y: 9.7
+          z: 0.0
+        end:
+          x: 82.4
+          y: 9.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 82.4
+          y: 9.7
+          z: 0.0
+        end:
+          x: 82.5
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 82.5
+          y: 25.0
+          z: 0.0
+        end:
+          x: 68.2
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 65.7
+          y: 25.0
+          z: 0.0
+        end:
+          x: 60.4
+          y: 25.0
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+      - start:
+          x: 60.4
+          y: 25.0
+          z: 0.0
+        end:
+          x: 60.4
+          y: 9.7
+          z: 0.0
+        height: 2.0
+        kind: hospital_with_painting.yaml
+    mat: ""
+    entities:
+      static: []
+      dynamic: []
+    kind: ""
+# - name: extra_walls
+#   corners:
+#   - x: -2.5
+#     y: -2.5
+#     z: 0.0
+#   - x: 87.5
+#     y: -2.5
+#     z: 0.0
+#   - x: 87.5
+#     y: 57.5
+#     z: 0.0
+#   - x: -2.5
+#     y: 57.5
+#     z: 0.0
+#   walls:
+#   - start:
+#       x: 0.0
+#       y: 0.0
+#       z: 0.0
+#     end:
+#       x: 90.0
+#       y: 0.0
+#       z: 0.0
+#     height: 2.0
+#     kind: hospital_with_painting.yaml
+#   - start:
+#       x: 90.0
+#       y: 0.0
+#       z: 0.0
+#     end:
+#       x: 90.0
+#       y: 60.0
+#       z: 0.0
+#     height: 2.0
+#     kind: hospital_with_painting.yaml
+#   - start:
+#       x: 90.0
+#       y: 60.0
+#       z: 0.0
+#     end:
+#       x: 0.0
+#       y: 60.0
+#       z: 0.0
+#     height: 2.0
+#     kind: hospital_with_painting.yaml
+#   - start:
+#       x: 0.0
+#       y: 60.0
+#       z: 0.0
+#     end:
+#       x: 0.0
+#       y: 0.0
+#       z: 0.0
+#     height: 2.0
+#     kind: hospital_with_painting.yaml
+#   mat: ''
+#   entities:
+#     static: []
+#     dynamic: []
+#   kind: ''

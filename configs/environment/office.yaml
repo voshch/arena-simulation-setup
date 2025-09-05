@@ -99,36 +99,34 @@ groups:
         # Sub-groups are intentionally offset and rotated from a grid for a more natural layout
 
         # Sub-group 1 (formerly Top-Left)
-        - position: [-2.5,  2.0,  10]
+        - position: [-2.0,   2.0,   0]
           model: office_short_table
-        - position: [-2.6,  2.8,  10]
+        - position: [-2.25,  2.15,  0]
           model: office_chair
-        - position: [-2.4,  1.2, 190]
+        - position: [-1.7,   1.25,  180]
           model: office_chair
 
-        # Sub-group 2 (formerly Top-Right)
-        - position: [ 2.2,  2.5, -15]
+        - position: [ 2.0,   2.0,   0]
           model: office_short_table
-        - position: [ 2.4,  3.3, -15]
+        - position: [ 1.75,  2.15,  0]
           model: office_chair
-        - position: [ 2.0,  1.7, 165]
+        - position: [ 2.3,   1.25,  180]
           model: office_chair
 
-        # Sub-group 3 (formerly Bottom-Left)
-        - position: [-2.0, -2.5,   5]
+        - position: [-2.0,  -2.0,   0]
           model: office_short_table
-        - position: [-2.1, -1.7,   5]
+        - position: [-2.25, -1.85,  0]
           model: office_chair
-        - position: [-1.9, -3.3, 185]
+        - position: [-1.7,  -2.75,  180]
           model: office_chair
 
-        # Sub-group 4 (formerly Bottom-Right)
-        - position: [ 2.8, -2.2,  25]
+        - position: [ 2.0,  -2.0,   0]
           model: office_short_table
-        - position: [ 2.5, -1.5,  25]
+        - position: [ 1.75, -1.85,  0]
           model: office_chair
-        - position: [ 3.1, -2.9, 205]
+        - position: [ 2.3,  -2.75,  180]
           model: office_chair
+          
   - name: "office_horizontal_long_tables_random"
     margin: 5
     size: [10.0, 8.0] # Adjusted size to encompass the offset sub-groups

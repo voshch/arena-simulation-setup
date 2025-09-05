@@ -4,10 +4,10 @@ from arena_simulation_setup import ProviderBase, ass_dir
 from arena_simulation_setup.utils.models.model_loader import ModelLoader
 
 
-class DynamicObstacleProvider(ProviderBase):
+class DynamicObstacleModelProvider(ProviderBase):
     ...
 
 
-DynamicObstacle = DynamicObstacleProvider.bind(os.path.join(ass_dir, 'entities', 'obstacles', 'dynamic'))
+DynamicObstacleModel = DynamicObstacleModelProvider.bind(os.path.join(ass_dir, 'entities', 'obstacles', 'dynamic'))
 
-loader = ModelLoader(DynamicObstacle.base_dir())
+loader = ModelLoader(DynamicObstacleModel.base_dir())

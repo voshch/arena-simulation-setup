@@ -40,8 +40,15 @@ class ProviderBase:
         return cls._base_dir
 
     # Instance Methods: Providee
+    def __new__(cls, obj: object):
+        # don't rebind
+        if isinstance(obj, cls):
+            return obj
+        return super().__new__(cls)
 
     def __init__(self, name: str) -> None:
+        if hasattr(self, '_name'):
+            return
         self._name = name
 
     @property
