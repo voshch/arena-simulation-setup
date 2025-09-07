@@ -84,18 +84,29 @@ def process_obj(obj_file, package_dir):
 class ModelLoader_USD(ITF_ModelLoader):
     @classmethod
     def load(cls, model_dir, model, loader_args):
-        model_path = os.path.join(model_dir, model, "usd", f"{model}.usd")
-        try:
-            with open(model_path, 'rb') as f:
-                return Model(
-                    type=ModelType.USD,
-                    name=model,
-                    description="",  # TODO add bytes compat
-                    path=model_path
-                )
-        except FileNotFoundError:
-            pass
-        return None
+        model_paths = (
+            os.path.join(model_dir, model, "usd", f"{model}.usdz"),
+            os.path.join(model_dir, model, "usd", f"{model}.usd"),
+            os.path.join(model_dir, model, "usd", f"{model}.usda"),
+            os.path.join(model_dir, model, "usd", f"{model}.usdc"),
+        )
+
+        def load_model(model_path) -> Model | None:
+            try:
+                with open(model_path, 'rb') as f:
+                    return Model(
+                        type=ModelType.USD,
+                        name=model,
+                        description="",  # TODO add bytes compat
+                        path=model_path
+                    )
+            except FileNotFoundError:
+                pass
+            except Exception as e:
+                del e  # TODO add logging
+            return None
+
+        return next(filter(None, map(load_model, model_paths)), None)
 
     @classmethod
     def convertable(cls) -> Collection[ModelType]:
