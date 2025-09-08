@@ -1,10 +1,9 @@
-import os
 import xml.etree.ElementTree as ET
 from typing import Optional
 
 import attrs
 
-from arena_simulation_setup import ProviderBase, ab_dir
+from arena_simulation_setup import ProviderBase, ab_dir, StaticSources
 
 
 def _get_attrib(
@@ -63,4 +62,4 @@ class ParametrizedProvider(ProviderBase):
         )
 
 
-Parametrized = ParametrizedProvider.bind(os.path.join(ab_dir, 'configs', 'parametrized'))
+Parametrized = ParametrizedProvider.bind(StaticSources(ab_dir)('configs', 'parametrized'))

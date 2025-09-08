@@ -3,12 +3,16 @@ from __future__ import annotations
 import abc
 import enum
 import functools
+import itertools
 import os
+import sys
 from collections.abc import Callable, Collection, Set
 from typing import Optional, Type, overload
 
-from arena_simulation_setup.utils.cattrs import converter
 import attrs
+
+from arena_simulation_setup import Sources
+from arena_simulation_setup.utils.cattrs import converter
 
 # TODO deprecate this in favor of Model.EMPTY
 
@@ -53,14 +57,23 @@ class Model:
         return attrs.evolve(self, **kwargs)
 
 
-class ITF_ModelLoader(abc.ABC):
+class ModelProvider(abc.ABC):
     @classmethod
-    @abc.abstractmethod
-    def load(cls, model_dir: str, model: str, loader_args: dict) -> Model | None:
-        return None
+    def provides(cls, model_type: ModelType) -> Type[ModelProvider]:
+        return type(cls.__name__, (cls,), {'type': classmethod(lambda cls: model_type)})
 
     @classmethod
     @abc.abstractmethod
+    def type(cls) -> ModelType:
+        """
+        return ModelType handled by this loader
+        """
+
+    @classmethod
+    def load(cls, model_dir: str, model: str, loader_args: dict | None) -> Model | None:
+        return None
+
+    @classmethod
     def convertable(cls) -> Collection[ModelType]:
         """
         return collection of model types convertable
@@ -68,7 +81,6 @@ class ITF_ModelLoader(abc.ABC):
         return ()
 
     @classmethod
-    @abc.abstractmethod
     def convert(cls, model_dir: str, model: Model, loader_args: dict) -> Model | None:
         return None
 
@@ -92,7 +104,7 @@ class ModelWrapper:
         self,
         name: str,
         callback: Callable[[Collection[ModelType], dict], Model] | None = None,
-        loader: ITF_ModelLoader | None = None,
+        loader: ModelProvider | None = None,
     ):
         """
         Create new ModelWrapper
@@ -188,14 +200,11 @@ class ModelWrapper:
         if isinstance(only, ModelType):
             return self.get([only])
 
-        if loader_args is None:
-            loader_args = {}
-
         for model_type in only:
             if model_type in self._override:
                 noload, mapper = self._override[model_type]
 
-                if noload == True:
+                if noload:
                     return mapper(EMPTY_LOADER())
 
                 return mapper(self._get([model_type], loader_args), **kwargs)
@@ -217,7 +226,7 @@ class ModelWrapper:
         @models: dictionary of ModelType->Model mappings
         """
 
-        def get(only: Collection[ModelType], loader_args: dict) -> Model:
+        def get(only: Collection[ModelType], loader_args: dict | None) -> Model:
             if not len(only):
                 only = list(models.keys())
 
@@ -250,41 +259,30 @@ class ModelWrapper:
 converter.register_unstructure_hook(ModelWrapper, ModelWrapper.serialize)
 
 
-class _ModelLoader:
+class LoadersT(tuple[Type[ModelProvider]]):
+    def __hash__(self) -> int:
+        return hash(tuple(map(id, self)))
 
-    _registry: dict[ModelType, Type[ITF_ModelLoader]] = {}
-    _models: Set[str]
 
-    @classmethod
-    def model(cls, model_type: ModelType):
-        def inner(loader: Type[ITF_ModelLoader]):
-            cls._registry[model_type] = loader
-        return inner
+class LoaderArgs(dict):
+    def __hash__(self) -> int:
+        return hash(str(self))
 
-    _model_dir: str
-    _cache: dict[tuple[ModelType, str], Model]
 
-    def __init__(self, model_dir: str):
-        self._model_dir = model_dir
-        self._cache = dict()
-        self._models = set()
+class ModelLoader:
 
-        # # potentially expensive
-        # rospy.logdebug(
-        #     f"models in {os.path.basename(model_dir)}: {self.models}")
+    def __init__(self, sources: Sources, loaders: Collection[Type[ModelProvider]]) -> None:
+        self.__sources: Sources = sources
+        self.__loaders: LoadersT = LoadersT(loaders)
+
+    @functools.cache
+    @staticmethod
+    def _match_loaders(loaders: LoadersT, model_type: ModelType) -> LoadersT:
+        return tuple(loader for loader in loaders if model_type == loader.type())
 
     @property
     def models(self) -> Set[str]:
-        if not len(self._models):
-            if os.path.isdir(self._model_dir):
-                self._models = set(next(os.walk(self._model_dir))[1])
-            else:
-                # rospy.logwarn(
-                # f"Model directory {self._model_dir} does not exist. No models
-                # are provided.")
-                self._models = set()
-
-        return self._models
+        return set(itertools.chain(*map(lambda x: next(os.walk(x), (x, (), ()))[1], self.__sources)))
 
     def bind(self, model: str) -> ModelWrapper:
         return ModelWrapper(
@@ -293,40 +291,51 @@ class _ModelLoader:
             loader=self,
         )
 
-    def _load(self, model: str, only: Collection[ModelType], loader_args: dict) -> Model | None:
+    @functools.lru_cache(maxsize=128)
+    @staticmethod
+    def _load_cached(loaders: LoadersT, sources: Sources, model: str, model_type: ModelType, loader_args: LoaderArgs | None) -> Model | None:
+        for loader in ModelLoader._match_loaders(loaders, model_type):
+            for source in sources:
+                if (hit := loader.load(source, model, loader_args)) is not None:
+                    return hit
+        return None
+
+    @functools.lru_cache(maxsize=128)
+    @staticmethod
+    def _convert_cached(loaders: LoadersT, sources: Sources, model: str, model_type: ModelType, loader_args: LoaderArgs | None) -> Model | None:
+        for loader in ModelLoader._match_loaders(loaders, model_type):
+            for convertable in loader.convertable():
+                for source in sources:
+                    if (base := ModelLoader._load_cached(loaders, sources, model, convertable, loader_args)) is not None:
+                        if (hit := loader.convert(source, base, loader_args)) is not None:
+                            return hit
+        return None
+
+    def _load(self, model: str, only: Collection[ModelType], loader_args: dict | None) -> Model | None:
         if not only:
-            only = self._registry.keys()
+            only = self.__loaders.keys()
+        if loader_args:
+            loader_args = LoaderArgs(loader_args)  # hashable
 
-        only = [t for t in only if t in self._registry]
-
-        for model_type in only:  # cache pass
-            if (model_type, model) in self._cache:
-                return self._cache[(model_type, model)]
-
-        for model_type in only:  # disk pass
-            hit = self._registry[model_type].load(self._model_dir, model, loader_args)
-            if hit is not None:
-                self._cache[(model_type, model)] = hit
-                return self._cache[(model_type, model)]
+        for model_type in only:  # try to load
+            if (hit := ModelLoader._load_cached(self.__loaders, self.__sources, model, model_type, loader_args)) is not None:
+                return hit
 
         for model_type in only:  # try to convert
-            targets = self._registry[model_type].convertable()
-            if not targets:
-                continue
-            match = self._load(model, targets, loader_args)
-            if match is not None:
-                converted = self._registry[model_type].convert(self._model_dir, match, loader_args)
-                if converted is None:
-                    continue
-
-                self._cache[(model_type, model)] = converted
-                return converted
+            if (hit := ModelLoader._convert_cached(self.__loaders, self.__sources, model, model_type, loader_args)) is not None:
+                return hit
 
         return None
 
-    def _load_safe(self, model: str, only: Collection[ModelType], loader_args: dict) -> Model:
+    def _load_safe(self, model: str, only: Collection[ModelType], loader_args: dict | None) -> Model:
         loaded = self._load(model, only, loader_args)
         if loaded is not None:
             return loaded
 
-        raise FileNotFoundError(f"no model {model} among {only} found in {self._model_dir} and could not be converted")
+        print(f"no model {model} among {only} found in {self.__sources} and could not be converted", file=sys.stderr)
+        return Model(
+            type=ModelType.UNKNOWN,
+            name=model,
+            description="",
+            path="",
+        )

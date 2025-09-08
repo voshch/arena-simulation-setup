@@ -3,8 +3,11 @@ import typing
 
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.utils.models.model_loader import ModelLoader
+from arena_simulation_setup import ProviderBase, ass_sources
+from arena_simulation_setup.utils.models.model_loader import (
+    ModelLoader,
+    ModelProvider_URDF,
+)
 
 
 class ModelParams(dict[str, typing.Any]):
@@ -51,6 +54,8 @@ class RobotProvider(ProviderBase):
             return yaml.safe_load(f)
 
 
-Robot = RobotProvider.bind(os.path.join(ass_dir, 'entities', 'robots'))
+robots_sources = ass_sources('entities', 'robots')
 
-loader = ModelLoader(Robot.base_dir())
+Robot = RobotProvider.bind(robots_sources)
+
+loader = ModelLoader(robots_sources, (ModelProvider_URDF,))

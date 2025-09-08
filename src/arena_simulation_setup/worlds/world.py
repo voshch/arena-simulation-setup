@@ -4,8 +4,11 @@ import typing
 import attrs
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.entities.materials import FloorMaterialLoader, MaterialProvider
+from arena_simulation_setup import ProviderBase, StaticSources, ass_sources_static
+from arena_simulation_setup.entities.materials import (
+    FloorMaterialLoader,
+    MaterialProvider,
+)
 from arena_simulation_setup.shared import Door, DynamicObstacle, Floor, Obstacle, Wall
 from arena_simulation_setup.utils.cattrs import converter
 from arena_simulation_setup.utils.geometry import Position
@@ -79,12 +82,12 @@ class WorldDescription:
 class WorldProvider(ProviderBase):
 
     @classmethod
-    def list(cls) -> list[str]:
-        return ['.generated'] + super().list()
+    def list(cls):
+        return ('.generated', *super().list())
 
     @property
     def scenario(self):
-        return ScenarioProvider.bind(os.path.join(self.path, 'scenarios'))
+        return ScenarioProvider.bind(StaticSources(os.path.join(self.path, 'scenarios')))
 
     @property
     def map(self):
@@ -102,4 +105,4 @@ class WorldProvider(ProviderBase):
             )
 
 
-World = WorldProvider.bind(os.path.join(ass_dir, 'worlds'))
+World = WorldProvider.bind(ass_sources_static('worlds'))

@@ -10,7 +10,7 @@ from collections.abc import Iterable
 import attrs
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
+from arena_simulation_setup import ProviderBase, ass_sources
 from arena_simulation_setup.entities.materials import (
     MaterialProvider,
     WallMaterialLoader,
@@ -225,4 +225,4 @@ class WallProvider(ProviderBase):
             return converter.structure(yaml.safe_load(f), WallDescription)
 
 
-loader = WallProvider.bind(os.path.join(ass_dir, 'entities', 'walls'))
+loader = WallProvider.bind(ass_sources('entities', 'walls'))

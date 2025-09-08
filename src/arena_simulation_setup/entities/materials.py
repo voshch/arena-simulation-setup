@@ -6,7 +6,7 @@ import typing
 import attrs
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
+from arena_simulation_setup import ass_dir, ProviderBase
 from arena_simulation_setup.utils.cattrs import converter
 
 
@@ -22,7 +22,10 @@ class Material:
 
 
 class MaterialProvider(ProviderBase):
+    # TODO figure materials format and switch to Sources
+
     _materials_dict: typing.ClassVar[dict[str, dict]]
+    _path: typing.ClassVar[str]
 
     @classmethod
     def DEFAULT(cls) -> MaterialProvider:
@@ -30,10 +33,21 @@ class MaterialProvider(ProviderBase):
 
     @classmethod
     def bind(cls, path: str) -> MaterialProvider:
-        c = super().bind(path)
         with open(path) as f:
-            c._materials_dict = yaml.safe_load(f)
-        return c
+            return typing.cast(
+                MaterialProvider,
+                type(
+                    'Bound' + cls.__name__,
+                    (
+                        # super().bind(path),
+                        cls,
+                    ),
+                    dict(
+                        _path=path,
+                        _materials_dict=yaml.safe_load(f)
+                    )
+                )
+            )
 
     @classmethod
     def list(cls) -> list[str]:

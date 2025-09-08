@@ -6,7 +6,130 @@ import xml.etree.ElementTree as ET
 from collections.abc import Collection
 
 
-from . import ITF_ModelLoader, Model, ModelType, _ModelLoader
+from . import ModelProvider, Model, ModelType
+
+
+class ModelProvider_USD(ModelProvider.provides(ModelType.USD)):
+    @classmethod
+    def load(cls, model_dir, model, loader_args):
+        model_paths = (
+            os.path.join(model_dir, model, "usd", f"{model}.usdz"),
+            os.path.join(model_dir, model, "usd", f"{model}.usd"),
+            os.path.join(model_dir, model, "usd", f"{model}.usda"),
+            os.path.join(model_dir, model, "usd", f"{model}.usdc"),
+        )
+
+        def load_model(model_path) -> Model | None:
+            try:
+                with open(model_path, 'rb') as f:
+                    return Model(
+                        type=ModelType.USD,
+                        name=model,
+                        description="",  # TODO add bytes compat
+                        path=model_path
+                    )
+            except FileNotFoundError:
+                pass
+            except Exception as e:
+                del e  # TODO add logging
+            return None
+
+        return next(filter(None, map(load_model, model_paths)), None)
+
+    @classmethod
+    def convertable(cls) -> Collection[ModelType]:
+        return (ModelType.SDF,)
+
+    @classmethod
+    def convert(cls, model_dir: str, model: Model, loader_args) -> Model | None:
+        if model.type == ModelType.SDF:
+            try:
+                # print(model_dir)
+                model_path = model.path
+                model_dir = os.path.dirname(model_path)
+                tree = ET.parse(model_path)
+                root = tree.getroot()
+                # First pass: resolve package:// URIs
+                model_uri_pattern = re.compile(r'^model://([^/]+)(.*)$')
+                package_uri_pattern = re.compile(r'^package://([^/]+)(.*)$')
+                for uri_elem in root.iter():
+                    if uri_elem.text:
+                        text = uri_elem.text.strip()
+                        match = model_uri_pattern.match(text)
+                        if match:
+                            package_name = match.group(1)
+                            remaining_path = match.group(2)
+                            # Get the absolute path for the package share directory.
+                            # Replace the package URI with the resolved directory plus remaining path.
+                            new_uri = os.path.join(model_dir, remaining_path)
+                            print(new_uri)
+                            # uri_elem.text = new_uri
+                            if (new_uri.endswith('.dae') or new_uri.endswith('.DAE')) and os.path.exists(new_uri):
+                                new_dae_path = process_dae(new_uri, model_dir)
+                                uri_elem.text = new_dae_path
+                            elif new_uri.endswith('.obj') and os.path.exists(new_uri):
+                                new_obj_path = process_obj(new_uri, model_dir)
+                                uri_elem.text = new_obj_path
+                        else:
+                            match = package_uri_pattern.match(text)
+                            if match:
+                                package_name = match.group(1)
+                                remaining_path = match.group(2)
+                                # Get the absolute path for the package share directory.
+                                # Replace the package URI with the resolved directory plus remaining path.
+                                new_uri = os.path.join(model_dir, remaining_path)
+                                print(new_uri)
+                                if (new_uri.endswith('.dae') or new_uri.endswith('.DAE')) and os.path.exists(new_uri):
+                                    new_dae_path = process_dae(new_uri, model_dir)
+                                    uri_elem.text = new_dae_path
+                                elif new_uri.endswith('.obj') and os.path.exists(new_uri):
+                                    new_obj_path = process_obj(new_uri, model_dir)
+                                    uri_elem.text = new_obj_path
+                model_path = os.path.join(model_dir, model.name, "usd", f"{model.name}.usd")
+                os.makedirs(os.path.dirname(model_path), exist_ok=True)
+                if os.path.islink(model_path) and not os.path.exists(model_path):  # broken symlink
+                    os.unlink(model_path)
+
+                import arena_bringup
+                ARENA_WS_DIR = arena_bringup.get_arena_ws_dir()
+
+                env = os.environ.copy()
+                env['ARENA_WS_DIR'] = ARENA_WS_DIR
+                with tempfile.NamedTemporaryFile(delete=False, mode='w') as f:
+                    tree.write(f, encoding='unicode')
+                    f.flush()
+                    temp_file_path = f.name
+                    print("Temporary SDF file for converter:", temp_file_path)
+                    subprocess.check_output(
+
+                        [
+                            f'{ARENA_WS_DIR}/src/arena/arena-rosnav/tools/sdf2usd',
+                            f.name,
+                            model_path
+                        ],
+                        env=env,
+                        # shell=True,
+                    )
+
+                from pxr import Usd
+                stage = Usd.Stage.Open(model_path)
+                for prim in stage.Traverse():
+                    if prim.GetTypeName() == "Xform":
+                        first_xform_prim = prim
+                        break
+                else:
+                    raise RuntimeError('no xform prim found')
+                prim_path = first_xform_prim.GetPath()
+                # print(prim_path)
+                stage.SetDefaultPrim(first_xform_prim)
+                root_layer = stage.GetRootLayer()
+                root_layer.Save()
+                return cls.load(model_dir, model.name, loader_args)
+
+            except Exception:
+                raise
+
+        return None
 
 
 def process_dae(dae_file, package_dir):
@@ -78,127 +201,3 @@ def process_obj(obj_file, package_dir):
         temp_filename = temp_file.name
     print(temp_filename)
     return temp_filename
-
-
-@_ModelLoader.model(ModelType.USD)
-class ModelLoader_USD(ITF_ModelLoader):
-    @classmethod
-    def load(cls, model_dir, model, loader_args):
-        model_paths = (
-            os.path.join(model_dir, model, "usd", f"{model}.usdz"),
-            os.path.join(model_dir, model, "usd", f"{model}.usd"),
-            os.path.join(model_dir, model, "usd", f"{model}.usda"),
-            os.path.join(model_dir, model, "usd", f"{model}.usdc"),
-        )
-
-        def load_model(model_path) -> Model | None:
-            try:
-                with open(model_path, 'rb') as f:
-                    return Model(
-                        type=ModelType.USD,
-                        name=model,
-                        description="",  # TODO add bytes compat
-                        path=model_path
-                    )
-            except FileNotFoundError:
-                pass
-            except Exception as e:
-                del e  # TODO add logging
-            return None
-
-        return next(filter(None, map(load_model, model_paths)), None)
-
-    @classmethod
-    def convertable(cls) -> Collection[ModelType]:
-        return (ModelType.SDF,)
-
-    @classmethod
-    def convert(cls, model_dir: str, model: Model, loader_args) -> Model | None:
-        if model.type == ModelType.SDF:
-            try:
-                # print(model_dir)
-                sdf_model_path = os.path.join(model_dir, model.name, "sdf", f"{model.name}.sdf")
-                materials_path = os.path.join(model_dir, model.name, 'sdf', 'materials')
-                tree = ET.parse(sdf_model_path)
-                root = tree.getroot()
-                # First pass: resolve package:// URIs
-                model_uri_pattern = re.compile(r'^model://([^/]+)(.*)$')
-                package_uri_pattern = re.compile(r'^package://([^/]+)(.*)$')
-                for uri_elem in root.iter():
-                    if uri_elem.text:
-                        text = uri_elem.text.strip()
-                        match = model_uri_pattern.match(text)
-                        if match:
-                            package_name = match.group(1)
-                            remaining_path = match.group(2)
-                            # Get the absolute path for the package share directory.
-                            # Replace the package URI with the resolved directory plus remaining path.
-                            new_uri = model_dir + '/' + model.name + remaining_path
-                            print(new_uri)
-                            # uri_elem.text = new_uri
-                            if (new_uri.endswith('.dae') or new_uri.endswith('.DAE')) and os.path.exists(new_uri):
-                                new_dae_path = process_dae(new_uri, materials_path)
-                                uri_elem.text = new_dae_path
-                            elif new_uri.endswith('.obj') and os.path.exists(new_uri):
-                                new_obj_path = process_obj(new_uri, materials_path)
-                                uri_elem.text = new_obj_path
-                        else:
-                            match = package_uri_pattern.match(text)
-                            if match:
-                                package_name = match.group(1)
-                                remaining_path = match.group(2)
-                                # Get the absolute path for the package share directory.
-                                # Replace the package URI with the resolved directory plus remaining path.
-                                new_uri = model_dir + '/' + model.name + remaining_path
-                                print(new_uri)
-                                if (new_uri.endswith('.dae') or new_uri.endswith('.DAE')) and os.path.exists(new_uri):
-                                    new_dae_path = process_dae(new_uri, materials_path)
-                                    uri_elem.text = new_dae_path
-                                elif new_uri.endswith('.obj') and os.path.exists(new_uri):
-                                    new_obj_path = process_obj(new_uri, materials_path)
-                                    uri_elem.text = new_obj_path
-                model_path = os.path.join(model_dir, model.name, "usd", f"{model.name}.usd")
-                os.makedirs(os.path.dirname(model_path), exist_ok=True)
-                if os.path.islink(model_path) and not os.path.exists(model_path):  # broken symlink
-                    os.unlink(model_path)
-
-                import arena_bringup
-                ARENA_WS_DIR = arena_bringup.get_arena_ws_dir()
-
-                env = os.environ.copy()
-                env['ARENA_WS_DIR'] = ARENA_WS_DIR
-                with tempfile.NamedTemporaryFile(delete=False, mode='w') as f:
-                    tree.write(f, encoding='unicode')
-                    f.flush()
-                    temp_file_path = f.name
-                    print("Temporary SDF file for converter:", temp_file_path)
-                    subprocess.check_output(
-
-                        [
-                            f'{ARENA_WS_DIR}/src/arena/arena-rosnav/tools/sdf2usd',
-                            f.name,
-                            model_path
-                        ],
-                        env=env,
-                        # shell=True,
-                    )
-
-                from pxr import Usd
-                stage = Usd.Stage.Open(model_path)
-                for prim in stage.Traverse():
-                    if prim.GetTypeName() == "Xform":
-                        first_xform_prim = prim
-                        break
-                else:
-                    raise RuntimeError('no xform prim found')
-                prim_path = first_xform_prim.GetPath()
-                # print(prim_path)
-                stage.SetDefaultPrim(first_xform_prim)
-                root_layer = stage.GetRootLayer()
-                root_layer.Save()
-                return cls.load(model_dir, model.name, loader_args)
-
-            except Exception:
-                raise
-
-        return None
