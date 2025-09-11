@@ -26,7 +26,7 @@ class ProviderBase:
     _sources: typing.ClassVar[Sources]
 
     @classmethod
-    def bind(cls: typing.Type[T], path: SourcesProtocol) -> typing.Type[T]:
+    def bind(cls: typing.Type[T], path: Sources) -> typing.Type[T]:
         return typing.cast(
             typing.Type[T],
             type('Bound' + cls.__name__, (cls,), dict(_sources=path))
@@ -47,9 +47,14 @@ class ProviderBase:
         return cls._sources
 
     @classmethod
-    def resolve(cls, *suffix: str) -> str | None:
-        resolved = next(filter(os.path.exists, map(lambda x: os.path.join(x, *suffix), cls._sources)), None)
-        return resolved
+    def resolve(cls, path: str) -> str | None:
+        return next(
+            filter(
+                os.path.exists,
+                (os.path.join(x, path) for x in cls._sources)
+            ),
+            None
+        )
 
     # Instance Methods: Provider
     def __new__(cls, obj: object):
@@ -75,73 +80,77 @@ class ProviderBase:
         return resolved
 
 
-class SourcesProtocol(typing.Protocol):
-    def __iter__(self) -> Iterator[str]:
-        ...
-
-    def __call__(self, *suffix: str) -> SourcesProtocol:
-        ...
-
-
 class SourcesContainer(dict):
-    class Key(enum.Enum):
-        GLOBAL = enum.auto()
-        WORLD = enum.auto()
-
-    def sources(self) -> Iterator[str]:
-        return filter(None, (self.get(self.Key.WORLD), self.get(self.Key.GLOBAL)))
-
-
-class StaticSources(SourcesProtocol):
     """
-    Static source directories
+    Container for source directories
     """
+    class Keys(enum.Enum):
+        GLOBAL = 'global_dir'
+        WORLD = 'world_dir'
 
-    def __init__(self, *s: str) -> None:
-        self._s: tuple[str, ...] = s
+    def override(self, **overrides: str) -> SourcesContainer:
+        class OverridenSourcesContainer(SourcesContainer):
+            def __getitem__(inner_self, key: str) -> str:
+                if key in overrides:
+                    return overrides[key]
+                return self.__getitem__(key)
+        return OverridenSourcesContainer(self)
 
     def __iter__(self) -> Iterator[str]:
-        yield from self._s
-
-    def __repr__(self) -> str:
-        return f"StaticSources({list(self)})"
-
-    def __call__(self, *suffix: str) -> StaticSources:
-        return StaticSources(*(os.path.join(s, *suffix) for s in self._s))
+        return filter(None, (self.get(SourcesContainer.Keys.WORLD), self.get(SourcesContainer.Keys.GLOBAL)))
 
 
-class Sources(SourcesProtocol):
+class Sources:
     """
     Dynamic source directories
     """
 
     def __iter__(self) -> Iterator[str]:
-        for x in self.__sources.sources():
+        for x in self.__sources:
             yield os.path.join(x, self.__suffix)
 
     def __repr__(self) -> str:
         return f"Sources({list(self)})"
 
     def __hash__(self) -> int:
-        return hash((self.__suffix, *self.__sources.sources()))
+        return hash((self.__suffix, *self.__sources))
 
     def __init__(self, sources: SourcesContainer, suffix: str = '') -> None:
         self.__sources: SourcesContainer = sources
         self.__suffix: str = suffix
 
+    def override(self, **overrides: str) -> Sources:
+        return Sources(self.__sources.override(**overrides), self.__suffix)
+
     def __call__(self, *suffix: str) -> Sources:
         return Sources(self.__sources, os.path.join(self.__suffix, *suffix))
 
+    @property
+    def global_dir(self) -> str:
+        return os.path.join(self.__sources.get(SourcesContainer.Keys.GLOBAL), self.__suffix)
 
-_ass_sources = SourcesContainer({SourcesContainer.Key.GLOBAL: ass_dir})
+    @property
+    def world_dir(self) -> str | None:
+        world_dir = self.__sources.get(SourcesContainer.Keys.WORLD)
+        if world_dir is None:
+            return None
+        return os.path.join(world_dir, self.__suffix)
+
+    # tmp
+
+    @property
+    def sources(self) -> SourcesContainer:
+        return self.__sources
+
+
+_ass_sources_container = SourcesContainer({SourcesContainer.Keys.GLOBAL: ass_dir})
 
 
 def set_world_dir(world_dir: str | None) -> None:
     """
     Set the world directory dynamic source resolution.
     """
-    _ass_sources[SourcesContainer.Key.WORLD] = world_dir
+    _ass_sources_container[SourcesContainer.Keys.WORLD] = world_dir
 
 
-ass_sources = Sources(_ass_sources)
-ass_sources_static = StaticSources(ass_dir)
+ass_sources = Sources(_ass_sources_container)

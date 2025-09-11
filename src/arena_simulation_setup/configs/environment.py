@@ -1,6 +1,6 @@
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_sources_static
+from arena_simulation_setup import ProviderBase, ass_sources
 
 
 class EnvironmentProvider(ProviderBase):
@@ -9,4 +9,4 @@ class EnvironmentProvider(ProviderBase):
             return yaml.safe_load(f)
 
 
-Environment = EnvironmentProvider.bind(ass_sources_static('configs', 'environment'))
+Environment = EnvironmentProvider.bind(ass_sources('configs', 'environment'))

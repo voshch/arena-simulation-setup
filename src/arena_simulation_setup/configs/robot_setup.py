@@ -2,7 +2,7 @@ import typing
 
 import yaml
 
-from arena_simulation_setup import ProviderBase, StaticSources, ab_dir
+from arena_simulation_setup import ProviderBase, Sources, ab_dir
 
 
 class RobotSetupProvider(ProviderBase):
@@ -22,4 +22,4 @@ class RobotSetupProvider(ProviderBase):
         return result
 
 
-RobotSetup = RobotSetupProvider.bind(StaticSources(ab_dir)('configs', 'robot_setup'))
+RobotSetup = RobotSetupProvider.bind(Sources(ab_dir)('configs', 'robot_setup'))

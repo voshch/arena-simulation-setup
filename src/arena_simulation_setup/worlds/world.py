@@ -4,7 +4,7 @@ import typing
 import attrs
 import yaml
 
-from arena_simulation_setup import ProviderBase, StaticSources, ass_sources_static
+from arena_simulation_setup import ProviderBase, SourcesContainer, ass_sources
 from arena_simulation_setup.entities.materials import (
     FloorMaterialLoader,
     MaterialProvider,
@@ -85,9 +85,13 @@ class WorldProvider(ProviderBase):
     def list(cls):
         return ('.generated', *super().list())
 
+    @classmethod
+    def resolve(cls, path: str) -> str:
+        return os.path.join(cls._sources.global_dir, path)
+
     @property
     def scenario(self):
-        return ScenarioProvider.bind(StaticSources(os.path.join(self.path, 'scenarios')))
+        return ScenarioProvider.bind(ass_sources.override(**{SourcesContainer.Keys.WORLD.value: self.path})('scenarios'))
 
     @property
     def map(self):
@@ -105,4 +109,4 @@ class WorldProvider(ProviderBase):
             )
 
 
-World = WorldProvider.bind(ass_sources_static('worlds'))
+World = WorldProvider.bind(ass_sources('worlds'))

@@ -3,7 +3,7 @@ from typing import Optional
 
 import attrs
 
-from arena_simulation_setup import ProviderBase, ab_dir, StaticSources
+from arena_simulation_setup import ProviderBase, ab_dir, Sources
 
 
 def _get_attrib(
@@ -62,4 +62,4 @@ class ParametrizedProvider(ProviderBase):
         )
 
 
-Parametrized = ParametrizedProvider.bind(StaticSources(ab_dir)('configs', 'parametrized'))
+Parametrized = ParametrizedProvider.bind(Sources(ab_dir)('configs', 'parametrized'))
