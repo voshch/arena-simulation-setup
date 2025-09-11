@@ -5,7 +5,6 @@ import typing
 
 from copy import deepcopy
 
-import attr
 import cattrs
 
 converter = cattrs.Converter()
@@ -48,82 +47,79 @@ def idempotent(cls: typing.Type[T]) -> typing.Type[Idempotent, T]:
         return type(cls.__name__, (Idempotent, cls), {})
     return cls
 
+# Serialization and Deserialization
+
+
+class _SerializableMeta(abc.ABCMeta):
+    """
+    A metaclass that automatically registers a cattrs unstructure hook.
+
+    The hook is created from the class's `serialize()` method.
+    """
+
+    def __init__(cls, name: str, bases: tuple, dct: dict):
+        super().__init__(name, bases, dct)
+
+        if not getattr(cls, "__abstractmethods__", set()):
+            def unstructure_hook(obj): return obj.serialize()
+            converter.register_unstructure_hook(cls, unstructure_hook)
+
+
+class Serializable(metaclass=_SerializableMeta):
+    """
+    A base class for serializable objects.
+    """
+
+    @abc.abstractmethod
+    def serialize(self) -> typing.Any:
+        """
+        Define the custom serialization logic for this object.
+        The return value should be a primitive type (dict, list, str, int, etc.).
+        """
+        raise NotImplementedError
+
+
+class _ParseableMeta(abc.ABCMeta):
+    """
+    A metaclass that automatically registers a cattrs structure hook.
+
+    The hook is created from the class's `parse()` method.
+    """
+
+    def __init__(cls, name: str, bases: tuple, dct: dict):
+        super().__init__(name, bases, dct)
+
+        if not getattr(cls, "__abstractmethods__", set()):
+            def try_parse(data):
+                if isinstance(data, cls):
+                    return data
+                try:
+                    return converter.structure_attrs_fromdict(deepcopy(data), cls)
+                except Exception:
+                    return cls.parse(data)
+
+            converter.register_structure_hook(
+                cls,
+                lambda data, _: try_parse(data)
+            )
+
 
 ParseableT = typing.TypeVar('ParseableT', bound='Parseable')
 
 
-class Parseable(abc.ABC):
+class Parseable(metaclass=_ParseableMeta):
+    """
+    A base class for parseable objects.
+    """
+
     @classmethod
     @abc.abstractmethod
     def parse(cls: typing.Type[ParseableT], value: typing.Any) -> ParseableT:
-        raise NotImplementedError("Subclasses must implement parse method")
-
-
-def register_parse(cls: typing.Type[ParseableT]) -> typing.Type[ParseableT]:
-
-    def try_parse(data):
-        if isinstance(data, cls):
-            return data
-        try:
-            return converter.structure_attrs_fromdict(deepcopy(data), cls)
-        except Exception:
-            return cls.parse(data)
-
-    converter.register_structure_hook(
-        cls,
-        lambda data, _: try_parse(data)
-    )
-    return cls
-
-
-T = typing.TypeVar('T')
-V = typing.TypeVar('V')
-
-
-def attrs_sequence(type_: typing.Type[V] = typing.Type[typing.Any]):
-    del type_
-
-    def decorator(cls: typing.Type[T]):
-        fields = attr.fields(cls)
-        field_names = [field.name for field in fields]
-        num_fields = len(field_names)
-
-        def __len__(self) -> int:
-            return num_fields
-
-        def __iter__(self) -> typing.Iterator[V]:
-            for name in field_names:
-                yield getattr(self, name)
-
-        @typing.overload
-        def __getitem__(self, key: int) -> V: ...
-
-        @typing.overload
-        def __getitem__(self, key: slice) -> tuple[V, ...]: ...
-
-        def __getitem__(self, key: typing.Union[int, slice]) -> typing.Union[V, tuple[V, ...]]:
-            if isinstance(key, slice):
-                return tuple(self)[key]
-            if isinstance(key, int):
-                if key < 0:
-                    key += num_fields
-                if 0 <= key < num_fields:
-                    field_name = field_names[key]
-                    return getattr(self, field_name)
-                raise IndexError("Attribute index out of range")
-
-            raise TypeError(f"Attribute indices must be integers or slices, not {type(key).__name__}")
-
-        setattr(cls, '__len__', __len__)
-        setattr(cls, '__iter__', __iter__)
-        setattr(cls, '__getitem__', __getitem__)
-
-        return cls
-    return decorator
+        raise NotImplementedError
 
 
 __all__ = [
+    "Serializable",
     "Parseable",
-    "register_parse",
-    "converter"
+    "converter",
 ]

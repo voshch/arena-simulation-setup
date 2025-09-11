@@ -1,18 +1,16 @@
 import sys
 
-from . import WorldGeneratorType
-from . import _WorldGenerator as WorldGenerator
+from . import WorldGenerator, WorldGeneratorType
 
-from .empty import *  # noqa
-from .hallway import *  # noqa
-
+from arena_simulation_setup.worlds.world import World
 
 __all__ = ['WorldGenerator', 'WorldGeneratorType']
 
 
-def test_generate(out: str, name: str, config: dict):
+def test_generate(out: str, name: str, config: dict) -> str:
     gen = WorldGenerator(WorldGeneratorType(name), config)
-    gen.compute().save_to(out)
+    world = World(out)
+    return world.save(gen.compute())
 
 
 def main(argv=sys.argv):
@@ -20,9 +18,11 @@ def main(argv=sys.argv):
     import os
 
     if len(argv) == 3:
-        test_generate(argv[1], argv[2], {})
+        result = test_generate(argv[1], argv[2], {})
+        print(f'Generated world saved to {result}')
     elif len(argv) == 4:
-        test_generate(argv[1], argv[2], json.loads(argv[3]))
+        result = test_generate(argv[1], argv[2], json.loads(argv[3]))
+        print(f'Generated world saved to {result}')
     else:
         print(f'usage: {os.path.basename(__file__)} <world_name> <generator> [<config>]')
         sys.exit(1)

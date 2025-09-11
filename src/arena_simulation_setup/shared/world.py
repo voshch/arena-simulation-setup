@@ -26,7 +26,6 @@ class Door:
     end: Position = attrs.field(converter=Position.converter)
     kind: typing.Literal['sliding'] = 'sliding'
     pose: Pose = attrs.field(factory=Pose, converter=Pose.converter)
-    description: str = attrs.field(default="")
     height: float = attrs.field(default=2.0)
     material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
 

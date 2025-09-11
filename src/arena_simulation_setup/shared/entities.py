@@ -14,7 +14,6 @@ from arena_simulation_setup.entities.robot import loader as RobotLoader
 from arena_simulation_setup.utils.cattrs import (
     Parseable,
     converter,
-    register_parse,
 )
 from arena_simulation_setup.utils.models import ModelWrapper
 
@@ -25,7 +24,6 @@ from .utils import model_parse
 EntityT = typing.TypeVar("EntityT", bound="Entity")
 
 
-@register_parse
 @attrs.define
 class Entity(Parseable):
     pose: Pose = attrs.field(converter=Pose.converter)
@@ -61,14 +59,12 @@ converter.register_structure_hook(
 )
 
 
-@register_parse
 @attrs.define
 class Obstacle(Entity):
     model: ModelWrapper = attrs.field(converter=model_parse(ObstacleLoader))
     # type_: str = attrs.field(converter=str)
 
 
-@register_parse
 @attrs.define
 class DynamicObstacle(Obstacle):
     model: ModelWrapper = attrs.field(converter=model_parse(DynamicObstacleLoader, overrides=(ObstacleLoader,)))
@@ -76,7 +72,6 @@ class DynamicObstacle(Obstacle):
     velocity: float = attrs.field(converter=float, default=1.0)  # m/s
 
 
-@register_parse
 @attrs.define
 class CustomDynamicObstacle(DynamicObstacle):
     """

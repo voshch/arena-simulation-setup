@@ -20,7 +20,7 @@ from arena_simulation_setup.entities.obstacles.static import (
 )
 from arena_simulation_setup.shared.entities import Obstacle
 from arena_simulation_setup.shared.utils import model_parse
-from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
+from arena_simulation_setup.utils.cattrs import Parseable, converter
 from arena_simulation_setup.utils.geometry import Orientation, Pose, Position
 from arena_simulation_setup.utils.models import ModelWrapper
 
@@ -29,7 +29,6 @@ from arena_simulation_setup.utils.models import ModelWrapper
 ###
 
 
-@register_parse
 class PositionalNumber(Parseable):
     def __init__(self, *, absolute: typing.Optional[float] = None, relative: typing.Optional[float] = None):
         if absolute is not None:
@@ -48,6 +47,7 @@ class PositionalNumber(Parseable):
             return self._absolute
         if self._relative is not None:
             return low + (high - low) * self._relative
+        raise ValueError("Neither absolute nor relative is set.")
 
     def realize(self, start: Position, end: Position) -> Position:
         return start + self.absolute(0.0, (end - start).norm()) * (end - start).normalized()
@@ -88,8 +88,12 @@ class TilingAsset(SubWall):
         start, end = self._shift(start, end)
 
         r_walls, r_obstacles = itertools.chain(()), itertools.chain(())
-        every = self.every / (end - start).norm()
-        width = self.width / (end - start).norm() / 2.0
+        if (divisor := (end - start).norm()) > 1e-6:
+            every = self.every / divisor
+            width = self.width / divisor / 2.0
+        else:
+            every = 1.0
+            width = 0.0
 
         offset = every + width
         while (offset + width) < 1:

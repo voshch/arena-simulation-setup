@@ -6,8 +6,8 @@ import typing
 import attrs
 import yaml
 
-from arena_simulation_setup import ass_dir, ProviderBase
-from arena_simulation_setup.utils.cattrs import converter
+from arena_simulation_setup import ProviderBase, Sources, ass_sources
+from arena_simulation_setup.utils.cattrs import Serializable, converter
 
 
 @attrs.define
@@ -21,7 +21,7 @@ class Material:
         return attrs.asdict(self)
 
 
-class MaterialProvider(ProviderBase):
+class MaterialProvider(ProviderBase, Serializable):
     # TODO figure materials format and switch to Sources
 
     _materials_dict: typing.ClassVar[dict[str, dict]]
@@ -32,20 +32,21 @@ class MaterialProvider(ProviderBase):
         return cls(Material.DEFAULT)
 
     @classmethod
-    def bind(cls, path: str) -> MaterialProvider:
-        with open(path) as f:
-            return typing.cast(
-                MaterialProvider,
-                type(
-                    'Bound' + cls.__name__,
-                    (
-                        # super().bind(path),
-                        cls,
-                    ),
-                    dict(
-                        _path=path,
-                        _materials_dict=yaml.safe_load(f)
-                    )
+    def bind(_cls, path: Sources):
+        cls = super().bind(path)
+        resolved = cls.resolve()
+        if not resolved:
+            raise ValueError(f"Path '' not found in sources: {cls._sources}")
+        with open(resolved) as f:
+            return type(
+                'Bound' + cls.__name__,
+                (
+                    # super().bind(path),
+                    cls,
+                ),
+                dict(
+                    _path=path,
+                    _materials_dict=yaml.safe_load(f)
                 )
             )
 
@@ -59,6 +60,9 @@ class MaterialProvider(ProviderBase):
             raise FileNotFoundError(f'Material not found in {self._path}: {self._name}')
         return converter.structure(material, Material)
 
+    def serialize(self) -> str:
+        return self.name
 
-WallMaterialLoader = MaterialProvider.bind(os.path.join(ass_dir, 'entities', 'materials', 'wall.yaml'))
-FloorMaterialLoader = MaterialProvider.bind(os.path.join(ass_dir, 'entities', 'materials', 'floor.yaml'))
+
+WallMaterialLoader = MaterialProvider.bind(ass_sources('entities', 'materials', 'wall.yaml'))
+FloorMaterialLoader = MaterialProvider.bind(ass_sources('entities', 'materials', 'floor.yaml'))

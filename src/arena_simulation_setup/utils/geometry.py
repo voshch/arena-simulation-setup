@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-import collections
-import collections.abc
+from collections.abc import Sequence, Iterator
 import math
 import typing
 
@@ -42,7 +41,7 @@ except ImportError:
             class Pose(_uninstanceable):
                 ...
 
-from arena_simulation_setup.utils.cattrs import Parseable, attrs_sequence, register_parse
+from arena_simulation_setup.utils.cattrs import Parseable
 
 EulerOrder = typing.Literal['xyz', 'xzy', 'yxz', 'yzx', 'zxy', 'zyx']
 _EulerIndices: dict[str, tuple[int, int, int]] = {
@@ -110,8 +109,6 @@ class Vector3:
         return Orientation.from_euler((0, pitch, yaw), order='xyz')
 
 
-@register_parse
-@attrs_sequence(float)
 @attrs.define
 class Position(Parseable, Idempotent, Vector3):
     """
@@ -119,7 +116,7 @@ class Position(Parseable, Idempotent, Vector3):
     """
 
     @classmethod
-    def parse(cls, value: geometry_msgs.msg.Point | collections.abc.Sequence[float]) -> Position:
+    def parse(cls, value: geometry_msgs.msg.Point | Sequence[float]) -> Position:
         """
         parse value into Position
         formats: [x,y], [x,y,z]
@@ -161,9 +158,12 @@ class Position(Parseable, Idempotent, Vector3):
             z=self.z
         )
 
+    def __iter__(self) -> Iterator[float]:
+        yield self.x
+        yield self.y
+        yield self.z
 
-@register_parse
-@attrs_sequence(float)
+
 @attrs.define
 class Orientation(Parseable, Idempotent):
     """
@@ -176,7 +176,7 @@ class Orientation(Parseable, Idempotent):
     z: float = attrs.field(converter=float)
 
     @classmethod
-    def parse(cls, value: geometry_msgs.msg.Quaternion | collections.abc.Sequence[float] | float) -> Orientation:
+    def parse(cls, value: geometry_msgs.msg.Quaternion | Sequence[float] | float) -> Orientation:
         """
         parse value into Orientation
         formats: yaw, [roll, pitch, yaw], [w,x,y,z]
@@ -185,7 +185,7 @@ class Orientation(Parseable, Idempotent):
         if isinstance(value, geometry_msgs.msg.Quaternion):
             return cls.from_msg(typing.cast(geometry_msgs.msg.Quaternion, value))
 
-        if isinstance(value, collections.abc.Sequence):
+        if isinstance(value, Sequence):
             if len(value) == 4:
                 return cls(*value)
 
@@ -306,8 +306,13 @@ class Orientation(Parseable, Idempotent):
             )
         raise ValueError(f"cannot multiply Orientation with {other}")
 
+    def __iter__(self) -> Iterator[float]:
+        yield self.w
+        yield self.x
+        yield self.y
+        yield self.z
 
-@register_parse
+
 @attrs.define
 class Pose(Parseable, Idempotent):
     """
@@ -318,7 +323,7 @@ class Pose(Parseable, Idempotent):
     orientation: Orientation = attrs.field(factory=lambda: Orientation(1, 0, 0, 0))
 
     @classmethod
-    def parse(cls, value: geometry_msgs.msg.Pose | collections.abc.Sequence[float] | collections.abc.Sequence[collections.abc.Sequence[float]]) -> Pose:
+    def parse(cls, value: geometry_msgs.msg.Pose | Sequence[float] | Sequence[Sequence[float]]) -> Pose:
         """
         parse value into Pose
         formats: [x,y], [x,y,yaw], [x,y,z,roll,pitch,yaw], [x,y,z,w,x,y,z], [[*position], [*orientation]]
@@ -349,7 +354,7 @@ class Pose(Parseable, Idempotent):
                 )
 
         # split sequence
-        if len(value) == 2 and all(isinstance(v, collections.abc.Sequence) for v in value) and all(isinstance(n, (int, float)) for v in value for n in v):
+        if len(value) == 2 and all(isinstance(v, Sequence) for v in value) and all(isinstance(n, (int, float)) for v in value for n in v):
             value = typing.cast(typing.Sequence[typing.Sequence[float]], value)
             return cls(
                 position=Position.parse(value[0]),
@@ -387,18 +392,19 @@ class Pose(Parseable, Idempotent):
         return (self.position.x, self.position.y, self.orientation.to_yaw())
 
 
-@register_parse
-@attrs_sequence(float)
 @attrs.define
 class PositionRadius(Position, Idempotent):
     radius: float = attrs.field(converter=float, default=1.0)
 
     @classmethod
-    def parse(cls, value: collections.abc.Sequence[float]) -> PositionRadius:
+    def parse(cls, value: geometry_msgs.msg.Point | Sequence[float]) -> PositionRadius:
         """
         parse value into PositionRadius
         formats: [x,y,radius], [x,y,z,radius]
         """
+        if isinstance(value, geometry_msgs.msg.Point):
+            return cls(value.x, value.y, value.z, 1.0)
+
         if len(value) == 3:
             return cls(*value)
 
@@ -406,6 +412,10 @@ class PositionRadius(Position, Idempotent):
             return cls(value[0], value[1], 1.0)
 
         raise ValueError(f"PositionRadius must be [x,y] or [x,y,z,radius], got {value}")
+
+    def __iter__(self) -> Iterator[float]:
+        yield from super().__iter__()
+        yield self.radius
 
 
 def angle_diff(a: float, b: float) -> float:

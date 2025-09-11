@@ -43,15 +43,16 @@ class ProviderBase:
         return tuple(sorted(set(itertools.chain(*map(cls._listdir, cls._sources)))))
 
     @classmethod
-    def base_dir(cls) -> str:
+    def base_dir(cls) -> Sources:
+        # TODO rename
         return cls._sources
 
     @classmethod
-    def resolve(cls, path: str) -> str | None:
+    def resolve(cls, *path: str) -> str | None:
         return next(
             filter(
                 os.path.exists,
-                (os.path.join(x, path) for x in cls._sources)
+                (os.path.join(x, *path) for x in cls._sources)
             ),
             None
         )

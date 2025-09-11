@@ -12,7 +12,7 @@ from typing import Optional, Type, overload
 import attrs
 
 from arena_simulation_setup import Sources
-from arena_simulation_setup.utils.cattrs import converter
+from arena_simulation_setup.utils.cattrs import converter, Serializable
 
 # TODO deprecate this in favor of Model.EMPTY
 
@@ -85,7 +85,11 @@ class ModelProvider(abc.ABC):
         return None
 
 
-class ModelWrapper:
+class ModelWrapper(Serializable):
+
+    def serialize(self) -> str:
+        return self.name
+
     _get: Callable[[Collection[ModelType], dict], Model]
     _name: str
     _override: dict[ModelType, tuple[bool, Callable[..., Model]]]

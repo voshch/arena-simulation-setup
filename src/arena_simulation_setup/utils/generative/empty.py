@@ -1,11 +1,18 @@
-from . import (GeneratedWorld, Polygon, WorldGeneratorType, _BaseConfiguration,
-               _WorldGenerator, _WorldGeneratorImpl)
+import shapely
 
 
-@_WorldGenerator.register(WorldGeneratorType.EMPTY)
-class WorldGeneratorEmpty(_WorldGeneratorImpl):
+from . import (
+    WorldDescription,
+    BaseConfiguration,
+    WorldGeneratorImpl,
+)
 
-    class Configuration(_BaseConfiguration):
+from .utils import to_corners, to_walls
+
+
+class WorldGeneratorEmpty(WorldGeneratorImpl):
+
+    class Configuration(BaseConfiguration):
         ...
 
     config: Configuration
@@ -13,13 +20,22 @@ class WorldGeneratorEmpty(_WorldGeneratorImpl):
     def configure(self, configuration: dict):
         self.config = self.Configuration.model_validate(configuration)
 
-    def compute(self) -> GeneratedWorld:
-        return GeneratedWorld(
-            rooms=[
-                Polygon([(0, 0), (self.config.width, 0), (self.config.width, self.config.height), (0, self.config.height)])
-            ],
-            doors=[],
-            resolution=self.config.resolution,
-            width=self.config.width,
-            height=self.config.height,
+    def compute(self) -> WorldDescription:
+
+        room = shapely.Polygon([
+            (0, 0),
+            (self.config.width, 0),
+            (self.config.width, self.config.height),
+            (0, self.config.height),
+        ])
+
+        return WorldDescription(
+            zones=[
+                WorldDescription.Zone(
+                    name="empty_zone",
+                    corners=to_corners(room),
+                    walls=to_walls(room),
+                    description="An empty zone",
+                )
+            ]
         )

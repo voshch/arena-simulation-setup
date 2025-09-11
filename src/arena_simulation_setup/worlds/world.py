@@ -1,4 +1,6 @@
+import io
 import os
+import tarfile
 import typing
 
 import attrs
@@ -78,6 +80,42 @@ class WorldDescription:
     def all_dynamic_entities(self) -> typing.Iterable[Obstacle]:
         return (entity for zone in self.zones for entity in zone.entities.dynamic)
 
+    def export(
+        self,
+        resolution: float = 0.05,
+        extra_files: dict[str, bytes] | None = None,
+    ) -> tarfile.TarFile:
+        """
+        Export the world description to world.yaml, map.png, map.yaml
+        """
+        import shapely
+
+        if extra_files is None:
+            extra_files = {}
+        files: dict[str, bytes] = {**extra_files}
+
+        files['world.yaml'] = typing.cast(bytes, yaml.safe_dump(converter.unstructure(self), encoding='utf-8'))
+
+        files['map/map.png'], origin = Map.generate_png(
+            rooms=shapely.MultiPolygon([shapely.Polygon(zone.corners) for zone in self.zones]),
+            walls=shapely.MultiLineString(list(self.all_walls)),
+            resolution=resolution,
+            padding=5,
+        )
+
+        files['map/map.yaml'] = Map.generate_map_yaml(resolution=resolution, filename='map.png', origin=origin).encode('utf-8')
+
+        with io.BytesIO() as tar_stream:
+            with tarfile.open(mode='w', fileobj=tar_stream) as tarball:
+                for filename, content in files.items():
+                    info = tarfile.TarInfo(name=os.path.normpath(filename))
+                    info.size = len(content)
+                    tarball.addfile(tarinfo=info, fileobj=io.BytesIO(content))
+            tar_stream.seek(0)
+            return tarfile.open(fileobj=io.BytesIO(tar_stream.getvalue()))
+
+        return tarball
+
 
 class WorldProvider(ProviderBase):
 
@@ -107,6 +145,12 @@ class WorldProvider(ProviderBase):
                 yaml.safe_load(f),
                 WorldDescription
             )
+
+    def save(self, world: WorldDescription, **kwargs) -> str:
+        os.makedirs(self.path, exist_ok=True)
+        tarball = world.export(**kwargs)
+        tarball.extractall(self.path, filter='data')
+        return self.path
 
 
 World = WorldProvider.bind(ass_sources('worlds'))
