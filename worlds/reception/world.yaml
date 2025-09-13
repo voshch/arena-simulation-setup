@@ -18,7 +18,7 @@ zones:
     entities:
       static:
         - name: vending_machine
-          model: hospital_sign
+          model: vending_machine
           pose: [7.5, 11.5, 0]
 
   - description: "Reception Entrance"
@@ -55,7 +55,7 @@ zones:
     entities:
       static:
         - name: nurse_station
-          model: Water_Dispenser
+          model: nurse_station
           pose: [15, 11.5, -1.57]
         - name: chair1
           model: chair_array
