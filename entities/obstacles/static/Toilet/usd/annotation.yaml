@@ -1,0 +1,10 @@
+desc: Toilet
+material: [porceplain]
+color: [white]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

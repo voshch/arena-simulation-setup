@@ -1,0 +1,11 @@
+desc: Defibrillator
+material: [plastic]
+color: [white, red]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

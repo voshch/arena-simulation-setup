@@ -1,0 +1,10 @@
+desc: Desk
+material: [metal]
+color: [silver, black]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

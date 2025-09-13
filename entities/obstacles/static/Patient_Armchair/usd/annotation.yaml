@@ -1,0 +1,11 @@
+desc: Patient Armchair
+material: [wood, canvas]
+color: [white, brown]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

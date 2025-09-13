@@ -1,0 +1,11 @@
+desc: Lab Stool
+material: [steel, fabric]
+color: [yellow]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

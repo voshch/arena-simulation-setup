@@ -1,0 +1,11 @@
+desc: Waiting Room Bench
+material: [steel, plastic]
+color: [blue]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

@@ -1,0 +1,11 @@
+desc: Display Board
+material: [steel]
+color: [white]
+tags: [hospital]
+hoi: [see]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

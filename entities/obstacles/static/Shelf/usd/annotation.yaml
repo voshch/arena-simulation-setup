@@ -1,0 +1,10 @@
+desc: Shelf
+material: [metal]
+color: [silver]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

@@ -1,0 +1,11 @@
+desc: Isolation Bed
+material: [steel, fabric]
+color: [white]
+tags: [hospital]
+hoi: [lie]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

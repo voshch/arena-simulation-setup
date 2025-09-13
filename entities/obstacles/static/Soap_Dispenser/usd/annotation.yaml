@@ -1,0 +1,10 @@
+desc: Soap Dispenser
+material: [plastic]
+color: [white]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

@@ -1,0 +1,10 @@
+desc: Drinks Machine
+material: [metal]
+color: [black]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

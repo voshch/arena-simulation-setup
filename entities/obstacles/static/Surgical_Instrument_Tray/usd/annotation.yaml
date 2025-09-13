@@ -1,0 +1,11 @@
+desc: Surgical Instrument Tray
+material: [steel]
+color: [silver]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

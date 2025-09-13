@@ -1,0 +1,10 @@
+desc: Disposal Stand
+material: [metal]
+color: [silver, yellow]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

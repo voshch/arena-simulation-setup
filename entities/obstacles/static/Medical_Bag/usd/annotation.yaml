@@ -1,0 +1,10 @@
+desc: Medical Bag
+material: [fabric]
+color: [red]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

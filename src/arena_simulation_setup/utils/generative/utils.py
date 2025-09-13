@@ -67,7 +67,6 @@ class GeneratedWorld:
                 name=f'zone_{i}',
                 corners=[Position(x=pt[0], y=pt[1]) for pt in self.global_tf(room).exterior.coords[:-1]],
                 walls=poly_to_walls(room),
-                mat='',
                 entities=arena_simulation_setup.worlds.world.WorldDescription.Zone.WorldEntities(),
             )
         zones = [
@@ -99,7 +98,6 @@ class GeneratedWorld:
                     Wall(start=Position(x=start[0], y=start[1]), end=Position(x=end[0], y=end[1]))
                     for start, end in extra_walls.geoms
                 ],
-                mat='',
                 entities=arena_simulation_setup.worlds.world.WorldDescription.Zone.WorldEntities(),
             )
         )

@@ -1,0 +1,10 @@
+desc: Bed
+material: [fabric, metal]
+color: [white, blue]
+tags: [hospital]
+hoi: [lie]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

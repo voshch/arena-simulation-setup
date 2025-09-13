@@ -1,0 +1,11 @@
+desc: Waiting Room Chair
+material: [wood, fabric]
+color: [white, brown]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

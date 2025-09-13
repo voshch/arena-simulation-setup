@@ -1,0 +1,11 @@
+desc: Bedside Cabinet
+material: [wood]
+color: [white, yellow]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

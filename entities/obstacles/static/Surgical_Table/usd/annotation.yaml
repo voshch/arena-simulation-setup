@@ -1,0 +1,11 @@
+desc: Surgical Table
+material: [steel, canvas]
+color: [blue]
+tags: [hospital]
+hoi: [lie]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

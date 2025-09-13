@@ -1,0 +1,10 @@
+desc: Xray Light Box
+material: [metal, plastic]
+color: [white]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

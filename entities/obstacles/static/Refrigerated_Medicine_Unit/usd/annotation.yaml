@@ -1,0 +1,11 @@
+desc: Refrigerated Medicine Unit
+material: [steel]
+color: [white]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

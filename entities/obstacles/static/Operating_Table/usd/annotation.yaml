@@ -1,0 +1,11 @@
+desc: Operating Table
+material: [steel, fabric]
+color: [silver, blue]
+tags: [hospital]
+hoi: [lie]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

@@ -1,0 +1,10 @@
+desc: Shelf Set
+material: [wood]
+color: [brown, white]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

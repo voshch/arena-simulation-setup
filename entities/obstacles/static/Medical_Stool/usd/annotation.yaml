@@ -1,0 +1,11 @@
+desc: Medical Stool
+material: [steel, canvas]
+color: [yellow]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

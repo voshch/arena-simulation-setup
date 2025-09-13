@@ -18,7 +18,7 @@ class WorldGeneratorHallway(_WorldGeneratorImpl):
         hallway_height: float = 5.0
 
         # Room parameters (for each side)
-        rooms_per_side: int = 7
+        rooms_per_side: int = 5
 
         # For "big" rooms (first and last)
         big_min_width: float = 18.0

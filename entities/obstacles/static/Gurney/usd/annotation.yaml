@@ -1,0 +1,11 @@
+desc: Gurney
+material: [steel, fabric]
+color: [white, yellow]
+tags: [hospital]
+hoi: [lie]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

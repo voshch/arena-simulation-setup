@@ -1,0 +1,10 @@
+desc: Supply Cabin
+material: [metal]
+color: [white, blue]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

@@ -1,0 +1,11 @@
+desc: Biohazard Container
+material: [plastic]
+color: [yellow]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

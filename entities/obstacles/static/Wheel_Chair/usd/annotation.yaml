@@ -1,0 +1,10 @@
+desc: Wheel Chair
+material: [metal, fabric]
+color: [blue]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

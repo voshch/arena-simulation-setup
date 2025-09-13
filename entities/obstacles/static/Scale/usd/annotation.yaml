@@ -1,0 +1,10 @@
+desc: Scale
+material: [metal]
+color: [silver]
+tags: [hospital]
+hoi: [stand]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

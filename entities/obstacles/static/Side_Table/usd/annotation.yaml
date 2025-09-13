@@ -1,0 +1,10 @@
+desc: Side Table
+material: [metal, wood]
+color: [brown, white]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

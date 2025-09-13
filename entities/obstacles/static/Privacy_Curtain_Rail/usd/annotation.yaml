@@ -1,0 +1,11 @@
+desc: Privacy Curtain Rail
+material: [steel, canvas]
+color: [white]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

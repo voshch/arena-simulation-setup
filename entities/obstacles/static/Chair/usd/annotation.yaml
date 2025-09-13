@@ -1,0 +1,10 @@
+desc: Chair
+material: [fabric, plastic]
+color: [blue]
+tags: [hospital]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

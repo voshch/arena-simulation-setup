@@ -1,0 +1,11 @@
+desc: Instrument Table
+material: [steel]
+color: [gray]
+tags: [hospital]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+
