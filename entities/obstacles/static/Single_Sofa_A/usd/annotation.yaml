@@ -1,0 +1,11 @@
+desc: Single Sofa
+material: [fabric]
+color: [blue]
+tags: [livingroom, furniture]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

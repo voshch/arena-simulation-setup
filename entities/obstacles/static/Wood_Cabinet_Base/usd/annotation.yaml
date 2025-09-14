@@ -1,0 +1,11 @@
+desc: Cabinet Base
+material: [wood]
+color: [white, brown]
+tags: [kitchen, furniture]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

@@ -1,0 +1,11 @@
+desc: Dishwasher
+material: [steel]
+color: [white, grey]
+tags: [kitchen, appliance]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

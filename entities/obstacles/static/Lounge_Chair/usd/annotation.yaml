@@ -1,0 +1,11 @@
+desc: Lounge Chair
+material: [fabric, wood]
+color: [white, brown]
+tags: [livingroom, furniture]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

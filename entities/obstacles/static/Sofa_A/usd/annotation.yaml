@@ -1,0 +1,11 @@
+desc: Sofa
+material: [fabric]
+color: [red]
+tags: [livingroom, furniture]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

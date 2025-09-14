@@ -1,0 +1,10 @@
+desc: Chair
+material: [leather, metal]
+color: [red, silver]
+tags: [office]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

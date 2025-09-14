@@ -1,0 +1,11 @@
+desc: Ceiling Fan
+material: [steel, wood]
+color: [brown, dark grey]
+tags: [kitchen, appliance]
+hoi: []
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

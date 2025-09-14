@@ -1,0 +1,11 @@
+desc: Frying Pan
+material: [steel]
+color: [blue]
+tags: [kitchen]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

@@ -1,0 +1,11 @@
+desc: Fridge
+material: [steel]
+color: [white]
+tags: [kitchen, appliance]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

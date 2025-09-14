@@ -1,6 +1,6 @@
 default:
-  name: Mahogany
-  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Mahogany.mdl'
+  name: Ceramic_Tiles_Diamond_White_Matte
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Ceramic/Ceramic_Tiles_Glazed_Diamond.mdl'
 
 Metal_Cast:
   name: Metal_Cast_Painted
@@ -17,3 +17,6 @@ Ceramic_Tiles_Glazed:
 Bamboo_Planks:
   name: Bamboo_Planks
   url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Bamboo_Planks.mdl'
+White_Tiled:
+  name: Ceramic_Tiles_Diamond_White_Matte
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Ceramic/Ceramic_Tiles_Glazed_Diamond.mdl'

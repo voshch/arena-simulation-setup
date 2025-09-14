@@ -1,0 +1,10 @@
+desc: Traffic Cone
+material: [plastic]
+color: [red, yellow]
+tags: [warehouse]
+hoi: 
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

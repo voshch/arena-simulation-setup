@@ -1,0 +1,10 @@
+desc: Table
+material: [wood, metal]
+color: [black, silver, brown]
+tags: [office]
+hoi: 
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

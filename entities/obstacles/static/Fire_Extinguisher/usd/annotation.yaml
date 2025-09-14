@@ -1,0 +1,10 @@
+desc: Fire Extinguisher
+material: [metal]
+color: [red]
+tags: [warehouse]
+hoi: 
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

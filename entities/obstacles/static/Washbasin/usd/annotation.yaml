@@ -1,0 +1,10 @@
+desc: Wash Basin
+material: [porcelain]
+color: [white, brown]
+tags: [bathrooms]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

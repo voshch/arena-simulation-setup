@@ -1,0 +1,11 @@
+desc: Stove
+material: [steel]
+color: [white, black]
+tags: [kitchen, appliance]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

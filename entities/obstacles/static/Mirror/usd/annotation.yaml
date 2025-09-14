@@ -1,0 +1,10 @@
+desc: Mirror
+material: [glass]
+color: [white]
+tags: [bathrooms]
+hoi: [sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:

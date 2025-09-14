@@ -1,0 +1,11 @@
+desc: Cabinet Wall
+material: [wood]
+color: [brown]
+tags: [kitchen, furniture]
+hoi: [touch]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+

@@ -75,6 +75,48 @@ zones:
         - name: vital_signal_station_1
           model: Vital_Signal_Station
           pose: [20.0, 40.0, 3.14]
+        - name: patient_armchair_1
+          model: Patient_Armchair
+          pose: [15.0, 32.0, 1.57]
+        - name: patient_armchair_2
+          model: Patient_Armchair
+          pose: [15.0, 43.0, 1.57]
+        - name: bedside_cabinet_1
+          model: Bedside_Cabinet
+          pose: [2.0, 35.0, 1.57]
+        - name: bedside_cabinet_2
+          model: Bedside_Cabinet
+          pose: [2.0, 40.0, 1.57]
+        - name: medical_box_1
+          model: Medical_Box
+          pose: [22.0, 32.0, 0.0]
+        - name: medical_bag_1
+          model: Medical_Bag
+          pose: [18.0, 32.0, 0.0]
+        - name: wheel_chair_1
+          model: Wheel_Chair
+          pose: [12.0, 42.0, 3.14]
+        - name: disposal_stand_1
+          model: Disposal_Stand
+          pose: [23.0, 38.0, 0.0]
+        - name: medical_stool_1
+          model: Medical_Stool
+          pose: [10.0, 37.0, 0.0]
+        - name: chair_1
+          model: Chair
+          pose: [18.0, 35.0, 0.0]
+        - name: chair_2
+          model: Chair
+          pose: [18.0, 40.0, 0.0]
+        - name: shelf_1
+          model: Shelf
+          pose: [23.0, 32.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [1.0, 32.0, 0.0]
+        - name: trashcan_2
+          model: Trashcan
+          pose: [1.0, 43.0, 0.0]
 
   - description: "Examination Room"
     name: "examination_room"
@@ -117,6 +159,30 @@ zones:
         - name: scale_1
           model: Scale
           pose: [25.5, 34.0, 0.0]
+        - name: chair_1
+          model: Chair
+          pose: [31.0, 30.0, 0.0]
+        - name: medical_cabinet_1
+          model: Medical_Cabinet
+          pose: [31.0, 35.0, 1.57]
+        - name: iv_stand_1
+          model: IV_Stand
+          pose: [25.0, 32.0, 0.0]
+        - name: vital_signal_station_1
+          model: Vital_Signal_Station
+          pose: [31.0, 33.0, 3.14]
+        - name: disposal_stand_1
+          model: Disposal_Stand
+          pose: [25.0, 35.0, 0.0]
+        - name: medical_box_1
+          model: Medical_Box
+          pose: [29.0, 35.0, 0.0]
+        - name: medical_bag_1
+          model: Medical_Bag
+          pose: [27.0, 33.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [31.5, 29.0, 0.0]
 
   - description: "Operating Room"
     name: "operating_room"
@@ -162,6 +228,39 @@ zones:
         - name: ventilator_1
           model: Ventilator
           pose: [33.5, 35.0, 0.0]
+        - name: medical_cabinet_1
+          model: Medical_Cabinet
+          pose: [43.0, 30.0, 0.0]
+        - name: medical_cabinet_2
+          model: Medical_Cabinet
+          pose: [43.0, 35.0, 0.0]
+        - name: iv_stand_1
+          model: IV_Stand
+          pose: [33.0, 30.0, 0.0]
+        - name: iv_stand_2
+          model: IV_Stand
+          pose: [41.0, 36.0, 0.0]
+        - name: vital_signal_station_1
+          model: Vital_Signal_Station
+          pose: [36.0, 36.0, 3.14]
+        - name: medical_stool_1
+          model: Medical_Stool
+          pose: [35.0, 30.0, 0.0]
+        - name: medical_stool_2
+          model: Medical_Stool
+          pose: [41.0, 30.0, 0.0]
+        - name: disposal_stand_1
+          model: Disposal_Stand
+          pose: [43.0, 32.0, 0.0]
+        - name: medical_box_1
+          model: Medical_Box
+          pose: [33.0, 34.0, 0.0]
+        - name: medical_bag_1
+          model: Medical_Bag
+          pose: [42.0, 36.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [32.5, 36.5, 0.0]
 
   - description: "Laboratory"
     name: "laboratory"
@@ -261,6 +360,36 @@ zones:
         - name: display_board_1
           model: Display_Board
           pose: [55.0, 42.0, 0.0]
+        - name: coffee_table_1
+          model: Coffee_Table_A
+          pose: [62.0, 38.0, 0.0]
+        - name: coffee_table_2
+          model: Coffee_Table_A
+          pose: [68.0, 38.0, 0.0]
+        - name: chair_1
+          model: Chair
+          pose: [57.0, 30.0, 0.0]
+        - name: chair_2
+          model: Chair
+          pose: [60.0, 30.0, 0.0]
+        - name: chair_3
+          model: Chair
+          pose: [65.0, 30.0, 0.0]
+        - name: chair_4
+          model: Chair
+          pose: [68.0, 30.0, 0.0]
+        - name: chair_5
+          model: Chair
+          pose: [72.0, 30.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [79.0, 35.0, 0.0]
+        - name: trashcan_2
+          model: Trashcan
+          pose: [54.0, 35.0, 0.0]
+        - name: water_cooler_1
+          model: Water_Cooler
+          pose: [55.0, 30.0, 0.0]
 
   - description: "Bottom hallway"
     name: "bottom_hallway"
@@ -323,13 +452,13 @@ zones:
         - name: patient_bed_4
           model: patient_bed
           pose: [18.0, 15.0, 0.0]
-        - name: bedside_cabinet_1
+        - name: bedside_cabinet_3
           model: Bedside_Cabinet
           pose: [8.0, 18.0, 0.0]
-        - name: bedside_cabinet_2
+        - name: bedside_cabinet_4
           model: Bedside_Cabinet
           pose: [18.0, 18.0, 0.0]
-        - name: patient_armchair_1
+        - name: patient_armchair_3
           model: Patient_Armchair
           pose: [12.0, 10.0, 1.57]
         - name: iv_stand_2
@@ -338,6 +467,39 @@ zones:
         - name: iv_stand_3
           model: IV_Stand
           pose: [21.0, 15.0, 0.0]
+        - name: medical_cabinet_2
+          model: Medical_Cabinet
+          pose: [24.0, 15.0, 1.57]
+        - name: vital_signal_station_2
+          model: Vital_Signal_Station
+          pose: [24.0, 18.0, 3.14]
+        - name: chair_1
+          model: Chair
+          pose: [5.0, 12.0, 0.0]
+        - name: chair_2
+          model: Chair
+          pose: [21.0, 12.0, 0.0]
+        - name: medical_stool_2
+          model: Medical_Stool
+          pose: [10.0, 12.0, 0.0]
+        - name: medical_stool_3
+          model: Medical_Stool
+          pose: [16.0, 12.0, 0.0]
+        - name: disposal_stand_2
+          model: Disposal_Stand
+          pose: [24.0, 12.0, 0.0]
+        - name: medical_box_2
+          model: Medical_Box
+          pose: [2.0, 18.0, 0.0]
+        - name: medical_box_3
+          model: Medical_Box
+          pose: [22.0, 18.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [1.0, 15.0, 0.0]
+        - name: trashcan_2
+          model: Trashcan
+          pose: [24.0, 21.0, 0.0]
 
   - description: "Pharmacy"
     name: "pharmacy"
@@ -377,6 +539,33 @@ zones:
         - name: supply_cart_a_1
           model: Supply_Cart_A
           pose: [30.0, 15.0, 0.0]
+        - name: medical_cabinet_1
+          model: Medical_Cabinet
+          pose: [31.0, 18.0, 1.57]
+        - name: medical_cabinet_2
+          model: Medical_Cabinet
+          pose: [31.0, 16.0, 1.57]
+        - name: shelf_1
+          model: Shelf
+          pose: [26.5, 18.0, 0.0]
+        - name: shelf_2
+          model: Shelf
+          pose: [26.5, 15.0, 0.0]
+        - name: medical_box_1
+          model: Medical_Box
+          pose: [29.0, 20.0, 0.0]
+        - name: medical_box_2
+          model: Medical_Box
+          pose: [30.0, 20.0, 0.0]
+        - name: medical_bag_1
+          model: Medical_Bag
+          pose: [27.0, 20.0, 0.0]
+        - name: chair_1
+          model: Chair
+          pose: [28.0, 14.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [31.5, 14.0, 0.0]
 
   - description: "Reception"
     name: "reception"
@@ -419,6 +608,27 @@ zones:
         - name: chart_rack_1
           model: Chart_Rack
           pose: [40.0, 12.0, 0.0]
+        - name: chair_1
+          model: Chair
+          pose: [35.0, 16.0, 0.0]
+        - name: chair_2
+          model: Chair
+          pose: [39.0, 16.0, 0.0]
+        - name: coffee_table_1
+          model: Coffee_Table_A
+          pose: [37.0, 13.0, 0.0]
+        - name: medical_cabinet_1
+          model: Medical_Cabinet
+          pose: [32.5, 16.0, 1.57]
+        - name: disposal_stand_1
+          model: Disposal_Stand
+          pose: [41.5, 16.0, 0.0]
+        - name: medical_box_1
+          model: Medical_Box
+          pose: [40.0, 21.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [41.5, 12.0, 0.0]
 
   - description: "Sterilization Room"
     name: "sterilization_room"
@@ -464,6 +674,27 @@ zones:
         - name: disposal_stand_1
           model: Disposal_Stand
           pose: [44.0, 11.0, 0.0]
+        - name: medical_cabinet_1
+          model: Medical_Cabinet
+          pose: [51.0, 15.0, 1.57]
+        - name: medical_cabinet_2
+          model: Medical_Cabinet
+          pose: [43.0, 15.0, 1.57]
+        - name: shelf_1
+          model: Shelf
+          pose: [47.0, 21.0, 0.0]
+        - name: medical_stool_1
+          model: Medical_Stool
+          pose: [45.0, 12.0, 0.0]
+        - name: medical_stool_2
+          model: Medical_Stool
+          pose: [49.0, 16.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [43.0, 11.0, 0.0]
+        - name: trashcan_2
+          model: Trashcan
+          pose: [51.5, 11.0, 0.0]
 
   - description: "Radiology Room"
     name: "radiology_room"
@@ -512,3 +743,27 @@ zones:
         - name: medical_bag_1
           model: Medical_Bag
           pose: [77.0, 15.0, 0.0]
+        - name: medical_cabinet_1
+          model: Medical_Cabinet
+          pose: [79.0, 14.0, 1.57]
+        - name: medical_cabinet_2
+          model: Medical_Cabinet
+          pose: [53.0, 14.0, 1.57]
+        - name: chair_1
+          model: Chair
+          pose: [60.0, 14.0, 0.0]
+        - name: chair_2
+          model: Chair
+          pose: [70.0, 14.0, 0.0]
+        - name: iv_stand_1
+          model: IV_Stand
+          pose: [62.0, 16.0, 0.0]
+        - name: disposal_stand_1
+          model: Disposal_Stand
+          pose: [78.0, 10.0, 0.0]
+        - name: trashcan_1
+          model: Trashcan
+          pose: [53.0, 10.0, 0.0]
+        - name: vital_signal_station_1
+          model: Vital_Signal_Station
+          pose: [75.0, 18.0, 0.0]

@@ -1,0 +1,11 @@
+desc: Chair
+material: [wood]
+color: [yellow]
+tags: [kitchen, furniture]
+hoi: [touch, sit]
+forward: 
+scale: 
+bbox:
+fitted_bbox: 
+hull:
+
