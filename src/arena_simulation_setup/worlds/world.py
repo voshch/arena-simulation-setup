@@ -65,6 +65,10 @@ class WorldDescription:
         return (door for zone in self.zones for door in zone.doors)
 
     @property
+    def all_elevators(self) -> typing.Iterable[Elevator]:
+        return (elevator for zone in self.zones for elevator in zone.elevators)
+
+    @property
     def all_floors(self) -> typing.Iterable[Floor]:
         return (zone.floor for zone in self.zones)
 
