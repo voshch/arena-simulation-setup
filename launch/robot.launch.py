@@ -12,14 +12,15 @@ import launch.substitutions
 
 def generate_launch_description():
 
-    ss_path = get_package_share_directory('arena_simulation_setup')
+    ss_path = get_package_share_directory("arena_simulation_setup")
 
     ld_items = []
     LaunchArgument.auto_append(ld_items)
 
     use_sim_time = LaunchArgument("use_sim_time")
 
-    task_generator_node = LaunchArgument('task_generator_node')
+    task_generator_node = LaunchArgument("task_generator_node")
+    task_generator_namespace = LaunchArgument("task_generator_namespace")
     namespace = LaunchArgument("namespace")
     robot = LaunchArgument("robot")
     frame = LaunchArgument("frame")
@@ -28,8 +29,8 @@ def generate_launch_description():
     local_planner = LaunchArgument("local_planner")
     inter_planner = LaunchArgument("inter_planner", default_value="navigate_to_pose")
 
-    record_data_dir = LaunchArgument('record_data_dir', default_value='')
-    amcl = LaunchArgument('amcl', default_value='false')
+    record_data_dir = LaunchArgument("record_data_dir", default_value="")
+    amcl = LaunchArgument("amcl", default_value="false")
 
     # Include the Nav2 launch file
     nav2_launch = launch.actions.IncludeLaunchDescription(
@@ -40,11 +41,13 @@ def generate_launch_description():
                     "launch",
                     "nav2.launch.py",
                 ]
-            )),
+            )
+        ),
         launch_arguments={
             **use_sim_time.dict,
             **robot.dict,
             **task_generator_node.dict,
+            **task_generator_namespace.dict,
             **namespace.dict,
             **global_planner.dict,
             **local_planner.dict,
@@ -63,7 +66,8 @@ def generate_launch_description():
                     "launch",
                     "state_publisher.launch.py",
                 ]
-            )),
+            )
+        ),
         launch_arguments={
             **use_sim_time.dict,
             **frame.dict,
@@ -73,39 +77,42 @@ def generate_launch_description():
     )
 
     data_recorder = launch_ros.actions.Node(
-        package='arena_evaluation',
-        executable='record',
-        name=PythonExpression(['"data_recorder" + "', namespace.substitution, '".replace("/","_")']),
+        package="arena_evaluation",
+        executable="record",
+        name=PythonExpression(
+            ['"data_recorder" + "', namespace.substitution, '".replace("/","_")']
+        ),
         arguments={
-            '--dir': record_data_dir.substitution,
+            "--dir": record_data_dir.substitution,
         }.items(),
-        condition=launch.conditions.IfCondition(PythonExpression(['bool("', record_data_dir.substitution, '")'])),
+        condition=launch.conditions.IfCondition(
+            PythonExpression(['bool("', record_data_dir.substitution, '")'])
+        ),
     )
 
-    ld = launch.LaunchDescription([
-        *ld_items,
-        launch.actions.DeclareLaunchArgument(
-            name='train_mode',
-            default_value='false',
-            description='If false, start the Rosnav Deployment launch.actions.Nodes'
-        ),
-        launch.actions.DeclareLaunchArgument(
-            name='agent_name',
-            default_value='',
-            description='DRL agent name to be deployed'
-        ),
-        launch.actions.DeclareLaunchArgument(
-            name='complexity',
-            default_value='1'
-        ),
-        PushRosNamespace(namespace=namespace.substitution),
-        # robot_localization_node,
-        nav2_launch,
-        # state_pub_launch,
-        data_recorder,
-    ])
+    ld = launch.LaunchDescription(
+        [
+            *ld_items,
+            launch.actions.DeclareLaunchArgument(
+                name="train_mode",
+                default_value="false",
+                description="If false, start the Rosnav Deployment launch.actions.Nodes",
+            ),
+            launch.actions.DeclareLaunchArgument(
+                name="agent_name",
+                default_value="",
+                description="DRL agent name to be deployed",
+            ),
+            launch.actions.DeclareLaunchArgument(name="complexity", default_value="1"),
+            PushRosNamespace(namespace=namespace.substitution),
+            # robot_localization_node,
+            nav2_launch,
+            # state_pub_launch,
+            data_recorder,
+        ]
+    )
     return ld
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     generate_launch_description()
