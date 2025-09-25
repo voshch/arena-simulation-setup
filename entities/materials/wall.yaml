@@ -1,0 +1,40 @@
+default:
+  name: Metal_Cast_Painted
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Metal/Metal_Cast.mdl'
+
+Metal_Cast:
+  name: Metal_Cast_Painted
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Metal/Metal_Cast.mdl'
+Mahogany:
+  name: Mahogany
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Mahogany.mdl'
+Walnut_Planks:
+  name: Walnut_Planks
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Walnut_Planks.mdl'
+Ceramic_Tiles_Glazed:
+  name: Ceramic_Tiles_Glazed_Diamond
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Ceramic/Ceramic_Tiles_Glazed_Diamond.mdl'
+Bamboo_Planks:
+  name: Bamboo_Planks
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/Base/Wood/Bamboo_Planks.mdl'
+Cashmere_Wool_Suiting_Crimson:
+  name: Cashmere_Wool_Suiting_Crimson
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Fabric/Cashmere_Wool_Suiting.mdl'
+Polyester_Crepe_de_Chine_Dark_Green:
+  name: Polyester_Crepe_de_Chine_Dark_Green
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Fabric/Polyester_Crepe_de_Chine.mdl'
+Mortar_White:
+  name: Mortar_White
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Concrete/Mortar.mdl'
+Cashmere_Wool_Suiting_Champagne:
+  name: Cashmere_Wool_Suiting_Champagne
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Fabric/Cashmere_Wool_Suiting.mdl'
+Cashmere_Wool_Suiting_Sky_Blue:
+  name: Cashmere_Wool_Suiting_Sky_Blue
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Fabric/Cashmere_Wool_Suiting.mdl'
+Cotton_Single_Jersey_Mint:
+  name: Cotton_Single_Jersey_Mint
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Fabric/Cotton_Single_Jersey.mdl'
+Brass_Polished_Yellow_Matte_Polish:
+  name: Brass_Polished_Yellow_Matte_Polish
+  url: 'https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/2023_1/vMaterials_2/Metal/Brass_Polished.mdl'

@@ -9,8 +9,7 @@ observation_sources_dict:
     marking: True
     data_type: "LaserScan"
 
-polygons:
-  - StopPolygon
+polygons: [StopPolygon, SlowPolygon]
 polygons_dict:
   StopPolygon:
     type: "polygon"
@@ -19,6 +18,15 @@ polygons_dict:
     min_points: 4
     visualize: True
     polygon_pub_topic: "polygon_stop"
+    enabled: True
+  SlowPolygon:
+    type: "circle"
+    radius: 1.0
+    action_type: "slowdown"
+    slowdown_ratio: 0.5
+    min_points: 4
+    visualize: True
+    polygon_pub_topic: "polygon_slow"
     enabled: True
 
 planner_plugins:
