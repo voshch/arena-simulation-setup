@@ -11,7 +11,14 @@ from arena_simulation_setup.entities.materials import (
     MaterialLoader,
     MaterialProvider,
 )
-from arena_simulation_setup.shared import Door, DynamicObstacle, Floor, Obstacle, Wall
+from arena_simulation_setup.shared import (
+    Door,
+    DynamicObstacle,
+    Elevator,
+    Floor,
+    Obstacle,
+    Wall,
+)
 from arena_simulation_setup.utils.cattrs import converter
 from arena_simulation_setup.utils.geometry import Position
 
@@ -43,6 +50,7 @@ class WorldDescription:
         corners: list[Position] = attrs.field(factory=list)
         walls: list[Wall] = attrs.field(factory=list)
         doors: list[Door] = attrs.field(factory=list)
+        elevators: list[Elevator] = attrs.field(factory=list)
         material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
         entities: WorldEntities = attrs.field(factory=WorldEntities)
         description: str = ''
@@ -56,7 +64,7 @@ class WorldDescription:
             pos = Position(x=(x_min + x_max) / 2, y=(y_min + y_max) / 2)
             x_length = x_max - x_min
             y_length = y_max - y_min
-            return Floor(pos=pos, x_length=x_length, y_length=y_length, material=self.material)
+            return Floor(pos=pos, x_length=x_length, y_length=y_length, material=self.material.name)
 
     zones: list[Zone] = attrs.field(factory=list)
 
@@ -67,6 +75,10 @@ class WorldDescription:
     @property
     def all_doors(self) -> typing.Iterable[Door]:
         return (door for zone in self.zones for door in zone.doors)
+
+    @property
+    def all_elevators(self) -> typing.Iterable[Elevator]:
+        return (elevator for zone in self.zones for elevator in zone.elevators)
 
     @property
     def all_floors(self) -> typing.Iterable[Floor]:

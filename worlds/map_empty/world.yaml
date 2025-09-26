@@ -45,14 +45,14 @@ zones:
     elevators:
       - name: "elevator_ground"
         position: [15.0, 5.0, 0.0]
-        size: [2.0, 2.0, 0.2]
+        size: [2.0, 2.0, 0.02]
         height_min: 0.0
         height_max: 3.0
         material: "Metal"
         destination: "elevator_top"
       - name: "elevator_top"
         position: [15.0, 18.0, 0.0]
-        size: [2.0, 2.0, 0.2]
+        size: [2.0, 2.0, 0.02]
         height_min: 0.0
         height_max: 3.0
         material: "Metal"

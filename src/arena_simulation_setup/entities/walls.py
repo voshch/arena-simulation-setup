@@ -171,7 +171,7 @@ class PlaceWallSegmentAsset(SubWall):
                 end=end,
                 height=self.height,
                 width=self.width,
-                material=self.material.name,
+                material=self.material,
             ),
         ), ()
 
