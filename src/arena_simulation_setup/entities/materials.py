@@ -29,10 +29,10 @@ class MaterialProvider(ProviderBase):
         return cls(Material.DEFAULT)
 
     @classmethod
-    def bind(cls, path: str) -> MaterialProvider:
+    def bind(cls, path: str) -> type[MaterialProvider]:
         c = super().bind(path)
         with open(path) as f:
-            c._materials_dict = yaml.safe_load(f)
+            c._materials_dict = typing.cast(dict, yaml.safe_load(f))
         return c
 
     @classmethod
@@ -42,7 +42,7 @@ class MaterialProvider(ProviderBase):
     def load(self) -> Material:
         material = self._materials_dict.get(self._name)
         if material is None:
-            raise FileNotFoundError(f'Material not found in {self._path}: {self._name}')
+            raise FileNotFoundError(f'Material not found in {self._base_dir}: {self._name}')
         return converter.structure(material, Material)
 
 
