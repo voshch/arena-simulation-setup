@@ -13,7 +13,7 @@ import yaml
 from arena_simulation_setup import ProviderBase, ass_sources
 from arena_simulation_setup.entities.materials import (
     MaterialProvider,
-    WallMaterialLoader,
+    MaterialLoader,
 )
 from arena_simulation_setup.entities.obstacles.static import (
     loader as ObstacleModelLoader,
@@ -68,7 +68,7 @@ class SubWall(abc.ABC):
     def _shift(self, start: Position, end: Position) -> tuple[Position, Position]:
         external_orientation = (end - start).to_orientation()
         offset = external_orientation * Position(self.x, self.y, self.z)
-        return start + offset, end + offset
+        return offset + start, offset + end
 
     @abc.abstractmethod
     def realize(self, start: Position, end: Position) -> WallRealization:
@@ -157,7 +157,7 @@ class PlaceWallSegmentAsset(SubWall):
     """
     Place a single wall segment.
     """
-    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
     height: float = attrs.field(converter=float, default=2.0)
     width: float = attrs.field(converter=float, default=0.05)
     name: str = ""
@@ -171,7 +171,7 @@ class PlaceWallSegmentAsset(SubWall):
                 end=end,
                 height=self.height,
                 width=self.width,
-                material=self.material,
+                material=self.material.name,
             ),
         ), ()
 
@@ -191,7 +191,7 @@ class WallSegment:
     end: Position
     height: float
     width: float
-    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
 
 
 WallRealization = tuple[Iterable[WallSegment], Iterable[Obstacle]]
@@ -217,7 +217,7 @@ class WallDescription:
         return cls(
             main=[
                 PlaceWallSegmentAsset(
-                    material=material
+                    material=material.name
                 )
             ]
         )

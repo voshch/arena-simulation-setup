@@ -8,7 +8,7 @@ import yaml
 
 from arena_simulation_setup import ProviderBase, SourcesContainer, ass_sources
 from arena_simulation_setup.entities.materials import (
-    FloorMaterialLoader,
+    MaterialLoader,
     MaterialProvider,
 )
 from arena_simulation_setup.shared import Door, DynamicObstacle, Floor, Obstacle, Wall
@@ -43,7 +43,7 @@ class WorldDescription:
         corners: list[Position] = attrs.field(factory=list)
         walls: list[Wall] = attrs.field(factory=list)
         doors: list[Door] = attrs.field(factory=list)
-        material: MaterialProvider = attrs.field(converter=FloorMaterialLoader, factory=FloorMaterialLoader.DEFAULT)
+        material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
         entities: WorldEntities = attrs.field(factory=WorldEntities)
         description: str = ''
 

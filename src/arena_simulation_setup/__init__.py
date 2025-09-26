@@ -48,20 +48,22 @@ class ProviderBase:
         return cls._sources
 
     @classmethod
-    def resolve(cls, *path: str) -> str | None:
+    def resolve(cls, *path: str, fn: typing.Callable[[str], bool] | None = None) -> str | None:
+        if fn is None:
+            fn = os.path.exists
         return next(
             filter(
-                os.path.exists,
+                fn,
                 (os.path.join(x, *path) for x in cls._sources)
             ),
             None
         )
 
     # Instance Methods: Provider
-    def __new__(cls, obj: object):
+    def __new__(cls: typing.Type[T], obj: object) -> T:
         # don't rebind
         if issubclass(type(obj), cls):
-            return obj
+            return typing.cast(T, obj)
         return super().__new__(cls)
 
     def __init__(self, name: str) -> None:
