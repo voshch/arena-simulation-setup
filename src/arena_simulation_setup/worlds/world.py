@@ -51,7 +51,7 @@ class WorldDescription:
         walls: list[Wall] = attrs.field(factory=list)
         doors: list[Door] = attrs.field(factory=list)
         elevators: list[Elevator] = attrs.field(factory=list)
-        material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
+        material: MaterialProvider = attrs.field(converter=MaterialLoader.converter, factory=MaterialLoader.DEFAULT)
         entities: WorldEntities = attrs.field(factory=WorldEntities)
         description: str = ''
 
@@ -64,7 +64,7 @@ class WorldDescription:
             pos = Position(x=(x_min + x_max) / 2, y=(y_min + y_max) / 2)
             x_length = x_max - x_min
             y_length = y_max - y_min
-            return Floor(pos=pos, x_length=x_length, y_length=y_length, material=self.material.name)
+            return Floor(pos=pos, x_length=x_length, y_length=y_length, material=self.material)
 
     zones: list[Zone] = attrs.field(factory=list)
 

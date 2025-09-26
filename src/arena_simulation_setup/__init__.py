@@ -6,6 +6,8 @@ import os
 import typing
 from collections.abc import Iterator, Sequence
 
+from arena_simulation_setup.utils.cattrs import Idempotent
+
 ass_dir: str
 ab_dir: str
 
@@ -20,7 +22,7 @@ except ImportError:
 T = typing.TypeVar('T', bound='ProviderBase')
 
 
-class ProviderBase:
+class ProviderBase(Idempotent):
 
     # Class Methods: Provider
     _sources: typing.ClassVar[Sources]
@@ -60,15 +62,12 @@ class ProviderBase:
         )
 
     # Instance Methods: Provider
-    def __new__(cls: typing.Type[T], obj: object) -> T:
-        # don't rebind
-        if issubclass(type(obj), cls):
-            return typing.cast(T, obj)
-        return super().__new__(cls)
 
     def __init__(self, name: str) -> None:
         if hasattr(self, '_name'):
             return
+        if not isinstance(name, str):
+            raise TypeError(f'Expected name to be str, got {type(name)}')
         self._name = name
 
     @property

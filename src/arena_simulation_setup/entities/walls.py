@@ -157,7 +157,7 @@ class PlaceWallSegmentAsset(SubWall):
     """
     Place a single wall segment.
     """
-    material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=MaterialLoader.converter, factory=MaterialLoader.DEFAULT)
     height: float = attrs.field(converter=float, default=2.0)
     width: float = attrs.field(converter=float, default=0.05)
     name: str = ""
@@ -191,7 +191,7 @@ class WallSegment:
     end: Position
     height: float
     width: float
-    material: MaterialProvider = attrs.field(converter=MaterialLoader, factory=MaterialLoader.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=MaterialLoader.converter, factory=MaterialLoader.DEFAULT)
 
 
 WallRealization = tuple[Iterable[WallSegment], Iterable[Obstacle]]
@@ -217,7 +217,7 @@ class WallDescription:
         return cls(
             main=[
                 PlaceWallSegmentAsset(
-                    material=material.name
+                    material=material
                 )
             ]
         )

@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from collections.abc import Sequence, Iterator
 import math
 import typing
+from collections.abc import Iterator, Sequence
 
 import attrs
 import numpy as np
 
-from arena_simulation_setup.utils.cattrs import Idempotent
+from arena_simulation_setup.utils.cattrs import Idempotent, Parseable
 
 try:
     import geometry_msgs.msg  # type: ignore # noqa: F401
@@ -41,7 +41,6 @@ except ImportError:
             class Pose(_uninstanceable):
                 ...
 
-from arena_simulation_setup.utils.cattrs import Parseable
 
 EulerOrder = typing.Literal['xyz', 'xzy', 'yxz', 'yzx', 'zxy', 'zyx']
 _EulerIndices: dict[str, tuple[int, int, int]] = {

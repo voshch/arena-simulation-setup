@@ -4,10 +4,9 @@ import os
 import typing
 
 import attrs
-import yaml
 
-from arena_simulation_setup import ProviderBase, Sources, ass_sources
-from arena_simulation_setup.utils.cattrs import Serializable, converter
+from arena_simulation_setup import ProviderBase, ass_sources
+from arena_simulation_setup.utils.cattrs import Serializable
 
 
 @attrs.define
@@ -15,7 +14,7 @@ class Material:
     url: str  # TODO rename to path
     name: str
 
-    DEFAULT: typing.ClassVar[str] = "default"
+    DEFAULT: typing.ClassVar[str] = "Mahogany"
 
     def asdict(self) -> dict:
         return attrs.asdict(self)
@@ -28,9 +27,11 @@ class MaterialProvider(ProviderBase, Serializable):
     def DEFAULT(cls) -> MaterialProvider:
         return cls(Material.DEFAULT)
 
-    def load(self) -> Material:
+    def load(self, *, default: Material | None = None) -> Material:
         resolved = self.resolve(self.name, fn=os.path.isdir)
         if resolved is None:
+            if default is not None:
+                return default
             raise FileNotFoundError(f'Material {self.name} not found')
         return Material(
             name=self.name,

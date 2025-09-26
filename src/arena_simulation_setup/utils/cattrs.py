@@ -50,25 +50,17 @@ def idempotent(cls: typing.Type[T]) -> typing.Type[Idempotent, T]:
 # Serialization and Deserialization
 
 
-class _SerializableMeta(abc.ABCMeta):
+class Serializable(abc.ABC):
     """
-    A metaclass that automatically registers a cattrs unstructure hook.
-
-    The hook is created from the class's `serialize()` method.
+    A base class for serializable objects.
     """
 
-    def __init__(cls, name: str, bases: tuple, dct: dict):
-        super().__init__(name, bases, dct)
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
 
         if not getattr(cls, "__abstractmethods__", set()):
             def unstructure_hook(obj): return obj.serialize()
             converter.register_unstructure_hook(cls, unstructure_hook)
-
-
-class Serializable(metaclass=_SerializableMeta):
-    """
-    A base class for serializable objects.
-    """
 
     @abc.abstractmethod
     def serialize(self) -> typing.Any:
@@ -79,15 +71,16 @@ class Serializable(metaclass=_SerializableMeta):
         raise NotImplementedError
 
 
-class _ParseableMeta(abc.ABCMeta):
-    """
-    A metaclass that automatically registers a cattrs structure hook.
+ParseableT = typing.TypeVar('ParseableT', bound='Parseable')
 
-    The hook is created from the class's `parse()` method.
+
+class Parseable(abc.ABC):
+    """
+    A base class for parseable objects.
     """
 
-    def __init__(cls, name: str, bases: tuple, dct: dict):
-        super().__init__(name, bases, dct)
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
 
         if not getattr(cls, "__abstractmethods__", set()):
             def try_parse(data):
@@ -103,15 +96,6 @@ class _ParseableMeta(abc.ABCMeta):
                 lambda data, _: try_parse(data)
             )
 
-
-ParseableT = typing.TypeVar('ParseableT', bound='Parseable')
-
-
-class Parseable(metaclass=_ParseableMeta):
-    """
-    A base class for parseable objects.
-    """
-
     @classmethod
     @abc.abstractmethod
     def parse(cls: typing.Type[ParseableT], value: typing.Any) -> ParseableT:
@@ -122,4 +106,5 @@ __all__ = [
     "Serializable",
     "Parseable",
     "converter",
+    "Idempotent",
 ]
