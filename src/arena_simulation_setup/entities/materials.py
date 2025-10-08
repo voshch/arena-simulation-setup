@@ -11,10 +11,10 @@ from arena_simulation_setup.utils.cattrs import Serializable
 
 @attrs.define
 class Material:
-    url: str  # TODO rename to path
+    path: str  # TODO rename to path
     name: str
 
-    DEFAULT: typing.ClassVar[str] = "Mahogany"
+    DEFAULT: typing.ClassVar[str] = "PCB_Copper"
 
     def asdict(self) -> dict:
         return attrs.asdict(self)
@@ -35,7 +35,7 @@ class MaterialProvider(ProviderBase, Serializable):
             raise FileNotFoundError(f'Material {self.name} not found')
         return Material(
             name=self.name,
-            url=os.path.join(resolved, f'{self.name}.mdl'),
+            path=os.path.join(resolved, f'{self.name}.mdl'),
         )
 
     def serialize(self) -> str:
