@@ -1,0 +1,290 @@
+zones:
+- description: Material Test Zone 4 - 50 materials
+  name: test_zone_4
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Concrete_Wall_Aged_Scratched
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Concrete_Wall_Even
+  - start:
+      x: 4.0
+      y: 0.0
+    end:
+      x: 6.0
+      y: 0.0
+    material: Copper
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: Copper_Antique_Brushed
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: Copper_Antique_Brushed_Patinated
+  - start:
+      x: 10.0
+      y: 0.0
+    end:
+      x: 12.0
+      y: 0.0
+    material: Copper_Brushed
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: Copper_Foil
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: Copper_Hammered
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: Copper_Knurling
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Copper_Scratched
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Copper_Sheet
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Cork
+  - start:
+      x: 24.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 0.0
+    material: CorrugatedMetal
+  - start:
+      x: 26.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 2.0
+    material: Cotton_Denim
+  - start:
+      x: 26.0
+      y: 2.0
+    end:
+      x: 26.0
+      y: 4.0
+    material: Cotton_French_Terry
+  - start:
+      x: 26.0
+      y: 4.0
+    end:
+      x: 26.0
+      y: 6.0
+    material: Cotton_Oxford
+  - start:
+      x: 26.0
+      y: 6.0
+    end:
+      x: 26.0
+      y: 8.0
+    material: Cotton_Roughly_Woven
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Cotton_Single_Jersey
+  - start:
+      x: 26.0
+      y: 10.0
+    end:
+      x: 26.0
+      y: 12.0
+    material: Cotton_Twill_Gabardine
+  - start:
+      x: 26.0
+      y: 12.0
+    end:
+      x: 26.0
+      y: 14.0
+    material: Devil_Black
+  - start:
+      x: 26.0
+      y: 14.0
+    end:
+      x: 26.0
+      y: 16.0
+    material: Diamond
+  - start:
+      x: 26.0
+      y: 16.0
+    end:
+      x: 26.0
+      y: 18.0
+    material: Diamond_Plate_Double_Tear
+  - start:
+      x: 26.0
+      y: 18.0
+    end:
+      x: 26.0
+      y: 20.0
+    material: Diamond_Plate_Quadruple_Tear
+  - start:
+      x: 26.0
+      y: 20.0
+    end:
+      x: 26.0
+      y: 22.0
+    material: Diamond_Plate_Quintuple_Tear
+  - start:
+      x: 26.0
+      y: 22.0
+    end:
+      x: 26.0
+      y: 24.0
+    material: Diamond_Plate_Single_Tear
+  - start:
+      x: 26.0
+      y: 24.0
+    end:
+      x: 26.0
+      y: 26.0
+    material: Diamond_Plate_Spike
+  - start:
+      x: 26.0
+      y: 26.0
+    end:
+      x: 24.0
+      y: 26.0
+    material: Diamond_Plate_Triple_Tear
+  - start:
+      x: 24.0
+      y: 26.0
+    end:
+      x: 22.0
+      y: 26.0
+    material: Dirt
+  - start:
+      x: 18.0
+      y: 26.0
+    end:
+      x: 16.0
+      y: 26.0
+    material: Emerald
+  - start:
+      x: 16.0
+      y: 26.0
+    end:
+      x: 14.0
+      y: 26.0
+    material: Fabric_Carpet_Long_Floor
+  - start:
+      x: 14.0
+      y: 26.0
+    end:
+      x: 12.0
+      y: 26.0
+    material: Fabric_Cotton_Fine_Woven
+  - start:
+      x: 12.0
+      y: 26.0
+    end:
+      x: 10.0
+      y: 26.0
+    material: Fabric_Cotton_Pique_Weave
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Facade_Brick_Grey
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Facade_Brick_Red_Clinker
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Facade_Plaster_Rough
+  - start:
+      x: 0.0
+      y: 8.0
+    end:
+      x: 0.0
+      y: 6.0
+    material: Felt_Plain
+  - start:
+      x: 0.0
+      y: 6.0
+    end:
+      x: 0.0
+      y: 4.0
+    material: Fiberglass
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

@@ -1,0 +1,199 @@
+zones:
+- description: Material Test Zone 7 - 50 materials
+  name: test_zone_7
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Mahogany
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Mahogany_Planks
+  - start:
+      x: 4.0
+      y: 0.0
+    end:
+      x: 6.0
+      y: 0.0
+    material: Marble
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: Marble_Smooth
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: Marble_Tile_12
+  - start:
+      x: 10.0
+      y: 0.0
+    end:
+      x: 12.0
+      y: 0.0
+    material: Marble_Tile_18
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: Mercury
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Metal_Cast
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Metal_Door
+  - start:
+      x: 20.0
+      y: 26.0
+    end:
+      x: 18.0
+      y: 26.0
+    material: Metal_Seamed_Roof
+  - start:
+      x: 8.0
+      y: 26.0
+    end:
+      x: 6.0
+      y: 26.0
+    material: Morganite
+  - start:
+      x: 6.0
+      y: 26.0
+    end:
+      x: 4.0
+      y: 26.0
+    material: Mortar
+  - start:
+      x: 4.0
+      y: 26.0
+    end:
+      x: 2.0
+      y: 26.0
+    material: Mosaic_Multi_Color_Stone
+  - start:
+      x: 2.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 26.0
+    material: Mulch
+  - start:
+      x: 0.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 24.0
+    material: Mulch_Brown
+  - start:
+      x: 0.0
+      y: 22.0
+    end:
+      x: 0.0
+      y: 20.0
+    material: Nickel
+  - start:
+      x: 0.0
+      y: 20.0
+    end:
+      x: 0.0
+      y: 18.0
+    material: Nickel_Brushed
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Nickel_Foil
+  - start:
+      x: 0.0
+      y: 16.0
+    end:
+      x: 0.0
+      y: 14.0
+    material: Nickel_Hammered
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Nickel_Knurling
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Nickel_Scratched
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Nickel_Sheet
+  - start:
+      x: 0.0
+      y: 8.0
+    end:
+      x: 0.0
+      y: 6.0
+    material: OSB_Wood
+  - start:
+      x: 0.0
+      y: 6.0
+    end:
+      x: 0.0
+      y: 4.0
+    material: OSB_Wood_Splattered
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

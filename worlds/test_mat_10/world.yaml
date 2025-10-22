@@ -1,0 +1,339 @@
+zones:
+- description: Material Test Zone 10 - 50 materials
+  name: test_zone_10
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Rosa_Beta
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Rough_Gravel
+  - start:
+      x: 4.0
+      y: 0.0
+    end:
+      x: 6.0
+      y: 0.0
+    material: Rubber_Smooth
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: Rubber_Textured
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: Ruby
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: RustedMetal
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: Sand
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: Sandstone_Brick_Vintage
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Sapphire
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Semi_Aniline_Leather
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Shingles_01
+  - start:
+      x: 24.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 0.0
+    material: Silk_Charmeuse
+  - start:
+      x: 26.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 2.0
+    material: Silk_Crepe_Back_Satin
+  - start:
+      x: 26.0
+      y: 2.0
+    end:
+      x: 26.0
+      y: 4.0
+    material: Silk_Crepe_de_Chine
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Silver
+  - start:
+      x: 26.0
+      y: 10.0
+    end:
+      x: 26.0
+      y: 12.0
+    material: Silver_Brushed
+  - start:
+      x: 26.0
+      y: 12.0
+    end:
+      x: 26.0
+      y: 14.0
+    material: Silver_Foil
+  - start:
+      x: 26.0
+      y: 14.0
+    end:
+      x: 26.0
+      y: 16.0
+    material: Silver_Hammered
+  - start:
+      x: 26.0
+      y: 16.0
+    end:
+      x: 26.0
+      y: 18.0
+    material: Silver_Knurling
+  - start:
+      x: 26.0
+      y: 18.0
+    end:
+      x: 26.0
+      y: 20.0
+    material: Silver_Scratched
+  - start:
+      x: 26.0
+      y: 20.0
+    end:
+      x: 26.0
+      y: 22.0
+    material: Silver_Sheet
+  - start:
+      x: 26.0
+      y: 22.0
+    end:
+      x: 26.0
+      y: 24.0
+    material: Slate
+  - start:
+      x: 26.0
+      y: 24.0
+    end:
+      x: 26.0
+      y: 26.0
+    material: Small_Cobblestone
+  - start:
+      x: 26.0
+      y: 26.0
+    end:
+      x: 24.0
+      y: 26.0
+    material: Soil_Rocky
+  - start:
+      x: 24.0
+      y: 26.0
+    end:
+      x: 22.0
+      y: 26.0
+    material: Solder_Paste
+  - start:
+      x: 22.0
+      y: 26.0
+    end:
+      x: 20.0
+      y: 26.0
+    material: Spongy_Concrete_Weathered
+  - start:
+      x: 20.0
+      y: 26.0
+    end:
+      x: 18.0
+      y: 26.0
+    material: Spongy_Concrete_Weathered_Mossy
+  - start:
+      x: 18.0
+      y: 26.0
+    end:
+      x: 16.0
+      y: 26.0
+    material: Stainless_Steel
+  - start:
+      x: 16.0
+      y: 26.0
+    end:
+      x: 14.0
+      y: 26.0
+    material: Stainless_Steel_Brushed
+  - start:
+      x: 14.0
+      y: 26.0
+    end:
+      x: 12.0
+      y: 26.0
+    material: Stainless_Steel_Brushed_Punched
+  - start:
+      x: 12.0
+      y: 26.0
+    end:
+      x: 10.0
+      y: 26.0
+    material: Stainless_Steel_Milled
+  - start:
+      x: 10.0
+      y: 26.0
+    end:
+      x: 8.0
+      y: 26.0
+    material: Stainless_Steel_Punched
+  - start:
+      x: 8.0
+      y: 26.0
+    end:
+      x: 6.0
+      y: 26.0
+    material: Star_Galaxy
+  - start:
+      x: 6.0
+      y: 26.0
+    end:
+      x: 4.0
+      y: 26.0
+    material: Steel_Blued
+  - start:
+      x: 4.0
+      y: 26.0
+    end:
+      x: 2.0
+      y: 26.0
+    material: Steel_Carbon
+  - start:
+      x: 2.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 26.0
+    material: Steel_Cast
+  - start:
+      x: 0.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 24.0
+    material: Steel_Grey
+  - start:
+      x: 0.0
+      y: 24.0
+    end:
+      x: 0.0
+      y: 22.0
+    material: Steel_Stainless
+  - start:
+      x: 0.0
+      y: 22.0
+    end:
+      x: 0.0
+      y: 20.0
+    material: Stone_Mediterranean
+  - start:
+      x: 0.0
+      y: 20.0
+    end:
+      x: 0.0
+      y: 18.0
+    material: Stone_Natural_Black
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Stone_Pores_Weathered
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Stone_Wall
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Stucco
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Styrofoam
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

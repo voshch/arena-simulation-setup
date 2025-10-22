@@ -1,0 +1,374 @@
+zones:
+- description: Material Test Zone 1 - 50 materials
+  name: test_zone_1
+  walls:
+  # - start:
+  #     x: 0.0
+  #     y: 0.0
+  #   end:
+  #     x: 2.0
+  #     y: 0.0
+  #   material: ABS_Hard_Leather
+  # - start:
+  #     x: 2.0
+  #     y: 0.0
+  #   end:
+  #     x: 4.0
+  #     y: 0.0
+  #   material: ABS_Quilted_Leather
+  # - start:
+  #     x: 4.0
+  #     y: 0.0
+  #   end:
+  #     x: 6.0
+  #     y: 0.0
+  #   material: ABS_Soft_Leather
+  # - start:
+  #     x: 6.0
+  #     y: 0.0
+  #   end:
+  #     x: 8.0
+  #     y: 0.0
+  #   material: ABS_Woven_Leather
+  # - start:
+  #     x: 8.0
+  #     y: 0.0
+  #   end:
+  #     x: 10.0
+  #     y: 0.0
+  #   material: Adobe_Brick
+  # - start:
+  #     x: 10.0
+  #     y: 0.0
+  #   end:
+  #     x: 12.0
+  #     y: 0.0
+  #   material: Adobe_Octagon_Dots
+  # - start:
+  #     x: 12.0
+  #     y: 0.0
+  #   end:
+  #     x: 14.0
+  #     y: 0.0
+  #   material: Aging_Copper
+  # - start:
+  #     x: 14.0
+  #     y: 0.0
+  #   end:
+  #     x: 16.0
+  #     y: 0.0
+  #   material: Alexandrite
+  # - start:
+  #     x: 16.0
+  #     y: 0.0
+  #   end:
+  #     x: 18.0
+  #     y: 0.0
+  #   material: Aluminum
+  # - start:
+  #     x: 18.0
+  #     y: 0.0
+  #   end:
+  #     x: 20.0
+  #     y: 0.0
+  #   material: Aluminum_Anodized
+  # - start:
+  #     x: 20.0
+  #     y: 0.0
+  #   end:
+  #     x: 22.0
+  #     y: 0.0
+  #   material: Aluminum_Anodized_Black
+  # - start:
+  #     x: 22.0
+  #     y: 0.0
+  #   end:
+  #     x: 24.0
+  #     y: 0.0
+  #   material: Aluminum_Anodized_Blue
+  # - start:
+  #     x: 24.0
+  #     y: 0.0
+  #   end:
+  #     x: 26.0
+  #     y: 0.0
+  #   material: Aluminum_Anodized_Charcoal
+  # - start:
+  #     x: 26.0
+  #     y: 0.0
+  #   end:
+  #     x: 26.0
+  #     y: 2.0
+  #   material: Aluminum_Anodized_Red
+  # - start:
+  #     x: 26.0
+  #     y: 2.0
+  #   end:
+  #     x: 26.0
+  #     y: 4.0
+  #   material: Aluminum_Brushed
+  # - start:
+  #     x: 26.0
+  #     y: 4.0
+  #   end:
+  #     x: 26.0
+  #     y: 6.0
+  #   material: Aluminum_Cast
+  # - start:
+  #     x: 26.0
+  #     y: 6.0
+  #   end:
+  #     x: 26.0
+  #     y: 8.0
+  #   material: Aluminum_Foil
+  # - start:
+  #     x: 26.0
+  #     y: 8.0
+  #   end:
+  #     x: 26.0
+  #     y: 10.0
+  #   material: Aluminum_Hammered
+  # - start:
+  #     x: 26.0
+  #     y: 10.0
+  #   end:
+  #     x: 26.0
+  #     y: 12.0
+  #   material: Aluminum_Knurling
+  # - start:
+  #     x: 26.0
+  #     y: 12.0
+  #   end:
+  #     x: 26.0
+  #     y: 14.0
+  #   material: Aluminum_Polished
+  # - start:
+  #     x: 26.0
+  #     y: 14.0
+  #   end:
+  #     x: 26.0
+  #     y: 16.0
+  #   material: Aluminum_Scratched
+  # - start:
+  #     x: 26.0
+  #     y: 16.0
+  #   end:
+  #     x: 26.0
+  #     y: 18.0
+  #   material: Aluminum_Sheet
+  # - start:
+  #     x: 26.0
+  #     y: 18.0
+  #   end:
+  #     x: 26.0
+  #     y: 20.0
+  #   material: Amethyst
+  # - start:
+  #     x: 26.0
+  #     y: 20.0
+  #   end:
+  #     x: 26.0
+  #     y: 22.0
+  #   material: Ametrine
+  # - start:
+  #     x: 26.0
+  #     y: 22.0
+  #   end:
+  #     x: 26.0
+  #     y: 24.0
+  #   material: Aniline_Leather
+  # - start:
+  #     x: 26.0
+  #     y: 24.0
+  #   end:
+  #     x: 26.0
+  #     y: 26.0
+  #   material: Aquamarine
+  # - start:
+  #     x: 26.0
+  #     y: 26.0
+  #   end:
+  #     x: 24.0
+  #     y: 26.0
+  #   material: Ash
+  # - start:
+  #     x: 24.0
+  #     y: 26.0
+  #   end:
+  #     x: 22.0
+  #     y: 26.0
+  #   material: Ash_Planks
+  # - start:
+  #     x: 22.0
+  #     y: 26.0
+  #   end:
+  #     x: 20.0
+  #     y: 26.0
+  #   material: Asphalt
+  # - start:
+  #     x: 20.0
+  #     y: 26.0
+  #   end:
+  #     x: 18.0
+  #     y: 26.0
+  #   material: Asphalt_Fine
+  # - start:
+  #     x: 18.0
+  #     y: 26.0
+  #   end:
+  #     x: 16.0
+  #     y: 26.0
+  #   material: Bamboo
+  # - start:
+  #     x: 16.0
+  #     y: 26.0
+  #   end:
+  #     x: 14.0
+  #     y: 26.0
+  #   material: Bamboo_Planks
+  # - start:
+  #     x: 14.0
+  #     y: 26.0
+  #   end:
+  #     x: 12.0
+  #     y: 26.0
+  #   material: Beadboard
+  # - start:
+  #     x: 12.0
+  #     y: 26.0
+  #   end:
+  #     x: 10.0
+  #     y: 26.0
+  #   material: Birch
+  # - start:
+  #     x: 10.0
+  #     y: 26.0
+  #   end:
+  #     x: 8.0
+  #     y: 26.0
+  #   material: Birch_Planks
+#   - start:
+#       x: 6.0
+#       y: 26.0
+#     end:
+#       x: 4.0
+#       y: 26.0
+#     material: Blued_Steel_Cold
+#   - start:
+#       x: 4.0
+#       y: 26.0
+#     end:
+#       x: 2.0
+#       y: 26.0
+#     material: Brass
+#   - start:
+#       x: 2.0
+#       y: 26.0
+#     end:
+#       x: 0.0
+#       y: 26.0
+#     material: Brass_Antique
+#   - start:
+#       x: 0.0
+#       y: 26.0
+#     end:
+#       x: 0.0
+#       y: 24.0
+#     material: Brass_Brushed
+#   - start:
+#       x: 0.0
+#       y: 24.0
+#     end:
+#       x: 0.0
+#       y: 22.0
+#     material: Brass_Foil
+#   - start:
+#       x: 0.0
+#       y: 22.0
+#     end:
+#       x: 0.0
+#       y: 20.0
+#     material: Brass_Hammered
+#   - start:
+#       x: 0.0
+#       y: 20.0
+#     end:
+#       x: 0.0
+#       y: 18.0
+#     material: Brass_Knurling
+#   - start:
+#       x: 0.0
+#       y: 18.0
+#     end:
+#       x: 0.0
+#       y: 16.0
+#     material: Brass_Polished
+#   - start:
+#       x: 0.0
+#       y: 16.0
+#     end:
+#       x: 0.0
+#       y: 14.0
+#     material: Brass_Scratched
+#   - start:
+#       x: 0.0
+#       y: 14.0
+#     end:
+#       x: 0.0
+#       y: 12.0
+#     material: Brass_Sheet
+#   - start:
+#       x: 0.0
+#       y: 12.0
+#     end:
+#       x: 0.0
+#       y: 10.0
+#     material: Brick_Pavers
+#   - start:
+#       x: 0.0
+#       y: 10.0
+#     end:
+#       x: 0.0
+#       y: 8.0
+#     material: Brick_Wall_Brown
+#   - start:
+#       x: 0.0
+#       y: 8.0
+#     end:
+#       x: 0.0
+#       y: 6.0
+#     material: Brick_Wall_Red
+#   - start:
+#       x: 0.0
+#       y: 6.0
+#     end:
+#       x: 0.0
+#       y: 4.0
+#     material: Bronze
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

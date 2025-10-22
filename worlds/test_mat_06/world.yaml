@@ -1,0 +1,269 @@
+zones:
+- description: Material Test Zone 6 - 50 materials
+  name: test_zone_6
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Ground_Aggregate_Exposed
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Ground_Hard_Court
+  - start:
+      x: 4.0
+      y: 0.0
+    end:
+      x: 6.0
+      y: 0.0
+    material: Ground_Leaves
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: Ground_Leaves_Oak
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: Gypsum
+  - start:
+      x: 10.0
+      y: 0.0
+    end:
+      x: 12.0
+      y: 0.0
+    material: Hammer_Paint
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: Iolite
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: Iron
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: Iron_Brushed
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Iron_Foil
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Iron_Hammered
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Iron_Knurling
+  - start:
+      x: 24.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 0.0
+    material: Iron_Pitted_Steel
+  - start:
+      x: 26.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 2.0
+    material: Iron_Scratched
+  - start:
+      x: 26.0
+      y: 2.0
+    end:
+      x: 26.0
+      y: 4.0
+    material: Iron_Sheet
+  - start:
+      x: 26.0
+      y: 4.0
+    end:
+      x: 26.0
+      y: 6.0
+    material: Jade
+  - start:
+      x: 26.0
+      y: 18.0
+    end:
+      x: 26.0
+      y: 20.0
+    material: Laminate_Oak
+  - start:
+      x: 26.0
+      y: 20.0
+    end:
+      x: 26.0
+      y: 22.0
+    material: Large_Granite_Paving
+  - start:
+      x: 26.0
+      y: 22.0
+    end:
+      x: 26.0
+      y: 24.0
+    material: Leather_Black
+  - start:
+      x: 26.0
+      y: 24.0
+    end:
+      x: 26.0
+      y: 26.0
+    material: Leather_Brown
+  - start:
+      x: 6.0
+      y: 26.0
+    end:
+      x: 4.0
+      y: 26.0
+    material: Leather_Pumpkin
+  - start:
+      x: 4.0
+      y: 26.0
+    end:
+      x: 2.0
+      y: 26.0
+    material: Leaves
+  - start:
+      x: 2.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 26.0
+    material: Light_12000K
+  - start:
+      x: 0.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 24.0
+    material: Light_1900K
+  - start:
+      x: 0.0
+      y: 24.0
+    end:
+      x: 0.0
+      y: 22.0
+    material: Light_2600K
+  - start:
+      x: 0.0
+      y: 22.0
+    end:
+      x: 0.0
+      y: 20.0
+    material: Light_2900K
+  - start:
+      x: 0.0
+      y: 20.0
+    end:
+      x: 0.0
+      y: 18.0
+    material: Light_5000K
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Light_5500K
+  - start:
+      x: 0.0
+      y: 16.0
+    end:
+      x: 0.0
+      y: 14.0
+    material: Light_6000K
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Light_7000K
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Linen_Beige
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Linen_Blue
+  - start:
+      x: 0.0
+      y: 8.0
+    end:
+      x: 0.0
+      y: 6.0
+    material: Linen_White
+  - start:
+      x: 0.0
+      y: 6.0
+    end:
+      x: 0.0
+      y: 4.0
+    material: MDF
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic
