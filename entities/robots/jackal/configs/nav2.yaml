@@ -38,6 +38,7 @@ amcl:
     z_rand: 0.5
     z_short: 0.05
     scan_topic: ${frame:-}/lidar
+
 bt_navigator:
   ros__parameters:
     use_sim_time: True
@@ -48,29 +49,6 @@ bt_navigator:
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
     default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
-    # plugin_lib_names:
-    # - nav2_compute_path_to_pose_action_bt_node
-    # - nav2_follow_path_action_bt_node
-    # - nav2_back_up_action_bt_node
-    # - nav2_spin_action_bt_node
-    # - nav2_wait_action_bt_node
-    # - nav2_clear_costmap_service_bt_node
-    # - nav2_is_stuck_condition_bt_node
-    # - nav2_goal_reached_condition_bt_node
-    # - nav2_goal_updated_condition_bt_node
-    # - nav2_initial_pose_received_condition_bt_node
-    # - nav2_reinitialize_global_localization_service_bt_node
-    # - nav2_rate_controller_bt_node
-    # - nav2_distance_controller_bt_node
-    # - nav2_speed_controller_bt_node
-    # - nav2_truncate_path_action_bt_node
-    # - nav2_goal_updater_node_bt_node
-    # - nav2_recovery_node_bt_node
-    # - nav2_pipeline_sequence_bt_node
-    # - nav2_round_robin_node_bt_node
-    # - nav2_transform_available_condition_bt_node
-    # - nav2_time_expired_condition_bt_node
-    # - nav2_distance_traveled_condition_bt_node
 
 bt_navigator_rclcpp_node:
   ros__parameters:
@@ -87,18 +65,17 @@ controller_server:
     goal_checker_plugin: "goal_checker"
     controller_plugins: ["FollowPath"]
 
-    # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
       required_movement_radius: 0.5
       movement_time_allowance: 10.0
-    # Goal checker parameters
+
     goal_checker:
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.25
       yaw_goal_tolerance: 0.25
       stateful: True
-    # DWB parameters
+
     FollowPath:
       plugin: ${local_planner}
       debug_trajectory_details: True
@@ -156,17 +133,14 @@ docking_server:
     fixed_frame: ${frame:-}${robot_odom_frame:-odom}
     dock_backwards: false
     dock_prestaging_tolerance: 0.5
-
-    # Types of docks
     dock_plugins: ['simple_charging_dock']
     simple_charging_dock:
       plugin: 'opennav_docking::SimpleChargingDock'
       docking_threshold: 0.05
       staging_x_offset: -0.7
       use_external_detection_pose: true
-      use_battery_status: false # true
-      use_stall_detection: false # true
-
+      use_battery_status: false
+      use_stall_detection: false
       external_detection_timeout: 1.0
       external_detection_translation_x: -0.18
       external_detection_translation_y: 0.0
@@ -174,7 +148,6 @@ docking_server:
       external_detection_rotation_pitch: -1.57
       external_detection_rotation_yaw: 0.0
       filter_coef: 0.1
-
 
 local_costmap:
   local_costmap:
@@ -266,7 +239,6 @@ planner_server:
     planner_plugins: ${planner_plugins}
     '${**planner_plugins_dict}': ''
 
-
 planner_server_rclcpp_node:
   ros__parameters:
     use_sim_time: True
@@ -294,8 +266,25 @@ recoveries_server:
 
 collision_monitor:
   ros__parameters:
+    base_frame_id: ${frame:-}${robot_base_frame:-base_link}
+    odom_frame_id: ${frame:-}${robot_odom_frame:-odom}
+    cmd_vel_in_topic: "cmd_vel_smoothed"
+    cmd_vel_out_topic: "cmd_vel"
+    transform_tolerance: 0.5
+    source_timeout: 5.0
+    stop_pub_timeout: 2.0
+    use_sim_time: True
+    
     observation_sources: ${observation_sources}
     ${**observation_sources_dict}: ''
-    polygons:
-      - StopPolygon
-    ${**polygons_dict}: ''
+    
+    polygons: ["StopPolygon"]
+    
+    StopPolygon:
+      type: "polygon"
+      action_type: "stop"
+      min_points: 4
+      visualize: true
+      polygon_pub_topic: "stop_polygon"
+      points: [0.3, 0.3, 0.3, -0.3, -0.3, -0.3, -0.3, 0.3]
+
