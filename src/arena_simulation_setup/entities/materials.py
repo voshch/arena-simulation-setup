@@ -4,47 +4,42 @@ import os
 import typing
 
 import attrs
-import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.utils.cattrs import converter
+from arena_simulation_setup import ProviderBase, ass_sources
+from arena_simulation_setup.utils.cattrs import Serializable
 
 
 @attrs.define
 class Material:
-    url: str
+    path: str  # TODO rename to path
     name: str
 
-    DEFAULT: typing.ClassVar[str] = "default"
+    DEFAULT: typing.ClassVar[str] = "PCB_Copper"
 
     def asdict(self) -> dict:
         return attrs.asdict(self)
 
 
-class MaterialProvider(ProviderBase):
-    _materials_dict: typing.ClassVar[dict[str, dict]]
+class MaterialProvider(ProviderBase, Serializable):
+    _path: typing.ClassVar[str]
 
     @classmethod
     def DEFAULT(cls) -> MaterialProvider:
         return cls(Material.DEFAULT)
 
-    @classmethod
-    def bind(cls, path: str) -> type[MaterialProvider]:
-        c = super().bind(path)
-        with open(path) as f:
-            c._materials_dict = typing.cast(dict, yaml.safe_load(f))
-        return c
+    def load(self, *, default: Material | None = None) -> Material:
+        resolved = self.resolve(self.name, fn=os.path.isdir)
+        if resolved is None:
+            if default is not None:
+                return default
+            raise FileNotFoundError(f'Material {self.name} not found')
+        return Material(
+            name=self.name,
+            path=os.path.join(resolved, f'{self.name}.mdl'),
+        )
 
-    @classmethod
-    def list(cls) -> list[str]:
-        return list(cls._materials_dict.keys())
-
-    def load(self) -> Material:
-        material = self._materials_dict.get(self._name)
-        if material is None:
-            raise FileNotFoundError(f'Material not found in {self._base_dir}: {self._name}')
-        return converter.structure(material, Material)
+    def serialize(self) -> str:
+        return self.name
 
 
-WallMaterialLoader = MaterialProvider.bind(os.path.join(ass_dir, 'entities', 'materials', 'wall.yaml'))
-FloorMaterialLoader = MaterialProvider.bind(os.path.join(ass_dir, 'entities', 'materials', 'floor.yaml'))
+MaterialLoader = MaterialProvider.bind(ass_sources('entities', 'materials'))

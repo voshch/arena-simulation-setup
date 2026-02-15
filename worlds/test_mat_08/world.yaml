@@ -1,0 +1,311 @@
+zones:
+- description: Material Test Zone 8 - 50 materials
+  name: test_zone_8
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Oak
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Oak_Planks
+  - start:
+      x: 4.0
+      y: 0.0
+    end:
+      x: 6.0
+      y: 0.0
+    material: Onyx
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: PCB_Copper
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: PCB_Goldfinger
+  - start:
+      x: 10.0
+      y: 0.0
+    end:
+      x: 12.0
+      y: 0.0
+    material: PCB_Prepreg
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: PCB_Solder_Mask
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: PET_Clear
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: PU_Split_Leather
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Paint_Eggshell
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Paint_Gloss
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Paint_Gloss_Finish
+  - start:
+      x: 24.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 0.0
+    material: Paint_Gun_Metal
+  - start:
+      x: 26.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 2.0
+    material: Paint_Matte
+  - start:
+      x: 26.0
+      y: 2.0
+    end:
+      x: 26.0
+      y: 4.0
+    material: Paint_Matte_Finish
+  - start:
+      x: 26.0
+      y: 4.0
+    end:
+      x: 26.0
+      y: 6.0
+    material: Paint_Satin
+  - start:
+      x: 26.0
+      y: 6.0
+    end:
+      x: 26.0
+      y: 8.0
+    material: Paint_Satin_Finish
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Paper
+  - start:
+      x: 26.0
+      y: 12.0
+    end:
+      x: 26.0
+      y: 14.0
+    material: Paper_Plain
+  - start:
+      x: 26.0
+      y: 14.0
+    end:
+      x: 26.0
+      y: 16.0
+    material: Parquet_Floor
+  - start:
+      x: 26.0
+      y: 16.0
+    end:
+      x: 26.0
+      y: 18.0
+    material: Paving_Stones
+  - start:
+      x: 26.0
+      y: 18.0
+    end:
+      x: 26.0
+      y: 20.0
+    material: Pea_Gravel
+  - start:
+      x: 26.0
+      y: 20.0
+    end:
+      x: 26.0
+      y: 22.0
+    material: Pearl
+  - start:
+      x: 26.0
+      y: 22.0
+    end:
+      x: 26.0
+      y: 24.0
+    material: Peridot
+  - start:
+      x: 26.0
+      y: 24.0
+    end:
+      x: 26.0
+      y: 26.0
+    material: Pigmented_Smooth_Leather
+  - start:
+      x: 26.0
+      y: 26.0
+    end:
+      x: 24.0
+      y: 26.0
+    material: Plaster
+  - start:
+      x: 22.0
+      y: 26.0
+    end:
+      x: 20.0
+      y: 26.0
+    material: Plaster_Wall
+  - start:
+      x: 20.0
+      y: 26.0
+    end:
+      x: 18.0
+      y: 26.0
+    material: Plastic
+  - start:
+      x: 18.0
+      y: 26.0
+    end:
+      x: 16.0
+      y: 26.0
+    material: Plastic_ABS
+  - start:
+      x: 16.0
+      y: 26.0
+    end:
+      x: 14.0
+      y: 26.0
+    material: Plastic_Acrylic
+  - start:
+      x: 14.0
+      y: 26.0
+    end:
+      x: 12.0
+      y: 26.0
+    material: Plastic_Clear
+  - start:
+      x: 0.0
+      y: 22.0
+    end:
+      x: 0.0
+      y: 20.0
+    material: Plastic_Standardized_Surface_Finish
+  - start:
+      x: 0.0
+      y: 20.0
+    end:
+      x: 0.0
+      y: 18.0
+    material: Plastic_Thick_Translucent
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Plastic_Thick_Translucent_Flakes
+  - start:
+      x: 0.0
+      y: 16.0
+    end:
+      x: 0.0
+      y: 14.0
+    material: Platinum
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Platinum_Brushed
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Platinum_Foil
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Platinum_Hammered
+  - start:
+      x: 0.0
+      y: 8.0
+    end:
+      x: 0.0
+      y: 6.0
+    material: Platinum_Knurling
+  - start:
+      x: 0.0
+      y: 6.0
+    end:
+      x: 0.0
+      y: 4.0
+    material: Platinum_Scratched
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

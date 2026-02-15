@@ -1,0 +1,209 @@
+/******************************************************************************
+ *          Copyright 2023 NVIDIA Corporation. All rights reserved.           *
+ ******************************************************************************
+ 
+Permission is hereby granted by NVIDIA Corporation ("NVIDIA"), free of charge,
+to any person obtaining a copy of the sample definition code that uses our 
+Material Definition Language (the "MDL Materials"), to reproduce and distribute
+the MDL Materials, including without limitation the rights to use, copy, merge,
+publish, distribute, and sell modified and unmodified copies of the MDL 
+Materials, and to permit persons to whom the MDL Materials is furnished to do
+so, in all cases solely for use with NVIDIA's Material Definition Language,
+subject to the following further conditions:
+
+1. The above copyright notices, this list of conditions, and the disclaimer
+that follows shall be retained in all copies of one or more of the MDL
+Materials, including in any software with which the MDL Materials are bundled,
+redistributed, and/or sold, and included either as stand-alone text files,
+human-readable headers or in the appropriate machine-readable metadata fields
+within text or binary files as long as those fields can be easily viewed by the
+user, as applicable.
+2. The name of NVIDIA shall not be used to promote, endorse or advertise any 
+Modified Version without specific prior written permission, except a) to comply
+ with the notice requirements otherwise contained herein; or b) to acknowledge
+the contribution(s) of NVIDIA.
+
+THE MDL MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL NVIDIA CORPORATION BE LIABLE FOR 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, 
+INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE
+THE MDL MATERIALS OR FROM OTHER DEALINGS IN THE MDL MATERIALS.
+*/
+
+mdl 1.6;
+
+import ::df::*;
+import ::tex::*;
+import ::anno::*;
+import ::base::*;
+import ::state::*;
+import ::nvidia::core_definitions::*;
+
+const string COPYRIGHT = 
+" Copyright 2023 NVIDIA Corporation. All rights reserved.\n"
+" MDL MATERIALS ARE PROVIDED PURSUANT TO AN END USER LICENSE  AGREEMENT,\n"
+" WHICH WAS ACCEPTED IN ORDER TO GAIN ACCESS TO THIS FILE.  IN PARTICULAR,\n" 
+" THE MDL MATERIALS ARE PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n"
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF\n"
+" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF\n" 
+" COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL NVIDIA\n"
+" CORPORATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY\n"
+" GENERAL, SPECIAL,  INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN\n"
+" AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR\n"
+" INABILITY TO USE THE MDL MATERIALS OR FROM OTHER DEALINGS IN THE MDL MATERIALS.\n";
+
+export material Turquoise(
+    color transmission_color = color (0.296138f, 1.000000f, 0.904661) //( 0.2392157f , 0.8039216f , 0.7294118f)
+    [[
+        ::anno::display_name("Transmission Color"),
+        ::anno::description("Color effect for transmission independent of thickness of the object."),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform color volume_color = color(0.009721f, 0.693872f, 0.693872f)  //( 0.001f , 0.01188235f , 0.01188235f)
+    [[
+        ::anno::display_name("Volume Color"),
+        ::anno::description("Color effect for volume of the object reached at transmission distance."),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform color crack_color = color(0.023153f, 0.011612f, 0.001f) // ( 0.02352941f , 0.01176471f , 0.f)
+    [[
+        ::anno::display_name("Crack Color"),
+        ::anno::description("Color of cracks."),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform color flake_color = color (1.000000f, 0.527115f, 0.001f) //( 1.f , 0.5294118f , 0.f)
+    [[
+        ::anno::display_name("Flake Color"),
+        ::anno::description("Color of flakes."),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform float clarity =  .15f
+    [[
+        ::anno::display_name("Clarity"),
+        ::anno::description("Use to adapt to size of object."),
+        ::anno::soft_range(0.1,10.0),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform float flake_size = 1.f
+    [[
+        ::anno::display_name("Flake Size"),
+        ::anno::description("Determines size of flakes (in mm)."),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform float flake_amount = 1.f
+    [[
+        ::anno::display_name("Flake Amount"),
+        ::anno::description("Determines amount of visible flakes."),
+        ::anno::soft_range(0.0,1.0),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform texture_2d crack_texture =  texture_2d ( "./textures/turquoise_crack_msk.png" , ::tex::gamma_srgb)
+    [[
+        ::anno::display_name("Crack Texture"),
+        ::anno::description("Attach map of cracks here."),
+        ::anno::in_group("Appearance")
+    ]],
+    uniform float3 texture_translate  =  float3 ( 0.f)
+    [[
+        ::anno::display_name("Translate"),
+        ::anno::description("Controls the position of the texture."),
+        ::anno::in_group("Transform")
+    ]],
+    uniform float texture_rotate = 0.f
+    [[
+        ::anno::display_name("Rotate"),
+        ::anno::description("Rotate angle in degrees"),
+        ::anno::in_group("Transform")
+    ]],
+    uniform float2 texture_scale =  float2 ( 1.f)
+    [[
+        ::anno::display_name("Scale"),
+        ::anno::description("Larger numbers increase the texture size."),
+        ::anno::in_group("Transform"),
+		::nvidia::core_definitions::dimension(float2(1.0f, 1.0f))
+    ]],
+    uniform int uv_space_index = 0
+    [[
+        ::anno::display_name("UV Space Index"),
+        ::anno::description("UV space index."),
+        ::anno::hard_range(0,3),
+        ::anno::in_group("Advanced")
+    ]])
+[[
+    ::anno::display_name("Turquoise"),
+    ::anno::description("Turquoise gem material (Default values based on 2cm stone size.)"),
+    ::anno::author("NVIDIA vMaterials"),
+	::anno::contributor("Rüdiger Raab"),
+	::anno::contributor("Maik Rohland"),
+    ::anno::copyright_notice(COPYRIGHT),
+	::anno::thumbnail("./.thumbs/Turquoise.Turquoise.png"),
+	::anno::key_words(string[]("gem", "jewelry", "gemstone", "transmissive", "new", "design", "turquoise", "cool"))
+]]= 
+::nvidia::core_definitions::add_globalbump(
+    base:  ::nvidia::core_definitions::blend(
+        base:  ::nvidia::core_definitions::thick_translucent(
+            transmission_color:  ::nvidia::core_definitions::perlin_noise_texture(
+                color1:  transmission_color,
+                color2:  color ( 1.f , 1.f , 1.f),
+                object_space:  true,
+                noise_levels:  3,
+                absolute_noise:  false,
+                noise_threshold_high:  1.f,
+                noise_threshold_low:  0.f,
+                scaling:  float3 ( 300.f , 300.f , 300.f),
+                translation:  texture_translate,
+                rotation:   float3 (texture_rotate,texture_rotate,texture_rotate),
+                texture_space:  uv_space_index).tint,
+            volume_color:  volume_color,
+            volume_scattering:  0.99999f,
+            roughness:  0.f,
+            reflectivity:  1.f,
+            base_thickness:  clarity * 0.1f,
+            normal:  ::state::normal (),
+            ior:  1.65f),
+        blend:  ::nvidia::core_definitions::apply_metallicflakes(
+            base:  ::nvidia::core_definitions::flex_material(
+                base_color:  crack_color,
+                diffuse_roughness:  0.f,
+                is_metal:  false,
+                reflectivity:  0.3f,
+                reflection_roughness:  0.2f,
+                anisotropy:  0.f,
+                anisotropy_rotation:  0.f,
+                transparency:  0.f,
+                transmission_color:  color ( 1.f , 1.f , 1.f),
+                volume_color:  color ( 1.f , 1.f , 1.f),
+                transmission_roughness:  0.f,
+                base_thickness:  clarity * 0.1f,
+                ior:  1.5f,
+                thin_walled:  false,
+                normal:  ::state::normal ()),
+            flake_color:  flake_color,
+            roughness:  0.f,
+            size:  flake_size *  0.1f,
+            amount:  flake_amount *  0.15f,
+            opacity:  0.5f,
+            bump:  1.f),
+        weight:  ::nvidia::core_definitions::file_texture(
+            texture:  crack_texture,
+            mono_source:  ::base::mono_average,
+            brightness:  1.f,
+            contrast:  1.f,
+            scaling:  1.f / texture_scale,
+            translation:   float2 (texture_translate.x, texture_translate.y) ,
+            rotation:  texture_rotate,
+            clip:  false,
+            texture_space:  uv_space_index,
+            invert:  false).mono),
+    normal:  ::nvidia::core_definitions::file_bump_texture(
+        texture:  crack_texture,
+        bump_source:  ::base::mono_luminance,
+        scaling:  1.f / texture_scale,
+        translation:   float2 (texture_translate.x, texture_translate.y) ,
+        rotation:  texture_rotate,
+        clip:  false,
+        factor:  -0.2f,
+        texture_space:  uv_space_index));

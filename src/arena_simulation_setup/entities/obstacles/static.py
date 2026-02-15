@@ -1,14 +1,19 @@
 import os
 
-from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.utils.models.model_loader import ModelLoader
+from arena_simulation_setup import ProviderBase, ass_sources
+from arena_simulation_setup.utils.models.model_loader import (
+    ModelLoader,
+    ModelProvider_SDF,
+    ModelProvider_USD,
+)
 
 
 class ObstacleModelProvider(ProviderBase):
     ...
 
 
-ObstacleModel = ObstacleModelProvider.bind(os.path.join(ass_dir, 'entities', 'obstacles', 'static'))
+static_models_sources = ass_sources('entities', 'obstacles', 'static')
 
+ObstacleModel = ObstacleModelProvider.bind(static_models_sources)
 
-loader = ModelLoader(ObstacleModel.base_dir())
+loader = ModelLoader(static_models_sources, (ModelProvider_SDF, ModelProvider_USD))

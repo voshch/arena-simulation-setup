@@ -1,8 +1,11 @@
 
-from . import _ModelLoader as ModelLoader
-from .sdf import ModelLoader_SDF  # noqa
-from .urdf import ModelLoader_URDF  # noqa
-# from .yaml import ModelLoader_YAML # noqa
-from .usd import ModelLoader_USD  # noqa
+from . import ModelLoader as ModelLoader
+from .sdf import ModelProvider_SDF  # noqa
+from .urdf import ModelProvider_URDF  # noqa
+from .usd import ModelProvider_USD  # noqa
+
+ModelProvider_SDF
+ModelProvider_URDF
+ModelProvider_USD
 
 __all__ = ['ModelLoader']

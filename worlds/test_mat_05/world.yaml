@@ -1,0 +1,241 @@
+zones:
+- description: Material Test Zone 5 - 50 materials
+  name: test_zone_5
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Fiberglass_Imperfections
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Fieldstone
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: Garnet
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: Glass_Clear
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: Glass_Colored
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: Glass_Dirty
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: Glass_Fritted
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Glass_Glazing_Spandrel
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Glass_Glazing_Tinted
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Glass_Optical
+  - start:
+      x: 26.0
+      y: 22.0
+    end:
+      x: 26.0
+      y: 24.0
+    material: Glass_Smudged
+  - start:
+      x: 18.0
+      y: 26.0
+    end:
+      x: 16.0
+      y: 26.0
+    material: Glazing_Clear
+  - start:
+      x: 16.0
+      y: 26.0
+    end:
+      x: 14.0
+      y: 26.0
+    material: Glazing_Float
+  - start:
+      x: 14.0
+      y: 26.0
+    end:
+      x: 12.0
+      y: 26.0
+    material: Gold
+  - start:
+      x: 12.0
+      y: 26.0
+    end:
+      x: 10.0
+      y: 26.0
+    material: Gold_Brushed
+  - start:
+      x: 10.0
+      y: 26.0
+    end:
+      x: 8.0
+      y: 26.0
+    material: Gold_Foil
+  - start:
+      x: 8.0
+      y: 26.0
+    end:
+      x: 6.0
+      y: 26.0
+    material: Gold_Hammered
+  - start:
+      x: 6.0
+      y: 26.0
+    end:
+      x: 4.0
+      y: 26.0
+    material: Gold_Knurling
+  - start:
+      x: 4.0
+      y: 26.0
+    end:
+      x: 2.0
+      y: 26.0
+    material: Gold_Scratched
+  - start:
+      x: 2.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 26.0
+    material: Gold_Sheet
+  - start:
+      x: 0.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 24.0
+    material: Granite_Dark
+  - start:
+      x: 0.0
+      y: 24.0
+    end:
+      x: 0.0
+      y: 22.0
+    material: Granite_Light
+  - start:
+      x: 0.0
+      y: 22.0
+    end:
+      x: 0.0
+      y: 20.0
+    material: Granite_Polished
+  - start:
+      x: 0.0
+      y: 20.0
+    end:
+      x: 0.0
+      y: 18.0
+    material: Grass_Countryside
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Grass_Cut
+  - start:
+      x: 0.0
+      y: 16.0
+    end:
+      x: 0.0
+      y: 14.0
+    material: Grass_Winter
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Gravel
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Gravel_River_Rock
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Gravel_Track_Ballast
+  - start:
+      x: 0.0
+      y: 6.0
+    end:
+      x: 0.0
+      y: 4.0
+    material: Grog_Fired_Clay
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

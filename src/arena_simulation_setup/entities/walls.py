@@ -10,17 +10,17 @@ from collections.abc import Iterable
 import attrs
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
+from arena_simulation_setup import ProviderBase, ass_sources
 from arena_simulation_setup.entities.materials import (
     MaterialProvider,
-    WallMaterialLoader,
+    MaterialLoader,
 )
 from arena_simulation_setup.entities.obstacles.static import (
     loader as ObstacleModelLoader,
 )
 from arena_simulation_setup.shared.entities import Obstacle
 from arena_simulation_setup.shared.utils import model_parse
-from arena_simulation_setup.utils.cattrs import Parseable, converter, register_parse
+from arena_simulation_setup.utils.cattrs import Parseable, converter
 from arena_simulation_setup.utils.geometry import Orientation, Pose, Position
 from arena_simulation_setup.utils.models import ModelWrapper
 
@@ -29,7 +29,6 @@ from arena_simulation_setup.utils.models import ModelWrapper
 ###
 
 
-@register_parse
 class PositionalNumber(Parseable):
     def __init__(self, *, absolute: typing.Optional[float] = None, relative: typing.Optional[float] = None):
         if absolute is not None:
@@ -48,6 +47,7 @@ class PositionalNumber(Parseable):
             return self._absolute
         if self._relative is not None:
             return low + (high - low) * self._relative
+        raise ValueError("Neither absolute nor relative is set.")
 
     def realize(self, start: Position, end: Position) -> Position:
         return start + self.absolute(0.0, (end - start).norm()) * (end - start).normalized()
@@ -68,7 +68,7 @@ class SubWall(abc.ABC):
     def _shift(self, start: Position, end: Position) -> tuple[Position, Position]:
         external_orientation = (end - start).to_orientation()
         offset = external_orientation * Position(self.x, self.y, self.z)
-        return start + offset, end + offset
+        return offset + start, offset + end
 
     @abc.abstractmethod
     def realize(self, start: Position, end: Position) -> WallRealization:
@@ -88,8 +88,12 @@ class TilingAsset(SubWall):
         start, end = self._shift(start, end)
 
         r_walls, r_obstacles = itertools.chain(()), itertools.chain(())
-        every = self.every / (end - start).norm()
-        width = self.width / (end - start).norm() / 2.0
+        if (divisor := (end - start).norm()) > 1e-6:
+            every = self.every / divisor
+            width = self.width / divisor / 2.0
+        else:
+            every = 1.0
+            width = 0.0
 
         offset = every + width
         while (offset + width) < 1:
@@ -153,7 +157,7 @@ class PlaceWallSegmentAsset(SubWall):
     """
     Place a single wall segment.
     """
-    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=MaterialLoader.converter, factory=MaterialLoader.DEFAULT)
     height: float = attrs.field(converter=float, default=2.0)
     width: float = attrs.field(converter=float, default=0.05)
     name: str = ""
@@ -187,7 +191,7 @@ class WallSegment:
     end: Position
     height: float
     width: float
-    material: MaterialProvider = attrs.field(converter=WallMaterialLoader, factory=WallMaterialLoader.DEFAULT)
+    material: MaterialProvider = attrs.field(converter=MaterialLoader.converter, factory=MaterialLoader.DEFAULT)
 
 
 WallRealization = tuple[Iterable[WallSegment], Iterable[Obstacle]]
@@ -225,4 +229,4 @@ class WallProvider(ProviderBase):
             return converter.structure(yaml.safe_load(f), WallDescription)
 
 
-loader = WallProvider.bind(os.path.join(ass_dir, 'entities', 'walls'))
+loader = WallProvider.bind(ass_sources('entities', 'walls'))

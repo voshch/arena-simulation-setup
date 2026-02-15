@@ -1,0 +1,346 @@
+zones:
+- description: Material Test Zone 3 - 50 materials
+  name: test_zone_3
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Carpet_Woven
+  - start:
+      x: 2.0
+      y: 0.0
+    end:
+      x: 4.0
+      y: 0.0
+    material: Cashmere_Wool_Suiting
+  - start:
+      x: 4.0
+      y: 0.0
+    end:
+      x: 6.0
+      y: 0.0
+    material: Cast_Metal_Silver_Vein
+  - start:
+      x: 6.0
+      y: 0.0
+    end:
+      x: 8.0
+      y: 0.0
+    material: Ceiling_Tiles
+  - start:
+      x: 8.0
+      y: 0.0
+    end:
+      x: 10.0
+      y: 0.0
+    material: Ceramic_Smooth_Fired
+  - start:
+      x: 10.0
+      y: 0.0
+    end:
+      x: 12.0
+      y: 0.0
+    material: Ceramic_Tile_12
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: Ceramic_Tile_18
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: Ceramic_Tile_6
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: Ceramic_Tiles_Glazed_Diamond
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Ceramic_Tiles_Glazed_Diamond_Offset
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Ceramic_Tiles_Glazed_Mosaic_Shifted
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Ceramic_Tiles_Glazed_Paseo
+  - start:
+      x: 24.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 0.0
+    material: Ceramic_Tiles_Glazed_Penny
+  - start:
+      x: 26.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 2.0
+    material: Ceramic_Tiles_Glazed_Pinwheel
+  - start:
+      x: 26.0
+      y: 2.0
+    end:
+      x: 26.0
+      y: 4.0
+    material: Ceramic_Tiles_Glazed_Square
+  - start:
+      x: 26.0
+      y: 4.0
+    end:
+      x: 26.0
+      y: 6.0
+    material: Ceramic_Tiles_Glazed_Square_Brick
+  - start:
+      x: 26.0
+      y: 6.0
+    end:
+      x: 26.0
+      y: 8.0
+    material: Ceramic_Tiles_Glazed_Subway
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Ceramic_Tiles_Glazed_Versailles
+  - start:
+      x: 26.0
+      y: 10.0
+    end:
+      x: 26.0
+      y: 12.0
+    material: Chain_Link_Fence
+  - start:
+      x: 26.0
+      y: 12.0
+    end:
+      x: 26.0
+      y: 14.0
+    material: Chalk_Paint
+  - start:
+      x: 26.0
+      y: 14.0
+    end:
+      x: 26.0
+      y: 16.0
+    material: Chalk_Paint_Pebbles
+  - start:
+      x: 26.0
+      y: 16.0
+    end:
+      x: 26.0
+      y: 18.0
+    material: Cherry
+  - start:
+      x: 26.0
+      y: 18.0
+    end:
+      x: 26.0
+      y: 20.0
+    material: Cherry_Planks
+  - start:
+      x: 26.0
+      y: 20.0
+    end:
+      x: 26.0
+      y: 22.0
+    material: Chrome
+  - start:
+      x: 26.0
+      y: 22.0
+    end:
+      x: 26.0
+      y: 24.0
+    material: Chrome_Hammered
+  - start:
+      x: 26.0
+      y: 24.0
+    end:
+      x: 26.0
+      y: 26.0
+    material: Chromium
+  - start:
+      x: 26.0
+      y: 26.0
+    end:
+      x: 24.0
+      y: 26.0
+    material: Chromium_Brushed
+  - start:
+      x: 24.0
+      y: 26.0
+    end:
+      x: 22.0
+      y: 26.0
+    material: Chromium_Foil
+  - start:
+      x: 22.0
+      y: 26.0
+    end:
+      x: 20.0
+      y: 26.0
+    material: Chromium_Knurling
+  - start:
+      x: 20.0
+      y: 26.0
+    end:
+      x: 18.0
+      y: 26.0
+    material: Chromium_Scratched
+  - start:
+      x: 18.0
+      y: 26.0
+    end:
+      x: 16.0
+      y: 26.0
+    material: Chromium_Sheet
+  - start:
+      x: 16.0
+      y: 26.0
+    end:
+      x: 14.0
+      y: 26.0
+    material: Citrine
+  - start:
+      x: 10.0
+      y: 26.0
+    end:
+      x: 8.0
+      y: 26.0
+    material: Clear_Glass
+  - start:
+      x: 8.0
+      y: 26.0
+    end:
+      x: 6.0
+      y: 26.0
+    material: Cloth_Black
+  - start:
+      x: 6.0
+      y: 26.0
+    end:
+      x: 4.0
+      y: 26.0
+    material: Cloth_Gray
+  - start:
+      x: 4.0
+      y: 26.0
+    end:
+      x: 2.0
+      y: 26.0
+    material: Cobblestone_Big_and_Loose
+  - start:
+      x: 2.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 26.0
+    material: Cobblestone_Medieval
+  - start:
+      x: 0.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 24.0
+    material: Concrete_Block
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Concrete_Floor_Damage
+  - start:
+      x: 0.0
+      y: 16.0
+    end:
+      x: 0.0
+      y: 14.0
+    material: Concrete_Formed
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Concrete_Polished
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Concrete_Precast
+  - start:
+      x: 0.0
+      y: 10.0
+    end:
+      x: 0.0
+      y: 8.0
+    material: Concrete_Rough
+  - start:
+      x: 0.0
+      y: 8.0
+    end:
+      x: 0.0
+      y: 6.0
+    material: Concrete_Smooth
+  - start:
+      x: 0.0
+      y: 6.0
+    end:
+      x: 0.0
+      y: 4.0
+    material: Concrete_Wall_Aged
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic

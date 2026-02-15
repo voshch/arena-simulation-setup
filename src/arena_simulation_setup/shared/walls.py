@@ -28,3 +28,7 @@ class Wall:
         Get sub-assets that make up the wall.
         """
         return self._description.realize(self.start, self.end)
+
+    def __iter__(self):
+        yield self.start
+        yield self.end

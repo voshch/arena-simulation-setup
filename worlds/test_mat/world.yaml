@@ -1,0 +1,334 @@
+zones:
+  # Standard Carpaint Zone
+  - description: "Standard Carpaint Collection"
+    name: "standard_carpaint_zone"
+    walls:
+      - start: { x: 0.0, y: 0.0 }
+        end: { x: 20.0, y: 0.0 }
+        material: Carpaint_01
+      - start: { x: 20.0, y: 0.0 }
+        end: { x: 40.0, y: 0.0 }
+        material: Carpaint_02
+      - start: { x: 40.0, y: 0.0 }
+        end: { x: 60.0, y: 0.0 }
+        material: Carpaint_03
+      - start: { x: 60.0, y: 0.0 }
+        end: { x: 80.0, y: 0.0 }
+        material: Carpaint_04
+      - start: { x: 80.0, y: 0.0 }
+        end: { x: 100.0, y: 0.0 }
+        material: Carpaint_05
+      - start: { x: 100.0, y: 0.0 }
+        end: { x: 100.0, y: 20.0 }
+        material: Carpaint_06
+      - start: { x: 100.0, y: 20.0 }
+        end: { x: 80.0, y: 20.0 }
+        material: Carpaint_07
+      - start: { x: 80.0, y: 20.0 }
+        end: { x: 60.0, y: 20.0 }
+        material: Carpaint_08
+      - start: { x: 60.0, y: 20.0 }
+        end: { x: 40.0, y: 20.0 }
+        material: Carpaint_09
+      - start: { x: 40.0, y: 20.0 }
+        end: { x: 20.0, y: 20.0 }
+        material: Carpaint_10
+      - start: { x: 20.0, y: 20.0 }
+        end: { x: 0.0, y: 20.0 }
+        material: Carbon_Fiber_NH_02
+      - start: { x: 0.0, y: 20.0 }
+        end: { x: 0.0, y: 0.0 }
+        material: Carbon_Fiber_NH_02_Clearcoat
+
+    corners:
+      - [0.0, 0.0]
+      - [100.0, 0.0]
+      - [100.0, 20.0]
+      - [0.0, 20.0]
+
+  # Metallic Carpaint Zone
+  - description: "Metallic Carpaint Collection"
+    name: "metallic_carpaint_zone"
+    walls:
+      - start: { x: 0.0, y: 30.0 }
+        end: { x: 20.0, y: 30.0 }
+        material: Carpaint_Metallic_01
+      - start: { x: 20.0, y: 30.0 }
+        end: { x: 40.0, y: 30.0 }
+        material: Carpaint_Metallic_02
+      - start: { x: 40.0, y: 30.0 }
+        end: { x: 60.0, y: 30.0 }
+        material: Carpaint_Metallic_03
+      - start: { x: 60.0, y: 30.0 }
+        end: { x: 80.0, y: 30.0 }
+        material: Carpaint_Metallic_04
+      - start: { x: 80.0, y: 30.0 }
+        end: { x: 100.0, y: 30.0 }
+        material: Carpaint_Metallic_05
+      - start: { x: 100.0, y: 30.0 }
+        end: { x: 100.0, y: 50.0 }
+        material: Carpaint_Metallic_06
+      - start: { x: 100.0, y: 50.0 }
+        end: { x: 80.0, y: 50.0 }
+        material: Carpaint_Metallic_07
+      - start: { x: 80.0, y: 50.0 }
+        end: { x: 60.0, y: 50.0 }
+        material: Carpaint_Metallic_08
+      - start: { x: 60.0, y: 50.0 }
+        end: { x: 40.0, y: 50.0 }
+        material: Carpaint_Metallic_09
+      - start: { x: 40.0, y: 50.0 }
+        end: { x: 20.0, y: 50.0 }
+        material: Carpaint_Metallic_10
+      - start: { x: 20.0, y: 50.0 }
+        end: { x: 0.0, y: 50.0 }
+        material: Carbon_Fiber_ANI_01_Clearcoat
+      - start: { x: 0.0, y: 50.0 }
+        end: { x: 0.0, y: 30.0 }
+        material: Carbon_Fiber
+
+    corners:
+      - [0.0, 30.0]
+      - [100.0, 30.0]
+      - [100.0, 50.0]
+      - [0.0, 50.0]
+
+  # Automotive Rims Zone
+  - description: "Automotive Rim Finishes"
+    name: "rims_zone"
+    walls:
+      - start: { x: 0.0, y: 60.0 }
+        end: { x: 16.0, y: 60.0 }
+        material: Rim_Black_Painted_Metal
+      - start: { x: 16.0, y: 60.0 }
+        end: { x: 32.0, y: 60.0 }
+        material: Rim_Carpaint_Blue_Chroma
+      - start: { x: 32.0, y: 60.0 }
+        end: { x: 48.0, y: 60.0 }
+        material: Rim_Carpaint_Red_Chroma
+      - start: { x: 48.0, y: 60.0 }
+        end: { x: 64.0, y: 60.0 }
+        material: Rim_Carpaint_Rose_Gold
+      - start: { x: 64.0, y: 60.0 }
+        end: { x: 80.0, y: 60.0 }
+        material: Rim_Carpaint_Silver
+      - start: { x: 80.0, y: 60.0 }
+        end: { x: 100.0, y: 60.0 }
+        material: Rim_Orange_Painted_Metal
+      - start: { x: 100.0, y: 60.0 }
+        end: { x: 100.0, y: 75.0 }
+        material: Rim_Red_Painted_Metal
+      - start: { x: 100.0, y: 75.0 }
+        end: { x: 80.0, y: 75.0 }
+        material: Rim_Yellow_Painted_Metal
+      - start: { x: 80.0, y: 75.0 }
+        end: { x: 64.0, y: 75.0 }
+        material: Rim_Raw_Chrome
+      - start: { x: 64.0, y: 75.0 }
+        end: { x: 48.0, y: 75.0 }
+        material: Rim_Raw_Metal
+      - start: { x: 48.0, y: 75.0 }
+        end: { x: 32.0, y: 75.0 }
+        material: Metal_Ceramic_Brakes_Dark
+      - start: { x: 32.0, y: 75.0 }
+        end: { x: 16.0, y: 75.0 }
+        material: Metal_Ceramic_Brakes_Golden
+      - start: { x: 16.0, y: 75.0 }
+        end: { x: 0.0, y: 75.0 }
+        material: Metal_Ceramic_Brakes_Clean
+      - start: { x: 0.0, y: 75.0 }
+        end: { x: 0.0, y: 60.0 }
+        material: Metal_Cast
+
+    corners:
+      - [0.0, 60.0]
+      - [100.0, 60.0]
+      - [100.0, 75.0]
+      - [0.0, 75.0]
+
+  # Tire Materials Zone
+  - description: "Tire and Rubber Materials"
+    name: "tire_zone"
+    walls:
+      - start: { x: 0.0, y: 85.0 }
+        end: { x: 14.0, y: 85.0 }
+        material: Tire_Rubber_Dirty
+      - start: { x: 14.0, y: 85.0 }
+        end: { x: 28.0, y: 85.0 }
+        material: Tire_SUV_01
+      - start: { x: 28.0, y: 85.0 }
+        end: { x: 42.0, y: 85.0 }
+        material: Tire_SUV_02
+      - start: { x: 42.0, y: 85.0 }
+        end: { x: 56.0, y: 85.0 }
+        material: Tire_Supercar_02
+      - start: { x: 56.0, y: 85.0 }
+        end: { x: 70.0, y: 85.0 }
+        material: Tire_Supercar_03
+      - start: { x: 70.0, y: 85.0 }
+        end: { x: 84.0, y: 85.0 }
+        material: Tire_Supercar_04
+      - start: { x: 84.0, y: 85.0 }
+        end: { x: 100.0, y: 85.0 }
+        material: Tire_Truck_Jeep_01
+      - start: { x: 100.0, y: 85.0 }
+        end: { x: 100.0, y: 100.0 }
+        material: Tire_Truck_Jeep_02
+      - start: { x: 100.0, y: 100.0 }
+        end: { x: 84.0, y: 100.0 }
+        material: Tire_Truck_Jeep_03
+      - start: { x: 84.0, y: 100.0 }
+        end: { x: 70.0, y: 100.0 }
+        material: Tire_Truck_Jeep_04
+      - start: { x: 70.0, y: 100.0 }
+        end: { x: 56.0, y: 100.0 }
+        material: Tire_Rubber_Clean
+      - start: { x: 56.0, y: 100.0 }
+        end: { x: 42.0, y: 100.0 }
+        material: Tire_Supercar_01
+      - start: { x: 42.0, y: 100.0 }
+        end: { x: 28.0, y: 100.0 }
+        material: Rubber_Smooth
+      - start: { x: 28.0, y: 100.0 }
+        end: { x: 14.0, y: 100.0 }
+        material: Rubber_Textured
+      - start: { x: 14.0, y: 100.0 }
+        end: { x: 0.0, y: 100.0 }
+        material: Metal_Dark_Dirty
+      - start: { x: 0.0, y: 100.0 }
+        end: { x: 0.0, y: 85.0 }
+        material: Metal_Polished_Dirty_01
+
+    corners:
+      - [0.0, 85.0]
+      - [100.0, 85.0]
+      - [100.0, 100.0]
+      - [0.0, 100.0]
+
+  # Reflectors and Lights Zone
+  - description: "Reflectors and Lighting Materials"
+    name: "reflectors_zone"
+    walls:
+      - start: { x: 0.0, y: 110.0 }
+        end: { x: 12.5, y: 110.0 }
+        material: Reflectors_02
+      - start: { x: 12.5, y: 110.0 }
+        end: { x: 25.0, y: 110.0 }
+        material: Reflectors_03
+      - start: { x: 25.0, y: 110.0 }
+        end: { x: 37.5, y: 110.0 }
+        material: Reflectors_01_Glow_Red
+      - start: { x: 37.5, y: 110.0 }
+        end: { x: 50.0, y: 110.0 }
+        material: Reflectors_01_Glow_White
+      - start: { x: 50.0, y: 110.0 }
+        end: { x: 62.5, y: 110.0 }
+        material: Reflectors_01_Glow_Yellow
+      - start: { x: 62.5, y: 110.0 }
+        end: { x: 75.0, y: 110.0 }
+        material: Reflectors_CC_Red_01
+      - start: { x: 75.0, y: 110.0 }
+        end: { x: 87.5, y: 110.0 }
+        material: Reflectors_CC_Red_02
+      - start: { x: 87.5, y: 110.0 }
+        end: { x: 100.0, y: 110.0 }
+        material: Reflectors_CC_Red_03
+      - start: { x: 100.0, y: 110.0 }
+        end: { x: 100.0, y: 125.0 }
+        material: Reflectors_Clearcoat_01
+      - start: { x: 100.0, y: 125.0 }
+        end: { x: 87.5, y: 125.0 }
+        material: Reflectors_Clearcoat_02
+      - start: { x: 87.5, y: 125.0 }
+        end: { x: 75.0, y: 125.0 }
+        material: Reflectors_Clearcoat_03
+      - start: { x: 75.0, y: 125.0 }
+        end: { x: 62.5, y: 125.0 }
+        material: Glass_Reflectors_Base_Orange
+      - start: { x: 62.5, y: 125.0 }
+        end: { x: 50.0, y: 125.0 }
+        material: Glass_Reflectors_Base_Red
+      - start: { x: 50.0, y: 125.0 }
+        end: { x: 37.5, y: 125.0 }
+        material: Glass_Reflectors_Base_Orange_Thick
+      - start: { x: 37.5, y: 125.0 }
+        end: { x: 25.0, y: 125.0 }
+        material: Glass_Reflectors_Base_Red_Thick
+      - start: { x: 25.0, y: 125.0 }
+        end: { x: 12.5, y: 125.0 }
+        material: Glass_Reflectors_Base_Clear_Thick
+      - start: { x: 12.5, y: 125.0 }
+        end: { x: 0.0, y: 125.0 }
+        material: Glass_Reflectors_Base_Clear
+      - start: { x: 0.0, y: 125.0 }
+        end: { x: 0.0, y: 110.0 }
+        material: Reflectors_01
+
+    corners:
+      - [0.0, 110.0]
+      - [100.0, 110.0]
+      - [100.0, 125.0]
+      - [0.0, 125.0]
+
+  # UI Screens Zone
+  - description: "UI Screen Materials"
+    name: "ui_screens_zone"
+    walls:
+      - start: { x: 0.0, y: 135.0 }
+        end: { x: 25.0, y: 135.0 }
+        material: UI_Screen_02
+      - start: { x: 25.0, y: 135.0 }
+        end: { x: 50.0, y: 135.0 }
+        material: UI_Screen_03
+      - start: { x: 50.0, y: 135.0 }
+        end: { x: 75.0, y: 135.0 }
+        material: UI_Screen_04
+      - start: { x: 75.0, y: 135.0 }
+        end: { x: 100.0, y: 135.0 }
+        material: Automotive_Misc_Mirror
+      - start: { x: 100.0, y: 135.0 }
+        end: { x: 100.0, y: 150.0 }
+        material: Glass_Inner_Light_Clear_01
+      - start: { x: 100.0, y: 150.0 }
+        end: { x: 75.0, y: 150.0 }
+        material: Glass_Inner_Light_Clear_02
+      - start: { x: 75.0, y: 150.0 }
+        end: { x: 50.0, y: 150.0 }
+        material: Glass_Inner_Light_Clear_03
+      - start: { x: 50.0, y: 150.0 }
+        end: { x: 25.0, y: 150.0 }
+        material: Glass_Inner_Light_Clear_04
+      - start: { x: 25.0, y: 150.0 }
+        end: { x: 0.0, y: 150.0 }
+        material: Glass_Inner_Light_Clear_05
+      - start: { x: 0.0, y: 150.0 }
+        end: { x: 0.0, y: 135.0 }
+        material: UI_Screen_01
+
+    corners:
+      - [0.0, 135.0]
+      - [100.0, 135.0]
+      - [100.0, 150.0]
+      - [0.0, 150.0]
+
+doors:
+  - name: "main_entrance"
+    start: [45.0, -5.0]
+    end: [55.0, -5.0]
+    height: 3.0
+    kind: "automatic"
+
+entities:
+  static:
+    - name: automotive_showcase
+      model: car_display
+      pose: [50.0, 75.0, 0]
+    - name: lighting_demo
+      model: light_test_rig
+      pose: [50.0, 117.0, 0]
+    - name: info_kiosk
+      model: info_kiosk
+      pose: [50.0, 25.0, 0]
+    - name: seating_area
+      model: bench
+      pose: [20.0, 142.0, 1.57]

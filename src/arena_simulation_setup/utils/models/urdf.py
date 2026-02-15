@@ -8,16 +8,16 @@ from typing import Any, Optional
 
 import attrs
 
-from . import ITF_ModelLoader, Model, ModelType, _ModelLoader
+from . import ModelProvider, Model, ModelType
 
 
-@_ModelLoader.model(ModelType.URDF)
-class ModelLoader_URDF(ITF_ModelLoader):
+class ModelProvider_URDF(ModelProvider.provides(ModelType.URDF)):
 
     @classmethod
     def load(cls, model_dir, model, loader_args):
 
-        namespace: Optional[str] = loader_args.get("namespace", None)
+        if loader_args is None:
+            loader_args = {}
 
         base_path = os.path.join(model_dir, model, "urdf")
         xacro_path = os.path.join(base_path, f"{model}.urdf.xacro")
@@ -87,7 +87,8 @@ class ModelLoader_URDF(ITF_ModelLoader):
 
         except subprocess.CalledProcessError as e:
             print(
-                f"error processing model {model} URDF file {model_path}. refusing to load.\n{e}\n{e.output.decode('utf-8')}",
+                f"error processing model {model} URDF file {xacro_path}. refusing to load.\n{e}\n{e.output.decode('utf-8')}",
                 file=sys.stderr
             )
+            raise
             return None

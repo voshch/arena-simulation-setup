@@ -1,10 +1,9 @@
 import os
 
-from . import ITF_ModelLoader, Model, ModelType, _ModelLoader
+from . import ModelProvider, Model, ModelType
 
 
-@_ModelLoader.model(ModelType.SDF)
-class ModelLoader_SDF(ITF_ModelLoader):
+class ModelProvider_SDF(ModelProvider.provides(ModelType.SDF)):
 
     @classmethod
     def load(cls, model_dir, model, loader_args):

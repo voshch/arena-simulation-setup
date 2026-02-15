@@ -1,12 +1,24 @@
+import io
 import os
+import tarfile
 import typing
 
 import attrs
 import yaml
 
-from arena_simulation_setup import ProviderBase, ass_dir
-from arena_simulation_setup.entities.materials import FloorMaterialLoader, MaterialProvider
-from arena_simulation_setup.shared import Door, DynamicObstacle, Elevator, Floor, Obstacle, Wall
+from arena_simulation_setup import ProviderBase, SourcesContainer, ass_sources
+from arena_simulation_setup.entities.materials import (
+    MaterialLoader,
+    MaterialProvider,
+)
+from arena_simulation_setup.shared import (
+    Door,
+    DynamicObstacle,
+    Elevator,
+    Floor,
+    Obstacle,
+    Wall,
+)
 from arena_simulation_setup.utils.cattrs import converter
 from arena_simulation_setup.utils.geometry import Position
 
@@ -39,7 +51,7 @@ class WorldDescription:
         walls: list[Wall] = attrs.field(factory=list)
         doors: list[Door] = attrs.field(factory=list)
         elevators: list[Elevator] = attrs.field(factory=list)
-        material: MaterialProvider = attrs.field(converter=FloorMaterialLoader, factory=FloorMaterialLoader.DEFAULT)
+        material: MaterialProvider = attrs.field(converter=MaterialLoader.converter, factory=MaterialLoader.DEFAULT)
         entities: WorldEntities = attrs.field(factory=WorldEntities)
         description: str = ''
 
@@ -80,16 +92,56 @@ class WorldDescription:
     def all_dynamic_entities(self) -> typing.Iterable[Obstacle]:
         return (entity for zone in self.zones for entity in zone.entities.dynamic)
 
+    def export(
+        self,
+        resolution: float = 0.05,
+        extra_files: dict[str, bytes] | None = None,
+    ) -> tarfile.TarFile:
+        """
+        Export the world description to world.yaml, map.png, map.yaml
+        """
+        import shapely
+
+        if extra_files is None:
+            extra_files = {}
+        files: dict[str, bytes] = {**extra_files}
+
+        files['world.yaml'] = typing.cast(bytes, yaml.safe_dump(converter.unstructure(self), encoding='utf-8'))
+
+        files['map/map.png'], origin = Map.generate_png(
+            rooms=shapely.MultiPolygon([shapely.Polygon(zone.corners) for zone in self.zones]),
+            walls=shapely.MultiLineString(list(self.all_walls)),
+            resolution=resolution,
+            padding=5,
+        )
+
+        files['map/map.yaml'] = Map.generate_map_yaml(resolution=resolution, filename='map.png', origin=origin).encode('utf-8')
+
+        with io.BytesIO() as tar_stream:
+            with tarfile.open(mode='w', fileobj=tar_stream) as tarball:
+                for filename, content in files.items():
+                    info = tarfile.TarInfo(name=os.path.normpath(filename))
+                    info.size = len(content)
+                    tarball.addfile(tarinfo=info, fileobj=io.BytesIO(content))
+            tar_stream.seek(0)
+            return tarfile.open(fileobj=io.BytesIO(tar_stream.getvalue()))
+
+        return tarball
+
 
 class WorldProvider(ProviderBase):
 
     @classmethod
-    def list(cls) -> list[str]:
-        return ['.generated'] + super().list()
+    def list(cls):
+        return ('.generated', *super().list())
+
+    @classmethod
+    def resolve(cls, path: str) -> str:
+        return os.path.join(cls._sources.global_dir, path)
 
     @property
     def scenario(self):
-        return ScenarioProvider.bind(os.path.join(self.path, 'scenarios'))
+        return ScenarioProvider.bind(ass_sources.override(**{SourcesContainer.Keys.WORLD.value: self.path})('scenarios'))
 
     @property
     def map(self):
@@ -106,5 +158,11 @@ class WorldProvider(ProviderBase):
                 WorldDescription
             )
 
+    def save(self, world: WorldDescription, **kwargs) -> str:
+        os.makedirs(self.path, exist_ok=True)
+        tarball = world.export(**kwargs)
+        tarball.extractall(self.path, filter='data')
+        return self.path
 
-World = WorldProvider.bind(os.path.join(ass_dir, 'worlds'))
+
+World = WorldProvider.bind(ass_sources('worlds'))

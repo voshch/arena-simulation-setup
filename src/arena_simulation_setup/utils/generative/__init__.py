@@ -4,7 +4,7 @@ import typing
 
 import pydantic
 
-from .utils import GeneratedWorld, Polygon  # noqa
+from arena_simulation_setup.worlds.world import WorldDescription
 
 
 class WorldGeneratorType(enum.Enum):
@@ -15,13 +15,14 @@ class WorldGeneratorType(enum.Enum):
     HALLWAY = "hallway"
 
 
-class _BaseConfiguration(pydantic.BaseModel):
-    width: float = 15.0
-    height: float = 15.0
-    resolution: float = 0.05
+class BaseConfiguration(pydantic.BaseModel):
+    width: float = 15.0  # m
+    height: float = 15.0  # m
+    resolution: float = 0.05  # m / px
+    wall_gap: float = 0.05  # gap between adjacent walls
 
 
-class _WorldGeneratorImpl(abc.ABC):
+class WorldGeneratorImpl(abc.ABC):
     """
     Abstract base class for world generators.
     """
@@ -35,26 +36,40 @@ class _WorldGeneratorImpl(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def compute(self) -> GeneratedWorld:
+    def compute(self) -> WorldDescription:
         ...
 
 
-class _WorldGenerator:
-    __registry: typing.ClassVar[dict[WorldGeneratorType, typing.Type[_WorldGeneratorImpl]]] = {}
-    _active: _WorldGeneratorImpl
+class WorldGenerator:
+    __registry: typing.ClassVar[dict[WorldGeneratorType, typing.Callable[[], typing.Type[WorldGeneratorImpl]]]] = {}
+    _active: WorldGeneratorImpl
 
     @classmethod
     def register(cls, name: WorldGeneratorType):
-        def wrap(impl: typing.Type[_WorldGeneratorImpl]):
+        def wrap(impl: typing.Callable[[], typing.Type[WorldGeneratorImpl]]):
             cls.__registry[name] = impl
             return impl
         return wrap
 
-    def compute(self) -> GeneratedWorld:
+    def compute(self) -> WorldDescription:
         return self._active.compute()
 
     def update_generator(self, generator: WorldGeneratorType, configuration: dict):
-        self._active: _WorldGeneratorImpl = self.__registry[generator](configuration)
+        if not generator in self.__registry:
+            raise ValueError(f"Generator {generator} has no implementation")
+        self._active: WorldGeneratorImpl = self.__registry[generator]()(configuration)
 
     def __init__(self, generator: WorldGeneratorType, configuration: dict):
         self.update_generator(generator, configuration)
+
+
+@WorldGenerator.register(WorldGeneratorType.EMPTY)
+def lazy_Empty():
+    from .empty import WorldGeneratorEmpty
+    return WorldGeneratorEmpty
+
+
+@WorldGenerator.register(WorldGeneratorType.HALLWAY)
+def lazy_Hallway():
+    from .hallway import WorldGeneratorHallway
+    return WorldGeneratorHallway

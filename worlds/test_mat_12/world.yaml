@@ -1,0 +1,255 @@
+zones:
+- description: Material Test Zone 12 - 47 materials
+  name: test_zone_12
+  walls:
+  - start:
+      x: 0.0
+      y: 0.0
+    end:
+      x: 2.0
+      y: 0.0
+    material: Tweed_Herringbone
+  - start:
+      x: 10.0
+      y: 0.0
+    end:
+      x: 12.0
+      y: 0.0
+    material: Velvet
+  - start:
+      x: 12.0
+      y: 0.0
+    end:
+      x: 14.0
+      y: 0.0
+    material: Veneer_OU_Walnut
+  - start:
+      x: 14.0
+      y: 0.0
+    end:
+      x: 16.0
+      y: 0.0
+    material: Veneer_UX_Walnut_Cherry
+  - start:
+      x: 16.0
+      y: 0.0
+    end:
+      x: 18.0
+      y: 0.0
+    material: Veneer_Z5_Maple
+  - start:
+      x: 18.0
+      y: 0.0
+    end:
+      x: 20.0
+      y: 0.0
+    material: Vinyl
+  - start:
+      x: 20.0
+      y: 0.0
+    end:
+      x: 22.0
+      y: 0.0
+    material: Volga_Blue
+  - start:
+      x: 22.0
+      y: 0.0
+    end:
+      x: 24.0
+      y: 0.0
+    material: Walnut
+  - start:
+      x: 24.0
+      y: 0.0
+    end:
+      x: 26.0
+      y: 0.0
+    material: Walnut_Planks
+  - start:
+      x: 26.0
+      y: 2.0
+    end:
+      x: 26.0
+      y: 4.0
+    material: Water_Blue_Ocean_Perlinwaves
+  - start:
+      x: 26.0
+      y: 4.0
+    end:
+      x: 26.0
+      y: 6.0
+    material: Water_Murky_Perlinwaves
+  - start:
+      x: 26.0
+      y: 6.0
+    end:
+      x: 26.0
+      y: 8.0
+    material: Water_Opaque
+  - start:
+      x: 26.0
+      y: 8.0
+    end:
+      x: 26.0
+      y: 10.0
+    material: Wood_Bark
+  - start:
+      x: 26.0
+      y: 10.0
+    end:
+      x: 26.0
+      y: 12.0
+    material: Wood_Cork
+  - start:
+      x: 20.0
+      y: 26.0
+    end:
+      x: 18.0
+      y: 26.0
+    material: Wood_Tiles_Ash
+  - start:
+      x: 18.0
+      y: 26.0
+    end:
+      x: 16.0
+      y: 26.0
+    material: Wood_Tiles_Beech
+  - start:
+      x: 16.0
+      y: 26.0
+    end:
+      x: 14.0
+      y: 26.0
+    material: Wood_Tiles_Fineline
+  - start:
+      x: 14.0
+      y: 26.0
+    end:
+      x: 12.0
+      y: 26.0
+    material: Wood_Tiles_Oak_Mountain
+  - start:
+      x: 12.0
+      y: 26.0
+    end:
+      x: 10.0
+      y: 26.0
+    material: Wood_Tiles_Pine
+  - start:
+      x: 10.0
+      y: 26.0
+    end:
+      x: 8.0
+      y: 26.0
+    material: Wood_Tiles_Poplar
+  - start:
+      x: 8.0
+      y: 26.0
+    end:
+      x: 6.0
+      y: 26.0
+    material: Wood_Tiles_Walnut
+  - start:
+      x: 6.0
+      y: 26.0
+    end:
+      x: 4.0
+      y: 26.0
+    material: Wool_Melton
+  - start:
+      x: 4.0
+      y: 26.0
+    end:
+      x: 2.0
+      y: 26.0
+    material: Wool_Sweater_Knit
+  - start:
+      x: 2.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 26.0
+    material: Zinc
+  - start:
+      x: 0.0
+      y: 26.0
+    end:
+      x: 0.0
+      y: 24.0
+    material: Zinc_Brushed
+  - start:
+      x: 0.0
+      y: 24.0
+    end:
+      x: 0.0
+      y: 22.0
+    material: Zinc_Foil
+  - start:
+      x: 0.0
+      y: 22.0
+    end:
+      x: 0.0
+      y: 20.0
+    material: Zinc_Galvanizing
+  - start:
+      x: 0.0
+      y: 20.0
+    end:
+      x: 0.0
+      y: 18.0
+    material: Zinc_Hammered
+  - start:
+      x: 0.0
+      y: 18.0
+    end:
+      x: 0.0
+      y: 16.0
+    material: Zinc_Knurling
+  - start:
+      x: 0.0
+      y: 16.0
+    end:
+      x: 0.0
+      y: 14.0
+    material: Zinc_Scratched
+  - start:
+      x: 0.0
+      y: 14.0
+    end:
+      x: 0.0
+      y: 12.0
+    material: Zinc_Sheet
+  - start:
+      x: 0.0
+      y: 12.0
+    end:
+      x: 0.0
+      y: 10.0
+    material: Zircon
+  corners:
+  - - 0.0
+    - 0.0
+  - - 26.0
+    - 0.0
+  - - 26.0
+    - 26.0
+  - - 0.0
+    - 26.0
+  entities:
+    static:
+    - name: info_kiosk
+      model: info_kiosk
+      pose:
+      - 13.0
+      - 13.0
+      - 0
+doors:
+- name: entrance
+  start:
+  - 11.5
+  - 0.0
+  end:
+  - 14.5
+  - 0.0
+  height: 2.0
+  kind: automatic
